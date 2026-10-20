@@ -2,6 +2,17 @@ import { useState, useEffect, useRef } from 'react';
 import { Volume2, VolumeX, Music, Sparkles } from 'lucide-react';
 import { audioEngine } from '../../services/audioEngine';
 
+import entranceImg from '../../assets/images/studio_01_entrance_1792446831639.jpg';
+import entranceMobileImg from '../../assets/images/mobile/scene_01_entrance_mobile.jpg';
+import vocalBoothImg from '../../assets/images/studio_02_vocal_booth_1792446832131.jpg';
+import vocalBoothMobileImg from '../../assets/images/mobile/scene_02_vocal_booth_mobile.jpg';
+import controlRoomImg from '../../assets/images/studio_control_live_performance_1792447671011.jpg';
+import controlRoomMobileImg from '../../assets/images/mobile/scene_03_control_live_mobile.jpg';
+import productionLabImg from '../../assets/images/studio_04_production_lab_1792446833465.jpg';
+import productionLabMobileImg from '../../assets/images/mobile/scene_04_production_lab_mobile.jpg';
+import masterSuiteImg from '../../assets/images/studio_05_master_suite_1792446834087.jpg';
+import masterSuiteMobileImg from '../../assets/images/mobile/scene_05_master_suite_mobile.jpg';
+
 interface CinematicHeroProps {
   onOpenBooking: (roomId?: string) => void;
   onExploreSpaces: () => void;
@@ -11,47 +22,47 @@ interface TourScene {
   id: string;
   title: string;
   image: string;
+  mobileImage: string;
   soundIndex: number;
-  mobileObjectPos: string;
 }
 
 // 5 Real, Consistent Studio Facilities
-// Precision-calibrated mobile object positioning tested with exact pixel coordinates across Galaxy, iPhone, and Pixel
+// Uses calibrated 16:9 landscape on desktop and 9:16 dedicated portrait crops on mobile
 const TOUR_SCENES: TourScene[] = [
   {
     id: 'studio-entrance',
     title: 'SONICVAULT ARCHITECTURAL ENTRANCE',
-    image: '/src/assets/images/studio_01_entrance_1792446831639.jpg',
+    image: entranceImg,
+    mobileImage: entranceMobileImg,
     soundIndex: 0,
-    mobileObjectPos: '28% center', // Guarantees complete 'S' and 'O' in 'SONICVAULT' are 100% visible with safe margin, and man entering is in view
   },
   {
     id: 'vocal-booth',
     title: 'THE VAULT VOCAL BOOTH',
-    image: '/src/assets/images/studio_02_vocal_booth_1792446832131.jpg',
+    image: vocalBoothImg,
+    mobileImage: vocalBoothMobileImg,
     soundIndex: 1,
-    mobileObjectPos: '50% center', // Centers the vocal booth performance and vintage microphone
   },
   {
     id: 'control-room-live',
     title: 'MASTER CONTROL ROOM & LIVE BOOTH SIGHTLINE',
-    image: '/src/assets/images/studio_control_live_performance_1792447671011.jpg',
+    image: controlRoomImg,
+    mobileImage: controlRoomMobileImg,
     soundIndex: 2,
-    mobileObjectPos: '27% center', // Centers the lady vocalist singing with headphones and mic directly in the mobile viewport
   },
   {
     id: 'production-lab',
     title: 'THE MODULAR PRODUCTION LAB',
-    image: '/src/assets/images/studio_04_production_lab_1792446833465.jpg',
+    image: productionLabImg,
+    mobileImage: productionLabMobileImg,
     soundIndex: 3,
-    mobileObjectPos: '70% center', // Keeps the producer, his face, head, and body fully visible and centered with the modular synth & keyboard
   },
   {
     id: 'master-suite',
     title: 'ANALOG MASTERING SUITE',
-    image: '/src/assets/images/studio_05_master_suite_1792446834087.jpg',
+    image: masterSuiteImg,
+    mobileImage: masterSuiteMobileImg,
     soundIndex: 4,
-    mobileObjectPos: '57% center', // Centers both producers listening to master playback side-by-side
   },
 ];
 
@@ -195,30 +206,36 @@ export default function CinematicHero({ onOpenBooking, onExploreSpaces }: Cinema
                   zIndex: idx + 1,
                 }}
               >
-                <img
-                  src={scene.image}
-                  alt={scene.title}
-                  referrerPolicy="no-referrer"
-                  className={`w-full h-full object-cover filter contrast-[1.05] saturate-[1.06] tour-scene-${idx}`}
-                  style={{
-                    objectPosition: isMobile ? scene.mobileObjectPos : 'center center',
-                    transform: isMobile ? 'none' : `scale(${scale})`,
-                    transition: isMobile ? 'none' : 'transform 0.1s ease-out',
-                  }}
-                />
+                <picture className="w-full h-full block">
+                  <source media="(max-width: 767px)" srcSet={scene.mobileImage} />
+                  <img
+                    src={isMobile ? scene.mobileImage : scene.image}
+                    alt={scene.title}
+                    referrerPolicy="no-referrer"
+                    className={`w-full h-full object-cover filter contrast-[1.05] saturate-[1.06] tour-scene-${idx}`}
+                    style={{
+                      objectPosition: isMobile
+                        ? (idx === 0 ? 'center top' : 'center center')
+                        : 'center center',
+                      transform: isMobile ? 'none' : `scale(${scale})`,
+                      transition: isMobile ? 'none' : 'transform 0.1s ease-out',
+                    }}
+                  />
+                </picture>
               </div>
             );
           })}
         </div>
 
-        {/* Global responsive CSS overrides for 100% infallible mobile framing */}
+        {/* Global responsive CSS overrides for 100% infallible mobile and desktop framing */}
         <style>{`
           @media (max-width: 767px) {
-            .tour-scene-0 { object-position: 28% center !important; }
-            .tour-scene-1 { object-position: 50% center !important; }
-            .tour-scene-2 { object-position: 27% center !important; }
-            .tour-scene-3 { object-position: 70% center !important; }
-            .tour-scene-4 { object-position: 57% center !important; }
+            .tour-scene-0 {
+              object-position: center top !important;
+            }
+            .tour-scene-1, .tour-scene-2, .tour-scene-3, .tour-scene-4 {
+              object-position: center center !important;
+            }
           }
           @media (min-width: 768px) {
             .tour-scene-0, .tour-scene-1, .tour-scene-2, .tour-scene-3, .tour-scene-4 {

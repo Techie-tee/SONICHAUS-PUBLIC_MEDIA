@@ -2,21 +2,49 @@
 
 @layer base {
   :root {
-    --font-display: 'Outfit', sans-serif;
-    --font-body: 'Plus Jakarta Sans', sans-serif;
+    --bg: 0 0% 4%;
+    --surface: 0 0% 8%;
+    --text: 0 0% 96%;
+    --muted: 0 0% 53%;
+    --stroke: 0 0% 12%;
+    --accent: 0 0% 96%;
+
+    --font-serif: 'Instrument Serif', Georgia, serif;
+    --font-sans: 'Inter', sans-serif;
+    --font-display: 'Outfit', 'Inter', sans-serif;
     --font-mono: 'JetBrains Mono', monospace;
   }
 
   body {
-    font-family: var(--font-body);
-    background-color: #05070c;
-    color: #e2e8f0;
+    font-family: var(--font-sans);
+    background-color: hsl(var(--bg));
+    color: hsl(var(--text));
   }
 
   h1, h2, h3, h4, .font-display {
     font-family: var(--font-display);
-    letter-spacing: -0.025em;
+    letter-spacing: -0.02em;
   }
+}
+
+.font-editorial {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 400;
+}
+
+.accent-gradient {
+  background: linear-gradient(90deg, #89AACC 0%, #4E85BF 100%);
+}
+
+.accent-gradient-text {
+  background: linear-gradient(90deg, #89AACC 0%, #4E85BF 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.accent-gradient-border {
+  border-image: linear-gradient(90deg, #89AACC 0%, #4E85BF 100%) 1;
 }
 
 /* Custom smooth dark scrollbar */

@@ -1,4 +1,9 @@
 import { StudioSceneData } from '../types';
+import entranceImg from '../assets/images/studio_01_entrance_1792446831639.jpg';
+import vocalBoothImg from '../assets/images/studio_02_vocal_booth_1792446832131.jpg';
+import controlRoomImg from '../assets/images/studio_control_live_performance_1792447671011.jpg';
+import productionLabImg from '../assets/images/studio_04_production_lab_1792446833465.jpg';
+import masterSuiteImg from '../assets/images/studio_05_master_suite_1792446834087.jpg';
 
 export const SCENES: StudioSceneData[] = [
   {
@@ -12,7 +17,7 @@ export const SCENES: StudioSceneData[] = [
     reverbTime: 'Acoustically Decoupled',
     highlightGear: ['Private Valet Access', 'Artist Green Room', 'Secure Reception'],
     ambientColor: '#38bdf8',
-    imagePath: '/src/assets/images/studio_01_entrance_1792446831639.jpg'
+    imagePath: entranceImg
   },
   {
     id: 'vocal-booth',
@@ -25,7 +30,7 @@ export const SCENES: StudioSceneData[] = [
     reverbTime: 'RT60: 0.16s',
     highlightGear: ['Neumann U87 Vintage 1974', 'BAE 1073 Preamp', 'Tube-Tech CL 1B Compressor', 'Beyerdynamic DT 770 Pro'],
     ambientColor: '#0ea5e9',
-    imagePath: '/src/assets/images/studio_02_vocal_booth_1792446832131.jpg'
+    imagePath: vocalBoothImg
   },
   {
     id: 'control-room',
@@ -38,7 +43,7 @@ export const SCENES: StudioSceneData[] = [
     reverbTime: 'RT60: 0.22s flat to 20Hz',
     highlightGear: ['Solid State Logic 4000 G+ 48-Ch', 'Direct Booth Glass Sightline', 'ATC SCM110ASL Pro Mains', 'Yamaha NS-10M Studio'],
     ambientColor: '#06b6d4',
-    imagePath: '/src/assets/images/studio_control_live_performance_1792447671011.jpg'
+    imagePath: controlRoomImg
   },
   {
     id: 'production-lab',
@@ -51,7 +56,7 @@ export const SCENES: StudioSceneData[] = [
     reverbTime: 'RT60: 0.20s',
     highlightGear: ['Moog One Polyphonic Synth', 'Sequential Prophet-10', 'Akai MPC X Special Edition', 'Genelec 8351B SAM Monitors'],
     ambientColor: '#8b5cf6',
-    imagePath: '/src/assets/images/studio_04_production_lab_1792446833465.jpg'
+    imagePath: productionLabImg
   },
   {
     id: 'master-suite',
@@ -64,6 +69,6 @@ export const SCENES: StudioSceneData[] = [
     reverbTime: 'RT60: 0.18s calibrated',
     highlightGear: ['Studer A800 2-Inch 24-Track Tape', 'Manley Massive Passive Tube EQ', 'Maselec MEA-2 Precision EQ', 'Burl Mothership B80'],
     ambientColor: '#10b981',
-    imagePath: '/src/assets/images/studio_05_master_suite_1792446834087.jpg'
+    imagePath: masterSuiteImg
   }
 ];

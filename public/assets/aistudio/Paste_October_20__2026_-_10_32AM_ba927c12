@@ -1,0 +1,900 @@
+# MASTER BUILD PROMPT — SONICVAULT STUDIOS
+## Full Cinematic Landing Page · Premium Creative Direction · Production-Ready Implementation
+
+### ROLE AND MISSION
+
+Act as an award-winning digital creative director, senior React engineer, motion-design specialist, UI/UX architect, and premium music-brand strategist.
+
+Build a complete, visually extraordinary, production-quality landing page for **SONICVAULT STUDIOS**, a premium music recording, production, mixing, and mastering studio in Lagos, Nigeria.
+
+Use the supplied dark portfolio website specification as the design reference for typography, navigation, loading animation, editorial layouts, image-led project cards, parallax galleries, motion, and overall sophistication. Reimagine its entire structure for a high-end recording studio.
+
+**CRITICAL: An earlier prompt has already established the SONICVAULT STUDIOS immersive cinematic hero and scroll-driven studio tour. Do not create a competing hero, replace the established design, or build a second independent experience. Integrate with the existing hero implementation and continue its visual language throughout the entire website.**
+
+The objective is to create a cohesive digital world that feels like a journey through a real recording studio: cinematic on entry, immersive during exploration, convincing in its presentation of services and creative work, and effortless when booking a session.
+
+Do not stop at a design concept. Implement the actual landing page in the existing project, reusing and improving the established hero where necessary.
+
+---
+
+# 1. EXISTING HERO — SOURCE OF TRUTH
+
+Before implementation, inspect the existing project and locate the previous SONICVAULT hero prompt's implementation, including its components, animations, media assets, brand tokens, and ScrollTrigger timelines.
+
+Treat the existing hero specification as the source of truth for the opening experience.
+
+The established brand language includes:
+
+- **Brand:** SONICVAULT STUDIOS
+- **Primary slogan:** WHERE SOUND BECOMES ART.
+- **Hero headline:** MAKE NOISE. MAKE MAGIC. MAKE HISTORY.
+- **Secondary tagline:** YOUR SOUND. YOUR WORLD. YOUR LEGACY.
+- **Closing headline:** YOUR NEXT GREAT RECORD STARTS HERE.
+- **Primary CTA:** BOOK A SESSION
+- **Secondary CTA:** EXPLORE THE STUDIO
+
+The previously established hero concept includes an immersive, cinematic sequence progressing through the studio entrance, vocal booth, recording room, control room, production environment, artist performance, final mastering, and a concluding SonicVault brand reveal.
+
+Preserve that sequence if it already exists.
+
+Use the established signature visual motif, **THE SONIC LINE**: an animated waveform that can transform into architectural outlines, room transitions, recording timelines, production arrangements, and finally the SonicVault identity.
+
+The rest of the page must inherit the same motion language, lighting, colors, typography, atmosphere, and transitions.
+
+### Integration rules
+
+1. Inspect existing files before editing. Do not blindly overwrite the project.
+2. Reuse the existing hero, logo, design tokens, animation utilities, and media sources where possible.
+3. If the existing hero is incomplete, improve it without discarding its approved creative direction.
+4. Do not create a second loading screen, duplicate navigation, competing hero, or redundant studio-tour section.
+5. Establish one clear animation lifecycle. Prevent multiple GSAP timelines from controlling the same elements.
+6. Connect the final hero/tour scene to the next homepage section through a deliberate visual transition.
+7. Ensure the hero's `BOOK A SESSION` button and other CTAs connect to the actual landing-page destinations.
+8. If the hero's scroll-driven sequence is already pinned, calculate its duration and spacing before adding further pinned sections.
+9. Avoid conflicting ScrollTriggers, nested pinning, jumps in scroll position, and blank gaps after the tour.
+10. Preserve the original hero's visual identity across desktop and mobile, simplifying its implementation when necessary for performance.
+
+The result should feel like one continuous experience designed by a single creative team.
+
+---
+
+# 2. TECHNOLOGY STACK
+
+Use the existing project's stack and conventions. The target stack is:
+
+- React
+- Vite
+- TypeScript
+- Tailwind CSS
+- GSAP
+- GSAP ScrollTrigger
+- Framer Motion
+- hls.js
+- React Router where appropriate
+- Lucide React icons
+- Tailwind animation utilities where useful
+
+Use reusable React components, typed data structures, semantic HTML, and a clear separation between content, presentation, and interactions.
+
+Do not install competing animation libraries or rebuild functionality that already exists.
+
+Use GSAP for coordinated scroll sequences, pinned sections, parallax, and continuous marquees. Use Framer Motion for UI transitions, hover states, modal interactions, loading text, and section reveals.
+
+Use `gsap.context()` or an equivalent scoped approach, clean up timelines and ScrollTriggers on unmount, and account for React Strict Mode.
+
+---
+
+# 3. VISUAL DESIGN SYSTEM
+
+### Typography
+
+Import Google Fonts:
+
+- Inter, weights 300–700.
+- Instrument Serif, regular and italic.
+
+Use Inter for navigation, body copy, labels, metadata, forms, and controls.
+
+Use Instrument Serif italic for oversized statements, expressive editorial words, project titles, and dramatic transitions.
+
+### CSS variables
+
+Define the global dark design tokens in HSL format without the `hsl()` wrapper:
+
+- `--bg: 0 0% 4%`
+- `--surface: 0 0% 8%`
+- `--text: 0 0% 96%`
+- `--muted: 0 0% 53%`
+- `--stroke: 0 0% 12%`
+- `--accent: 0 0% 96%`
+
+Map these into Tailwind colors:
+
+- `bg: hsl(var(--bg))`
+- `surface: hsl(var(--surface))`
+- `text-primary: hsl(var(--text))`
+- `muted: hsl(var(--muted))`
+- `stroke: hsl(var(--stroke))`
+
+Force the dark theme throughout. Do not add a light-mode switch.
+
+### Signature gradient
+
+Use:
+
+`linear-gradient(90deg, #89AACC 0%, #4E85BF 100%)`
+
+Create an `.accent-gradient` utility and reuse it consistently for:
+
+- SonicVault logo rings.
+- Active navigation details.
+- Interactive button borders.
+- Loading progress bars.
+- Audio progress indicators.
+- Fine decorative lines.
+- Hover highlights.
+- Selected visual accents.
+
+### Brand atmosphere
+
+The overall palette should use obsidian black, graphite, ivory, muted grey, cool steel blue, and restrained ultraviolet or amber highlights.
+
+Combine:
+
+- Cinematic low-key lighting.
+- Fine film grain.
+- Architectural shadows.
+- Acoustic-panel textures.
+- Glass reflections.
+- Subtle waveform graphics.
+- Editorial negative space.
+- Carefully composed photography.
+- Restrained gradients and soft depth.
+
+Avoid generic SaaS layouts, excessive glowing cards, random gradients, excessive rounded rectangles, and visual effects without a purpose.
+
+Every section must feel premium, tactile, deliberate, and related to the SonicVault brand.
+
+---
+
+# 4. LOADING SCREEN
+
+If the existing hero already implements the loading screen, reuse it. Do not create a second loader.
+
+Otherwise, create a full-screen loading overlay featuring:
+
+- A small SONICVAULT STUDIOS label in the top-left corner.
+- Rotating words such as `RECORD.`, `CREATE.`, and `EVOLVE.` in the center.
+- A large animated percentage counter in the lower-right corner.
+- A thin blue-gradient progress bar at the bottom.
+- Framer Motion text transitions.
+- A cinematic transition into the existing hero.
+
+Aim for a short, polished sequence. Use a time-based animation that completes reliably, rather than depending on every video or asset loading successfully.
+
+Respect reduced-motion preferences and never leave the website inaccessible if an asset fails.
+
+---
+
+# 5. NAVIGATION
+
+Reuse the established hero navigation and extend it to cover the complete landing page.
+
+Create one floating pill-shaped navbar with a translucent graphite surface, subtle border, backdrop blur, and refined shadow after scrolling.
+
+### Navigation items
+
+- Home
+- Studio
+- Services
+- Equipment
+- Our Work
+- Journal
+- Contact
+
+Include a prominent `BOOK A SESSION` action.
+
+On desktop, keep the navigation compact and elegant. On mobile, use an accessible menu with keyboard support and clear close behavior.
+
+Requirements:
+
+- Smooth anchor navigation.
+- Correct active-section indication.
+- No duplicate navbars.
+- Working CTA destinations.
+- Clear hover and keyboard-focus states.
+- Correct spacing around the pinned hero.
+- No layout jumps when the navbar changes appearance.
+
+---
+
+# 6. HERO AND STUDIO TOUR
+
+**Preserve the earlier hero prompt and its implementation.**
+
+The opening should retain its cinematic full-screen composition, animated typography, signature waveform, and immersive studio journey.
+
+The tour should progress naturally through:
+
+1. Enter the Vault.
+2. Vocal Booth.
+3. Recording Room.
+4. Control Room.
+5. Production Lab.
+6. Artist in Their Element.
+7. Final Mix and Master.
+8. SonicVault Brand Reveal.
+
+The tour should use intentional transitions, such as a waveform becoming an architectural line, studio glass revealing a new room, or a console display becoming a production timeline.
+
+Retain the established hero headline:
+
+`MAKE NOISE. MAKE MAGIC. MAKE HISTORY.`
+
+Retain the primary slogan:
+
+`WHERE SOUND BECOMES ART.`
+
+Conclude with:
+
+`YOUR NEXT GREAT RECORD STARTS HERE.`
+
+The final tour scene must transition into the next homepage section without an abrupt reset in lighting, color, or motion.
+
+If no authentic studio imagery exists, use clearly replaceable visual placeholders or properly licensed assets. Do not present unrelated stock footage as verified images of the actual SonicVault facility.
+
+---
+
+# 7. SECTION — THE SONIC PHILOSOPHY
+
+Immediately after the hero/tour, create a restrained editorial transition.
+
+Section eyebrow:
+
+`BEYOND THE SOUND`
+
+Headline:
+
+`GREAT RECORDS BEGIN WITH A FEELING.`
+
+Supporting copy:
+
+`Every performance has a story. Every arrangement has a purpose. Every detail contributes to the final sound.`
+
+Use oversized typography, generous whitespace, a moving waveform, and a subtle line that continues from the previous hero sequence.
+
+Animate the text into view with a gentle stagger. Reveal the waveform as if the visual energy from the studio tour is flowing into the rest of the website.
+
+Include three compact creative principles:
+
+- Capture the moment.
+- Shape the emotion.
+- Perfect the details.
+
+This section should establish the brand's philosophy without becoming a long corporate introduction.
+
+---
+
+# 8. SECTION — SERVICES
+
+Section eyebrow:
+
+`WHAT WE DO`
+
+Headline:
+
+`EVERY SOUND HAS A PURPOSE.`
+
+Supporting text:
+
+`From the first idea to the final master, find the right space and service for your next project.`
+
+Build a premium, image-led service grid with varied card sizes and an editorial layout.
+
+### Services
+
+1. Vocal Recording
+2. Music Production
+3. Beat Production
+4. Mixing
+5. Mastering
+6. Vocal Editing and Tuning
+7. Full Music Production
+8. Podcast Recording
+9. Voice-Over Recording
+
+Each service should have:
+
+- A compelling visual or custom art direction.
+- A clear service title.
+- A concise description.
+- A small arrow or interaction cue.
+- A `BOOK THIS SERVICE` or `ENQUIRE` action.
+- A link to the booking section with the selected service prefilled.
+
+### Motion
+
+Use Framer Motion for hover and reveal interactions.
+
+Use GSAP only where coordinated scroll motion adds value.
+
+Images should scale subtly on hover, and selected cards may reveal an animated waveform or technical visual.
+
+Use an asymmetrical grid on desktop and a clear single-column or two-column layout on mobile.
+
+Do not use the same generic icon card for every service.
+
+Display only approved prices. If pricing is not approved, use `ENQUIRE FOR PRICING`.
+
+---
+
+# 9. SECTION — EXPLORE THE STUDIO
+
+Section eyebrow:
+
+`THE SPACE BEHIND THE SOUND`
+
+Headline:
+
+`MADE FOR THE MOMENT.`
+
+Supporting text:
+
+`Step into a creative environment designed to help ideas become records.`
+
+Create a cinematic image gallery with large, carefully composed visuals and short editorial captions.
+
+Content categories:
+
+- Vocal recording environment.
+- Recording and performance space.
+- Production and mixing environment.
+- Creative collaboration space.
+
+These are gallery categories, not assertions that specific rooms or facilities have been verified.
+
+Use authentic studio photography whenever possible. If it is not available, use replaceable placeholders with clear content configuration.
+
+### Interaction design
+
+- Large image panels.
+- Slow image-scale transitions.
+- Horizontal image reveals on desktop.
+- Subtle parallax.
+- Hover-revealed captions.
+- Accessible image lightbox.
+- Touch-friendly gallery navigation on mobile.
+
+The gallery should feel like a continuation of the earlier camera journey, with the same lighting and visual treatment.
+
+CTA:
+
+`EXPLORE THE STUDIO`
+
+Connect it to the studio gallery or a real studio page if one exists.
+
+---
+
+# 10. SECTION — EQUIPMENT
+
+Section eyebrow:
+
+`TOOLS OF THE CRAFT`
+
+Headline:
+
+`THE RIGHT TOOLS. THE RIGHT FEEL.`
+
+Supporting copy:
+
+`A closer look at the equipment and technology behind the recording process.`
+
+Build an elegant equipment showcase with a combination of close-up photography, editorial typography, and refined interactive details.
+
+### Categories
+
+- Microphones.
+- Audio interfaces and preamps.
+- Studio monitors.
+- Headphones.
+- Mixing hardware.
+- Instruments and controllers.
+- Acoustic treatment.
+- Production software.
+
+Create category filters or tabs. Each equipment item should support a compact detail view showing its name, category, and relevant verified specifications.
+
+Use real inventory data. Never invent a brand, model, specification, certification, or claim that SonicVault owns equipment without confirmation.
+
+When inventory details are missing, make the equipment collection data-driven and easy to update.
+
+Keep the layout visually interesting without turning the section into a cluttered ecommerce catalogue.
+
+---
+
+# 11. SECTION — SELECTED WORK
+
+Section eyebrow:
+
+`SELECTED WORK`
+
+Headline:
+
+`SOUND THAT STAYS WITH YOU.`
+
+Supporting text:
+
+`A showcase of recordings, productions, and creative collaborations.`
+
+Build an editorial Bento grid inspired by premium creative portfolios.
+
+Use a 12-column desktop grid with alternating spans such as 7/5/5/7, adapted responsively.
+
+Include flexible project slots for:
+
+- Music production.
+- Recording sessions.
+- Mixing and mastering.
+- Artist releases.
+- Audio branding or other verified studio work.
+
+Each project card may contain:
+
+- Cover artwork or project imagery.
+- Project title.
+- Artist or client name, if authorized.
+- Service category.
+- Optional audio player.
+- Optional external listening links.
+- A refined hover overlay.
+- A `LISTEN` or `EXPLORE PROJECT` action.
+
+### Audio experience
+
+Build a custom audio player only when real, authorized audio is available.
+
+Include:
+
+- Play/pause.
+- Track progress.
+- Playback duration.
+- Loading and error states.
+- Keyboard-accessible controls.
+- Optional waveform visualization.
+
+Do not autoplay audio.
+
+Do not invent artist credits, client names, releases, streaming URLs, or commercial achievements.
+
+If the studio's portfolio is not ready, use clearly identifiable, replaceable project placeholders.
+
+Add a `VIEW ALL WORK` action only when its destination exists.
+
+---
+
+# 12. SECTION — JOURNAL
+
+Section eyebrow:
+
+`FROM THE CONTROL ROOM`
+
+Headline:
+
+`NOTES ON THE CREATIVE PROCESS.`
+
+Supporting text:
+
+`Ideas, techniques, and perspectives from the world of recording and production.`
+
+Build four editorial journal entries using horizontal pills or compact magazine-style rows.
+
+Suggested subjects:
+
+- Finding the right vocal performance.
+- Why arrangement matters before mixing.
+- The art of listening critically.
+- Preparing a record for mastering.
+
+Each row should include:
+
+- Thumbnail.
+- Article title.
+- Publication date when available.
+- Estimated reading time.
+- Arrow interaction.
+
+Use a restrained hover transition and reveal entries as the user scrolls.
+
+Do not invent published article dates or create broken links. Use working anchors, actual articles, or configurable destinations.
+
+---
+
+# 13. SECTION — VISUAL EXPLORATIONS
+
+This is the creative portfolio-inspired parallax gallery, adapted for SonicVault.
+
+Section eyebrow:
+
+`EXPLORATIONS`
+
+Headline:
+
+`WHERE SOUND BECOMES VISION.`
+
+Supporting copy:
+
+`A visual playground inspired by rhythm, texture, atmosphere, and the creative process.`
+
+Create a tall, scroll-driven gallery with a central pinned composition and two asymmetrical image columns.
+
+Use six or more visual slots featuring:
+
+- Abstract sound-wave forms.
+- Studio details.
+- Recording-inspired textures.
+- Music-related visual art.
+- Lighting studies.
+- Authorized creative imagery.
+
+### GSAP behavior
+
+- Pin the central composition for a carefully controlled scroll interval.
+- Animate the two gallery columns at different speeds.
+- Use subtle rotations and scale transitions.
+- Reveal imagery progressively.
+- Preserve natural page flow before and after the pinned interval.
+- Avoid nested pinning conflicts with the hero or adjacent sections.
+
+### Interaction
+
+Allow users to open an image in an accessible lightbox.
+
+Support keyboard navigation, Escape to close, and mobile swipe or tap interactions where appropriate.
+
+On smaller screens, simplify the parallax rather than reproducing expensive desktop effects.
+
+---
+
+# 14. SECTION — WHY SONICVAULT
+
+Section eyebrow:
+
+`THE SONICVAULT APPROACH`
+
+Headline:
+
+`DETAIL IS THE DIFFERENCE.`
+
+Create three or four concise editorial pillars:
+
+**The Performance**
+
+Give every take the attention it deserves.
+
+**The Process**
+
+Move thoughtfully from recording to production and final delivery.
+
+**The Details**
+
+Treat editing, balance, clarity, and finish as essential parts of the creative process.
+
+**The Collaboration**
+
+Build an environment where artists and creative teams can develop their ideas.
+
+Use fine separators, restrained motion, and strong typography instead of generic cards.
+
+Do not invent years of experience, client totals, satisfaction percentages, testimonials, certifications, or awards.
+
+Only include measurable statistics when verified. Otherwise, communicate the studio's approach through process and creative principles.
+
+---
+
+# 15. SECTION — BOOK A SESSION
+
+This section must convert the visual experience into a practical booking action.
+
+Section eyebrow:
+
+`LET'S MAKE SOMETHING REAL`
+
+Headline:
+
+`YOUR NEXT GREAT RECORD STARTS HERE.`
+
+Supporting copy:
+
+`Tell us what you're working on, and let's find the right session for your sound.`
+
+Create a polished booking interface with:
+
+- Full name.
+- Email address.
+- Phone or WhatsApp number.
+- Requested service.
+- Preferred date.
+- Preferred time.
+- Session duration, where applicable.
+- Project details.
+- Additional requirements.
+
+Include form validation, clear field labels, loading states, error messages, and a genuine confirmation state.
+
+When the user arrives from a service card, preselect that service.
+
+### Booking functionality
+
+Connect the form to the existing backend if available. Otherwise, define the required API integration and make the implementation configurable.
+
+Do not pretend a booking was created when no request was successfully submitted.
+
+If real-time availability is not implemented, label the process as a booking request rather than confirmed availability.
+
+### Paystack
+
+If payment is part of the existing booking workflow, integrate Paystack through a secure server-side process.
+
+- Keep secret keys on the server.
+- Create payment transactions server-side.
+- Verify transaction status before confirming payment.
+- Handle failed, abandoned, and successful transactions.
+- Verify webhook signatures.
+- Associate verified payments with the appropriate booking.
+
+Never trust a frontend-only payment success state.
+
+### WhatsApp
+
+Provide a secondary action that opens WhatsApp with a prefilled enquiry message.
+
+Use the official studio destination:
+
+`https://wa.me/2349015104502`
+
+The booking section should be beautiful, but the form must remain fast, accessible, and easy to use.
+
+---
+
+# 16. SECTION — FINAL CINEMATIC CTA
+
+This is the emotional conclusion of the website.
+
+Continue the same visual language as the hero: dark atmosphere, cinematic studio footage or approved imagery, signature blue gradient, and the SONIC LINE waveform.
+
+Do not create another unrelated hero. This is a closing scene that echoes the opening.
+
+### Visual composition
+
+- Full-width cinematic background.
+- Dark overlay for text readability.
+- Optional vertically flipped video if it suits the existing asset.
+- Large, moving editorial typography.
+- Fine waveform graphics that converge toward the SonicVault logo.
+- Subtle light transitions.
+- A seamless GSAP marquee.
+
+### Marquee text
+
+`YOUR SOUND. YOUR WORLD. YOUR LEGACY. •`
+
+Repeat the phrase to create a continuous loop. Use GSAP with linear easing and proper cleanup to prevent jumps or duplicate animations.
+
+### Closing message
+
+`YOUR NEXT GREAT RECORD STARTS HERE.`
+
+Supporting line:
+
+`Bring the idea. We'll help you shape the sound.`
+
+Primary CTA:
+
+`BOOK A SESSION`
+
+Secondary CTA:
+
+`CHAT ON WHATSAPP`
+
+The closing section should create a clear sense of resolution, connecting the visitor back to the brand identity established in the opening.
+
+---
+
+# 17. FOOTER AND CONTACT
+
+Use the supplied studio contact details:
+
+- Address: 38 Olanrewaju Ninalowo Crescent, Lekki Phase 1, Lagos State, Nigeria.
+- Phone: 09015104502.
+- WhatsApp destination: 2349015104502.
+- Email: Sonicvaultstudios@gmail.com.
+- Social handle: SONICVAULTSTUDIO38.
+
+Create a refined footer containing:
+
+- SonicVault monogram and wordmark.
+- `WHERE SOUND BECOMES ART.`
+- Navigation links.
+- Service links.
+- Address and contact details.
+- Functional telephone, email, and WhatsApp actions.
+- Social links only when their actual profile URLs are verified.
+- Privacy and terms links only when the corresponding pages exist.
+- Current-year copyright notice.
+
+Include an optional green availability indicator only if its status is genuinely maintained.
+
+Keep the footer visually minimal, with generous spacing and a clear hierarchy.
+
+---
+
+# 18. MOTION SYSTEM — ONE COHERENT EXPERIENCE
+
+Motion must support the story rather than compete with it.
+
+### GSAP and ScrollTrigger
+
+Use for:
+
+- The existing hero entrance timeline.
+- The immersive studio-tour sequence.
+- Sonic Line transformations.
+- Section transition choreography.
+- Parallax galleries.
+- Pinned visual compositions.
+- Continuous typography marquees.
+- Carefully controlled image reveals.
+
+### Framer Motion
+
+Use for:
+
+- Loading text transitions.
+- Role or phrase changes.
+- Button interactions.
+- Card hover states.
+- Lightbox transitions.
+- Mobile navigation.
+- Small interface state changes.
+- Section-level reveal animations where GSAP is unnecessary.
+
+### Animation rules
+
+1. Do not animate the same property on the same element with GSAP and Framer Motion simultaneously.
+2. Scope and clean up GSAP animations and ScrollTriggers.
+3. Refresh scroll calculations after relevant layout changes.
+4. Respect reduced-motion preferences.
+5. Do not force scroll behavior outside deliberate, bounded pinned scenes.
+6. Avoid excessive blur, large animated filters, and unnecessary WebGL.
+7. Provide a static or simplified fallback if motion or video fails.
+8. Keep buttons, links, and forms usable throughout all animations.
+9. Avoid loading-screen delays that prevent visitors from accessing content.
+10. Make the mobile experience intentional rather than simply shrinking the desktop design.
+
+---
+
+# 19. RESPONSIVE EXPERIENCE
+
+### Desktop
+
+- Immersive full-screen compositions.
+- Cinematic image transitions.
+- Large editorial typography.
+- Rich but controlled parallax.
+- Asymmetrical Bento grids.
+- Pinned studio-tour scenes.
+
+### Tablet
+
+- Reduced animation complexity.
+- Balanced typography and spacing.
+- Adapted grids.
+- Accessible navigation and controls.
+
+### Mobile
+
+- Compact navigation menu.
+- Carefully scaled typography.
+- Simplified studio-tour transitions.
+- Reduced parallax and pinning.
+- Optimized background media.
+- Touch-friendly galleries.
+- Accessible audio controls.
+- A simple, usable booking form.
+- Clearly visible booking actions.
+
+Use responsive Tailwind utilities, sensible breakpoints, and `prefers-reduced-motion`.
+
+Ensure no horizontal overflow, overlapping text, inaccessible controls, or sections that trap mobile scrolling.
+
+---
+
+# 20. PERFORMANCE, SEO, AND RELIABILITY
+
+Optimize the experience without compromising its creative direction.
+
+- Use responsive, compressed images.
+- Lazy-load noncritical gallery images.
+- Use video poster frames.
+- Load HLS video only where needed.
+- Provide native HLS fallback where supported.
+- Pause nonessential background media when off-screen.
+- Avoid layout shifts.
+- Lazy-load heavy animation code when useful.
+- Keep React components and state management efficient.
+- Add meaningful alt text.
+- Include semantic headings and accessible landmarks.
+- Add page title, description, Open Graph metadata, and favicon.
+- Add structured metadata only when the details are accurate.
+- Handle missing images, failed media, network errors, and failed submissions gracefully.
+- Keep credentials and API secrets out of client-side bundles.
+- Verify all anchors, buttons, navigation links, and form behavior.
+
+The experience must feel premium on a modern desktop and remain functional on an average mobile device with a slower connection.
+
+---
+
+# 21. IMPLEMENTATION STRUCTURE
+
+Inspect and adapt the existing project before deciding the final structure.
+
+Where useful, organize the page into reusable components:
+
+- `LoadingScreen`
+- `Navbar`
+- `Hero`
+- `StudioTour`
+- `SonicPhilosophy`
+- `Services`
+- `StudioSpaces`
+- `EquipmentShowcase`
+- `SelectedWork`
+- `Journal`
+- `Explorations`
+- `StudioApproach`
+- `BookingSection`
+- `FinalCTA`
+- `Footer`
+
+These are architectural suggestions, not a requirement to duplicate components that already exist.
+
+Keep the existing hero implementation and its animation lifecycle intact unless a specific correction is necessary.
+
+Store services, equipment, projects, journal entries, and gallery items in typed data structures where practical. This will make it easy to replace placeholder content with verified studio information.
+
+Use actual links and working interactions. Avoid empty click handlers, decorative buttons with no action, fabricated testimonials, and false booking confirmations.
+
+---
+
+# 22. FINAL ACCEPTANCE CRITERIA
+
+The implementation is complete only when the following are addressed:
+
+- [ ] The original SonicVault hero is preserved and integrated.
+- [ ] The hero and the rest of the landing page share one coherent visual identity.
+- [ ] The studio tour leads naturally into the homepage content.
+- [ ] There is only one primary navigation and one loading sequence.
+- [ ] Services, studio spaces, equipment, selected work, journal, and explorations are present.
+- [ ] Scroll animations do not conflict or create broken pinning.
+- [ ] The booking CTA works from the hero, services, and closing section.
+- [ ] WhatsApp links use the correct studio destination.
+- [ ] Payment behavior is secure if implemented.
+- [ ] No unauthorized audio, invented equipment, fake credits, or unverified statistics are presented as facts.
+- [ ] Desktop, tablet, and mobile layouts are usable.
+- [ ] Reduced-motion preferences are supported.
+- [ ] Video and image failures have appropriate fallbacks.
+- [ ] All visible controls have meaningful actions.
+- [ ] The production build succeeds, and encountered errors are fixed.
+- [ ] Missing credentials, verified assets, inventory details, and other launch dependencies are clearly documented.
+
+### FINAL CREATIVE DIRECTION
+
+Think of the landing page as a record being produced.
+
+The hero is the opening note. The immersive studio tour establishes the atmosphere. The services and equipment reveal the craft. The selected work demonstrates the creative possibilities. The booking section invites the visitor to become part of the process. The closing scene brings the story back to the SonicVault identity.
+
+The waveform, typography, lighting, and movement should feel like variations of the same musical theme.
+
+**Create a landing page that makes people feel the sound before they hear it. Make it immersive, original, emotionally engaging, technically excellent, and unmistakably SONICVAULT STUDIOS.**
+
+Build the actual experience in the existing project, validate it, and report what is implemented, what has been tested, and what still requires real assets or credentials.

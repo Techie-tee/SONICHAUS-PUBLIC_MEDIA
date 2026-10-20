@@ -18,14 +18,21 @@ const _cameraTarget = new THREE.Vector3();
 const _currentLookAt = new THREE.Vector3();
 const _desiredPos = new THREE.Vector3();
 
+import heroVaultEntranceImg from '../../assets/images/hero_vault_entrance_v2_1792444694845.jpg';
+import heroVocalBoothImg from '../../assets/images/hero_vocal_booth_v2_1792444695212.jpg';
+import heroRecordingRoomImg from '../../assets/images/hero_recording_room_v2_1792444696580.jpg';
+import heroControlRoomImg from '../../assets/images/hero_control_room_v2_1792444696551.jpg';
+import heroProductionLabImg from '../../assets/images/hero_production_lab_v2_1792444697086.jpg';
+import heroArtistMasterImg from '../../assets/images/hero_artist_master_v2_1792444696981.jpg';
+
 // High-resolution image assets generated for each studio environment
 const STUDIO_PANORAMAS = [
-  { id: 'vault', path: '/src/assets/images/hero_vault_entrance_v2_1792444694845.jpg', z: 0.0, w: 22, h: 12.5 },
-  { id: 'vocal', path: '/src/assets/images/hero_vocal_booth_v2_1792444695212.jpg', z: -22.0, w: 20, h: 11.5 },
-  { id: 'recording', path: '/src/assets/images/hero_recording_room_v2_1792444696580.jpg', z: -46.0, w: 24, h: 13.5 },
-  { id: 'control', path: '/src/assets/images/hero_control_room_v2_1792444696551.jpg', z: -70.0, w: 22, h: 12.5 },
-  { id: 'production', path: '/src/assets/images/hero_production_lab_v2_1792444697086.jpg', z: -94.0, w: 22, h: 12.5 },
-  { id: 'artist_master', path: '/src/assets/images/hero_artist_master_v2_1792444696981.jpg', z: -118.0, w: 22, h: 12.5 },
+  { id: 'vault', path: heroVaultEntranceImg, z: 0.0, w: 22, h: 12.5 },
+  { id: 'vocal', path: heroVocalBoothImg, z: -22.0, w: 20, h: 11.5 },
+  { id: 'recording', path: heroRecordingRoomImg, z: -46.0, w: 24, h: 13.5 },
+  { id: 'control', path: heroControlRoomImg, z: -70.0, w: 22, h: 12.5 },
+  { id: 'production', path: heroProductionLabImg, z: -94.0, w: 22, h: 12.5 },
+  { id: 'artist_master', path: heroArtistMasterImg, z: -118.0, w: 22, h: 12.5 },
 ];
 
 export default function StudioScene({ scrollProgress }: StudioSceneProps) {

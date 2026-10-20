@@ -7,11 +7,11 @@ import entranceMobileImg from '../../assets/images/mobile/scene_01_entrance_mobi
 import vocalBoothImg from '../../assets/images/studio_02_vocal_booth_1792446832131.jpg';
 import vocalBoothMobileImg from '../../assets/images/mobile/scene_02_vocal_booth_mobile.jpg';
 import controlRoomImg from '../../assets/images/studio_control_live_performance_1792447671011.jpg';
-import controlRoomMobileImg from '../../assets/images/mobile/scene_03_control_live_mobile.jpg';
+import controlRoomMobileImg from '../../assets/images/control_room_mobile_1792483021817.jpg';
 import productionLabImg from '../../assets/images/studio_04_production_lab_1792446833465.jpg';
-import productionLabMobileImg from '../../assets/images/mobile/scene_04_production_lab_mobile.jpg';
+import productionLabMobileImg from '../../assets/images/production_lab_mobile_1792482735447.jpg';
 import masterSuiteImg from '../../assets/images/studio_05_master_suite_1792446834087.jpg';
-import masterSuiteMobileImg from '../../assets/images/mobile/scene_05_master_suite_mobile.jpg';
+import masterSuiteMobileImg from '../../assets/images/master_suite_mobile_1792482735792.jpg';
 
 interface CinematicHeroProps {
   onOpenBooking: (roomId?: string) => void;
@@ -27,7 +27,7 @@ interface TourScene {
 }
 
 // 5 Real, Consistent Studio Facilities
-// Uses calibrated 16:9 landscape on desktop and 9:16 dedicated portrait crops on mobile
+// 100% Character & Equipment Consistency across Mobile, Tablet, PC, and Desktop
 const TOUR_SCENES: TourScene[] = [
   {
     id: 'studio-entrance',
@@ -69,21 +69,10 @@ const TOUR_SCENES: TourScene[] = [
 export default function CinematicHero({ onOpenBooking, onExploreSpaces }: CinematicHeroProps) {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [isAudioMuted, setIsAudioMuted] = useState(true);
-  const [isMobile, setIsMobile] = useState(() => (typeof window !== 'undefined' ? window.innerWidth < 768 : false));
 
   const containerRef = useRef<HTMLDivElement>(null);
   const activeSceneRef = useRef(0);
   const rafRef = useRef<number | null>(null);
-
-  // Detect mobile viewport to tune scaling and prevent edge clipping
-  useEffect(() => {
-    const handleResize = () => {
-      setIsMobile(window.innerWidth < 768);
-    };
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
 
   // Synchronize scroll position strictly on scroll event using RAF for silky performance across all devices
   useEffect(() => {
@@ -167,7 +156,7 @@ export default function CinematicHero({ onOpenBooking, onExploreSpaces }: Cinema
       {/* Sticky Fullscreen Hero Viewport (using 100dvh for mobile address bar safety) */}
       <div className="sticky top-0 w-full h-[100dvh] overflow-hidden flex flex-col justify-between select-none">
         {/* Full-bleed Edge-to-Edge Cinematic Studio Image Canvas Layers */}
-        {/* Images remain 100% still at rest, and move strictly and smoothly with scroll */}
+        {/* Consistent visual effects, editing, and scale dolly across Mobile, Tablet, PC, and Desktop */}
         <div className="absolute inset-0 w-full h-full overflow-hidden">
           {TOUR_SCENES.map((scene, idx) => {
             const sceneStep = 1 / totalScenes;
@@ -192,10 +181,8 @@ export default function CinematicHero({ onOpenBooking, onExploreSpaces }: Cinema
             if (idx === 0 && scrollProgress < sceneStart) opacity = 1;
             if (idx === totalScenes - 1 && scrollProgress > sceneEnd) opacity = 1;
 
-            // Forward camera dolly walk-through moving ONLY when user scrolls
-            // On desktop: 1.0 -> 1.10 subtle forward dolly
-            // On mobile: strictly 1.0 (no scale transform) to ensure zero edge clipping and stable pixel alignment
-            const scale = isMobile ? 1.0 : 1.0 + localProgress * 0.10;
+            // Forward camera dolly walk-through moving identically across ALL device resolutions
+            const scale = 1.0 + localProgress * 0.08;
 
             return (
               <div
@@ -207,18 +194,20 @@ export default function CinematicHero({ onOpenBooking, onExploreSpaces }: Cinema
                 }}
               >
                 <picture className="w-full h-full block">
-                  <source media="(max-width: 767px)" srcSet={scene.mobileImage} />
+                  {/* Portrait orientation: Mobile phones and tablets in portrait mode */}
+                  <source media="(orientation: portrait), (max-aspect-ratio: 1/1)" srcSet={scene.mobileImage} />
+                  {/* Landscape orientation: Desktops, laptops, and tablets in landscape mode */}
+                  <source media="(orientation: landscape)" srcSet={scene.image} />
                   <img
-                    src={isMobile ? scene.mobileImage : scene.image}
+                    src={scene.image}
                     alt={scene.title}
                     referrerPolicy="no-referrer"
-                    className={`w-full h-full object-cover filter contrast-[1.05] saturate-[1.06] tour-scene-${idx}`}
+                    className="w-full h-full object-cover filter contrast-[1.05] saturate-[1.06] tour-scene-img"
                     style={{
-                      objectPosition: isMobile
-                        ? (idx === 0 ? 'center top' : 'center center')
-                        : 'center center',
-                      transform: isMobile ? 'none' : `scale(${scale})`,
-                      transition: isMobile ? 'none' : 'transform 0.1s ease-out',
+                      objectPosition: 'center center',
+                      transform: `scale(${scale})`,
+                      transformOrigin: 'center center',
+                      transition: 'transform 0.12s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
                     }}
                   />
                 </picture>
@@ -227,123 +216,57 @@ export default function CinematicHero({ onOpenBooking, onExploreSpaces }: Cinema
           })}
         </div>
 
-        {/* Global responsive CSS overrides for 100% infallible mobile and desktop framing */}
+        {/* Global responsive styling ensuring perfect centering and hardware acceleration */}
         <style>{`
-          @media (max-width: 767px) {
-            .tour-scene-0 {
-              object-position: center top !important;
-            }
-            .tour-scene-1, .tour-scene-2, .tour-scene-3, .tour-scene-4 {
-              object-position: center center !important;
-            }
-          }
-          @media (min-width: 768px) {
-            .tour-scene-0, .tour-scene-1, .tour-scene-2, .tour-scene-3, .tour-scene-4 {
-              object-position: center center !important;
-            }
+          .tour-scene-img {
+            object-position: center center !important;
+            will-change: transform, opacity;
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
+            transform-style: preserve-3d;
           }
         `}</style>
 
         {/* Ambient Contrast Vignette for Uniform Readability */}
         <div className="absolute inset-0 bg-radial from-transparent via-black/25 to-black/80 pointer-events-none z-10" />
 
-        {/* Top Navigation Bar - Fully Responsive for Mobile & Desktop */}
-        <header className="relative z-20 flex items-center justify-between gap-2 sm:gap-6 px-3.5 sm:px-6 lg:px-12 py-3 sm:py-5 border-b border-white/10 backdrop-blur-md bg-black/45">
-          {/* Zone 1: Wordmark */}
-          <a
-            href="#tour"
-            className="flex items-center gap-2 sm:gap-3 text-sm sm:text-lg font-bold tracking-tight text-white whitespace-nowrap shrink-0 group"
-          >
-            <span className="w-7 h-7 sm:w-8 sm:h-8 rounded-lg bg-sky-500/20 border border-sky-400/40 flex items-center justify-center text-sky-400 shrink-0">
-              <Music className="w-3.5 h-3.5 sm:w-4 sm:h-4" />
-            </span>
-            <span className="font-display tracking-wider text-xs sm:text-base md:text-lg">
-              SONICVAULT <span className="text-sky-400 font-light">STUDIOS</span>
-            </span>
-          </a>
+        {/* Top spacer to ensure clear spacing below floating pill navbar */}
+        <div className="relative z-20 pt-16 sm:pt-20 pointer-events-none" />
 
-          {/* Zone 2: Navigation Links */}
-          <nav className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-300">
-            <a
-              href="#tour"
-              className="text-white hover:text-sky-400 transition-colors whitespace-nowrap shrink-0"
-            >
-              Studio Tour
-            </a>
-            <a
-              href="#spaces"
-              className="hover:text-white transition-colors whitespace-nowrap shrink-0"
-              onClick={onExploreSpaces}
-            >
-              Spaces & Gear
-            </a>
-            <a
-              href="#acoustics"
-              className="hover:text-white transition-colors whitespace-nowrap shrink-0"
-            >
-              Acoustic Specs
-            </a>
-            <a
-              href="#rates"
-              className="hover:text-white transition-colors whitespace-nowrap shrink-0"
-            >
-              Rates & Residency
-            </a>
-          </nav>
-
-          {/* Zone 3: Audio Toggle & Primary CTA */}
-          <div className="flex items-center gap-2 sm:gap-3 shrink-0">
-            <button
-              onClick={handleAudioToggle}
-              className={`flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-lg text-[10px] sm:text-xs font-mono border transition-all whitespace-nowrap shrink-0 cursor-pointer ${
-                isAudioMuted
-                  ? 'border-white/15 text-slate-400 hover:text-white hover:border-white/30 bg-black/50'
-                  : 'border-sky-500/50 text-sky-300 bg-sky-950/50 shadow-[0_0_15px_rgba(56,189,248,0.25)]'
-              }`}
-              title={isAudioMuted ? 'Turn Sound ON' : 'Mute Sound'}
-              aria-label="Toggle Sound"
-            >
-              {isAudioMuted ? <VolumeX className="w-3.5 h-3.5" /> : <Volume2 className="w-3.5 h-3.5 text-sky-400" />}
-              <span className="hidden sm:inline">{isAudioMuted ? 'SOUND: OFF' : 'SOUND: LIVE'}</span>
-            </button>
-
-            <button
-              onClick={() => onOpenBooking()}
-              className="px-3 sm:px-4 py-1.5 sm:py-2 text-[11px] sm:text-xs font-semibold text-black bg-white hover:bg-sky-400 transition-colors rounded-lg shadow-sm whitespace-nowrap shrink-0 cursor-pointer"
-            >
-              Book Session
-            </button>
-          </div>
-        </header>
-
-        {/* Center Main Overlay — Centered Headline (MAKE MAGIC. MAKE HISTORY.) */}
-        <main className="relative z-20 flex-1 flex flex-col justify-center items-center text-center px-3.5 sm:px-6 max-w-4xl mx-auto pointer-events-none w-full">
-          {/* Opening Centered Slogan (Responsive across all mobile preview sizes) */}
+        {/* Center Main Overlay — Centered Headline (MAKE NOISE. MAKE MAGIC. MAKE HISTORY.) */}
+        <main className="relative z-20 flex-1 flex flex-col justify-center items-center text-center px-3.5 sm:px-6 max-w-5xl mx-auto pointer-events-none w-full">
+          {/* Opening Centered Slogan */}
           {introOpacity > 0.01 && (
             <div
-              className="space-y-3.5 sm:space-y-6 transition-opacity duration-300 pointer-events-auto flex flex-col items-center justify-center text-center px-2 w-full max-w-full"
+              className="space-y-4 sm:space-y-6 transition-opacity duration-300 pointer-events-auto flex flex-col items-center justify-center text-center px-2 w-full max-w-full"
               style={{
                 opacity: introOpacity,
                 transform: `scale(${1 - (1 - introOpacity) * 0.08})`,
               }}
             >
-              {/* Screenshot requested badge: 'SONIC VAULT STUDIOS.' */}
-              <div className="inline-flex items-center justify-center gap-1.5 sm:gap-2 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-sky-400/30 text-[10px] sm:text-xs font-mono uppercase tracking-[0.2em] sm:tracking-[0.25em] text-sky-400 drop-shadow-md">
-                <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-sky-400 shrink-0" />
-                <span>SONIC VAULT STUDIOS.</span>
+              {/* Studio badge: 'SONICVAULT STUDIOS · LAGOS' */}
+              <div className="inline-flex items-center justify-center gap-1.5 sm:gap-2 px-3.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-[#4E85BF]/40 text-[10px] sm:text-xs font-mono uppercase tracking-[0.25em] text-[#89AACC] drop-shadow-md">
+                <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#4E85BF] shrink-0" />
+                <span>SONICVAULT STUDIOS · LAGOS</span>
               </div>
 
-              {/* Centered Headline: MAKE MAGIC. MAKE HISTORY. (Responsively sized for all mobile preview widths) */}
+              {/* Centered Headline: MAKE NOISE. MAKE MAGIC. MAKE HISTORY. */}
               <div className="space-y-1 sm:space-y-2 text-center w-full">
-                <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-black tracking-tight text-white font-display uppercase leading-[1.08] drop-shadow-[0_4px_35px_rgba(0,0,0,0.95)]">
-                  <span className="block text-white">MAKE MAGIC.</span>
-                  <span className="block text-sky-400">MAKE HISTORY.</span>
+                <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-black tracking-tight text-white font-display uppercase leading-[1.05] drop-shadow-[0_4px_35px_rgba(0,0,0,0.95)]">
+                  <span className="block text-white">MAKE NOISE.</span>
+                  <span className="block text-white/95">MAKE MAGIC.</span>
+                  <span className="block accent-gradient-text">MAKE HISTORY.</span>
                 </h1>
               </div>
 
-              <p className="text-xs sm:text-base md:text-xl font-medium tracking-wide text-slate-200 font-display drop-shadow-[0_2px_15px_rgba(0,0,0,0.95)]">
-                WHERE SOUND BECOMES ART.
-              </p>
+              <div className="space-y-1 text-center">
+                <p className="text-xs sm:text-base md:text-xl font-medium tracking-wide text-slate-200 font-display drop-shadow-[0_2px_15px_rgba(0,0,0,0.95)]">
+                  WHERE SOUND BECOMES ART.
+                </p>
+                <p className="text-[11px] sm:text-xs font-mono tracking-widest text-[#89AACC] uppercase">
+                  YOUR SOUND. YOUR WORLD. YOUR LEGACY.
+                </p>
+              </div>
 
               <button
                 type="button"
@@ -357,6 +280,7 @@ export default function CinematicHero({ onOpenBooking, onExploreSpaces }: Cinema
               </button>
             </div>
           )}
+
 
           {/* Closing Grand Reveal CTA (Only appears at the very end of the tour, scrollProgress >= 0.92) */}
           {scrollProgress >= 0.92 && (

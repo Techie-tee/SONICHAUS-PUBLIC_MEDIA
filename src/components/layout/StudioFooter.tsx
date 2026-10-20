@@ -1,86 +1,157 @@
-import { Music, MapPin, Mail, Phone, Clock } from 'lucide-react';
+import { Music, MapPin, Mail, Phone, MessageCircle, ArrowUpRight, ShieldCheck, Instagram } from 'lucide-react';
 
-export default function StudioFooter() {
+interface StudioFooterProps {
+  onOpenBooking?: (service?: string) => void;
+}
+
+export default function StudioFooter({ onOpenBooking }: StudioFooterProps) {
+  const currentYear = new Date().getFullYear();
+
   return (
-    <footer className="bg-[#04060a] border-t border-white/10 text-slate-400 py-12 sm:py-16 px-4 sm:px-6 lg:px-12 text-xs font-mono">
-      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 sm:gap-12 border-b border-white/10 pb-8 sm:pb-12">
-        {/* Col 1: Brand Wordmark */}
-        <div className="space-y-4 md:col-span-1">
+    <footer className="bg-[#030508] border-t border-white/10 text-slate-400 py-16 sm:py-20 px-4 sm:px-6 lg:px-12 text-xs font-mono select-none">
+      <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 sm:gap-12 border-b border-white/10 pb-12 sm:pb-16">
+        {/* Col 1 & 2: Brand Identity & Monogram */}
+        <div className="space-y-5 lg:col-span-2">
           <div className="flex items-center gap-3 text-white text-base font-bold tracking-tight">
-            <span className="w-8 h-8 rounded-lg bg-sky-500/20 border border-sky-400/40 flex items-center justify-center text-sky-400">
+            <span className="w-8 h-8 rounded-full accent-gradient flex items-center justify-center text-white shadow-sm">
               <Music className="w-4 h-4" />
             </span>
-            <span className="font-display tracking-wider">SONICVAULT <span className="text-sky-400 font-light">STUDIOS</span></span>
+            <span className="font-display tracking-wider text-base uppercase">
+              SONICVAULT <span className="text-[#89AACC] font-light">STUDIOS</span>
+            </span>
           </div>
-          <p className="text-slate-400 text-xs font-sans leading-relaxed">
-            Where sound becomes art. A flagship architectural recording sanctum built for artists shaping modern sonic culture.
+
+          <p className="text-slate-300 text-sm font-editorial italic max-w-sm leading-relaxed">
+            WHERE SOUND BECOMES ART.
           </p>
-          <div className="text-[11px] text-slate-400 font-mono">
-            EST. 2018 · RECORDING · MIXING · MASTERING
+
+          <p className="text-slate-400 text-xs font-sans leading-relaxed max-w-md">
+            A flagship architectural music recording, production, mixing, and mastering studio located in Lekki Phase 1, Lagos, Nigeria. Built for artists shaping global sonic culture.
+          </p>
+
+          {/* Genuine Availability Status Indicator */}
+          <div className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 text-[11px] font-mono">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span>STUDIO STATUS: SESSIONS ACTIVE · LEKKI PHASE 1</span>
           </div>
         </div>
 
-        {/* Col 2: Studio Location & Access */}
-        <div className="space-y-3">
-          <span className="text-xs uppercase tracking-wider text-white font-semibold block font-display">
-            Studio Facilities
+        {/* Col 3: Navigation Destinations */}
+        <div className="space-y-3.5">
+          <span className="text-xs uppercase tracking-widest text-white font-semibold block font-display">
+            Explore Studio
           </span>
-          <div className="space-y-2 text-slate-400">
-            <div className="flex items-start gap-2">
-              <MapPin className="w-4 h-4 text-sky-400 shrink-0 mt-0.5" />
-              <span>280 St. John Street, Clerkenwell Acoustic Quarter, London EC1V 4PB</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Clock className="w-4 h-4 text-sky-400 shrink-0" />
-              <span>24/7 Access For Confirmed Lockout Bookings</span>
-            </div>
-          </div>
-        </div>
-
-        {/* Col 3: Direct Contacts */}
-        <div className="space-y-3">
-          <span className="text-xs uppercase tracking-wider text-white font-semibold block font-display">
-            Private Bookings
-          </span>
-          <div className="space-y-2 text-slate-400">
-            <div className="flex items-center gap-2">
-              <Mail className="w-4 h-4 text-sky-400 shrink-0" />
-              <span>sessions@sonicvaultstudios.com</span>
-            </div>
-            <div className="flex items-center gap-2">
-              <Phone className="w-4 h-4 text-sky-400 shrink-0" />
-              <span>+44 (0) 20 7946 0891</span>
-            </div>
-            <p className="text-[11px] text-slate-400 pt-1">
-              Private gated valet parking & secure artist green room entrance.
-            </p>
-          </div>
-        </div>
-
-        {/* Col 4: Acoustical Certifications */}
-        <div className="space-y-3">
-          <span className="text-xs uppercase tracking-wider text-white font-semibold block font-display">
-            Acoustic Accreditation
-          </span>
-          <ul className="space-y-1.5 text-slate-400">
-            <li>· Dolby Atmos 9.1.4 Spatial Mixing Certified</li>
-            <li>· Apple Digital Masters Official Facility</li>
-            <li>· Audio Engineering Society (AES) Sustaining Member</li>
-            <li>· NC-15 Acoustic Noise Rating Verified</li>
+          <ul className="space-y-2 text-slate-400 font-sans text-xs">
+            <li>
+              <a href="#tour" className="hover:text-white transition-colors">Immersive Tour</a>
+            </li>
+            <li>
+              <a href="#spaces" className="hover:text-white transition-colors">Studio Spaces</a>
+            </li>
+            <li>
+              <a href="#services" className="hover:text-white transition-colors">Services</a>
+            </li>
+            <li>
+              <a href="#equipment" className="hover:text-white transition-colors">Equipment Locker</a>
+            </li>
+            <li>
+              <a href="#work" className="hover:text-white transition-colors">Selected Work</a>
+            </li>
+            <li>
+              <a href="#journal" className="hover:text-white transition-colors">Studio Journal</a>
+            </li>
+            <li>
+              <a href="#explorations" className="hover:text-white transition-colors">Visual Explorations</a>
+            </li>
           </ul>
+        </div>
+
+        {/* Col 4: Verified Services */}
+        <div className="space-y-3.5">
+          <span className="text-xs uppercase tracking-widest text-white font-semibold block font-display">
+            Studio Services
+          </span>
+          <ul className="space-y-2 text-slate-400 font-sans text-xs">
+            <li>Vocal Recording</li>
+            <li>Music Production</li>
+            <li>Analog & Digital Mixing</li>
+            <li>Stereo & Stem Mastering</li>
+            <li>Vocal Editing & Tuning</li>
+            <li>Full Music Production</li>
+            <li>Podcast & Voice-Over</li>
+          </ul>
+        </div>
+
+        {/* Col 5: Verified Studio Contact Details */}
+        <div className="space-y-3.5">
+          <span className="text-xs uppercase tracking-widest text-white font-semibold block font-display">
+            Contact & Location
+          </span>
+          <div className="space-y-3 text-slate-400 font-sans text-xs">
+            <div className="flex items-start gap-2.5">
+              <MapPin className="w-4 h-4 text-[#89AACC] shrink-0 mt-0.5" />
+              <span className="leading-relaxed">
+                38 Olanrewaju Ninalowo Crescent, Lekki Phase 1, Lagos State, Nigeria
+              </span>
+            </div>
+
+            <div className="flex items-center gap-2.5">
+              <Phone className="w-4 h-4 text-[#89AACC] shrink-0" />
+              <a href="tel:09015104502" className="hover:text-white transition-colors font-mono">
+                09015104502
+              </a>
+            </div>
+
+            <div className="flex items-center gap-2.5">
+              <MessageCircle className="w-4 h-4 text-[#25D366] shrink-0" />
+              <a
+                href="https://wa.me/2349015104502"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-white transition-colors font-mono text-[#25D366]"
+              >
+                +234 901 510 4502 (WhatsApp)
+              </a>
+            </div>
+
+            <div className="flex items-center gap-2.5">
+              <Mail className="w-4 h-4 text-[#89AACC] shrink-0" />
+              <a href="mailto:Sonicvaultstudios@gmail.com" className="hover:text-white transition-colors font-mono">
+                Sonicvaultstudios@gmail.com
+              </a>
+            </div>
+
+            <div className="pt-1 flex items-center gap-2 text-slate-400">
+              <Instagram className="w-4 h-4 text-[#89AACC] shrink-0" />
+              <span className="font-mono text-[11px]">@SONICVAULTSTUDIO38</span>
+            </div>
+          </div>
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto pt-6 sm:pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-slate-400 text-[11px] text-center sm:text-left">
+      {/* Bottom Bar: Copyright & Actions */}
+      <div className="max-w-7xl mx-auto pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-slate-500 text-[11px] text-center sm:text-left">
         <div>
-          © 2026 SONICVAULT STUDIOS LTD. ALL RIGHTS RESERVED.
+          © {currentYear} SONICVAULT STUDIOS. ALL RIGHTS RESERVED. · LEKKI PHASE 1, LAGOS
         </div>
-        <div className="flex flex-wrap items-center justify-center sm:justify-end gap-4 sm:gap-6">
-          <a href="#tour" className="hover:text-white transition-colors">Studio Tour</a>
-          <a href="#spaces" className="hover:text-white transition-colors">Spaces</a>
-          <a href="#gear" className="hover:text-white transition-colors">Gear Locker</a>
-          <a href="#acoustics" className="hover:text-white transition-colors">Acoustics</a>
-          <a href="#rates" className="hover:text-white transition-colors">Residency</a>
+
+        <div className="flex items-center gap-6">
+          <button
+            onClick={() => onOpenBooking && onOpenBooking()}
+            className="hover:text-white transition-colors flex items-center gap-1 cursor-pointer font-mono"
+          >
+            <span>BOOK A SESSION</span>
+            <ArrowUpRight className="w-3.5 h-3.5" />
+          </button>
+          <a
+            href="https://wa.me/2349015104502"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-[#25D366] transition-colors flex items-center gap-1 font-mono"
+          >
+            <span>WHATSAPP CONCIERGE</span>
+            <ArrowUpRight className="w-3.5 h-3.5" />
+          </a>
         </div>
       </div>
     </footer>

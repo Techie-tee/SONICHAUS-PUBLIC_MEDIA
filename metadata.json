@@ -1,0 +1,6 @@
+{
+  "name": "SONICVAULT STUDIOS — Where Sound Becomes Art",
+  "description": "An award-winning, scroll-driven 3D cinematic studio tour through the vocal booth, live recording room, analog control room, production lab, and mastering suite.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

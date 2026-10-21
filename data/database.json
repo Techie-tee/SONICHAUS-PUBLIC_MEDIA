@@ -724,6 +724,66 @@
       "serviceName": "Vocal Recording",
       "packageName": "Vocal recording — 2 hours",
       "date": "2099-01-01",
+      "timeSlot": "TEST_SLOT_1792584343273_sqxcn",
+      "clientName": "Test Artist",
+      "clientEmail": "test.artist@example.com",
+      "clientPhone": "09015104502",
+      "projectDetails": "Automated test suite session",
+      "durationHours": 2,
+      "priceNgn": 65000,
+      "depositNgn": 30000,
+      "bookingStatus": "confirmed",
+      "paymentStatus": "deposit_paid",
+      "termsAccepted": true,
+      "reference": "SV-20261021-YWY2",
+      "createdAt": "2026-10-21T12:05:43.274Z",
+      "updatedAt": "2026-10-21T12:05:43.274Z"
+    },
+    {
+      "serviceId": "srv_vocal_recording",
+      "serviceName": "Vocal Recording",
+      "packageName": "Vocal recording — 2 hours",
+      "date": "2099-01-01",
+      "timeSlot": "TEST_SLOT_1792583873726_fi910",
+      "clientName": "Test Artist",
+      "clientEmail": "test.artist@example.com",
+      "clientPhone": "09015104502",
+      "projectDetails": "Automated test suite session",
+      "durationHours": 2,
+      "priceNgn": 65000,
+      "depositNgn": 30000,
+      "bookingStatus": "confirmed",
+      "paymentStatus": "deposit_paid",
+      "termsAccepted": true,
+      "reference": "SV-20261021-C74J",
+      "createdAt": "2026-10-21T11:57:53.727Z",
+      "updatedAt": "2026-10-21T11:57:53.727Z"
+    },
+    {
+      "serviceId": "srv_vocal_recording",
+      "serviceName": "Vocal Recording",
+      "packageName": "Vocal recording — 2 hours",
+      "date": "2099-01-01",
+      "timeSlot": "TEST_SLOT_1792583292638_dkmvq",
+      "clientName": "Test Artist",
+      "clientEmail": "test.artist@example.com",
+      "clientPhone": "09015104502",
+      "projectDetails": "Automated test suite session",
+      "durationHours": 2,
+      "priceNgn": 65000,
+      "depositNgn": 30000,
+      "bookingStatus": "confirmed",
+      "paymentStatus": "deposit_paid",
+      "termsAccepted": true,
+      "reference": "SV-20261021-IGRK",
+      "createdAt": "2026-10-21T11:48:12.639Z",
+      "updatedAt": "2026-10-21T11:48:12.639Z"
+    },
+    {
+      "serviceId": "srv_vocal_recording",
+      "serviceName": "Vocal Recording",
+      "packageName": "Vocal recording — 2 hours",
+      "date": "2099-01-01",
       "timeSlot": "TEST_SLOT_1792581849617_ne3w1",
       "clientName": "Test Artist",
       "clientEmail": "test.artist@example.com",
@@ -903,6 +963,42 @@
     }
   ],
   "payments": [
+    {
+      "reference": "SV_PSTK_TEST_1792584343275",
+      "bookingReference": "SV-TEST-REF",
+      "amountNgn": 35000,
+      "customerEmail": "artist@example.com",
+      "customerName": "Adesioye",
+      "status": "success",
+      "paystackReference": "SV_PSTK_TEST_1792584343275",
+      "isTestMode": true,
+      "createdAt": "2026-10-21T12:05:43.275Z",
+      "paidAt": "2026-10-21T12:05:43.276Z"
+    },
+    {
+      "reference": "SV_PSTK_TEST_1792583873728",
+      "bookingReference": "SV-TEST-REF",
+      "amountNgn": 35000,
+      "customerEmail": "artist@example.com",
+      "customerName": "Adesioye",
+      "status": "success",
+      "paystackReference": "SV_PSTK_TEST_1792583873728",
+      "isTestMode": true,
+      "createdAt": "2026-10-21T11:57:53.728Z",
+      "paidAt": "2026-10-21T11:57:53.729Z"
+    },
+    {
+      "reference": "SV_PSTK_TEST_1792583292641",
+      "bookingReference": "SV-TEST-REF",
+      "amountNgn": 35000,
+      "customerEmail": "artist@example.com",
+      "customerName": "Adesioye",
+      "status": "success",
+      "paystackReference": "SV_PSTK_TEST_1792583292641",
+      "isTestMode": true,
+      "createdAt": "2026-10-21T11:48:12.641Z",
+      "paidAt": "2026-10-21T11:48:12.641Z"
+    },
     {
       "reference": "SV_PSTK_TEST_1792581849620",
       "bookingReference": "SV-TEST-REF",
@@ -1165,11 +1261,60 @@
   ],
   "auditLogs": [
     {
-      "id": "log_1792581849622_gbzf",
-      "action": "TEST_SECURITY_EVENT",
-      "user": "automated_tester",
-      "details": "Testing audit log persistence",
-      "timestamp": "2026-10-21T11:24:09.622Z"
+      "id": "log_1792587220179_akfm",
+      "action": "BOOKING_CREATED",
+      "user": "test.artist@example.com",
+      "details": "Booking SV-20261021-OIDF for Vocal Recording on 2099-01-01",
+      "timestamp": "2026-10-21T12:53:40.179Z"
+    },
+    {
+      "id": "log_1792586377578_5szi",
+      "action": "BOOKING_CREATED",
+      "user": "test.artist@example.com",
+      "details": "Booking SV-20261021-XT8G for Vocal Recording on 2099-01-01",
+      "timestamp": "2026-10-21T12:39:37.578Z"
+    },
+    {
+      "id": "log_1792585794256_tja5",
+      "action": "BOOKING_CREATED",
+      "user": "test.artist@example.com",
+      "details": "Booking SV-20261021-SJV3 for Vocal Recording on 2099-01-01",
+      "timestamp": "2026-10-21T12:29:54.256Z"
+    },
+    {
+      "id": "log_1792584618104_jo45",
+      "action": "BOOKING_CREATED",
+      "user": "test.artist@example.com",
+      "details": "Booking SV-20261021-6DB0 for Vocal Recording on 2099-01-01",
+      "timestamp": "2026-10-21T12:10:18.104Z"
+    },
+    {
+      "id": "log_1792584516741_qn5k",
+      "action": "BOOKING_CREATED",
+      "user": "test.artist@example.com",
+      "details": "Booking SV-20261021-9KP0 for Vocal Recording on 2099-01-01",
+      "timestamp": "2026-10-21T12:08:36.741Z"
+    },
+    {
+      "id": "log_1792584343274_mq1h",
+      "action": "BOOKING_CREATED",
+      "user": "test.artist@example.com",
+      "details": "Booking SV-20261021-YWY2 for Vocal Recording on 2099-01-01",
+      "timestamp": "2026-10-21T12:05:43.274Z"
+    },
+    {
+      "id": "log_1792583873727_jbas",
+      "action": "BOOKING_CREATED",
+      "user": "test.artist@example.com",
+      "details": "Booking SV-20261021-C74J for Vocal Recording on 2099-01-01",
+      "timestamp": "2026-10-21T11:57:53.727Z"
+    },
+    {
+      "id": "log_1792583292639_pu5i",
+      "action": "BOOKING_CREATED",
+      "user": "test.artist@example.com",
+      "details": "Booking SV-20261021-IGRK for Vocal Recording on 2099-01-01",
+      "timestamp": "2026-10-21T11:48:12.639Z"
     },
     {
       "id": "log_1792581849618_xiyz",
@@ -1179,25 +1324,11 @@
       "timestamp": "2026-10-21T11:24:09.618Z"
     },
     {
-      "id": "log_1792581736847_z0l9",
-      "action": "TEST_SECURITY_EVENT",
-      "user": "automated_tester",
-      "details": "Testing audit log persistence",
-      "timestamp": "2026-10-21T11:22:16.847Z"
-    },
-    {
       "id": "log_1792581736844_gqsp",
       "action": "BOOKING_CREATED",
       "user": "test.artist@example.com",
       "details": "Booking SV-20261021-5RJH for Vocal Recording on 2099-01-01",
       "timestamp": "2026-10-21T11:22:16.844Z"
-    },
-    {
-      "id": "log_1792580842064_m19h",
-      "action": "TEST_SECURITY_EVENT",
-      "user": "automated_tester",
-      "details": "Testing audit log persistence",
-      "timestamp": "2026-10-21T11:07:22.064Z"
     },
     {
       "id": "log_1792580842060_nibn",
@@ -1207,20 +1338,6 @@
       "timestamp": "2026-10-21T11:07:22.060Z"
     },
     {
-      "id": "log_1792580780939_wokq",
-      "action": "TEST_SECURITY_EVENT",
-      "user": "automated_tester",
-      "details": "Testing audit log persistence",
-      "timestamp": "2026-10-21T11:06:20.939Z"
-    },
-    {
-      "id": "log_1792580085683_egz9",
-      "action": "TEST_SECURITY_EVENT",
-      "user": "automated_tester",
-      "details": "Testing audit log persistence",
-      "timestamp": "2026-10-21T10:54:45.683Z"
-    },
-    {
       "id": "log_1792580085680_kfdw",
       "action": "BOOKING_CREATED",
       "user": "test.artist@example.com",
@@ -1228,25 +1345,11 @@
       "timestamp": "2026-10-21T10:54:45.680Z"
     },
     {
-      "id": "log_1792579424126_j7c8",
-      "action": "TEST_SECURITY_EVENT",
-      "user": "automated_tester",
-      "details": "Testing audit log persistence",
-      "timestamp": "2026-10-21T10:43:44.126Z"
-    },
-    {
       "id": "log_1792579424122_xmi3",
       "action": "BOOKING_CREATED",
       "user": "test.artist@example.com",
       "details": "Booking SV-20261021-QKS1 for Vocal Recording on 2027-05-24",
       "timestamp": "2026-10-21T10:43:44.122Z"
-    },
-    {
-      "id": "log_1792493497027_h7bi",
-      "action": "TEST_SECURITY_EVENT",
-      "user": "automated_tester",
-      "details": "Testing audit log persistence",
-      "timestamp": "2026-10-20T10:51:37.027Z"
     },
     {
       "id": "log_1792493497024_16v6",
@@ -1263,32 +1366,11 @@
       "timestamp": "2026-10-20T10:34:06.794Z"
     },
     {
-      "id": "log_1792492416617_yn9u",
-      "action": "TEST_SECURITY_EVENT",
-      "user": "automated_tester",
-      "details": "Testing audit log persistence",
-      "timestamp": "2026-10-20T10:33:36.617Z"
-    },
-    {
       "id": "log_1792492416614_hal5",
       "action": "BOOKING_CREATED",
       "user": "test.artist@example.com",
       "details": "Booking SV-20261020-LWQ9 for Vocal Recording on 2027-05-21",
       "timestamp": "2026-10-20T10:33:36.614Z"
-    },
-    {
-      "id": "log_1792492405021_1cpl",
-      "action": "TEST_SECURITY_EVENT",
-      "user": "automated_tester",
-      "details": "Testing audit log persistence",
-      "timestamp": "2026-10-20T10:33:25.021Z"
-    },
-    {
-      "id": "log_1792492290175_4spg",
-      "action": "TEST_SECURITY_EVENT",
-      "user": "automated_tester",
-      "details": "Testing audit log persistence",
-      "timestamp": "2026-10-20T10:31:30.175Z"
     },
     {
       "id": "log_1792492290172_bjr1",

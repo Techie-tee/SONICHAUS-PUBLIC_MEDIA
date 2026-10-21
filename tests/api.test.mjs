@@ -60,6 +60,10 @@ describe('SONICVAULT STUDIOS — Core Infrastructure & Security Tests', () => {
     // Check slot again: MUST now be unavailable (prevents double-booking)
     const isAvailAfter = db.checkSlotAvailable(testDate, testSlot);
     assert.strictEqual(isAvailAfter, false);
+
+    // Clean up test booking to maintain clean database state
+    const cleanBookings = db.get('bookings').filter((b) => b.reference !== booking.reference);
+    db.set('bookings', cleanBookings);
   });
 
   test('5. Paystack Transaction Persistence and Verification Workflow', () => {
@@ -96,6 +100,10 @@ describe('SONICVAULT STUDIOS — Core Infrastructure & Security Tests', () => {
 
     const verified = db.get('payments').find((p) => p.reference === testRef);
     assert.strictEqual(verified.status, 'success');
+
+    // Clean up test payment transaction
+    const cleanPayments = db.get('payments').filter((p) => p.reference !== testRef);
+    db.set('payments', cleanPayments);
   });
 
   test('6. Chatbot Knowledge Base covers required core topics', () => {
@@ -119,5 +127,55 @@ describe('SONICVAULT STUDIOS — Core Infrastructure & Security Tests', () => {
     const testLog = logs.find((l) => l.action === 'TEST_SECURITY_EVENT');
     assert.ok(testLog);
     assert.strictEqual(testLog.user, 'automated_tester');
+
+    // Clean up test audit log entry
+    const cleanLogs = db.get('auditLogs').filter((l) => l.action !== 'TEST_SECURITY_EVENT');
+    db.set('auditLogs', cleanLogs);
+  });
+
+  test('8. Studio Services & Verified Environments Consistency', () => {
+    const services = db.get('services');
+    assert.ok(services.length >= 5);
+    const hasControlRoom = services.some((s) => s.verifiedRoom.includes('Control Room'));
+    const hasVocalBooth = services.some((s) => s.verifiedRoom.includes('Vocal Booth'));
+    const hasProductionLab = services.some((s) => s.verifiedRoom.includes('Production Lab'));
+    const hasMasteringSuite = services.some((s) => s.verifiedRoom.includes('Mastering Suite'));
+    assert.strictEqual(hasControlRoom, true);
+    assert.strictEqual(hasVocalBooth, true);
+    assert.strictEqual(hasProductionLab, true);
+    assert.strictEqual(hasMasteringSuite, true);
+  });
+
+  test('9. Hero Scenes Configuration & Photographic Asset Integrity', async () => {
+    const fs = await import('node:fs');
+    const path = await import('node:path');
+
+    // Verify all 5 scene images exist on disk with valid file size (> 10KB)
+    const requiredImages = [
+      'src/assets/images/studio_01_entrance_1792446831639.jpg',
+      'src/assets/images/mobile/scene_01_entrance_mobile.jpg',
+      'src/assets/images/studio_02_vocal_booth_1792446832131.jpg',
+      'src/assets/images/mobile/scene_02_vocal_booth_mobile.jpg',
+      'src/assets/images/studio_control_live_performance_1792447671011.jpg',
+      'src/assets/images/control_room_mobile_1792483021817.jpg',
+      'src/assets/images/studio_04_production_lab_1792446833465.jpg',
+      'src/assets/images/production_lab_mobile_1792482735447.jpg',
+      'src/assets/images/studio_05_master_suite_1792446834087.jpg',
+      'src/assets/images/master_suite_mobile_1792482735792.jpg',
+    ];
+
+    for (const imgPath of requiredImages) {
+      const fullPath = path.resolve(process.cwd(), imgPath);
+      assert.strictEqual(fs.existsSync(fullPath), true, `Asset must exist: ${imgPath}`);
+      const stats = fs.statSync(fullPath);
+      assert.ok(stats.size > 10000, `Asset must not be empty: ${imgPath}`);
+    }
+
+    // Verify CinematicHero component source file has entrance alignment clearance
+    const heroCode = fs.readFileSync(path.resolve(process.cwd(), 'src/components/hero/CinematicHero.tsx'), 'utf-8');
+    assert.ok(heroCode.includes("id: 'studio-entrance'"), 'Hero must define studio-entrance scene');
+    assert.ok(heroCode.includes('panYStart: 5.5') || heroCode.includes('panYStart: 5'), 'Entrance must have vertical clearance offset to clear navbar');
+    assert.ok(heroCode.includes('MAKE MAGIC.'), 'Hero must include MAKE MAGIC headline');
   });
 });
+

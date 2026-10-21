@@ -21,7 +21,7 @@ const NAV_ITEMS = [
 export default function Navbar({ onOpenBooking }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isAudioMuted, setIsAudioMuted] = useState(() => (typeof audioEngine?.isMuted === 'function' ? audioEngine.isMuted() : typeof audioEngine?.getMuted === 'function' ? audioEngine.getMuted() : true));
+  const [isAudioMuted, setIsAudioMuted] = useState(() => audioEngine.getMuted());
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -37,8 +37,7 @@ export default function Navbar({ onOpenBooking }: NavbarProps) {
   // Sync mute state if audio engine changes externally
   useEffect(() => {
     const syncMute = () => {
-      const muted = typeof audioEngine?.isMuted === 'function' ? audioEngine.isMuted() : typeof audioEngine?.getMuted === 'function' ? audioEngine.getMuted() : true;
-      setIsAudioMuted(muted);
+      setIsAudioMuted(audioEngine.getMuted());
     };
     const interval = setInterval(syncMute, 1000);
     return () => clearInterval(interval);
@@ -64,8 +63,8 @@ export default function Navbar({ onOpenBooking }: NavbarProps) {
       <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-center p-2.5 sm:p-4 lg:p-5 pointer-events-none transition-all duration-300">
         {/* Top Viewport Shroud: Prevents underlying scroll text/cards from peeking into the top gap */}
         <div
-          className={`absolute top-0 inset-x-0 h-24 bg-gradient-to-b from-[#040609] via-[#040609]/80 to-transparent pointer-events-none transition-opacity duration-300 ${
-            isScrolled ? 'opacity-100' : 'opacity-70'
+          className={`absolute top-0 inset-x-0 h-20 bg-gradient-to-b from-[#040609] via-[#040609]/70 to-transparent pointer-events-none transition-opacity duration-300 ${
+            isScrolled ? 'opacity-100' : 'opacity-20'
           }`}
           aria-hidden="true"
         />

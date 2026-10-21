@@ -22,7 +22,7 @@ class StudioAudioEngine {
   private chordFilter: BiquadFilterNode | null = null;
   private analyser: AnalyserNode | null = null;
   private isInitialized = false;
-  private isMuted = true;
+  private _isMuted = true;
   private intervalId: number | null = null;
   private trackIntervalId: number | null = null;
   private currentSceneIndex = 0;
@@ -120,7 +120,7 @@ class StudioAudioEngine {
   }
 
   public playTone(freq: number, type: OscillatorType = 'sine', duration = 1.2, volume = 0.15) {
-    if (!this.ctx || !this.masterGain || this.isMuted) return;
+    if (!this.ctx || !this.masterGain || this._isMuted) return;
 
     try {
       const osc = this.ctx.createOscillator();
@@ -161,8 +161,8 @@ class StudioAudioEngine {
     }
 
     // Unmute master if muted
-    if (this.isMuted) {
-      this.isMuted = false;
+    if (this._isMuted) {
+      this._isMuted = false;
       this.masterGain.gain.setTargetAtTime(0.65, this.ctx.currentTime, 0.2);
     }
 
@@ -285,7 +285,7 @@ class StudioAudioEngine {
   }
 
   public triggerRoomAudio(sceneIndex: number) {
-    if (this.isMuted || !this.ctx) return;
+    if (this._isMuted || !this.ctx) return;
     this.currentSceneIndex = sceneIndex;
 
     const baseChords = [
@@ -320,9 +320,9 @@ class StudioAudioEngine {
       this.ctx.resume();
     }
 
-    this.isMuted = !this.isMuted;
+    this._isMuted = !this._isMuted;
 
-    if (!this.isMuted) {
+    if (!this._isMuted) {
       this.masterGain.gain.setTargetAtTime(0.5, this.ctx.currentTime, 0.2);
       this.startAmbientSequence();
       this.triggerRoomAudio(this.currentSceneIndex);
@@ -331,26 +331,26 @@ class StudioAudioEngine {
       this.stopAmbientSequence();
     }
 
-    return this.isMuted;
+    return this._isMuted;
   }
 
   public setMuted(muted: boolean) {
-    if (this.isMuted === muted) return;
+    if (this._isMuted === muted) return;
     this.toggleMute();
   }
 
   public getMuted(): boolean {
-    return this.isMuted;
+    return this._isMuted;
   }
 
   public isMuted(): boolean {
-    return this.isMuted;
+    return this._isMuted;
   }
 
   private startAmbientSequence() {
     if (this.intervalId) clearInterval(this.intervalId);
     this.intervalId = window.setInterval(() => {
-      if (this.isMuted || !this.ctx) return;
+      if (this._isMuted || !this.ctx) return;
       const rootNotes = [110, 146.83, 164.81, 220];
       const randomNote = rootNotes[Math.floor(Math.random() * rootNotes.length)];
       this.playTone(randomNote, 'sine', 3.5, 0.05);

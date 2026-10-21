@@ -1,4 +1,6 @@
-import { Music, MapPin, Mail, Phone, MessageCircle, ArrowUpRight, ShieldCheck, Instagram } from 'lucide-react';
+import { MapPin, Mail, Phone, MessageCircle, ArrowUpRight, ArrowUp, Instagram } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import BrandLogo from '../common/BrandLogo';
 
 interface StudioFooterProps {
   onOpenBooking?: (service?: string) => void;
@@ -7,19 +9,18 @@ interface StudioFooterProps {
 export default function StudioFooter({ onOpenBooking }: StudioFooterProps) {
   const currentYear = new Date().getFullYear();
 
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <footer className="bg-[#030508] border-t border-white/10 text-slate-400 py-16 sm:py-20 px-4 sm:px-6 lg:px-12 text-xs font-mono select-none">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 sm:gap-12 border-b border-white/10 pb-12 sm:pb-16">
         {/* Col 1 & 2: Brand Identity & Monogram */}
         <div className="space-y-5 lg:col-span-2">
-          <div className="flex items-center gap-3 text-white text-base font-bold tracking-tight">
-            <span className="w-8 h-8 rounded-full accent-gradient flex items-center justify-center text-white shadow-sm">
-              <Music className="w-4 h-4" />
-            </span>
-            <span className="font-display tracking-wider text-base uppercase">
-              SONICVAULT <span className="text-[#89AACC] font-light">STUDIOS</span>
-            </span>
-          </div>
+          <Link to="/" className="inline-flex items-center tracking-tight group focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4E85BF] rounded-lg">
+            <BrandLogo variant="horizontal" size="lg" showTagline={false} />
+          </Link>
 
           <p className="text-slate-300 text-sm font-editorial italic max-w-sm leading-relaxed">
             WHERE SOUND BECOMES ART.
@@ -43,42 +44,42 @@ export default function StudioFooter({ onOpenBooking }: StudioFooterProps) {
           </span>
           <ul className="space-y-2 text-slate-400 font-sans text-xs">
             <li>
-              <a href="#tour" className="hover:text-white transition-colors">Immersive Tour</a>
+              <Link to="/studio" className="hover:text-white transition-colors">Studio Tour</Link>
             </li>
             <li>
-              <a href="#spaces" className="hover:text-white transition-colors">Studio Spaces</a>
+              <Link to="/services" className="hover:text-white transition-colors">Studio Services</Link>
             </li>
             <li>
-              <a href="#services" className="hover:text-white transition-colors">Services</a>
+              <Link to="/equipment" className="hover:text-white transition-colors">Equipment Locker</Link>
             </li>
             <li>
-              <a href="#equipment" className="hover:text-white transition-colors">Equipment Locker</a>
+              <Link to="/our-work" className="hover:text-white transition-colors">Our Work & Case Studies</Link>
             </li>
             <li>
-              <a href="#work" className="hover:text-white transition-colors">Selected Work</a>
+              <Link to="/about" className="hover:text-white transition-colors">About Us & Team</Link>
             </li>
             <li>
-              <a href="#journal" className="hover:text-white transition-colors">Studio Journal</a>
+              <Link to="/contact" className="hover:text-white transition-colors">Contact & Directions</Link>
             </li>
             <li>
-              <a href="#explorations" className="hover:text-white transition-colors">Visual Explorations</a>
+              <Link to="/book-session" className="hover:text-[#89AACC] transition-colors font-semibold">Book a Session</Link>
             </li>
           </ul>
         </div>
 
-        {/* Col 4: Verified Services */}
+        {/* Col 4: Verified Services & Production */}
         <div className="space-y-3.5">
           <span className="text-xs uppercase tracking-widest text-white font-semibold block font-display">
-            Studio Services
+            Sonic Disciplines
           </span>
           <ul className="space-y-2 text-slate-400 font-sans text-xs">
-            <li>Vocal Recording</li>
-            <li>Music Production</li>
-            <li>Analog & Digital Mixing</li>
-            <li>Stereo & Stem Mastering</li>
-            <li>Vocal Editing & Tuning</li>
-            <li>Full Music Production</li>
-            <li>Podcast & Voice-Over</li>
+            <li>Vocal Recording (Sony C-800G / U87)</li>
+            <li>Afrobeats & Custom Production</li>
+            <li>Analog SSL Hybrid Mixing</li>
+            <li>Stereo & Dolby Atmos Mastering</li>
+            <li>Vocal Tuning & Comping</li>
+            <li>Broadcast Podcast Tracking</li>
+            <li>Commercial Voice-Over</li>
           </ul>
         </div>
 
@@ -129,8 +130,27 @@ export default function StudioFooter({ onOpenBooking }: StudioFooterProps) {
         </div>
       </div>
 
+      {/* Legal & Policies Row */}
+      <div className="max-w-7xl mx-auto py-6 border-b border-white/5 flex flex-wrap items-center justify-between gap-4 text-[11px] text-slate-500">
+        <div className="flex flex-wrap items-center gap-x-6 gap-y-2">
+          <Link to="/privacy-policy" className="hover:text-slate-300 transition-colors">Privacy Policy</Link>
+          <Link to="/terms" className="hover:text-slate-300 transition-colors">Terms & Conditions</Link>
+          <Link to="/booking-policy" className="hover:text-slate-300 transition-colors">Booking & Cancellation Policy</Link>
+          <Link to="/payment-policy" className="hover:text-slate-300 transition-colors">Payment Policy</Link>
+        </div>
+
+        <button
+          onClick={scrollToTop}
+          className="flex items-center gap-1.5 hover:text-white transition-colors cursor-pointer"
+          aria-label="Back to top"
+        >
+          <span>BACK TO TOP</span>
+          <ArrowUp className="w-3.5 h-3.5" />
+        </button>
+      </div>
+
       {/* Bottom Bar: Copyright & Actions */}
-      <div className="max-w-7xl mx-auto pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-slate-500 text-[11px] text-center sm:text-left">
+      <div className="max-w-7xl mx-auto pt-6 flex flex-col sm:flex-row items-center justify-between gap-4 text-slate-500 text-[11px] text-center sm:text-left">
         <div>
           © {currentYear} SONICVAULT STUDIOS. ALL RIGHTS RESERVED. · LEKKI PHASE 1, LAGOS
         </div>

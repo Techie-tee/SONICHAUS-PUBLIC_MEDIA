@@ -1,0 +1,124 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 520 120" fill="none" width="100%" height="100%">
+  <defs>
+    <!-- Vibrant Electric Cyan Neon Gradient -->
+    <linearGradient id="sv-cyan-glow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#E0F7FF" />
+      <stop offset="30%" stop-color="#38BDF8" />
+      <stop offset="70%" stop-color="#00F0FF" />
+      <stop offset="100%" stop-color="#0284C7" />
+    </linearGradient>
+
+    <!-- Radiant Studio Champagne Gold Gradient -->
+    <linearGradient id="sv-gold" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFBEB" />
+      <stop offset="25%" stop-color="#FDE68A" />
+      <stop offset="60%" stop-color="#F59E0B" />
+      <stop offset="100%" stop-color="#B45309" />
+    </linearGradient>
+
+    <!-- Polished Bright Chrome / Titanium Gradient -->
+    <linearGradient id="sv-chrome" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#FFFFFF" />
+      <stop offset="35%" stop-color="#E2E8F0" />
+      <stop offset="65%" stop-color="#94A3B8" />
+      <stop offset="100%" stop-color="#475569" />
+    </linearGradient>
+
+    <!-- Ambient Dark Chamber Background -->
+    <radialGradient id="sv-chamber-bg" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#0B1528" />
+      <stop offset="65%" stop-color="#060C18" />
+      <stop offset="100%" stop-color="#020408" />
+    </radialGradient>
+
+    <!-- Intense Cyan Glow Filter -->
+    <filter id="neon-glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="3.5" result="blur1" />
+      <feGaussianBlur stdDeviation="7" result="blur2" />
+      <feMerge>
+        <feMergeNode in="blur2" />
+        <feMergeNode in="blur1" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+
+    <filter id="gold-glow" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="2" result="goldBlur" />
+      <feMerge>
+        <feMergeNode in="goldBlur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <!-- ==================== EMBLEM (Left side: cx=60, cy=60, r=52) ==================== -->
+  <g transform="translate(4, 0)">
+    <!-- Outer Cyan Neon Aura Glow Ring -->
+    <circle cx="60" cy="60" r="54" fill="none" stroke="#00F0FF" stroke-width="2" opacity="0.3" filter="url(#neon-glow)" />
+
+    <!-- Outer Precision Polished Chrome Vault Ring -->
+    <circle cx="60" cy="60" r="50" fill="url(#sv-chamber-bg)" stroke="url(#sv-chrome)" stroke-width="5" />
+
+    <!-- 4 Radial Vault Lugs / Precision Slots -->
+    <path d="M 60 12 L 60 18" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" />
+    <path d="M 60 102 L 60 108" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" />
+    <path d="M 12 60 L 18 60" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" />
+    <path d="M 102 60 L 108 60" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round" />
+
+    <!-- Secondary Acoustic Stepped Ring -->
+    <circle cx="60" cy="60" r="42" fill="none" stroke="#1E293B" stroke-width="3" />
+    <circle cx="60" cy="60" r="42" fill="none" stroke="url(#sv-cyan-glow)" stroke-width="1.8" stroke-dasharray="3 4" opacity="0.85" />
+
+    <!-- Radiant Inner Electric Cyan Neon Ring -->
+    <circle cx="60" cy="60" r="35" fill="none" stroke="url(#sv-cyan-glow)" stroke-width="3.5" filter="url(#neon-glow)" />
+
+    <!-- Acoustic Sound Waveform Frequency (radiating through the portal) -->
+    <!-- Left Waveform -->
+    <path d="M 27 60 L 31 52 L 35 68 L 38 43 L 42 77 L 46 60" 
+          fill="none" stroke="#00F0FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.9" filter="url(#neon-glow)" />
+    <!-- Right Waveform -->
+    <path d="M 74 60 L 78 43 L 82 77 L 85 52 L 89 68 L 93 60" 
+          fill="none" stroke="#00F0FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" opacity="0.9" filter="url(#neon-glow)" />
+
+    <!-- Gold Center SV Interlocking Monogram -->
+    <!-- Stylized "S" Wave Form -->
+    <path d="M 47 43 C 47 34, 65 33, 68 42 C 70 48, 56 52, 57 59 C 58 66, 73 66, 73 57" 
+          fill="none" stroke="#020617" stroke-width="7" stroke-linecap="round" />
+    <path d="M 47 43 C 47 34, 65 33, 68 42 C 70 48, 56 52, 57 59 C 58 66, 73 66, 73 57" 
+          fill="none" stroke="url(#sv-gold)" stroke-width="4" stroke-linecap="round" filter="url(#gold-glow)" />
+
+    <!-- Stylized "V" Vault Spear Form -->
+    <path d="M 42 42 L 59 84 L 79 38" 
+          fill="none" stroke="#020617" stroke-width="7.5" stroke-linecap="round" stroke-linejoin="round" />
+    <path d="M 42 42 L 59 84 L 79 38" 
+          fill="none" stroke="url(#sv-gold)" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" filter="url(#gold-glow)" />
+
+    <!-- Bright White Core Vertex Highlight -->
+    <circle cx="59" cy="84" r="2" fill="#FFFFFF" filter="url(#neon-glow)" />
+  </g>
+
+  <!-- ==================== TYPOGRAPHY (Right side) ==================== -->
+  <g transform="translate(136, 0)">
+    <!-- Brand Wordmark "SONICVAULT" -->
+    <text x="0" y="58" font-family="'Space Grotesk', 'Syne', system-ui, -apple-system, sans-serif" font-weight="900" font-size="34" letter-spacing="4" fill="#FFFFFF">
+      SONIC<tspan fill="#38BDF8">VAULT</tspan>
+    </text>
+
+    <!-- Sub-Brand "STUDIOS" with Acoustic Identity -->
+    <text x="0" y="86" font-family="'JetBrains Mono', monospace" font-weight="600" font-size="13" letter-spacing="8" fill="#FDE68A">
+      STUDIOS
+    </text>
+
+    <!-- Tagline / Location Credentials -->
+    <text x="140" y="86" font-family="'JetBrains Mono', monospace" font-weight="500" font-size="10" letter-spacing="3" fill="#64748B">
+      · LEKKI PHASE 1
+    </text>
+
+    <!-- High-Precision Acoustic Frequency Indicator Line -->
+    <g transform="translate(0, 96)">
+      <rect x="0" y="0" width="340" height="2" rx="1" fill="#1E293B" />
+      <rect x="0" y="0" width="120" height="2" rx="1" fill="url(#sv-cyan-glow)" filter="url(#neon-glow)" />
+      <circle cx="120" cy="1" r="2.5" fill="#00F0FF" />
+    </g>
+  </g>
+</svg>

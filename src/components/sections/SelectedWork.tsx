@@ -24,6 +24,7 @@ import {
   Compass
 } from 'lucide-react';
 import { audioEngine } from '../../services/audioEngine';
+import { useAudioPlayer } from '../../context/AudioPlayerContext';
 
 // Authentic Studio Assets
 import artistMasterImg from '../../assets/images/hero_artist_master_v2_1792444696981.jpg';
@@ -341,6 +342,7 @@ export default function SelectedWork({ onOpenBooking }: SelectedWorkProps) {
   const [playingId, setPlayingId] = useState<string | null>(null);
   const [playbackProgress, setPlaybackProgress] = useState(0);
   const timerRef = useRef<number | null>(null);
+  const { playTrack, pauseTrack } = useAudioPlayer();
 
   // Scroll parallax for section floating sonic geometry
   const sectionRef = useRef<HTMLElement | null>(null);
@@ -360,16 +362,20 @@ export default function SelectedWork({ onOpenBooking }: SelectedWorkProps) {
 
     if (playingId === project.id) {
       setPlayingId(null);
+      pauseTrack();
       if (timerRef.current) clearInterval(timerRef.current);
     } else {
       setPlayingId(project.id);
       setPlaybackProgress(0);
-      audioEngine.playClick();
-      // Musical frequency chord matching project's key & tempo
-      audioEngine.playTone(project.bpm * 2.2, 'sine', 1.8, 0.15);
-      setTimeout(() => {
-        audioEngine.playTone(project.bpm * 3.3, 'triangle', 2.2, 0.1);
-      }, 140);
+      playTrack({
+        id: project.id,
+        title: project.title,
+        artist: project.artist,
+        category: project.category,
+        artwork: project.image,
+        durationSeconds: 222,
+        studioRoom: project.caseStudy.studioRoom,
+      });
 
       if (timerRef.current) clearInterval(timerRef.current);
       timerRef.current = window.setInterval(() => {

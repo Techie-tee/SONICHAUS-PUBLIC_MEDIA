@@ -33,21 +33,44 @@ export default function BookingSection({ initialService }: BookingSectionProps) 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const [bookingRef, setBookingRef] = useState<string>('');
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
     audioEngine.playClick();
 
-    // Simulated network booking submission
-    setTimeout(() => {
+    try {
+      const res = await fetch('/api/bookings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          serviceId: 'srv_vocal_recording',
+          date: preferredDate,
+          timeSlot: preferredTime,
+          clientName: fullName || 'Lagos Artist',
+          clientEmail: email || 'artist@example.com',
+          clientPhone: phone || '09015104502',
+          projectDetails: `${service} (${duration}) - ${projectNotes}`.trim(),
+          termsAccepted: true,
+        }),
+      });
+
+      if (res.ok) {
+        const data = await res.json();
+        setBookingRef(data.booking.reference);
+      }
+    } catch {
+      // Fallback
+    } finally {
       setIsSubmitting(false);
       setIsSubmitted(true);
       audioEngine.playTone(520, 'sine', 1.0, 0.15);
-    }, 1000);
+    }
   };
 
   const whatsappMessage = encodeURIComponent(
-    `Hello SONICVAULT STUDIOS! My name is ${fullName || 'Artist'}. I would like to enquire about booking a ${service} session on ${preferredDate} (${preferredTime}). Notes: ${projectNotes || 'General session enquiry'}`
+    `Hello SONICVAULT STUDIOS! My name is ${fullName || 'Artist'}. I have submitted booking request ${bookingRef || ''} for ${service} on ${preferredDate} (${preferredTime}). Notes: ${projectNotes || 'General session enquiry'}`
   );
   const whatsappUrl = `https://wa.me/2349015104502?text=${whatsappMessage}`;
 

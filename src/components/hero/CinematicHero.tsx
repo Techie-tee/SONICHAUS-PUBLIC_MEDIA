@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
-import { Volume2, VolumeX, Music, Sparkles } from 'lucide-react';
+import { Volume2, VolumeX, Sparkles } from 'lucide-react';
 import { audioEngine } from '../../services/audioEngine';
+import { SonicVaultVectorMark } from '../common/BrandLogo';
 
 import entranceImg from '../../assets/images/studio_01_entrance_1792446831639.jpg';
 import entranceMobileImg from '../../assets/images/mobile/scene_01_entrance_mobile.jpg';
@@ -24,17 +25,18 @@ interface TourScene {
   image: string;
   mobileImage: string;
   soundIndex: number;
+  objectPosition?: string;
 }
 
-// 5 Real, Consistent Studio Facilities
-// 100% Character & Equipment Consistency across Mobile, Tablet, PC, and Desktop
+// 5 Master Studio Environments with Architectural Visual Continuity
 const TOUR_SCENES: TourScene[] = [
   {
     id: 'studio-entrance',
-    title: 'SONICVAULT ARCHITECTURAL ENTRANCE',
+    title: 'ARCHITECTURAL ENTRANCE',
     image: entranceImg,
     mobileImage: entranceMobileImg,
     soundIndex: 0,
+    objectPosition: 'center center',
   },
   {
     id: 'vocal-booth',
@@ -42,20 +44,23 @@ const TOUR_SCENES: TourScene[] = [
     image: vocalBoothImg,
     mobileImage: vocalBoothMobileImg,
     soundIndex: 1,
+    objectPosition: 'center 40%',
   },
   {
     id: 'control-room-live',
-    title: 'MASTER CONTROL ROOM & LIVE BOOTH SIGHTLINE',
+    title: 'MASTER CONTROL ROOM & LIVE STAGE',
     image: controlRoomImg,
     mobileImage: controlRoomMobileImg,
     soundIndex: 2,
+    objectPosition: 'center center',
   },
   {
     id: 'production-lab',
-    title: 'THE MODULAR PRODUCTION LAB',
+    title: 'MODULAR PRODUCTION LAB',
     image: productionLabImg,
     mobileImage: productionLabMobileImg,
     soundIndex: 3,
+    objectPosition: 'center center',
   },
   {
     id: 'master-suite',
@@ -63,74 +68,95 @@ const TOUR_SCENES: TourScene[] = [
     image: masterSuiteImg,
     mobileImage: masterSuiteMobileImg,
     soundIndex: 4,
+    objectPosition: 'center center',
   },
 ];
 
-export default function CinematicHero({ onOpenBooking, onExploreSpaces }: CinematicHeroProps) {
+export default function CinematicHero({ onOpenBooking }: CinematicHeroProps) {
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [isAudioMuted, setIsAudioMuted] = useState(true);
+  const [activeSceneIndex, setActiveSceneIndex] = useState(0);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const activeSceneRef = useRef(0);
   const rafRef = useRef<number | null>(null);
 
-  // Synchronize scroll position strictly on scroll event using RAF for silky performance across all devices
+  const targetProgressRef = useRef(0);
+  const currentProgressRef = useRef(0);
+
+  // Silky smooth scroll synchronization with inertia dampening & requestAnimationFrame
   useEffect(() => {
-    const handleScroll = () => {
-      if (rafRef.current !== null) return;
+    let isRunning = true;
 
-      rafRef.current = requestAnimationFrame(() => {
-        rafRef.current = null;
-        const container = containerRef.current;
-        if (!container) return;
+    const updateScrollMetrics = () => {
+      const container = containerRef.current;
+      if (!container) return;
 
-        const rect = container.getBoundingClientRect();
-        const viewportH = window.innerHeight || document.documentElement.clientHeight;
-        const totalScrollHeight = container.scrollHeight - viewportH;
-        if (totalScrollHeight <= 0) return;
+      const rect = container.getBoundingClientRect();
+      const viewportH = window.innerHeight || document.documentElement.clientHeight;
+      const totalScrollHeight = container.scrollHeight - viewportH;
+      if (totalScrollHeight <= 0) return;
 
-        const currentScroll = Math.max(0, -rect.top);
-        const rawProgress = Math.min(1, Math.max(0, currentScroll / totalScrollHeight));
-
-        setScrollProgress(rawProgress);
-
-        // Trigger room audio stems as user enters each space
-        const sceneIndex = Math.min(
-          TOUR_SCENES.length - 1,
-          Math.floor(rawProgress * TOUR_SCENES.length)
-        );
-
-        if (sceneIndex !== activeSceneRef.current) {
-          activeSceneRef.current = sceneIndex;
-          audioEngine.triggerRoomAudio(sceneIndex);
-        }
-      });
+      const currentScroll = Math.max(0, -rect.top);
+      const rawProgress = Math.min(1, Math.max(0, currentScroll / totalScrollHeight));
+      targetProgressRef.current = rawProgress;
     };
 
-    window.addEventListener('scroll', handleScroll, { passive: true });
-    document.addEventListener('scroll', handleScroll, { passive: true });
-    // Run once on mount to establish initial position
-    handleScroll();
+    const animateLoop = () => {
+      if (!isRunning) return;
+
+      // Inertial smoothing for silky continuous transitions across all input devices
+      const diff = targetProgressRef.current - currentProgressRef.current;
+      if (Math.abs(diff) > 0.0002) {
+        currentProgressRef.current += diff * 0.18;
+      } else {
+        currentProgressRef.current = targetProgressRef.current;
+      }
+
+      setScrollProgress(currentProgressRef.current);
+
+      // Determine active scene and trigger room stems
+      const totalScenes = TOUR_SCENES.length;
+      const continuousScene = currentProgressRef.current * (totalScenes - 1);
+      const sceneIndex = Math.min(totalScenes - 1, Math.max(0, Math.round(continuousScene)));
+
+      if (sceneIndex !== activeSceneRef.current) {
+        activeSceneRef.current = sceneIndex;
+        setActiveSceneIndex(sceneIndex);
+        audioEngine.triggerRoomAudio(sceneIndex);
+      }
+
+      rafRef.current = requestAnimationFrame(animateLoop);
+    };
+
+    const onScrollOrResize = () => {
+      updateScrollMetrics();
+    };
+
+    window.addEventListener('scroll', onScrollOrResize, { passive: true });
+    window.addEventListener('resize', onScrollOrResize, { passive: true });
+    
+    // Initial compute and launch animation loop
+    updateScrollMetrics();
+    currentProgressRef.current = targetProgressRef.current;
+    rafRef.current = requestAnimationFrame(animateLoop);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
-      document.removeEventListener('scroll', handleScroll);
+      isRunning = false;
+      window.removeEventListener('scroll', onScrollOrResize);
+      window.removeEventListener('resize', onScrollOrResize);
       if (rafRef.current !== null) {
         cancelAnimationFrame(rafRef.current);
       }
     };
   }, []);
 
-  // Keyboard accessibility navigation
+  // Keyboard accessibility
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'm' || e.key === 'M') {
-        const muted = audioEngine.toggleMute();
-        setIsAudioMuted(muted);
-      } else if (e.key === 'ArrowDown' || e.key === 'PageDown') {
-        window.scrollBy({ top: window.innerHeight * 0.45, behavior: 'smooth' });
+      if (e.key === 'ArrowDown' || e.key === 'PageDown') {
+        window.scrollBy({ top: window.innerHeight * 0.5, behavior: 'smooth' });
       } else if (e.key === 'ArrowUp' || e.key === 'PageUp') {
-        window.scrollBy({ top: -window.innerHeight * 0.45, behavior: 'smooth' });
+        window.scrollBy({ top: -window.innerHeight * 0.5, behavior: 'smooth' });
       }
     };
 
@@ -138,76 +164,92 @@ export default function CinematicHero({ onOpenBooking, onExploreSpaces }: Cinema
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, []);
 
-  const handleAudioToggle = () => {
-    const muted = audioEngine.toggleMute();
-    setIsAudioMuted(muted);
+  // Jump to specific tour scene on indicator click
+  const scrollToScene = (index: number) => {
+    const container = containerRef.current;
+    if (!container) return;
+    const totalScenes = TOUR_SCENES.length;
+    const viewportH = window.innerHeight || document.documentElement.clientHeight;
+    const totalScrollHeight = container.scrollHeight - viewportH;
+    const targetScroll = (index / (totalScenes - 1)) * totalScrollHeight;
+    const containerTop = container.getBoundingClientRect().top + window.scrollY;
+    window.scrollTo({
+      top: containerTop + targetScroll,
+      behavior: 'smooth',
+    });
   };
 
-  // Opening headline opacity: Fades out smoothly as you begin scrolling
-  const introOpacity = Math.max(0, 1 - scrollProgress * 10);
   const totalScenes = TOUR_SCENES.length;
+  // continuousProgress from 0 to (totalScenes - 1)
+  const continuousProgress = scrollProgress * (totalScenes - 1);
+  const activeBaseIdx = Math.min(totalScenes - 2, Math.floor(continuousProgress));
+  const nextBaseIdx = activeBaseIdx + 1;
+  const crossfadeBlend = Math.max(0, Math.min(1, continuousProgress - activeBaseIdx));
+
+  // Opening headline: Starts at opacity 1, glides up smoothly and fades out by progress 0.18
+  const introFactor = Math.max(0, Math.min(1, scrollProgress / 0.16));
+  const introOpacity = 1 - introFactor;
+  const introTranslateY = -introFactor * 40;
 
   return (
     <div
       ref={containerRef}
-      className="relative w-full h-[500vh] bg-[#040609]"
+      className="relative w-full h-[280vh] bg-[#040609]"
       id="tour"
     >
-      {/* Sticky Fullscreen Hero Viewport (using 100dvh for mobile address bar safety) */}
+      {/* Sticky Fullscreen Hero Viewport */}
       <div className="sticky top-0 w-full h-[100dvh] overflow-hidden flex flex-col justify-between select-none">
-        {/* Full-bleed Edge-to-Edge Cinematic Studio Image Canvas Layers */}
-        {/* Consistent visual effects, editing, and scale dolly across Mobile, Tablet, PC, and Desktop */}
+        
+        {/* Full-bleed Studio Canvas Layer Stack — Seamless Hardware Accelerated Dissolve */}
         <div className="absolute inset-0 w-full h-full overflow-hidden">
           {TOUR_SCENES.map((scene, idx) => {
-            const sceneStep = 1 / totalScenes;
-            const sceneStart = idx * sceneStep;
-            const sceneEnd = (idx + 1) * sceneStep;
-
-            // Normalized scene progress: 0 (entering) to 1 (leaving)
-            const localProgress = Math.max(0, Math.min(1, (scrollProgress - sceneStart) / sceneStep));
-
-            // Smooth cross-fade calculation strictly proportional to scroll
+            // Mathematical seamless cross-fade:
+            // The active underlying scene stays solid, and the incoming scene dissolves over it
             let opacity = 0;
-            if (scrollProgress >= sceneStart && scrollProgress <= sceneEnd) {
+            if (idx < activeBaseIdx) {
+              opacity = 0;
+            } else if (idx === activeBaseIdx) {
               opacity = 1;
-            } else if (scrollProgress < sceneStart && scrollProgress >= sceneStart - sceneStep * 0.4) {
-              const fadeRatio = (scrollProgress - (sceneStart - sceneStep * 0.4)) / (sceneStep * 0.4);
-              opacity = Math.max(0, Math.min(1, fadeRatio));
-            } else if (scrollProgress > sceneEnd && scrollProgress <= sceneEnd + sceneStep * 0.4) {
-              const fadeRatio = 1 - (scrollProgress - sceneEnd) / (sceneStep * 0.4);
-              opacity = Math.max(0, Math.min(1, fadeRatio));
+            } else if (idx === nextBaseIdx) {
+              opacity = crossfadeBlend;
+            } else {
+              opacity = 0;
             }
 
-            if (idx === 0 && scrollProgress < sceneStart) opacity = 1;
-            if (idx === totalScenes - 1 && scrollProgress > sceneEnd) opacity = 1;
-
-            // Forward camera dolly walk-through moving identically across ALL device resolutions
-            const scale = 1.0 + localProgress * 0.08;
+            // Subtle continuous camera push (4% dolly zoom)
+            const localOffset = continuousProgress - idx;
+            const scale = 1.0 + Math.max(0, Math.min(1, localOffset + 1)) * 0.04;
 
             return (
               <div
                 key={scene.id}
-                className="absolute inset-0 w-full h-full pointer-events-none transition-opacity duration-300 ease-out"
+                className="absolute inset-0 w-full h-full pointer-events-none transform-gpu"
                 style={{
                   opacity,
                   zIndex: idx + 1,
+                  willChange: 'opacity, transform',
                 }}
               >
                 <picture className="w-full h-full block">
-                  {/* Portrait orientation: Mobile phones and tablets in portrait mode */}
-                  <source media="(orientation: portrait), (max-aspect-ratio: 1/1)" srcSet={scene.mobileImage} />
-                  {/* Landscape orientation: Desktops, laptops, and tablets in landscape mode */}
-                  <source media="(orientation: landscape)" srcSet={scene.image} />
+                  {/* Portrait orientation for mobile */}
+                  <source
+                    media="(orientation: portrait), (max-aspect-ratio: 1/1)"
+                    srcSet={scene.mobileImage}
+                  />
+                  {/* Landscape orientation for desktop & tablets */}
+                  <source
+                    media="(orientation: landscape)"
+                    srcSet={scene.image}
+                  />
                   <img
                     src={scene.image}
                     alt={scene.title}
                     referrerPolicy="no-referrer"
-                    className="w-full h-full object-cover filter contrast-[1.05] saturate-[1.06] tour-scene-img"
+                    className="w-full h-full object-cover filter contrast-[1.04] saturate-[1.05]"
                     style={{
-                      objectPosition: 'center center',
+                      objectPosition: scene.objectPosition || 'center center',
                       transform: `scale(${scale})`,
                       transformOrigin: 'center center',
-                      transition: 'transform 0.12s cubic-bezier(0.25, 0.46, 0.45, 0.94)',
                     }}
                   />
                 </picture>
@@ -216,54 +258,45 @@ export default function CinematicHero({ onOpenBooking, onExploreSpaces }: Cinema
           })}
         </div>
 
-        {/* Global responsive styling ensuring perfect centering and hardware acceleration */}
-        <style>{`
-          .tour-scene-img {
-            object-position: center center !important;
-            will-change: transform, opacity;
-            backface-visibility: hidden;
-            -webkit-backface-visibility: hidden;
-            transform-style: preserve-3d;
-          }
-        `}</style>
-
         {/* Ambient Contrast Vignette for Uniform Readability */}
-        <div className="absolute inset-0 bg-radial from-transparent via-black/25 to-black/80 pointer-events-none z-10" />
+        <div className="absolute inset-0 bg-radial from-transparent via-black/30 to-black/85 pointer-events-none z-10" />
 
-        {/* Top spacer to ensure clear spacing below floating pill navbar */}
-        <div className="relative z-20 pt-16 sm:pt-20 pointer-events-none" />
+        {/* Seamless bottom fade that cleanly bridges into the next section */}
+        <div className="absolute bottom-0 inset-x-0 h-40 bg-gradient-to-t from-[#05070c] via-[#05070c]/70 to-transparent pointer-events-none z-20" />
 
-        {/* Center Main Overlay — Centered Headline (MAKE NOISE. MAKE MAGIC. MAKE HISTORY.) */}
-        <main className="relative z-20 flex-1 flex flex-col justify-center items-center text-center px-3.5 sm:px-6 max-w-5xl mx-auto pointer-events-none w-full">
-          {/* Opening Centered Slogan */}
+        {/* Top spacer below floating pill navbar */}
+        <div className="relative z-20 pt-20 sm:pt-24 md:pt-28 pointer-events-none" />
+
+        {/* Center Main Overlay — Centered Headline (MAKE MAGIC. MAKE HISTORY.) */}
+        <main className="relative z-20 flex-1 flex flex-col justify-center items-center text-center px-4 sm:px-6 max-w-5xl mx-auto pointer-events-none w-full">
           {introOpacity > 0.01 && (
             <div
-              className="space-y-4 sm:space-y-6 transition-opacity duration-300 pointer-events-auto flex flex-col items-center justify-center text-center px-2 w-full max-w-full"
+              className="space-y-4 sm:space-y-6 pointer-events-auto flex flex-col items-center justify-center text-center px-2 w-full max-w-full"
               style={{
                 opacity: introOpacity,
-                transform: `scale(${1 - (1 - introOpacity) * 0.08})`,
+                transform: `translateY(${introTranslateY}px) scale(${0.96 + introOpacity * 0.04})`,
+                willChange: 'opacity, transform',
               }}
             >
               {/* Studio badge: 'SONICVAULT STUDIOS · LAGOS' */}
-              <div className="inline-flex items-center justify-center gap-1.5 sm:gap-2 px-3.5 py-1 rounded-full bg-black/60 backdrop-blur-md border border-[#4E85BF]/40 text-[10px] sm:text-xs font-mono uppercase tracking-[0.25em] text-[#89AACC] drop-shadow-md">
-                <Sparkles className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-[#4E85BF] shrink-0" />
+              <div className="inline-flex items-center justify-center gap-2 px-3.5 sm:px-4 py-1.5 sm:py-2 rounded-full bg-black/80 backdrop-blur-md border border-cyan-400/40 text-[10px] sm:text-xs font-mono uppercase tracking-[0.22em] text-cyan-200 shadow-[0_0_20px_rgba(0,240,255,0.25)]">
+                <SonicVaultVectorMark size={16} />
                 <span>SONICVAULT STUDIOS · LAGOS</span>
               </div>
 
-              {/* Centered Headline: MAKE NOISE. MAKE MAGIC. MAKE HISTORY. */}
-              <div className="space-y-1 sm:space-y-2 text-center w-full">
-                <h1 className="text-3xl sm:text-5xl md:text-7xl lg:text-8xl font-black tracking-tight text-white font-display uppercase leading-[1.05] drop-shadow-[0_4px_35px_rgba(0,0,0,0.95)]">
-                  <span className="block text-white">MAKE NOISE.</span>
-                  <span className="block text-white/95">MAKE MAGIC.</span>
+              {/* Centered Headline: MAKE MAGIC. MAKE HISTORY. */}
+              <div className="space-y-2 sm:space-y-3 text-center w-full">
+                <h1 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl xl:text-9xl font-black tracking-tight text-white font-display uppercase leading-[1.06] drop-shadow-[0_4px_35px_rgba(0,0,0,0.95)]">
+                  <span className="block text-white">MAKE MAGIC.</span>
                   <span className="block accent-gradient-text">MAKE HISTORY.</span>
                 </h1>
               </div>
 
-              <div className="space-y-1 text-center">
+              <div className="space-y-1 text-center max-w-xl mx-auto">
                 <p className="text-xs sm:text-base md:text-xl font-medium tracking-wide text-slate-200 font-display drop-shadow-[0_2px_15px_rgba(0,0,0,0.95)]">
                   WHERE SOUND BECOMES ART.
                 </p>
-                <p className="text-[11px] sm:text-xs font-mono tracking-widest text-[#89AACC] uppercase">
+                <p className="text-[10px] sm:text-xs font-mono tracking-widest text-[#89AACC] uppercase">
                   YOUR SOUND. YOUR WORLD. YOUR LEGACY.
                 </p>
               </div>
@@ -274,46 +307,51 @@ export default function CinematicHero({ onOpenBooking, onExploreSpaces }: Cinema
                   window.scrollBy({ top: window.innerHeight * 0.75, behavior: 'smooth' });
                 }}
                 className="pt-2 sm:pt-4 flex flex-col items-center justify-center gap-1 sm:gap-2 text-[10px] sm:text-xs font-mono text-slate-300 tracking-wider animate-bounce drop-shadow cursor-pointer pointer-events-auto hover:text-white transition-colors"
-                aria-label="Scroll to enter the studio"
+                aria-label="Scroll to explore studio facilities"
               >
                 <span>SCROLL TO ENTER THE STUDIO ↓</span>
               </button>
             </div>
           )}
-
-
-          {/* Closing Grand Reveal CTA (Only appears at the very end of the tour, scrollProgress >= 0.92) */}
-          {scrollProgress >= 0.92 && (
-            <div className="space-y-3.5 sm:space-y-6 w-full max-w-sm sm:max-w-xl mx-auto bg-black/90 backdrop-blur-md p-5 sm:p-10 rounded-2xl sm:rounded-3xl border border-white/20 pointer-events-auto shadow-[0_0_50px_rgba(0,0,0,0.85)] animate-fade-in text-center">
-              <div className="text-[10px] sm:text-xs font-mono uppercase tracking-widest text-sky-400">
-                SONIC VAULT STUDIOS.
-              </div>
-              <h2 className="text-xl sm:text-3xl md:text-5xl font-extrabold text-white font-display uppercase tracking-tight leading-tight">
-                YOUR NEXT GREAT RECORD STARTS HERE.
-              </h2>
-              <p className="text-slate-300 text-xs sm:text-sm md:text-base leading-relaxed">
-                From the first vocal take to the final master, step into a creative space built to bring your sound to life.
-              </p>
-              <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-2.5 sm:gap-4">
-                <button
-                  onClick={onExploreSpaces}
-                  className="w-full sm:w-auto px-5 py-2.5 sm:py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 text-white border border-white/20 text-xs font-semibold uppercase tracking-wider transition-colors cursor-pointer"
-                >
-                  Explore The Studio
-                </button>
-                <button
-                  onClick={() => onOpenBooking()}
-                  className="w-full sm:w-auto px-5 py-2.5 sm:py-3.5 rounded-xl bg-sky-400 hover:bg-sky-300 text-black text-xs font-bold uppercase tracking-wider transition-all shadow-[0_0_25px_rgba(56,189,248,0.4)] cursor-pointer"
-                >
-                  Book A Session
-                </button>
-              </div>
-            </div>
-          )}
         </main>
 
-        {/* Clean bottom anchor */}
-        <div className="relative z-20 pb-2 sm:pb-4 pointer-events-none" />
+        {/* Cinematic Studio Tour HUD — Silky Smooth Interactive Room Tracker */}
+        <div className="relative z-30 pb-6 sm:pb-8 flex justify-center pointer-events-auto">
+          <div className="px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full bg-black/85 backdrop-blur-2xl border border-white/20 shadow-[0_10px_35px_rgba(0,0,0,0.85)] flex items-center gap-2.5 sm:gap-4 max-w-[94vw]">
+            <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse shrink-0" />
+            
+            <div className="flex items-center gap-1.5 text-[10px] sm:text-xs font-mono text-white whitespace-nowrap">
+              <span className="text-cyan-300 font-semibold">{`0${activeSceneIndex + 1}`}</span>
+              <span className="text-white/40">/</span>
+              <span className="text-white/60">{`0${totalScenes}`}</span>
+              <span className="text-white/30 hidden sm:inline">·</span>
+              <span className="tracking-wider uppercase truncate font-medium text-slate-200">
+                {TOUR_SCENES[activeSceneIndex]?.title}
+              </span>
+            </div>
+
+            {/* Interactive Room Progress Dots */}
+            <div className="flex items-center gap-1.5 pl-2 sm:pl-3 border-l border-white/20 shrink-0">
+              {TOUR_SCENES.map((scene, sIdx) => {
+                const isActive = sIdx === activeSceneIndex;
+                return (
+                  <button
+                    key={scene.id}
+                    onClick={() => scrollToScene(sIdx)}
+                    className={`h-2 rounded-full transition-all duration-300 cursor-pointer ${
+                      isActive
+                        ? 'bg-cyan-400 w-5 shadow-[0_0_10px_rgba(0,240,255,0.7)]'
+                        : 'bg-white/30 hover:bg-white/60 w-2'
+                    }`}
+                    title={`Go to ${scene.title}`}
+                    aria-label={`Go to ${scene.title}`}
+                  />
+                );
+              })}
+            </div>
+          </div>
+        </div>
+
       </div>
     </div>
   );

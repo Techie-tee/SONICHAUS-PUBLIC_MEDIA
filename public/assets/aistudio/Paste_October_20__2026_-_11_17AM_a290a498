@@ -1,0 +1,1258 @@
+# SONICVAULT STUDIOS — FINAL MASTER EXECUTION PROMPT
+## Full-Stack Website, Cinematic Experiences, Booking Infrastructure, Administration & Production Deployment
+
+**PROJECT MODE:** Continue and complete the existing SONICVAULT STUDIOS project by integrating the four connected reference briefs into one cohesive, production-ready application.
+
+**EXECUTION DIRECTIVE:** Act as an award-winning creative director, senior full-stack engineer, UI/UX designer, motion designer, recording-studio specialist, database architect, payment integration engineer, security engineer, accessibility specialist, and QA tester.
+
+Execute the entire project as one coordinated build. Do not stop at planning, wireframes, mockups, a landing page, a visual prototype, or disconnected frontend screens. Inspect the existing project, understand its current state, implement missing functionality, integrate the frontend and backend, test critical workflows, fix failures, and prepare the application for deployment.
+
+The objective is to build a premium, internationally presentable, visually distinctive, fully functional music studio website and business platform for **SONICVAULT STUDIOS**.
+
+---
+
+# PART A — CONTINUITY WITH THE PREVIOUS THREE PROMPTS
+
+## 0. Mandatory integration and preservation directive
+
+This prompt is the fourth connected SONICVAULT STUDIOS brief. It extends the following three existing reference briefs and must not replace, contradict, or unnecessarily duplicate them.
+
+### Reference Brief 1 — Immersive Cinematic Hero Experience
+
+Preserve and implement the established eight-scene cinematic experience:
+
+1. Enter the Vault.
+2. Vocal Booth.
+3. Recording Room.
+4. Control Room.
+5. Production Lab.
+6. Artist in Their Element.
+7. Final Mix and Master.
+8. Grand Reveal.
+
+The experience uses a continuous, skippable, scroll-driven cinematic journey rather than a conventional slideshow or disconnected collection of banners.
+
+Retain the electric-blue waveform, sound-fragment logo reveal, cinematic room transitions, lighting, particles, parallax, realistic studio environments, progress indicator, skip controls, and final transition toward the main website.
+
+Preserve the existing scene captions:
+
+- **01 / THE VOCAL BOOTH** — “Every great record begins with a voice.”
+- **02 / THE RECORDING ROOM** — “Where raw ideas become unforgettable performances.”
+- **03 / THE CONTROL ROOM** — “Precision in every frequency. Emotion in every mix.”
+- **04 / THE PRODUCTION LAB** — “From a spark of inspiration to a sound of your own.”
+- **05 / YOUR MOMENT. YOUR SOUND.** — “Built around the artist. Designed for the music.”
+
+Preserve the transition line:
+
+**RECORD. PRODUCE. MIX. MASTER. RELEASE.**
+
+Preserve the final hero messaging:
+
+- **MAKE NOISE. MAKE MAGIC. MAKE HISTORY.**
+- **EXPLORE THE STUDIO**
+- **BOOK A SESSION**
+
+The hero must transition naturally into the rest of the website. It must not create a second, competing identity or prevent visitors from accessing the site quickly.
+
+### Reference Brief 2 — Full Cinematic Landing Page Master Prompt
+
+Continue the existing landing-page architecture, brand system, loader, navigation, sections, typography, animation lifecycle, reusable components, responsive layouts, and conversion flows.
+
+The intended homepage sequence includes:
+
+1. Existing loading experience, where one is already implemented.
+2. One consistent global navigation system.
+3. Existing cinematic hero and studio tour.
+4. Sonic Philosophy.
+5. Services.
+6. Studio Spaces.
+7. Equipment.
+8. Selected Work.
+9. Journal.
+10. Visual Explorations.
+11. The SonicVault Approach.
+12. Booking.
+13. Final cinematic CTA.
+14. Global footer.
+
+Integrate the full-stack homepage sequence specified later in this prompt with these established sections. Reconcile overlapping requirements by **extending and enriching the existing sections**, not by adding duplicate copies of Services, Studio Spaces, Equipment, Selected Work, Booking, or the footer.
+
+Preserve the established visual identity and motion principles, including the dark cinematic environment, sophisticated editorial typography, steel-blue sonic accents, restrained gradients, meaningful parallax, performance-conscious media, reduced-motion support, and accessible navigation.
+
+### Reference Brief 3 — Advanced Projects & Case Studies
+
+Preserve and extend the existing Selected Work / Advanced Projects experience.
+
+The section must retain its identity as part of SONICVAULT STUDIOS, with the established dark palette, electric-blue sonic elements, geometric compositions, editorial typography, and cinematic visual storytelling.
+
+Preserve the intended section opening:
+
+- Eyebrow: **SELECTED WORK · SONICVAULT STUDIOS**
+- Heading: **SOUND MADE / INTO SOMETHING / TIMELESS.**
+- Supporting copy: “A look inside the recordings, productions, and creative processes that bring ideas to life.”
+
+Continue the established 12-column desktop Bento-grid concept, varied project-card spans, responsive stacked mobile layout, project categories, metadata, accessible filters, project details, optional authorized audio, and case-study destinations.
+
+Retain the intended interaction concepts:
+
+- Floating geometric squares and scroll-linked parallax.
+- Electric-blue waveform movement.
+- Pixel-dissolve project-card transitions using a 12-column by 8-row overlay concept.
+- Restrained magnetic geometric elements on supported pointer devices.
+- Accessible card actions and detail views.
+- Project metadata and audio indicators only when valid content exists.
+- Reduced-motion alternatives.
+- Seamless marquee with brand phrases and approved partner names only.
+
+Preserve the closing portfolio CTA:
+
+**HAVE SOMETHING IN MIND?**
+
+**LET'S MAKE IT SOUND LIKE YOU.**
+
+“Bring us the idea, the unfinished record, or the sound you've been chasing. Let's build something worth listening to.”
+
+CTA: **LET'S WORK TOGETHER**
+
+Continue into the existing booking experience.
+
+### 0.1 Inspect before implementing
+
+Before modifying code:
+
+1. Inspect the repository, directory structure, package files, current framework, installed dependencies, existing components, styles, routes, API handlers, database schema, authentication, environment configuration, and tests.
+2. Identify which of the first three briefs have already been implemented fully, partially, or not at all.
+3. Reuse working components, established routes, brand assets, data models, animation timelines, and project conventions wherever possible.
+4. Extend existing functionality rather than replacing it with a fresh implementation without justification.
+5. Preserve the established hero, loader, navigation, THE SONIC LINE, landing-page sections, and Selected Work experience.
+6. Avoid duplicate loaders, competing heroes, repeated navigation bars, duplicate sections, duplicate booking forms, overlapping audio players, redundant global styles, and conflicting animation systems.
+7. Identify existing bugs and incomplete integrations before changing architecture.
+8. Record missing assets, credentials, content, and deployment configuration without allowing those gaps to block unrelated implementation.
+
+If the existing repository already uses a compatible framework, **preserve the working stack and conventions**. Do not migrate frameworks merely because a reference brief names another option.
+
+If no usable project exists, establish a maintainable production-ready foundation using Next.js, React, TypeScript, Tailwind CSS, PostgreSQL, Prisma or an equivalent ORM, GSAP with ScrollTrigger, and Framer Motion where appropriate.
+
+The final result must feel like one carefully art-directed product, not four unrelated websites merged together.
+
+---
+
+# PART B — BRAND IDENTITY AND CREATIVE DIRECTION
+
+## 1. Brand identity
+
+Build **SONICVAULT STUDIOS**, a premium recording, music production, mixing, mastering, and creative studio brand.
+
+Core brand messaging:
+
+- **Primary slogan:** WHERE SOUND BECOMES ART.
+- **Secondary campaign tagline:** YOUR SOUND. YOUR WORLD. YOUR LEGACY.
+- **Hero headline:** MAKE NOISE. MAKE MAGIC. MAKE HISTORY.
+- **Closing CTA:** YOUR NEXT GREAT RECORD STARTS HERE.
+
+Additional established messaging:
+
+- **GREAT RECORDS BEGIN WITH A FEELING.**
+- **GREAT MUSIC NEEDS MORE THAN A ROOM.**
+- **THE SPACE BEHIND THE SOUND.**
+- **MADE FOR THE MOMENT.**
+- **THE RIGHT TOOLS. THE RIGHT FEEL.**
+- **SOUND THAT STAYS WITH YOU.**
+- **DETAIL IS THE DIFFERENCE.**
+- **YOUR NEXT GREAT RECORD STARTS HERE.**
+
+Create an original professional logo with a distinctive SONICVAULT wordmark and custom sonic symbol inspired by sound waves, audio frequencies, geometric vault architecture, acoustic geometry, or an SV monogram.
+
+Produce full-colour, monochrome, and icon-only logo versions suitable for:
+
+- Website headers and footers.
+- Browser favicon and application icons.
+- Social profiles.
+- Merchandise.
+- Studio signage.
+- Marketing assets.
+
+Avoid generic music-note logos.
+
+Create scalable vector logo assets where possible. Maintain legibility at small sizes and contrast against both dark and light media. Use the established electric-blue sonic line as a recurring brand motif.
+
+## 1.1 Visual identity
+
+Build a premium, futuristic, artistic, confident identity rooted in contemporary music culture.
+
+Use:
+
+- Obsidian black: `#0A0A0A`
+- Graphite: `#141414`
+- Ivory: `#F5F5F3`
+- Muted grey: `#858585`
+- Steel blue: `#89AACC`
+- Sonic blue: `#4E85BF`
+
+Use ultraviolet, cobalt, acid-lime, amber, orange, coral, or magenta only as restrained, intentional accents where appropriate.
+
+Preserve the established blue gradient:
+
+`linear-gradient(90deg, #89AACC 0%, #4E85BF 100%)`
+
+The broader visual language may use the following HSL design tokens from the earlier landing-page brief:
+
+- `--bg: 0 0% 4%`
+- `--surface: 0 0% 8%`
+- `--text: 0 0% 96%`
+- `--muted: 0 0% 53%`
+- `--stroke: 0 0% 12%`
+- `--accent: 0 0% 96%`
+
+Map tokens into the existing styling system. Preserve the established dark theme rather than introducing an unrelated light-theme switch.
+
+Use sophisticated typography combining oversized condensed headlines, modern sans-serif body text, editorial serif accents, and monospaced technical labels.
+
+Consider Space Grotesk, Sora, Archivo, Manrope, Inter, and Instrument Serif according to the existing design system. If the earlier landing-page typography is already implemented, retain Inter and Instrument Serif unless a deliberate, consistent refinement is needed.
+
+Use cinematic photography, atmospheric lighting, controlled gradients, subtle grain, reflections, acoustic textures, waveform details, negative space, and exceptional composition.
+
+The result must feel custom-designed, emotionally engaging, internationally presentable, visually iconic, and unmistakably SONICVAULT—not a generic template or a conventional SaaS dashboard.
+
+---
+
+# PART C — TECHNOLOGY AND APPLICATION ARCHITECTURE
+
+## 2. Production-ready stack
+
+Use a maintainable, production-ready architecture.
+
+- **Frontend:** Next.js, React, TypeScript, and Tailwind CSS, or the compatible framework and styling system already established in the repository.
+- **Animation:** GSAP with ScrollTrigger and/or Framer Motion.
+- **Backend:** secure Next.js server-side functionality, server actions, route handlers, or a dedicated API appropriate to the project.
+- **Database:** PostgreSQL with Prisma or an equivalent ORM.
+- **Authentication:** secure authentication, server-side authorization, protected sessions, and role-based access control.
+- **Payments:** Paystack with test mode, server-side verification, signed webhooks, and idempotent processing.
+- **Messaging:** WhatsApp click-to-chat and configurable notifications.
+- **Audio:** accessible custom audio player using authorized media.
+- **Deployment:** suitable production hosting, managed database, HTTPS, environment variables, monitoring, backups, and recovery procedures.
+
+Establish a clear project structure, reusable components, database schema, migrations, safe seed data, API operations, validation, logging, error handling, and environment configuration.
+
+Build the frontend and backend together. All important forms, content, bookings, payments, administrator actions, and chatbot knowledge must connect to real backend functionality and persistent database records.
+
+Do not expose database credentials, payment secrets, private administrator credentials, AI-provider secrets, or other confidential values in client-side code.
+
+## 2.1 Architecture and engineering standards
+
+- Use reusable, typed components and domain models.
+- Validate all important inputs on the server.
+- Apply appropriate database relationships, indexes, uniqueness rules, and transaction boundaries.
+- Separate public content from private customer and payment data.
+- Use server-side authorization for every protected operation.
+- Implement clear loading, empty, success, failure, and retry states.
+- Make integrations configurable through environment variables and administrator-managed settings where appropriate.
+- Include safe development seed data that is distinguishable from verified production content.
+- Avoid unnecessary dependencies and duplicated business logic.
+- Document significant architecture decisions and operational assumptions.
+- Ensure database migrations and seed operations are repeatable and safe.
+
+Do not replace real backend operations with frontend-only simulations and describe them as complete.
+
+---
+
+# PART D — GLOBAL NAVIGATION AND ROUTES
+
+## 3. Navigation
+
+Create a premium responsive navigation system with these public labels:
+
+**HOME · STUDIO · SERVICES · EQUIPMENT · OUR WORK · ABOUT · CONTACT**
+
+Include a prominent **BOOK A SESSION** CTA.
+
+Create a custom animated hamburger menu for mobile, tablet, and constrained layouts.
+
+The menu must include:
+
+- Home.
+- Explore the Studio.
+- Services.
+- Equipment.
+- Our Work.
+- About Us.
+- Contact.
+- Book a Session.
+
+Use large typography, optional atmospheric image previews or sonic graphics, staggered reveals, a clear close control, keyboard support, touch-friendly controls, visible focus, and reduced-motion alternatives.
+
+All public navigation items must lead to their own dedicated routes, not merely scroll to sections on a single-page website.
+
+Maintain consistent branding, navigation, and footer across public pages.
+
+## 3.1 Required routes
+
+Implement the following routes, including direct URL loading and appropriate error handling:
+
+- `/` — Home.
+- `/studio` — Studio Tour.
+- `/services` — Services.
+- `/equipment` — Equipment Library.
+- `/our-work` — Portfolio.
+- Dedicated artist detail routes as appropriate.
+- Dedicated project detail routes as appropriate.
+- Dedicated release detail routes as appropriate.
+- Dedicated session detail routes as appropriate.
+- `/about` — About and Team.
+- `/contact` — Contact and Enquiries.
+- `/book-session` — Booking and Availability.
+- `/privacy-policy` — Privacy Policy.
+- `/terms` — Terms and Conditions.
+- `/booking-policy` — Booking and Cancellation Policy.
+- `/payment-policy` — Payment Policy.
+- `/admin/login` — Private Admin Login.
+- A protected administrator dashboard with appropriate internal routes.
+- A custom not-found page.
+
+Use consistent route conventions and avoid conflicting routes or duplicated content.
+
+**Never display administrator login or dashboard links in public navigation, the homepage, hamburger menu, or footer.** A hidden URL is not a substitute for actual access control.
+
+---
+
+# PART E — HOMEPAGE AND CINEMATIC EXPERIENCE
+
+## 4. Homepage first impression
+
+Create an immersive full-screen hero that begins with a dark studio atmosphere, introduces an electric-blue sonic line or waveform, reveals the logo, transitions into cinematic studio imagery, and presents:
+
+**MAKE NOISE. MAKE MAGIC. MAKE HISTORY.**
+
+Display the primary slogan, concise supporting copy, and two clear actions:
+
+- **EXPLORE THE STUDIO**
+- **BOOK A SESSION**
+
+Use authentic studio photography or high-quality video, layered depth, subtle parallax, restrained camera movement, refined transitions, and an animated waveform or sonic visualizer.
+
+Do not force visitors to wait through an intro. Do not play audio automatically.
+
+Preserve the existing eight-scene hero and its skip functionality. If an introductory loader exists, reuse it. If one does not exist and a loader is appropriate, make it brief, accessible, reliable, and skippable; never add a second loader.
+
+## 4.1 Homepage section order
+
+Build and integrate the homepage in this order, reconciling overlapping sections with the earlier landing-page brief:
+
+1. Cinematic hero and existing studio tour.
+2. Brand philosophy: **GREAT MUSIC NEEDS MORE THAN A ROOM.**
+3. Introduction to the studio and creative approach.
+4. Featured studio spaces.
+5. Services overview.
+6. Verified equipment highlights.
+7. Selected artists, projects, and releases.
+8. Featured authorized audio player.
+9. Why choose SONICVAULT STUDIOS.
+10. Team and production process.
+11. Authentic, approved testimonials, when available.
+12. Location and contact preview.
+13. Powerful closing booking CTA.
+14. Complete global footer.
+
+Integrate the established landing-page sections—Sonic Philosophy, Studio Spaces, Selected Work, Journal, Visual Explorations, Studio Approach, and Booking—where they naturally correspond to the sequence above.
+
+Do not create redundant copies to satisfy overlapping briefs. Every required content category must be present, but each major section should have one coherent implementation.
+
+Use expressive editorial layouts, large typography, dramatic imagery, meaningful visual transitions, and distinct section compositions.
+
+## 5. THE SONIC LINE — signature interaction system
+
+THE SONIC LINE is a recognizable SONICVAULT brand interaction.
+
+It begins as a thin waveform in the hero and evolves as visitors scroll, becoming a visual guide, audio signal path, recording-room outline, track arrangement, or production timeline.
+
+Implement purposeful cinematic section transitions, scroll-triggered text reveals, masked photography, layered parallax, selective pinned sections, animated SVG sound waves, interactive room and equipment reveals, horizontal storytelling where appropriate, refined hover and focus states, and smooth page transitions.
+
+Every page may have its own visual personality while maintaining a coherent design system.
+
+Every animation must serve storytelling, demonstrate a process, or improve emotional engagement.
+
+Avoid:
+
+- Excessive motion.
+- Scroll hijacking.
+- Forced waiting.
+- Intrusive cursor effects.
+- Interactions that obstruct navigation.
+- Unnecessary WebGL or heavy animation.
+- Nested or conflicting pinned sections.
+- Layout jumps caused by animation.
+- Animation that prevents access to content.
+
+Respect `prefers-reduced-motion`, touch devices, mobile performance, keyboard navigation, and accessibility.
+
+### Animation implementation
+
+Use GSAP and ScrollTrigger for coordinated scroll choreography, the existing studio-tour pinning, parallax, marquee motion, and appropriate scroll-linked reveals.
+
+Use Framer Motion for UI transitions, modal states, small reveals, interactive cards, and component-level animation where appropriate.
+
+Avoid simultaneously animating the same property on the same element with independent GSAP and Framer Motion timelines.
+
+Use scoped GSAP contexts, clean up animations and ScrollTriggers on unmount, handle React Strict Mode, refresh triggers after relevant layout changes, and prevent stale animation instances.
+
+Simplify or remove heavy effects on mobile and reduced-motion configurations. WebGL or Three.js is optional only when it materially improves the experience and includes appropriate fallbacks.
+
+---
+
+# PART F — STUDIO TOUR
+
+## 6. Studio Tour — `/studio`
+
+Create an immersive architectural tour using genuine photography, panoramic imagery, video, interactive hotspots, and guided transitions.
+
+Include each real facility that exists:
+
+- Main control room.
+- Vocal recording booth.
+- Live recording or performance room, if available.
+- Production and beat-making workspace.
+- Lounge or artist relaxation area.
+- Collaboration or writing space.
+- Any other verified recording or isolation spaces.
+
+For each verified space, show:
+
+- Name and purpose.
+- Atmosphere and intended use.
+- Large images or suitable video.
+- Verified equipment.
+- Recording setup.
+- Acoustic treatment, when verified.
+- Layout and practical benefits.
+- Relevant booking CTA.
+
+Add a room selector, full-screen image viewer, equipment hotspots, and an accurate floor plan only if actual measurements are available.
+
+Offer a panoramic or 360-degree tour when suitable source imagery exists.
+
+Preserve the original cinematic tour’s eight-scene structure and its room-to-room storytelling. The dedicated `/studio` route can provide a deeper, interactive exploration without repeating the full introductory sequence unnecessarily.
+
+End with:
+
+**STEP INSIDE. FIND YOUR SOUND.**
+
+Include links to Explore Services and Book a Session.
+
+Never invent rooms, facilities, acoustic specifications, floor-plan measurements, or physical features. Clearly label concept imagery until authentic assets are supplied.
+
+---
+
+# PART G — SERVICES
+
+## 7. Services — `/services`
+
+Create a detailed, visually distinctive service experience covering confirmed offerings such as:
+
+- Professional vocal and instrument recording.
+- Music production, beat-making, composition, and arrangement.
+- Mixing and mastering.
+- Vocal production, editing, tuning, comping, timing, harmonies, and layering.
+- Songwriting and creative collaboration.
+- Audio editing.
+- Podcast recording.
+- Voice-over recording.
+- Rehearsal, artist development, or other services only when genuinely offered.
+
+For every service, explain:
+
+- What the service is.
+- Who it serves.
+- What is included.
+- The creative and technical process.
+- Preparation requirements.
+- Expected duration and turnaround where verified.
+- Equipment or room used, where verified.
+- Deliverables.
+- Pricing method and approval status.
+- Frequently asked questions.
+- Related services.
+- A prominent **BOOK THIS SERVICE** CTA.
+
+Include interactive visual explanations of multitrack mixing, mastering, vocal production, and arrangement. Use real before-and-after audio only when authorized material is available.
+
+Connect services through the visual production journey:
+
+**IDEA → RECORD → PRODUCE → MIX → MASTER → RELEASE**
+
+Each service CTA must lead to the booking route with the selected service prefilled where supported.
+
+Never present unverified turnaround times, equipment, deliverables, or pricing as confirmed facts.
+
+---
+
+# PART H — EQUIPMENT LIBRARY
+
+## 8. Equipment — `/equipment`
+
+Build a premium searchable catalogue featuring verified studio equipment in categories such as:
+
+- Microphones.
+- Audio interfaces and converters.
+- Mixing consoles and control surfaces.
+- Studio monitors and headphones.
+- Preamps, outboard gear, and processors.
+- Instruments, MIDI controllers, synthesizers, and drum machines.
+- Recording computers and production software.
+- Acoustic treatment and studio accessories.
+
+Each equipment entry must support:
+
+- Verified manufacturer.
+- Verified model.
+- High-quality image.
+- Category.
+- Technical description.
+- Relevant verified specifications.
+- Primary purpose.
+- Practical applications.
+- Associated studio room, if confirmed.
+- Related services.
+
+Provide search, category filters, detail panels or pages, interactive hotspots, dramatic close-up imagery, and restrained metallic visual treatments.
+
+End with:
+
+**THE TOOLS ARE READY. LET’S MAKE SOMETHING.**
+
+Include a booking CTA.
+
+Only claim equipment that the studio owns or has confirmed access to. Never fabricate specifications, inventory, ownership, or live interactions.
+
+The administrator must be able to manage equipment records, images, specifications, publication status, and related content.
+
+---
+
+# PART I — PORTFOLIO, ARTISTS, RELEASES, AND AUDIO
+
+## 9. Portfolio — `/our-work`
+
+Build a polished, editorial portfolio with filters:
+
+**ALL WORK · ARTISTS · PROJECTS · RELEASES · STUDIO SESSIONS**
+
+Preserve and extend the existing Advanced Projects & Case Studies section. Do not replace its design with a generic portfolio template or create a second competing Selected Work section.
+
+Create reusable templates and dedicated detail pages for artists, albums, EPs, singles, projects, releases, and studio sessions where appropriate.
+
+Each portfolio item should support:
+
+- Approved artwork or photography.
+- Title and artist.
+- Description.
+- Release date, where applicable and verified.
+- Verified recording, production, mixing, and mastering credits.
+- Collaborators, when verified.
+- Behind-the-scenes media.
+- Related projects.
+- Authorized audio previews.
+- Official streaming links.
+- Case-study details and project services, where approved.
+
+Support official destinations including Audiomack, Spotify, Apple Music, YouTube Music, and Boomplay. Display only platforms where the relevant release is actually available.
+
+Never invent URLs, credits, artist relationships, release details, awards, or client associations.
+
+## 9.1 Advanced project-card design
+
+Preserve the 12-column desktop Bento grid with varied card proportions and responsive mobile stacking.
+
+Retain the established categories, including Artist Sessions, Original Productions, Mix & Master, and Sound in Motion where appropriate to actual published projects.
+
+Support the portfolio filters All Work, Recording, Production, Mixing & Mastering, and Other Audio Work where those categories match the available collection. Reconcile these with the top-level portfolio filters without creating confusing or duplicated filter systems.
+
+Project cards may use:
+
+- Full-bleed media.
+- Subtle image scaling and restrained grain or halftone effects.
+- Floating geometric elements.
+- Readable project metadata.
+- Category and verified year.
+- An audio indicator only when a valid audio preview exists.
+- An accessible action to open the case study or detail panel.
+
+Retain the intended pixel-dissolve concept using a 12-column by 8-row overlay, with diagonal staggered transitions on hover or focus and an appropriate reverse transition. Avoid excessive DOM or animation overhead; preserve the visual effect with a performant implementation.
+
+Retain restrained magnetic-square interactions using motion values and springs where appropriate, with the reference spring settings of stiffness 80, damping 18, and mass 0.6. Disable pointer-following interactions on touch devices and provide a simple reduced-motion alternative.
+
+All cards and actions must be keyboard accessible and must perform a real action.
+
+## 9.2 Project details
+
+Provide an appropriate route, modal, or side panel consistent with the existing architecture.
+
+Where verified data exists, show:
+
+- Project overview.
+- Brief and creative direction.
+- Services provided.
+- Process.
+- Approved images and video.
+- Authorized audio.
+- Verified client and collaborator information.
+- Official streaming links.
+- Related work.
+- An enquiry or booking CTA.
+
+If details are missing, show only approved information and an appropriate enquiry CTA.
+
+## 9.3 Custom audio player
+
+Build a custom responsive audio player with:
+
+- Play and pause.
+- Seeking.
+- Progress.
+- Duration.
+- Track information.
+- Artwork.
+- Volume controls.
+- Keyboard accessibility.
+- Loading, playback, and error states.
+
+Prevent multiple tracks from playing simultaneously. Never autoplay audio. Use only authorized audio files.
+
+Include suitable calls to action, such as:
+
+**LISTEN TO THE FULL PROJECT**
+
+**YOUR NEXT RELEASE COULD BE PART OF THE VAULT.**
+
+Respect client confidentiality and obtain permission before publishing recordings, images, names, credits, or behind-the-scenes media.
+
+If real portfolio content is unavailable, use clearly labelled replaceable demonstration entries—not fabricated claims presented as fact.
+
+---
+
+# PART J — ABOUT, MISSION, VISION, AND TEAM
+
+## 10. About — `/about`
+
+Tell the genuine story of SONICVAULT STUDIOS through editorial storytelling, atmospheric photography, expressive typography, meaningful transitions, and a visual timeline where appropriate.
+
+Include:
+
+- Origin.
+- Mission.
+- Vision.
+- Philosophy.
+- Creative approach.
+- Studio culture.
+- Commitment to artists and sound quality.
+- Verified achievements.
+- The people behind the brand.
+
+Present the founder first, followed by confirmed engineers, producers, vocal specialists, and other team members.
+
+Use professional imagery representing Black creatives, including women, while keeping real identities, roles, credentials, and biographies accurate.
+
+Playful nicknames and witty bios may add personality, but fictional placeholder team members must be explicitly labelled until actual staff information is supplied.
+
+Do not invent awards, client relationships, credentials, milestones, years of experience, or professional achievements.
+
+The administrator must be able to manage team profiles, photos, biographies, publication status, and relevant About-page content.
+
+---
+
+# PART K — CONTACT AND WHATSAPP
+
+## 11. Contact — `/contact`
+
+Use these supplied business details consistently:
+
+- **Business:** SONICVAULT STUDIOS
+- **Address:** 38 Olanrewaju Ninalowo Crescent, Lekki Phase 1, Lagos State, Nigeria.
+- **Phone/WhatsApp:** 09015104502
+- **WhatsApp international destination:** `2349015104502`
+- **Email:** Sonicvaultstudios@gmail.com
+- **Social handle:** SONICVAULTSTUDIO38
+
+Create working click-to-call, email, WhatsApp, directions/map link, verified opening hours, confirmed social profiles, and a validated enquiry form with clear success and failure states and spam protection.
+
+Use a WhatsApp click-to-chat destination:
+
+`https://wa.me/2349015104502`
+
+Provide a useful prefilled enquiry message and contextual WhatsApp CTAs throughout the website. Ensure links work on desktop and mobile.
+
+Create a floating WhatsApp button that remains accessible and does not obscure important controls, forms, audio players, or mobile navigation.
+
+Support Instagram, TikTok, Facebook, YouTube, and other confirmed platforms. Configure each platform URL independently.
+
+Do not assume accounts exist, fabricate profile URLs, or publish unverified opening hours. If social profiles or hours are missing, keep them configurable and unpublished or visibly unavailable until verified.
+
+The enquiry form must validate inputs, persist submissions to the database, provide clear status messages, and use appropriate spam protection.
+
+---
+
+# PART L — BOOKING AND AVAILABILITY
+
+## 12. Booking — `/book-session`
+
+Build a complete database-connected booking journey.
+
+### Booking flow
+
+1. Select a service.
+2. Choose an eligible package or session duration.
+3. Select an available date and time.
+4. Enter name, email, phone number, and project details.
+5. Review the booking summary, duration, price, deposit, and policies.
+6. Accept the booking terms and cancellation policy.
+7. Pay through Paystack where required.
+8. Receive an accurate pending, confirmed, failed, or other applicable status.
+9. Receive confirmation and follow-up notifications through configured channels.
+
+### Booking requirements
+
+- Persist all bookings in PostgreSQL.
+- Validate submitted data on the server.
+- Prevent overlapping confirmed bookings using transactional logic and appropriate database constraints.
+- Calculate prices on the server; never trust browser-submitted totals.
+- Support editable services, pricing, packages, durations, availability, deposits, and cancellation rules.
+- Generate unique booking references.
+- Track booking status independently from payment status.
+- Handle pending, abandoned, failed, successful, cancelled, rescheduled, and refunded cases appropriately.
+- Provide clear rescheduling, cancellation, and refund rules.
+- Send confirmation notifications only when the corresponding conditions have been verified.
+- Provide administrators with booking and calendar management.
+
+Implement appropriate concurrency protection so simultaneous booking requests cannot reserve the same time slot incorrectly.
+
+Use explicit booking-state and payment-state transitions. Do not treat a payment attempt as a confirmed booking, and do not treat a browser redirect as proof of payment.
+
+The booking interface must clearly distinguish:
+
+- A booking request awaiting review.
+- A temporary or pending reservation, if the configured business rules support one.
+- A confirmed reservation.
+- A failed or abandoned payment.
+- A cancelled or rescheduled booking.
+- A refunded transaction where applicable.
+
+Only advertise instant confirmation if the configured workflow actually supports it.
+
+---
+
+# PART M — PRICING AND PACKAGES
+
+## 13. Admin-editable pricing
+
+Create an administrator-editable pricing system.
+
+**IMPORTANT: The following figures are proposed starting values from the project brief, not verified quotations. Seed them as draft/unpublished prices and require explicit administrator approval before they appear publicly or are used for live booking checkout.**
+
+| Service | Proposed starting price |
+|---|---:|
+| Vocal recording — 1 hour | ₦35,000 |
+| Vocal recording — 2 hours | ₦65,000 |
+| Vocal recording — 4 hours | ₦125,000 |
+| Vocal recording — 8 hours | ₦240,000 |
+| Beat production | ₦150,000 per track |
+| Mixing | ₦100,000 per track |
+| Mastering | ₦50,000 per track |
+| Mixing and mastering | ₦135,000 per track |
+| Full production | ₦300,000 per track |
+| Vocal editing and tuning | ₦60,000 per track |
+| Podcast recording | ₦50,000 per hour |
+| Voice-over recording | ₦35,000 per hour |
+
+Administrators must be able to:
+
+- Edit, enable, disable, or replace prices.
+- Define custom packages.
+- Set session durations.
+- Set deposits.
+- Define quote-based services.
+- Configure applicable pricing rules.
+- Publish or unpublish packages.
+- Maintain the relevant service descriptions and deliverables.
+
+Display currency as NGN/₦.
+
+Never represent proposed prices, durations, deliverables, or terms as confirmed until approved.
+
+The server must calculate the final applicable amount using the current approved database record. It must not trust a client-supplied amount, package price, discount, or deposit.
+
+Keep unpublished prices out of public pages, public APIs, chatbot answers, and live checkout.
+
+---
+
+# PART N — PAYSTACK PAYMENT INTEGRATION
+
+## 14. Secure Paystack integration
+
+Implement a secure Paystack integration with:
+
+- Server-side transaction initialization using the correct amount, currency, customer details, and unique booking reference.
+- Redirect to the supported Paystack checkout.
+- Server-side verification using the transaction reference.
+- Webhook signature validation.
+- Idempotent webhook processing.
+- Secure transaction and payment-status persistence.
+- Correct handling of pending, successful, failed, cancelled, and refunded transactions.
+- Administrator-visible transaction history.
+- Appropriate notification handling and reconciliation.
+- Development and end-to-end testing in Paystack test mode.
+
+Never store card details, expose secret keys, trust a browser success page as proof of payment, or mark a booking as paid without server-side verification.
+
+Validate the payment amount, currency, transaction reference, and association with the intended booking. A verified payment must match the expected transaction and booking before the application changes the payment state.
+
+Protect webhook handling against forged requests, replayed events, and duplicate processing. Record processed events or equivalent idempotency keys and make transaction updates safe to repeat.
+
+Maintain distinct booking and payment states.
+
+Configure live payments only after successful testing and when valid merchant credentials are supplied.
+
+If credentials are unavailable, build and test the integration using safe test configuration and document exactly what remains to enable production payments. Never claim live payment functionality is operational until it has actually been configured and tested.
+
+---
+
+# PART O — PRIVATE ADMIN DASHBOARD
+
+## 15. Administrator authentication and dashboard
+
+Build a real, functional administrator area at `/admin/login`. It must not appear in public navigation or the public footer.
+
+Implement:
+
+- Secure login and logout.
+- Protected sessions.
+- Server-side authorization.
+- Role-based permissions where needed.
+- Secure password handling.
+- Login rate limiting.
+- Audit logs.
+- Appropriate session expiration.
+
+Protect every private page, API, server action, and backend operation. Hiding a route or menu item is not security.
+
+### Dashboard modules
+
+The dashboard must manage real database records and include all of the following:
+
+1. Overview and business metrics.
+2. Bookings and session calendar.
+3. Payments and transaction records.
+4. Customers.
+5. Services, packages, rates, and deposits.
+6. Availability and scheduling rules.
+7. Artists, projects, releases, and portfolio credits.
+8. Audio previews and streaming URLs.
+9. Equipment inventory and specifications.
+10. Studio spaces and room content.
+11. Team profiles, photos, and biographies.
+12. Homepage sections, images, announcements, and testimonials.
+13. Contact details, opening hours, and social links.
+14. Chatbot knowledge and approved FAQs.
+15. Enquiries and customer communications.
+16. Site settings, publication controls, and audit logs.
+
+Allow authorized users to create, view, edit, publish, archive, and delete appropriate records.
+
+Apply validation and authorization to every mutation. Use confirmation and appropriate safeguards for destructive actions. Maintain audit trails for important administrative changes.
+
+Seed initial content clearly as draft or demonstration content where facts have not been verified.
+
+The dashboard must manage actual database records rather than presenting a static mockup of an administrative interface.
+
+---
+
+# PART P — AUTOMATED WEBSITE CHATBOT
+
+## 16. Chatbot
+
+Create an accessible floating chatbot with this exact welcome message:
+
+> Welcome to SONICVAULT STUDIOS — where sound becomes art. 🎙️ Are you here to book a session, explore our services, discover our equipment, or listen to our work?
+
+The chatbot should answer questions about:
+
+- Approved services.
+- Verified equipment.
+- Published pricing.
+- Confirmed session durations.
+- Booking procedures.
+- Payment methods.
+- Location.
+- Confirmed opening hours.
+- Relevant website pages.
+
+Guide users toward booking and offer WhatsApp human assistance when necessary.
+
+Use an administrator-editable approved knowledge base. If an AI provider is integrated, call it securely through the backend. Provide a dependable FAQ fallback if AI is unavailable.
+
+Clearly identify the assistant as automated.
+
+The chatbot must never invent prices, availability, equipment, policies, credentials, opening hours, or business details.
+
+When information is unknown, acknowledge the limitation and provide an appropriate contact or WhatsApp route.
+
+Do not expose private customer, payment, booking, or administrative data.
+
+Ground responses in published and approved information. Unpublished proposed prices, draft content, private records, and internal administrative notes must never be included in public chatbot responses.
+
+---
+
+# PART Q — FOOTER AND LEGAL PAGES
+
+## 17. Global footer
+
+Create a consistent, responsive, keyboard-accessible footer containing:
+
+- Logo, primary slogan, and concise brand description.
+- Confirmed social media links.
+- Home, Studio Tour, Services, Equipment, Our Work, and About Us.
+- Book a Session, WhatsApp, Call, Email, and Contact.
+- Full studio address.
+- Directions/map link.
+- Verified opening hours.
+- Dynamically generated copyright year.
+- Privacy Policy.
+- Terms and Conditions.
+- Booking and Cancellation Policy.
+- Payment Policy.
+- Accessibility Statement.
+- Cookie preferences where applicable.
+- Back-to-top control.
+
+Do not expose the admin login in the footer.
+
+Add a newsletter only if it is connected to a working subscription service with appropriate consent and data handling.
+
+## 17.1 Legal pages
+
+Create complete standalone pages for:
+
+- `/privacy-policy`
+- `/terms`
+- `/booking-policy`
+- `/payment-policy`
+
+Also provide an Accessibility Statement and a custom not-found page.
+
+Write policies relevant to the actual business, booking processes, payment integration, communications, and data collection. Flag legal content for business review before launch. Do not copy unrelated businesses' policies or represent draft legal text as reviewed legal advice.
+
+Ensure the legal pages are reachable through the appropriate public footer links.
+
+---
+
+# PART R — DATABASE, SECURITY, AND RELIABILITY
+
+## 18. Database architecture
+
+Implement appropriate database models and relationships for:
+
+- Administrator accounts and roles.
+- Customers.
+- Services, packages, prices, and deposits.
+- Availability and time slots.
+- Bookings and booking status history.
+- Payments and transaction references.
+- Portfolio projects, artists, releases, and credits.
+- Audio files and streaming links.
+- Equipment and studio spaces.
+- Team profiles.
+- Contact enquiries.
+- Chatbot knowledge and approved FAQs.
+- Site settings, social links, and content.
+- Audit logs.
+
+Add schema validation, relationships, indexes, unique constraints, migrations, safe seed data, and tested CRUD operations.
+
+Use appropriate transaction boundaries for booking creation, payment-state changes, and other operations that must remain consistent.
+
+Implement explicit state transitions and preserve sufficient history to audit important booking and payment changes.
+
+## 18.1 Security and reliability
+
+Apply appropriate protections against:
+
+- Injection.
+- Cross-site scripting.
+- Cross-site request forgery where applicable.
+- Abuse and spam.
+- Unauthorized access.
+- Information leakage.
+- Credential attacks.
+- Duplicate or forged payment events.
+- Invalid booking-state changes.
+- Insecure file or media handling.
+
+Use environment variables for all secrets.
+
+Implement appropriate logging, monitoring, error handling, database backups, and a recovery strategy for booking and payment data.
+
+Never commit secrets or real credentials to the repository.
+
+Protect customer information and payment records from public queries and chatbot access. Restrict administrator data access according to roles and permissions.
+
+Document backup and restoration procedures and identify the configuration needed to operate them in production.
+
+---
+
+# PART S — PERFORMANCE, ACCESSIBILITY, AND SEO
+
+## 19. Performance and responsive design
+
+Make the website responsive across desktop, tablet, and mobile, including lower-powered devices and slower mobile connections.
+
+Optimize:
+
+- Images.
+- Video.
+- Fonts.
+- Rendering.
+- Animation.
+- JavaScript.
+- Audio loading.
+- Database access.
+- Route loading.
+
+Lazy-load suitable media, prevent layout shifts, and avoid unnecessary dependencies or animations that harm performance.
+
+Use responsive image sizes, optimized formats, appropriate video poster frames, and loading states. Pause or defer nonessential media when appropriate.
+
+Use HLS or other streaming technology only when justified by the media source and architecture. Prefer suitable native browser support where available and provide graceful fallbacks.
+
+Do not load heavy animation libraries, 3D scenes, or media unnecessarily on every route.
+
+## 19.1 Accessibility
+
+Implement:
+
+- Semantic HTML.
+- Accessible labels.
+- Keyboard navigation.
+- Visible focus states.
+- Readable contrast.
+- Meaningful image alt text.
+- Accessible audio controls.
+- Reduced-motion alternatives.
+- Usable error and success messages.
+- Touch-friendly controls.
+- Accessible menu and modal behavior.
+
+Ensure overlays do not block essential controls, modals provide appropriate focus management, and users can exit interactive experiences without becoming trapped.
+
+The website must remain usable when animation, video, WebGL, or external media is unavailable.
+
+## 19.2 SEO
+
+Configure:
+
+- Page-specific titles.
+- Meta descriptions.
+- Canonical URLs where appropriate.
+- Social-sharing previews.
+- Sitemap.
+- Robots directives.
+- Structured data where accurate.
+- Suitable search-engine metadata.
+
+Use accurate business and service information. Do not generate false reviews, fake ratings, fabricated awards, or misleading structured data.
+
+Ensure all routes load directly, all buttons and links work, all forms validate, all audio sources are valid, and all booking statuses reflect verified backend data.
+
+---
+
+# PART T — CONTENT AND ASSET INTEGRITY
+
+## 20. Verified content and replaceable assets
+
+Use supplied real assets and verified business information wherever available.
+
+If studio photography, equipment lists, staff details, portfolio credits, opening hours, social URLs, payment credentials, or other facts are missing:
+
+- Build the relevant functionality and content-management fields.
+- Use clearly labelled replaceable placeholders or concept imagery.
+- Keep unverified content unpublished by default where it could mislead visitors.
+- Do not invent real-world facilities, equipment ownership, artists, awards, testimonials, credits, credentials, prices, opening hours, or external links.
+- Document exactly which assets, approvals, accounts, and credentials are needed before launch.
+
+Do not let missing real-world credentials prevent implementation of the rest of the application. Build the integration, test it with safe test data, and clearly document the remaining configuration step.
+
+### Contact and business information
+
+Use the supplied business address, phone, WhatsApp destination, email, and social handle consistently.
+
+The following may be displayed as supplied:
+
+- SONICVAULT STUDIOS.
+- 38 Olanrewaju Ninalowo Crescent, Lekki Phase 1, Lagos State, Nigeria.
+- 09015104502.
+- `https://wa.me/2349015104502`.
+- Sonicvaultstudios@gmail.com.
+- SONICVAULTSTUDIO38 as the supplied social handle.
+
+However, do not invent specific social profile URLs, opening hours, map destinations, or operational claims. Configure and verify them before publication.
+
+### Photography and visual concepts
+
+Use authentic studio imagery when available. If suitable images are unavailable, use clearly identified concept imagery or replaceable placeholders that do not falsely claim to show the actual studio.
+
+Do not present generated concept imagery as documentary proof of the studio's real rooms, equipment, team, or facilities.
+
+### Pricing and service claims
+
+The figures in the pricing section remain unpublished draft values until an administrator approves them.
+
+Do not invent confirmed packages, turnaround times, deliverables, availability, or policies.
+
+### Portfolio and team
+
+Only publish approved artist identities, client names, credits, recordings, photographs, testimonials, releases, and collaborators.
+
+Do not fabricate staff profiles, biographies, professional credentials, awards, achievements, or client relationships.
+
+---
+
+# PART U — TESTING, QUALITY ASSURANCE, AND DEPLOYMENT
+
+## 21. Implementation and testing sequence
+
+Build in a coordinated sequence:
+
+1. Inspect the existing project, repository, and implementation state.
+2. Establish or refine the project foundation and database.
+3. Preserve and refine the brand system and reusable components.
+4. Complete public routes and content.
+5. Integrate the cinematic hero, THE SONIC LINE, and existing animations.
+6. Integrate and complete the Studio, Services, Equipment, and Selected Work experiences.
+7. Implement booking and availability.
+8. Implement Paystack integration.
+9. Complete the administrator dashboard.
+10. Integrate chatbot and WhatsApp.
+11. Apply security, accessibility, and SEO requirements.
+12. Test the application.
+13. Fix failures and regressions.
+14. Prepare deployment and operational documentation.
+
+Do not stop after writing a plan. Implement the application and validate the actual result.
+
+## 21.1 Required automated tests
+
+Add automated tests for critical:
+
+- Authentication.
+- Database operations.
+- Booking conflicts.
+- Price calculations.
+- Payment verification.
+- Webhook signatures and idempotency.
+- Authorization logic.
+- Protected administrator endpoints.
+
+Run production builds, database migrations, linting, type checks, and appropriate end-to-end tests.
+
+Fix failures rather than merely listing them. Do not report tests as passing unless they have actually run successfully.
+
+## 21.2 Required end-to-end verification
+
+Verify that:
+
+- All navigation, CTAs, and standalone routes work.
+- Forms validate and persist correctly.
+- Booking availability prevents conflicts.
+- Pricing is calculated on the server.
+- Paystack success, failure, pending, and webhook flows behave correctly in test mode.
+- Duplicate webhook events do not create duplicate payments.
+- Unauthorized users cannot access private dashboards or APIs.
+- Chatbot answers are grounded in approved information.
+- Audio playback, seeking, and volume controls work.
+- WhatsApp, maps, email, phone, and configured social links open correctly.
+- Media loads efficiently.
+- Accessibility, metadata, error handling, and responsive layouts meet the intended standard.
+- The existing hero and Selected Work section remain intact after integration.
+- No duplicate loader, navigation, hero, or major homepage section has been introduced.
+- Animations clean up correctly and do not cause scrolling, rendering, or route-transition regressions.
+
+Test the application on desktop, tablet, and mobile.
+
+Where a test requires unavailable credentials, external accounts, or actual business data, implement the testable parts, record the limitation, and document the precise remaining setup step.
+
+## 21.3 Production deployment preparation
+
+Prepare deployment with:
+
+- Secure hosting.
+- Production database.
+- Database migrations.
+- Environment configuration.
+- HTTPS.
+- Domain setup instructions.
+- Backups.
+- Monitoring.
+- Error logging.
+- Administrator provisioning.
+
+Deliver:
+
+- Complete source code.
+- Database schema and migrations.
+- Safe seed data.
+- `.env.example` without real secrets.
+- README.
+- Setup instructions.
+- Deployment instructions.
+- Administrator setup instructions.
+- Paystack test/live configuration guide.
+- WhatsApp and social configuration guide.
+- Test results.
+- A clear list of outstanding limitations and launch prerequisites.
+
+Do not claim deployment, live payments, email delivery, chatbot AI, or other external services are operational unless they have actually been configured and tested.
+
+If the execution environment lacks credentials or deployment access, complete everything possible and document the precise remaining steps.
+
+---
+
+# PART V — FINAL ACCEPTANCE CRITERIA
+
+## 22. Definition of completion
+
+The project is complete only when SONICVAULT STUDIOS has:
+
+- An original logo and coherent premium brand identity.
+- A distinctive, immersive, multi-page website with dedicated routes.
+- The established eight-scene cinematic hero and purposeful scroll interactions.
+- THE SONIC LINE integrated coherently across the experience.
+- The complete Studio, Services, Equipment, Portfolio, About, Contact, and Booking experiences.
+- The existing Advanced Projects & Case Studies section preserved and fully integrated.
+- A working backend and persistent database.
+- Secure booking, availability, and payment workflows.
+- A protected administrator dashboard managing actual database records.
+- A functional accessible audio player.
+- WhatsApp integration and configured external links.
+- An accurate, knowledge-grounded chatbot.
+- Supporting legal pages and a complete global footer.
+- Responsive layouts, accessibility, SEO, security, performance optimization, and error handling.
+- Automated tests and successful production builds.
+- Setup documentation and deployment guidance.
+
+The project must not be considered complete merely because its pages look finished.
+
+Core workflows must genuinely work, or their remaining configuration requirements must be clearly documented when external credentials or access are unavailable.
+
+---
+
+# FINAL EXECUTION COMMAND
+
+Execute this entire specification as one coordinated project, continuing from the three earlier SONICVAULT STUDIOS prompts.
+
+Do not omit a feature because it is complex. Do not silently replace functionality with a mockup. Do not stop after producing a plan. Do not leave decorative buttons in place of working features.
+
+Preserve existing working implementations and extend them intelligently. Avoid duplicate sections, competing identities, redundant routes, conflicting animation timelines, insecure backend shortcuts, fabricated business information, and unverified claims.
+
+Prioritize sound architecture and functional correctness, then complete page experiences, immersive visual polish, integrations, rigorous testing, and deployment readiness.
+
+Make every page feel art-directed, every interaction purposeful, and every core business workflow genuinely functional.
+
+Make visitors feel the music before they hear it, experience the studio before they enter it, and imagine their next great record before they book it.
+
+**SONICVAULT STUDIOS — WHERE SOUND BECOMES ART.**

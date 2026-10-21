@@ -8,7 +8,7 @@ import vocalBoothImg from '../../assets/images/studio_02_vocal_booth_17924468321
 import controlRoomImg from '../../assets/images/studio_control_live_performance_1792447671011.jpg';
 import productionLabImg from '../../assets/images/studio_04_production_lab_1792446833465.jpg';
 import masterSuiteImg from '../../assets/images/studio_05_master_suite_1792446834087.jpg';
-import liveHallImg from '../../assets/images/hero_recording_room_v2_1792446896580.jpg';
+import liveHallImg from '../../assets/images/hero_recording_room_v2_1792444696580.jpg';
 
 interface StudioGalleryProps {
   onOpenBooking: () => void;
@@ -60,6 +60,15 @@ const GALLERY_ITEMS: GalleryItem[] = [
     caption: 'Studer 2-inch tape deck, Manley Massive Passive EQ, and dedicated private artist listening lounge in Lekki Phase 1.',
     image: masterSuiteImg,
     specs: '420 sq ft · Master Tape Calibrated',
+  },
+  {
+    id: 'gal-live-tracking',
+    category: 'performance',
+    categoryLabel: 'Recording & Performance Space',
+    title: 'Studio A Drum & Live Tracking Floor',
+    caption: 'Tuned hardwood acoustic tracking floor with 4.2m ceiling volume for live drum kits, brass sections, and acoustic ensembles.',
+    image: liveHallImg,
+    specs: '520 sq ft · Tuned Hardwood Floor',
   },
   {
     id: 'gal-entrance',

@@ -1,25 +1,58 @@
 // Web Audio API Procedural Studio Sound Engine
 // Zero-dependency, purely procedural audio synthesis adhering to the no-autoplay guideline
 
+export interface ActiveTrackState {
+  trackId: string;
+  title: string;
+  artist: string;
+  artwork: string;
+  isPlaying: boolean;
+  currentTime: number;
+  duration: number;
+  volume: number;
+  isMuted: boolean;
+}
+
 class StudioAudioEngine {
   private ctx: AudioContext | null = null;
   private masterGain: GainNode | null = null;
+  private trackGain: GainNode | null = null;
   private tapeHissGain: GainNode | null = null;
   private subHumGain: GainNode | null = null;
   private chordFilter: BiquadFilterNode | null = null;
+  private analyser: AnalyserNode | null = null;
   private isInitialized = false;
   private isMuted = true;
   private intervalId: number | null = null;
+  private trackIntervalId: number | null = null;
   private currentSceneIndex = 0;
+
+  // Track playback state
+  private activeTrackId: string | null = null;
+  private trackCurrentTime = 0;
+  private trackDuration = 180; // 3 minutes standard preview
+  private isTrackPlaying = false;
+  private trackProgressCallback: ((time: number, duration: number) => void) | null = null;
+  private trackPatternInterval: number | null = null;
 
   public init() {
     if (this.isInitialized) return;
     try {
-      const AudioCtx = window.AudioContext || (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
+      const AudioCtx =
+        window.AudioContext ||
+        (window as unknown as { webkitAudioContext: typeof AudioContext }).webkitAudioContext;
       this.ctx = new AudioCtx();
       this.masterGain = this.ctx.createGain();
       this.masterGain.gain.setValueAtTime(0, this.ctx.currentTime);
-      this.masterGain.connect(this.ctx.destination);
+
+      this.trackGain = this.ctx.createGain();
+      this.trackGain.gain.setValueAtTime(0.7, this.ctx.currentTime);
+      this.trackGain.connect(this.masterGain);
+
+      this.analyser = this.ctx.createAnalyser();
+      this.analyser.fftSize = 64;
+      this.masterGain.connect(this.analyser);
+      this.analyser.connect(this.ctx.destination);
 
       this.setupAnalogNoise();
       this.setupSubResonance();
@@ -114,19 +147,156 @@ class StudioAudioEngine {
     }
   }
 
+  // --- Track synthesis playback for custom audio player ---
+  public playTrackPreview(
+    trackId: string,
+    durationSeconds = 194,
+    onProgress?: (time: number, duration: number) => void
+  ) {
+    this.init();
+    if (!this.ctx || !this.trackGain || !this.masterGain) return;
+
+    if (this.ctx.state === 'suspended') {
+      this.ctx.resume();
+    }
+
+    // Unmute master if muted
+    if (this.isMuted) {
+      this.isMuted = false;
+      this.masterGain.gain.setTargetAtTime(0.65, this.ctx.currentTime, 0.2);
+    }
+
+    this.stopTrackPreview();
+    this.activeTrackId = trackId;
+    this.trackDuration = durationSeconds;
+    this.trackCurrentTime = 0;
+    this.isTrackPlaying = true;
+    this.trackProgressCallback = onProgress || null;
+
+    // Musical chord sequences (E minor, C major, G major, D major)
+    const chordProgressions = [
+      [164.81, 196.0, 246.94, 329.63], // Em7
+      [130.81, 164.81, 196.0, 261.63], // Cmaj7
+      [196.0, 246.94, 293.66, 392.0],  // Gmaj
+      [146.83, 220.0, 293.66, 369.99], // Dmaj
+    ];
+
+    let chordStep = 0;
+
+    // Play rhythmic pattern every 1.5 seconds
+    this.trackPatternInterval = window.setInterval(() => {
+      if (!this.isTrackPlaying || !this.ctx || !this.trackGain) return;
+
+      const chord = chordProgressions[chordStep % chordProgressions.length];
+      chordStep++;
+
+      // Play Rhodes synth chord
+      chord.forEach((note, i) => {
+        setTimeout(() => {
+          if (!this.isTrackPlaying || !this.ctx || !this.trackGain) return;
+          const osc = this.ctx.createOscillator();
+          const g = this.ctx.createGain();
+          osc.type = i === 0 ? 'sine' : 'triangle';
+          osc.frequency.setValueAtTime(note, this.ctx.currentTime);
+
+          g.gain.setValueAtTime(0, this.ctx.currentTime);
+          g.gain.linearRampToValueAtTime(i === 0 ? 0.25 : 0.08, this.ctx.currentTime + 0.04);
+          g.gain.exponentialRampToValueAtTime(0.0001, this.ctx.currentTime + 1.4);
+
+          osc.connect(g);
+          g.connect(this.trackGain);
+          osc.start();
+          osc.stop(this.ctx.currentTime + 1.4);
+        }, i * 35);
+      });
+
+      // Subtle sub kick pulse
+      const kickOsc = this.ctx.createOscillator();
+      const kickGain = this.ctx.createGain();
+      kickOsc.type = 'sine';
+      kickOsc.frequency.setValueAtTime(110, this.ctx.currentTime);
+      kickOsc.frequency.exponentialRampToValueAtTime(42, this.ctx.currentTime + 0.18);
+      kickGain.gain.setValueAtTime(0.3, this.ctx.currentTime);
+      kickGain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 0.22);
+      kickOsc.connect(kickGain);
+      kickGain.connect(this.trackGain);
+      kickOsc.start();
+      kickOsc.stop(this.ctx.currentTime + 0.22);
+    }, 1500);
+
+    // Progress tick every second
+    this.trackIntervalId = window.setInterval(() => {
+      if (!this.isTrackPlaying) return;
+      this.trackCurrentTime += 1;
+      if (this.trackCurrentTime >= this.trackDuration) {
+        this.trackCurrentTime = 0;
+      }
+      if (this.trackProgressCallback) {
+        this.trackProgressCallback(this.trackCurrentTime, this.trackDuration);
+      }
+    }, 1000);
+  }
+
+  public pauseTrackPreview() {
+    this.isTrackPlaying = false;
+    if (this.trackPatternInterval) {
+      clearInterval(this.trackPatternInterval);
+      this.trackPatternInterval = null;
+    }
+  }
+
+  public resumeTrackPreview() {
+    if (!this.activeTrackId) return;
+    this.playTrackPreview(this.activeTrackId, this.trackDuration, this.trackProgressCallback || undefined);
+  }
+
+  public stopTrackPreview() {
+    this.isTrackPlaying = false;
+    this.activeTrackId = null;
+    this.trackCurrentTime = 0;
+    if (this.trackPatternInterval) {
+      clearInterval(this.trackPatternInterval);
+      this.trackPatternInterval = null;
+    }
+    if (this.trackIntervalId) {
+      clearInterval(this.trackIntervalId);
+      this.trackIntervalId = null;
+    }
+  }
+
+  public seekTrack(seconds: number) {
+    this.trackCurrentTime = Math.max(0, Math.min(seconds, this.trackDuration));
+    if (this.trackProgressCallback) {
+      this.trackProgressCallback(this.trackCurrentTime, this.trackDuration);
+    }
+  }
+
+  public setTrackVolume(vol: number) {
+    if (!this.ctx || !this.trackGain) return;
+    const clamped = Math.max(0, Math.min(1, vol));
+    this.trackGain.gain.setTargetAtTime(clamped, this.ctx.currentTime, 0.05);
+  }
+
+  public getVisualizerData(): number[] {
+    if (!this.analyser) return [10, 20, 15, 25, 30, 20, 15, 10];
+    const dataArray = new Uint8Array(this.analyser.frequencyBinCount);
+    this.analyser.getByteFrequencyData(dataArray);
+    return Array.from(dataArray.slice(0, 16)).map((v) => Math.max(4, Math.round((v / 255) * 36)));
+  }
+
   public triggerRoomAudio(sceneIndex: number) {
     if (this.isMuted || !this.ctx) return;
     this.currentSceneIndex = sceneIndex;
 
     const baseChords = [
-      [220, 329.63, 440],       // Vault: A3, E4, A4 (open fifth drone)
-      [261.63, 329.63, 392],    // Vocal Booth: C4, E4, G4 (pure intimacy)
-      [196, 246.94, 293.66],    // Live Room: G3, B3, D4 (rich resonance)
-      [293.66, 369.99, 440],    // Control Room: D4, F#4, A4 (crisp precision)
-      [329.63, 392, 493.88],    // Production Lab: E4, G4, B4 (electronic energy)
-      [220, 277.18, 329.63],    // Artist: A3, C#4, E4 (warm passion)
-      [261.63, 329.63, 523.25], // Master: C4, E4, C5 (full spectrum)
-      [440, 554.37, 659.25],    // Grand Reveal: A4, C#5, E5 (bright triumph)
+      [220, 329.63, 440],
+      [261.63, 329.63, 392],
+      [196, 246.94, 293.66],
+      [293.66, 369.99, 440],
+      [329.63, 392, 493.88],
+      [220, 277.18, 329.63],
+      [261.63, 329.63, 523.25],
+      [440, 554.37, 659.25],
     ];
 
     const notes = baseChords[sceneIndex] || baseChords[0];
@@ -173,11 +343,14 @@ class StudioAudioEngine {
     return this.isMuted;
   }
 
+  public isMuted(): boolean {
+    return this.isMuted;
+  }
+
   private startAmbientSequence() {
     if (this.intervalId) clearInterval(this.intervalId);
     this.intervalId = window.setInterval(() => {
       if (this.isMuted || !this.ctx) return;
-      // Gentle atmospheric note pulse every 4 seconds
       const rootNotes = [110, 146.83, 164.81, 220];
       const randomNote = rootNotes[Math.floor(Math.random() * rootNotes.length)];
       this.playTone(randomNote, 'sine', 3.5, 0.05);

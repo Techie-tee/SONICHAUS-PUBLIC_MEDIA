@@ -1,7 +1,8 @@
-import { motion } from 'motion/react';
+import { motion, useReducedMotion } from 'motion/react';
 import { Sparkles, Mic, Activity, Disc } from 'lucide-react';
 
 export default function SonicPhilosophy() {
+  const shouldReduceMotion = useReducedMotion();
   const principles = [
     {
       icon: Mic,
@@ -42,14 +43,19 @@ export default function SonicPhilosophy() {
               <motion.div
                 key={i}
                 initial={{ scaleY: 0.3 }}
-                whileInView={{ scaleY: [0.3, 1, 0.4] }}
-                transition={{
-                  repeat: Infinity,
-                  repeatType: 'reverse',
-                  duration: 2.2,
-                  delay: (i % 8) * 0.15,
-                  ease: 'easeInOut',
-                }}
+                animate={shouldReduceMotion ? { scaleY: 0.7 } : undefined}
+                whileInView={shouldReduceMotion ? undefined : { scaleY: [0.3, 1, 0.4] }}
+                transition={
+                  shouldReduceMotion
+                    ? { duration: 0 }
+                    : {
+                        repeat: Infinity,
+                        repeatType: 'reverse',
+                        duration: 2.2,
+                        delay: (i % 8) * 0.15,
+                        ease: 'easeInOut',
+                      }
+                }
                 style={{ height: `${Math.max(6, height)}px` }}
                 className="w-[2px] rounded-full bg-gradient-to-t from-slate-800 via-[#4E85BF] to-[#89AACC] opacity-80"
               />

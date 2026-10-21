@@ -8,7 +8,7 @@ import controlRoomImg from '../../assets/images/studio_control_live_performance_
 import productionLabImg from '../../assets/images/studio_04_production_lab_1792446833465.jpg';
 import masterSuiteImg from '../../assets/images/studio_05_master_suite_1792446834087.jpg';
 import entranceImg from '../../assets/images/studio_01_entrance_1792446831639.jpg';
-import recordingRoomImg from '../../assets/images/hero_recording_room_v2_1792446896580.jpg';
+import recordingRoomImg from '../../assets/images/hero_recording_room_v2_1792444696580.jpg';
 
 interface ExplorationItem {
   id: string;

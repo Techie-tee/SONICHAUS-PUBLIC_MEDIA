@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Sparkles, ArrowRight, Clock, Calendar, BookOpen, X } from 'lucide-react';
 
@@ -79,6 +79,16 @@ const JOURNAL_ENTRIES: JournalEntry[] = [
 
 export default function JournalSection() {
   const [selectedEntry, setSelectedEntry] = useState<JournalEntry | null>(null);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && selectedEntry) {
+        setSelectedEntry(null);
+      }
+    };
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [selectedEntry]);
 
   return (
     <section id="journal" className="py-24 sm:py-36 px-4 sm:px-6 lg:px-12 bg-[#05070c] border-t border-white/10">
@@ -161,6 +171,9 @@ export default function JournalSection() {
             className="fixed inset-0 z-[110] bg-black/85 backdrop-blur-xl flex items-center justify-center p-4 sm:p-6 overflow-y-auto"
           >
             <motion.div
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="journal-entry-title"
               initial={{ scale: 0.95, y: 20 }}
               animate={{ scale: 1, y: 0 }}
               exit={{ scale: 0.95, y: 20 }}
@@ -170,6 +183,7 @@ export default function JournalSection() {
               <button
                 onClick={() => setSelectedEntry(null)}
                 className="absolute top-5 right-5 p-2 rounded-full bg-white/5 hover:bg-white/15 text-slate-400 hover:text-white transition-colors cursor-pointer"
+                aria-label="Close Essay"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -180,7 +194,7 @@ export default function JournalSection() {
                   <span>·</span>
                   <span className="text-slate-400">{selectedEntry.date}</span>
                 </div>
-                <h3 className="text-2xl sm:text-3xl font-extrabold font-display">
+                <h3 id="journal-entry-title" className="text-2xl sm:text-3xl font-extrabold font-display">
                   {selectedEntry.title}
                 </h3>
                 <p className="text-sm text-slate-300 font-sans italic">

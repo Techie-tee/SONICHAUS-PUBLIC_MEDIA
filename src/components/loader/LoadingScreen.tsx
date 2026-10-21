@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
 import { Sparkles } from 'lucide-react';
+import BrandLogo from '../common/BrandLogo';
 
 interface LoadingScreenProps {
   onComplete: () => void;
@@ -53,16 +54,19 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
           className="fixed inset-0 z-[100] bg-[#05070c] text-white flex flex-col justify-between p-6 sm:p-12 select-none pointer-events-auto"
         >
           {/* Top-Left: Studio Label */}
-          <div className="flex items-center gap-2.5">
-            <div className="w-2 h-2 rounded-full bg-[#4E85BF] animate-ping" />
+          <div className="flex items-center gap-3">
+            <BrandLogo variant="icon-only" size="sm" />
             <span className="text-xs font-mono tracking-[0.25em] text-slate-400 uppercase">
               SONICVAULT STUDIOS · LAGOS
             </span>
           </div>
 
-          {/* Center: Expressive Rotating Words */}
-          <div className="flex flex-col items-center justify-center text-center py-12">
-            <div className="overflow-hidden h-16 sm:h-24 flex items-center justify-center">
+          {/* Center: Brand Emblem & Expressive Rotating Words */}
+          <div className="flex flex-col items-center justify-center text-center py-6">
+            <div className="mb-6 transform hover:scale-105 transition-transform">
+              <BrandLogo variant="stacked" size="lg" showTagline={false} />
+            </div>
+            <div className="overflow-hidden h-14 sm:h-20 flex items-center justify-center">
               <AnimatePresence mode="wait">
                 <motion.span
                   key={ROTATING_WORDS[wordIndex]}

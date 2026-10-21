@@ -1,24 +1,37 @@
 import { useState, useCallback } from 'react';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import LoadingScreen from './components/loader/LoadingScreen';
 import Navbar from './components/layout/Navbar';
-import CinematicHero from './components/hero/CinematicHero';
-import SonicPhilosophy from './components/sections/SonicPhilosophy';
-import ServicesSection from './components/sections/ServicesSection';
-import StudioGallery from './components/sections/StudioGallery';
-import GearLocker from './components/studio/GearLocker';
-import SelectedWork from './components/sections/SelectedWork';
-import JournalSection from './components/sections/JournalSection';
-import VisualExplorations from './components/sections/VisualExplorations';
-import StudioApproach from './components/sections/StudioApproach';
-import BookingSection from './components/sections/BookingSection';
-import FinalCinematicCTA from './components/sections/FinalCinematicCTA';
 import StudioFooter from './components/layout/StudioFooter';
 import BookingModal from './components/booking/BookingModal';
+import FloatingChatbot from './components/chat/FloatingChatbot';
+import FloatingWhatsApp from './components/chat/FloatingWhatsApp';
+import ScrollToTop from './components/common/ScrollToTop';
+import { AudioPlayerProvider } from './context/AudioPlayerContext';
+import GlobalAudioPlayer from './components/audio/GlobalAudioPlayer';
 
-export default function App() {
+// Dedicated Route Pages
+import HomePage from './pages/HomePage';
+import StudioTourPage from './pages/StudioTourPage';
+import ServicesPage from './pages/ServicesPage';
+import EquipmentPage from './pages/EquipmentPage';
+import PortfolioPage from './pages/PortfolioPage';
+import AboutPage from './pages/AboutPage';
+import ContactPage from './pages/ContactPage';
+import BookingPage from './pages/BookingPage';
+import PrivacyPolicyPage from './pages/legal/PrivacyPolicyPage';
+import TermsPage from './pages/legal/TermsPage';
+import BookingPolicyPage from './pages/legal/BookingPolicyPage';
+import PaymentPolicyPage from './pages/legal/PaymentPolicyPage';
+import AdminLoginPage from './pages/admin/AdminLoginPage';
+import AdminDashboardPage from './pages/admin/AdminDashboardPage';
+import NotFoundPage from './pages/NotFoundPage';
+
+function AppLayout() {
   const [isLoading, setIsLoading] = useState(true);
   const [isBookingOpen, setIsBookingOpen] = useState(false);
   const [selectedService, setSelectedService] = useState<string | undefined>(undefined);
+  const location = useLocation();
 
   const handleLoadingComplete = useCallback(() => {
     setIsLoading(false);
@@ -33,66 +46,74 @@ export default function App() {
     setIsBookingOpen(false);
   }, []);
 
-  const handleExploreSpaces = useCallback(() => {
-    const spacesElem = document.getElementById('spaces');
-    if (spacesElem) {
-      spacesElem.scrollIntoView({ behavior: 'smooth' });
-    }
-  }, []);
+  const isAdminRoute = location.pathname.startsWith('/admin');
 
   return (
     <div className="min-h-screen bg-[#040609] text-slate-100 flex flex-col font-sans selection:bg-[#4E85BF] selection:text-white">
-      {/* 1. Cinematic Loading Screen (Initial Entry Animation) */}
-      {isLoading && <LoadingScreen onComplete={handleLoadingComplete} />}
+      <ScrollToTop />
 
-      {/* 2. Floating Pill Navbar */}
-      <Navbar onOpenBooking={handleOpenBooking} />
+      {/* 1. Initial Cinematic Loading Screen on initial entry */}
+      {isLoading && !isAdminRoute && (
+        <LoadingScreen onComplete={handleLoadingComplete} />
+      )}
 
-      {/* 3. Existing Cinematic Hero & Studio Scroll Tour (Source of Truth) */}
-      <CinematicHero
-        onOpenBooking={handleOpenBooking}
-        onExploreSpaces={handleExploreSpaces}
-      />
+      {/* 2. Global Navbar (hidden on private admin area) */}
+      {!isAdminRoute && <Navbar onOpenBooking={handleOpenBooking} />}
 
-      {/* 4. Section — The Sonic Philosophy (Beyond The Sound) */}
-      <SonicPhilosophy />
+      {/* 3. Multi-page Routes */}
+      <div className="flex-1">
+        <Routes>
+          <Route path="/" element={<HomePage onOpenBooking={handleOpenBooking} />} />
+          <Route path="/studio" element={<StudioTourPage />} />
+          <Route path="/services" element={<ServicesPage />} />
+          <Route path="/equipment" element={<EquipmentPage />} />
+          <Route path="/our-work" element={<PortfolioPage />} />
+          <Route path="/about" element={<AboutPage />} />
+          <Route path="/contact" element={<ContactPage />} />
+          <Route path="/book-session" element={<BookingPage />} />
+          <Route path="/privacy-policy" element={<PrivacyPolicyPage />} />
+          <Route path="/terms" element={<TermsPage />} />
+          <Route path="/booking-policy" element={<BookingPolicyPage />} />
+          <Route path="/payment-policy" element={<PaymentPolicyPage />} />
+          
+          {/* Admin Routes - Strictly separate & private */}
+          <Route path="/admin/login" element={<AdminLoginPage />} />
+          <Route path="/admin/dashboard" element={<AdminDashboardPage />} />
+          <Route path="/admin" element={<AdminDashboardPage />} />
 
-      {/* 5. Section — Services (What We Do · 9 Editorial Services) */}
-      <ServicesSection onSelectService={handleOpenBooking} />
+          {/* 404 Fallback */}
+          <Route path="*" element={<NotFoundPage />} />
+        </Routes>
+      </div>
 
-      {/* 6. Section — Explore The Studio (The Space Behind The Sound · Photographic Gallery) */}
-      <StudioGallery onOpenBooking={() => handleOpenBooking()} />
+      {/* 4. Global Floating Tools (Customer Concierge) */}
+      {!isAdminRoute && (
+        <>
+          <FloatingChatbot />
+          <FloatingWhatsApp />
+          <GlobalAudioPlayer />
+        </>
+      )}
 
-      {/* 7. Section — Equipment (Tools of The Craft · The Verified Gear Locker) */}
-      <GearLocker />
+      {/* 5. Global Studio Footer */}
+      {!isAdminRoute && <StudioFooter onOpenBooking={handleOpenBooking} />}
 
-      {/* 8. Section — Selected Work (Sound That Stays With You · Audio Bento Grid) */}
-      <SelectedWork onOpenBooking={handleOpenBooking} />
-
-      {/* 9. Section — Journal (From The Control Room · Creative Process Notes) */}
-      <JournalSection />
-
-      {/* 10. Section — Visual Explorations (Where Sound Becomes Vision · Parallax Gallery) */}
-      <VisualExplorations />
-
-      {/* 11. Section — Why SonicVault (The SonicVault Approach · 4 Pillars) */}
-      <StudioApproach />
-
-      {/* 12. Section — Book A Session (Let's Make Something Real · Form & WhatsApp) */}
-      <BookingSection initialService={selectedService} />
-
-      {/* 13. Section — Final Cinematic CTA (Continuous Marquee & Resolution) */}
-      <FinalCinematicCTA onOpenBooking={() => handleOpenBooking()} />
-
-      {/* 14. Studio Footer (Official Lagos Contact Details & Verified Monogram) */}
-      <StudioFooter onOpenBooking={() => handleOpenBooking()} />
-
-      {/* 15. Quick Interactive Session Booking Modal */}
+      {/* 6. Quick Interactive Booking Modal Trigger */}
       <BookingModal
         isOpen={isBookingOpen}
         onClose={handleCloseBooking}
         initialRoomId={selectedService}
       />
     </div>
+  );
+}
+
+export default function App() {
+  return (
+    <BrowserRouter>
+      <AudioPlayerProvider>
+        <AppLayout />
+      </AudioPlayerProvider>
+    </BrowserRouter>
   );
 }

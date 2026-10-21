@@ -16,6 +16,9 @@ export default function FinalCinematicCTA({ onOpenBooking }: FinalCinematicCTAPr
     const el = marqueeRef.current;
     if (!el) return;
 
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReducedMotion) return;
+
     const ctx = gsap.context(() => {
       gsap.to(el, {
         xPercent: -50,

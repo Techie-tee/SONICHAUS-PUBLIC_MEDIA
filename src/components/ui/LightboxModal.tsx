@@ -61,6 +61,9 @@ export default function LightboxModal({
             exit={{ scale: 0.95, opacity: 0 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
             onClick={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            aria-label={title}
             className="relative max-w-5xl w-full max-h-[90vh] flex flex-col items-center justify-center rounded-2xl overflow-hidden bg-[#07090e] border border-white/15 cursor-default shadow-2xl"
           >
             <div className="relative w-full h-[65vh] sm:h-[72vh] bg-black/40 flex items-center justify-center overflow-hidden">

@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'motion/react';
-import { Sparkles, Maximize2 } from 'lucide-react';
+import { Sparkles, Maximize2, Compass, Layers } from 'lucide-react';
 import LightboxModal from '../ui/LightboxModal';
 
 import vocalBoothImg from '../../assets/images/studio_02_vocal_booth_1792446832131.jpg';
@@ -13,151 +13,152 @@ import recordingRoomImg from '../../assets/images/hero_recording_room_v2_1792444
 interface ExplorationItem {
   id: string;
   title: string;
+  chamber: string;
   concept: string;
   image: string;
-  heightClass: string;
+  tag: string;
 }
 
 const EXPLORATIONS: ExplorationItem[] = [
   {
     id: 'exp-1',
     title: 'Harmonic Geometry',
-    concept: 'Quadratic residue acoustic diffusion well reflections in walnut finish.',
+    chamber: 'STUDIO A · ANALOG CONTROL ROOM',
+    concept: 'Quadratic residue acoustic diffusion well reflections in dark walnut finish with SSL AWS 948 analog summing.',
     image: controlRoomImg,
-    heightClass: 'h-80 sm:h-96',
+    tag: 'ACOUSTIC DIFFUSION',
   },
   {
     id: 'exp-2',
     title: 'Vacuum Tube Luminescence',
-    concept: 'Manley Massive Passive high-voltage triode cathode glow in low-light tracking.',
+    chamber: 'MASTERING SUITE · OUTBOARD RACK',
+    concept: 'Manley Massive Passive high-voltage triode cathode glow providing discrete analog air during late-night tracking.',
     image: masterSuiteImg,
-    heightClass: 'h-64 sm:h-80',
+    tag: 'TUBE TOPOLOGY',
   },
   {
     id: 'exp-3',
     title: 'Voltage Controlled Currents',
-    concept: 'Eurorack modular patch chords routing control voltage to multi-mode analog filters.',
+    chamber: 'THE PRODUCTION LAB · MODULAR SYNTHS',
+    concept: 'Eurorack modular patch chords routing control voltage to multi-mode analog filters for hypnotic syncopated textures.',
     image: productionLabImg,
-    heightClass: 'h-96 sm:h-[420px]',
+    tag: 'MODULAR SYNTHESIS',
   },
   {
     id: 'exp-4',
     title: 'The Silent Threshold',
-    concept: 'Acoustically decoupled floating architectural entrance in Lekki Phase 1.',
+    chamber: 'ARCHITECTURAL ARRIVAL · LEKKI PHASE 1',
+    concept: 'Acoustically decoupled floating architectural entrance engineered with triple-seal airlocks and ambient wood ribbing.',
     image: entranceImg,
-    heightClass: 'h-72 sm:h-88',
+    tag: 'ACOUSTIC DECOUPLING',
   },
   {
     id: 'exp-5',
     title: 'Vocal Chamber Solitude',
-    concept: 'Suspended dual-diaphragm gold capsule absorbing intimate vocal micro-dynamics.',
+    chamber: 'THE VOCAL BOOTH · ISOLATION SUITE',
+    concept: 'Suspended dual-diaphragm gold capsule absorbing intimate vocal micro-dynamics with true zero-flutter isolation.',
     image: vocalBoothImg,
-    heightClass: 'h-96 sm:h-[440px]',
+    tag: 'MICRO-DYNAMICS',
   },
   {
     id: 'exp-6',
     title: 'Tape Transport Inertia',
-    concept: 'Studer A800 precision flywheels moving 2-inch ferric oxide at 30 inches per second.',
-    image: masterSuiteImg,
-    heightClass: 'h-72 sm:h-80',
+    chamber: 'THE LIVE RECORDING ROOM · ANALOG DECKS',
+    concept: 'Studer A800 precision flywheels moving 2-inch ferric oxide at 30 inches per second for uncompressed dynamic transient punch.',
+    image: recordingRoomImg,
+    tag: 'ANALOG TAPE SATURATION',
   },
 ];
 
 export default function VisualExplorations() {
   const [activeItem, setActiveItem] = useState<ExplorationItem | null>(null);
 
-  // Divide into two asymmetric columns
-  const col1 = [EXPLORATIONS[0], EXPLORATIONS[2], EXPLORATIONS[4]];
-  const col2 = [EXPLORATIONS[1], EXPLORATIONS[3], EXPLORATIONS[5]];
-
   return (
-    <section id="explorations" className="py-24 sm:py-36 px-4 sm:px-6 lg:px-12 bg-[#060910] border-t border-white/10">
+    <section id="explorations" className="py-24 sm:py-32 px-4 sm:px-6 lg:px-12 bg-[#060910] border-t border-white/10">
       <div className="max-w-7xl mx-auto space-y-12 sm:space-y-16">
-        {/* Header */}
+        {/* Section Header */}
         <div className="text-center space-y-4 max-w-3xl mx-auto">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono uppercase tracking-[0.25em] text-[#89AACC]">
             <Sparkles className="w-3.5 h-3.5 text-[#4E85BF]" />
-            <span>EXPLORATIONS</span>
+            <span>VISUAL EXPLORATIONS</span>
           </div>
           <h2 className="text-3xl sm:text-5xl md:text-6xl font-extrabold text-white font-display tracking-tight uppercase">
             WHERE SOUND BECOMES VISION.
           </h2>
-          <p className="text-xs sm:text-sm text-slate-400 font-sans leading-relaxed">
-            A visual playground inspired by rhythm, texture, atmosphere, and the creative process in our Lagos studios.
+          <p className="text-xs sm:text-sm text-slate-400 font-sans leading-relaxed max-w-2xl mx-auto">
+            A visual playground inspired by rhythm, texture, analog warmth, and architectural acoustics in our Lekki Phase 1 studio sanctuary.
           </p>
         </div>
 
-        {/* Dual Asymmetric Columns Gallery */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 sm:gap-8 items-start">
-          {/* Column 1 */}
-          <div className="space-y-6 sm:space-y-8">
-            {col1.map((item) => (
-              <motion.div
-                key={item.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-40px' }}
-                transition={{ duration: 0.6 }}
-                onClick={() => setActiveItem(item)}
-                className={`group relative rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 bg-slate-900/40 hover:border-[#4E85BF]/40 transition-all duration-500 cursor-pointer ${item.heightClass}`}
-              >
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter brightness-85"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none" />
+        {/* Even 50/50 Proportional 2-Column Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 items-stretch">
+          {EXPLORATIONS.map((item, index) => (
+            <motion.div
+              key={item.id}
+              initial={{ opacity: 0, y: 25 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.5, delay: index * 0.08 }}
+              onClick={() => setActiveItem(item)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  e.preventDefault();
+                  setActiveItem(item);
+                }
+              }}
+              className="group relative rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 bg-[#090d16] hover:border-[#4E85BF]/60 transition-all duration-500 cursor-pointer flex flex-col justify-end min-h-[360px] sm:min-h-[420px] lg:min-h-[460px] shadow-2xl hover:shadow-[#4E85BF]/10"
+            >
+              {/* High-Resolution Architectural Photo */}
+              <img
+                src={item.image}
+                alt={item.title}
+                className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 filter brightness-[0.88] group-hover:brightness-100"
+              />
 
-                <div className="absolute top-4 right-4 w-8 h-8 rounded-full bg-black/60 backdrop-blur-md border border-white/15 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                  <Maximize2 className="w-4 h-4" />
+              {/* Cinematic Vignette Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-[#040609] via-[#040609]/50 to-transparent pointer-events-none" />
+
+              {/* Ambient Glow Gradient */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 bg-radial from-[#4E85BF]/15 via-transparent to-transparent pointer-events-none" />
+
+              {/* Top Header Controls: Chamber Badge & Expand Button */}
+              <div className="absolute top-5 left-5 right-5 flex items-center justify-between z-10 pointer-events-none">
+                <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/15 text-[10px] sm:text-xs font-mono font-medium uppercase tracking-wider text-[#89AACC]">
+                  <Compass className="w-3 h-3 text-[#4E85BF]" />
+                  {item.tag}
+                </span>
+
+                <div className="w-9 h-9 rounded-full bg-black/60 backdrop-blur-md border border-white/15 text-white flex items-center justify-center opacity-80 group-hover:opacity-100 group-hover:border-[#4E85BF]/60 group-hover:bg-[#4E85BF]/20 transition-all shadow-lg">
+                  <Maximize2 className="w-4 h-4 text-slate-200 group-hover:text-white" />
+                </div>
+              </div>
+
+              {/* Bottom Content Container - Symmetrical across all cards */}
+              <div className="relative z-10 p-6 sm:p-8 space-y-2.5">
+                <div className="flex items-center gap-2">
+                  <span className="text-[10px] font-mono text-[#89AACC] tracking-widest uppercase">
+                    {item.chamber}
+                  </span>
                 </div>
 
-                <div className="absolute bottom-4 left-4 right-4 space-y-1">
-                  <h3 className="text-xl font-bold text-white font-display">
-                    {item.title}
-                  </h3>
-                  <p className="text-xs text-slate-400 font-sans line-clamp-1">
-                    {item.concept}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+                <h3 className="text-xl sm:text-2xl font-bold text-white font-display uppercase tracking-tight group-hover:text-[#89AACC] transition-colors">
+                  {item.title}
+                </h3>
 
-          {/* Column 2 (Offset on desktop for staggered parallax rhythm) */}
-          <div className="space-y-6 sm:space-y-8 md:pt-12">
-            {col2.map((item) => (
-              <motion.div
-                key={item.id}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-40px' }}
-                transition={{ duration: 0.6 }}
-                onClick={() => setActiveItem(item)}
-                className={`group relative rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 bg-slate-900/40 hover:border-[#4E85BF]/40 transition-all duration-500 cursor-pointer ${item.heightClass}`}
-              >
-                <img
-                  src={item.image}
-                  alt={item.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter brightness-85"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none" />
+                <p className="text-xs sm:text-sm text-slate-300 font-sans leading-relaxed line-clamp-2">
+                  {item.concept}
+                </p>
 
-                <div className="absolute top-4 right-4 w-8 h-8 rounded-full bg-black/60 backdrop-blur-md border border-white/15 text-white flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                  <Maximize2 className="w-4 h-4" />
+                {/* Subtle Click Indicator */}
+                <div className="pt-2 flex items-center gap-1.5 text-[11px] font-mono text-slate-400 group-hover:text-white transition-colors">
+                  <Layers className="w-3.5 h-3.5 text-[#4E85BF]" />
+                  <span>Click to expand 4K high-resolution frame</span>
                 </div>
-
-                <div className="absolute bottom-4 left-4 right-4 space-y-1">
-                  <h3 className="text-xl font-bold text-white font-display">
-                    {item.title}
-                  </h3>
-                  <p className="text-xs text-slate-400 font-sans line-clamp-1">
-                    {item.concept}
-                  </p>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+              </div>
+            </motion.div>
+          ))}
         </div>
       </div>
 
@@ -167,8 +168,8 @@ export default function VisualExplorations() {
         onClose={() => setActiveItem(null)}
         imageSrc={activeItem?.image || ''}
         title={activeItem?.title || ''}
-        caption={activeItem?.concept}
-        category="SONIC EXPLORATION"
+        caption={`${activeItem?.chamber} — ${activeItem?.concept}`}
+        category="SONIC EXPLORATIONS"
       />
     </section>
   );

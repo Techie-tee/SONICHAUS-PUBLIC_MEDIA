@@ -558,6 +558,38 @@ const initialSeedData: DatabaseSchema = {
       category: 'policies',
       isPublished: true,
     },
+    {
+      id: 'cb_external_engineer',
+      question: 'Can I bring my own external sound engineer or producer?',
+      keywords: ['own engineer', 'external producer', 'bring engineer', 'guest engineer', 'patchbay'],
+      answer: 'Yes! Guest engineers and outside producers are welcome. A SonicVault staff technician will be on standby throughout your session to handle console routing, patchbays, microphone setup, and hardware recalls at zero extra charge.',
+      category: 'services',
+      isPublished: true,
+    },
+    {
+      id: 'cb_file_prep',
+      question: 'How should I prepare stems and files for mixing or mastering?',
+      keywords: ['stem', 'stems', 'files', 'wav', 'prepare', 'mixing prep', 'format', 'sample rate'],
+      answer: 'Please export 24-bit or 32-bit float WAV/AIFF stems at 44.1kHz or 48kHz, all starting from timecode 0:00:00. Remove master bus limiters and dithering. Include rough demo mixes and BPM/key information in your zip archive.',
+      category: 'services',
+      isPublished: true,
+    },
+    {
+      id: 'cb_lockouts',
+      question: 'Do you offer full-day lockouts or multi-day album production packages?',
+      keywords: ['lockout', 'full day', '12 hours', 'album package', 'residency', 'overnight'],
+      answer: 'Yes. We offer 12-hour full facility lockouts and multi-day production residencies. Lockouts include private lounge privileges, unmetered access to all analog outboard chains, and dedicated sound engineers.',
+      category: 'booking',
+      isPublished: true,
+    },
+    {
+      id: 'cb_cancellation',
+      question: 'What is your session rescheduling and cancellation policy?',
+      keywords: ['cancel', 'cancellation', 'reschedule', 'refund', 'policy', 'late'],
+      answer: 'Sessions can be rescheduled without penalty up to 48 hours prior to your booked slot. Your deposit will be seamlessly credited toward your rescheduled date.',
+      category: 'policies',
+      isPublished: true,
+    },
   ],
   auditLogs: [
     {

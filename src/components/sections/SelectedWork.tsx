@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect, useId } from 'react';
-import { motion, AnimatePresence, useScroll, useTransform, useSpring, useMotionValue } from 'motion/react';
+import React, { useState, useRef, useEffect } from 'react';
+import { motion, AnimatePresence } from 'motion/react';
 import {
   Play,
   Pause,
@@ -9,17 +9,12 @@ import {
   Sliders,
   Maximize2,
   X,
-  Volume2,
   CheckCircle2,
   Layers,
   Radio,
-  Share2,
-  ExternalLink,
-  ChevronRight,
   AudioWaveform,
   Headphones,
   Mic,
-  Calendar,
   Clock,
   Compass
 } from 'lucide-react';
@@ -47,7 +42,6 @@ export interface ProjectRecord {
   bpm: number;
   key: string;
   image: string;
-  desktopSpan: string; // 12-col bento pattern
   description: string;
   caseStudy: {
     heroQuote: string;
@@ -74,7 +68,6 @@ const PROJECTS_DATA: ProjectRecord[] = [
     bpm: 108,
     key: 'E minor',
     image: controlRoomImg,
-    desktopSpan: 'col-span-12 lg:col-span-7',
     description: 'Tracked live on the 48-channel SSL desk with tenor saxophone, percussive log drums, and vintage ribbon mics.',
     caseStudy: {
       heroQuote: '"Capturing the raw tension between acoustic African percussion and London-calibrated analog tape saturation."',
@@ -109,94 +102,6 @@ const PROJECTS_DATA: ProjectRecord[] = [
     },
   },
   {
-    id: 'proj-02',
-    title: 'Analog Solitude',
-    artist: 'Tomiwa & The Vault Quartet',
-    category: 'Mix & Master',
-    categorySlug: 'mix-master',
-    duration: '4:15',
-    year: '2026',
-    bpm: 92,
-    key: 'C major',
-    image: masterSuiteImg,
-    desktopSpan: 'col-span-12 lg:col-span-5',
-    description: 'Direct-to-tape acoustic tracking captured on Studer A800 2-inch machine with pure outboard equalization.',
-    caseStudy: {
-      heroQuote: '"Every harmonic breath intact. Zero digital brickwalling. An homage to high-fidelity mastering."',
-      overview: 'Mastering an intimate four-piece acoustic ensemble recorded in Lagos. The client requested a pristine, high-resolution master that sounds as lifelike on consumer airbuds as it does through reference mastering monitors.',
-      creativeChallenge: 'Preserving the micro-dynamics of delicate nylon-string acoustic guitar while maintaining commercial loudness without harsh transient clipping.',
-      studioRoom: 'Studio B · Analog Mastering Suite',
-      signalChain: [
-        { stage: 'D/A Conversion', hardware: 'Lavry Gold DA924', role: 'Ultra-linear analog reconstruction' },
-        { stage: 'Mastering EQ', hardware: 'Manley Massive Passive Mastering Version', role: 'Air band boost at 27kHz and high-pass 22Hz' },
-        { stage: 'Mastering Bus', hardware: 'Shadow Hills Mastering Compressor', role: 'Dual discrete & optical compression' },
-        { stage: 'A/D Final Print', hardware: 'Lavry Quintessence AD122-96 MX', role: 'Pristine 96kHz archive digitization' },
-      ],
-      sessionLog: [
-        '14:00 — Critical acoustic listening in the tuned mastering suite; identifying 240Hz boominess.',
-        '15:30 — Discrete transformer stage selected on Shadow Hills for harmonic body.',
-        '17:15 — Final M/S balance adjusted to widen natural acoustic room reflections.',
-      ],
-      technicalSpecs: [
-        { label: 'Sample Rate', value: '192 kHz / 32-bit Float Master' },
-        { label: 'Target Loudness', value: '-14.0 LUFS Integrated / -1.0 dBTP' },
-        { label: 'Acoustic Room', value: 'Northward Acoustics FTB Certified' },
-        { label: 'Delivery', value: 'Apple Digital Masters + DDP Image' },
-      ],
-      stems: [
-        { id: 'master', name: 'Master Print (Lavry)', type: 'Master File', frequencyNote: 'Full Band Stereo' },
-        { id: 'vocal', name: 'Lead Vocal Pass', type: 'Neumann U87', frequencyNote: 'Optical Tube Compressed' },
-        { id: 'drums', name: 'Acoustic String Ensemble', type: 'Stereo Pair', frequencyNote: 'Schoeps Colette pair' },
-        { id: 'bass', name: 'Upright Acoustic Bass', type: 'Mic + DI', frequencyNote: 'AKG D12 VR + Avalon U5' },
-      ],
-      galleryImages: [masterSuiteImg, controlRoomImg, vocalBoothImg],
-    },
-  },
-  {
-    id: 'proj-03',
-    title: 'Electric Palm Grooves',
-    artist: 'Lekki Modular Sessions',
-    category: 'Original Productions',
-    categorySlug: 'original-productions',
-    duration: '3:18',
-    year: '2026',
-    bpm: 116,
-    key: 'F# minor',
-    image: productionLabImg,
-    desktopSpan: 'col-span-12 lg:col-span-5',
-    description: 'Moog One polyphonic synthesizer patches coupled with Akai MPC Live II polyrhythms and Roland Juno chorus.',
-    caseStudy: {
-      heroQuote: '"Afro-futurism rendered through discrete analog circuits and modular voltage control."',
-      overview: 'Created inside the SonicVault Modular Production Lab, this production combines complex West African polyrhythms programmed on vintage drum samplers with sweeping Eurorack analog filters.',
-      creativeChallenge: 'Synthesizing polyphonic analog chords that sit effortlessly around rapid-fire shaker rhythms without causing mid-range frequency clutter.',
-      studioRoom: 'Studio C · Modular Production Lab',
-      signalChain: [
-        { stage: 'Synthesis', hardware: 'Moog One 16-Voice Analog Synth', role: 'Tri-timbral lush evolving pads' },
-        { stage: 'Rhythm Engine', hardware: 'Akai MPC 3000 & Roland TR-808', role: 'Discrete analog drum hits' },
-        { stage: 'Outboard Filter', hardware: 'Mutator Stereo Analog Filter', role: 'Dynamic envelope modulation' },
-        { stage: 'Tape Echo', hardware: 'Roland RE-201 Space Echo (1978)', role: 'Spring reverb and tape flutter' },
-      ],
-      sessionLog: [
-        '16:00 — Patch creation on the Moog One: combining saw waves with analog ladder lowpass.',
-        '18:30 — Analog clock sync established between Eurorack modular and MPC.',
-        '21:00 — Real-time filter sweep captured directly onto SSL stereo channel strip.',
-      ],
-      technicalSpecs: [
-        { label: 'Synthesizers', value: 'Moog One, Prophet-10, Roland Juno-106' },
-        { label: 'Clock Source', value: 'Antelope Audio 10MX Atomic Clock' },
-        { label: 'Outboard FX', value: 'Eventide H9000 Harmonizer' },
-        { label: 'Workflow', value: 'Hybrid Hardware & Ableton Live Suite' },
-      ],
-      stems: [
-        { id: 'master', name: 'Production Stereo Mix', type: 'Full Track', frequencyNote: '116 BPM Sync' },
-        { id: 'synth', name: 'Moog One Pad & Lead', type: 'Analog Poly', frequencyNote: 'Mutator Filtered' },
-        { id: 'drums', name: '808 & MPC Polyrhythms', type: 'Drum Machine', frequencyNote: 'Punchy Transient' },
-        { id: 'fx', name: 'Space Echo Reverb Tails', type: 'Analog Tape FX', frequencyNote: 'Tape Flutter 15 IPS' },
-      ],
-      galleryImages: [productionLabImg, controlRoomImg, recordingRoomImg],
-    },
-  },
-  {
     id: 'proj-04',
     title: 'Silhouettes in Velvet',
     artist: 'Vault Chamber Sessions',
@@ -206,8 +111,7 @@ const PROJECTS_DATA: ProjectRecord[] = [
     year: '2026',
     bpm: 88,
     key: 'A minor',
-    image: artistMasterImg,
-    desktopSpan: 'col-span-12 lg:col-span-7',
+    image: vocalBoothImg,
     description: '36-track multi-layered vocal arrangement tracked with Neumann U87 Ai and BAE 1073 preamplification.',
     caseStudy: {
       heroQuote: '"Intimacy so dense you can hear the moisture in the room and the silver shimmer of the capsule."',
@@ -241,6 +145,178 @@ const PROJECTS_DATA: ProjectRecord[] = [
     },
   },
   {
+    id: 'proj-03',
+    title: 'Electric Palm Grooves',
+    artist: 'Lekki Modular Sessions',
+    category: 'Original Productions',
+    categorySlug: 'original-productions',
+    duration: '3:18',
+    year: '2026',
+    bpm: 116,
+    key: 'F# minor',
+    image: productionLabImg,
+    description: 'Moog One polyphonic synthesizer patches coupled with Akai MPC Live II polyrhythms and Roland Juno chorus.',
+    caseStudy: {
+      heroQuote: '"Afro-futurism rendered through discrete analog circuits and modular voltage control."',
+      overview: 'Created inside the SonicVault Modular Production Lab, this production combines complex West African polyrhythms programmed on vintage drum samplers with sweeping Eurorack analog filters.',
+      creativeChallenge: 'Synthesizing polyphonic analog chords that sit effortlessly around rapid-fire shaker rhythms without causing mid-range frequency clutter.',
+      studioRoom: 'Studio C · Modular Production Lab',
+      signalChain: [
+        { stage: 'Synthesis', hardware: 'Moog One 16-Voice Analog Synth', role: 'Tri-timbral lush evolving pads' },
+        { stage: 'Rhythm Engine', hardware: 'Akai MPC 3000 & Roland TR-808', role: 'Discrete analog drum hits' },
+        { stage: 'Outboard Filter', hardware: 'Mutator Stereo Analog Filter', role: 'Dynamic envelope modulation' },
+        { stage: 'Tape Echo', hardware: 'Roland RE-201 Space Echo (1978)', role: 'Spring reverb and tape flutter' },
+      ],
+      sessionLog: [
+        '16:00 — Patch creation on the Moog One: combining saw waves with analog ladder lowpass.',
+        '18:30 — Analog clock sync established between Eurorack modular and MPC.',
+        '21:00 — Real-time filter sweep captured directly onto SSL stereo channel strip.',
+      ],
+      technicalSpecs: [
+        { label: 'Synthesizers', value: 'Moog One, Prophet-10, Roland Juno-106' },
+        { label: 'Clock Source', value: 'Antelope Audio 10MX Atomic Clock' },
+        { label: 'Outboard FX', value: 'Eventide H9000 Harmonizer' },
+        { label: 'Workflow', value: 'Hybrid Hardware & Ableton Live Suite' },
+      ],
+      stems: [
+        { id: 'master', name: 'Production Stereo Mix', type: 'Full Track', frequencyNote: '116 BPM Sync' },
+        { id: 'synth', name: 'Moog One Pad & Lead', type: 'Analog Poly', frequencyNote: 'Mutator Filtered' },
+        { id: 'drums', name: '808 & MPC Polyrhythms', type: 'Drum Machine', frequencyNote: 'Punchy Transient' },
+        { id: 'fx', name: 'Space Echo Reverb Tails', type: 'Analog Tape FX', frequencyNote: 'Tape Flutter 15 IPS' },
+      ],
+      galleryImages: [productionLabImg, controlRoomImg, recordingRoomImg],
+    },
+  },
+  {
+    id: 'proj-06',
+    title: 'Neon Lagos Pulse',
+    artist: 'Afro-Electronic Sound Lab',
+    category: 'Original Productions',
+    categorySlug: 'original-productions',
+    duration: '3:50',
+    year: '2026',
+    bpm: 124,
+    key: 'G minor',
+    image: artistMasterImg,
+    description: 'Stem mixing and hybrid analog summing combining syncopated highlife brass with punchy club low-end.',
+    caseStudy: {
+      heroQuote: '"The sweet spot where vintage Lagos highlife arrangements meet 2026 electronic festival sound."',
+      overview: 'A high-energy club track featuring live trumpet, kalimba, and dual synth leads. Mastered using analog stem summing across eight stereo stems to preserve separation and headroom.',
+      creativeChallenge: 'Maintaining the punchy transient response of modern 124 BPM club kicks while letting organic brass dynamics flourish without being pushed back in the mix.',
+      studioRoom: 'Studio A & C Hybrid Workflow',
+      signalChain: [
+        { stage: 'Stem Processing', hardware: 'Dangerous 2-BUS+ 16-Channel Summing', role: 'Analog headroom and spatial width' },
+        { stage: 'Bus EQ', hardware: 'Pultec EQP-1A Tube Equalizers (Matched Pair)', role: 'Low-end low-shelf boost at 60Hz' },
+        { stage: 'VCA Limiting', hardware: 'Smart Research C2 Stereo Compressor', role: '"Crush" mode subtle parallel excitement' },
+        { stage: 'Stereo Imaging', hardware: 'Dangerous BAX EQ', role: 'Smooth 70kHz broad shelf clarity' },
+      ],
+      sessionLog: [
+        '10:30 — Brass stem cleanup and phase correlation check across stereo overheads.',
+        '14:00 — Pultec 60Hz trick applied to round out electronic 808 kick drum.',
+        '16:45 — Analog print to 1/2-inch tape at +6 over 185 nWb/m.',
+      ],
+      technicalSpecs: [
+        { label: 'Summing', value: 'Dangerous 2-BUS+ 16-Ch Discrete' },
+        { label: 'Clarity', value: 'Total Harmonic Distortion < 0.002%' },
+        { label: 'Max Peak', value: '-0.3 dB True Peak' },
+        { label: 'Master Bus', value: 'Smart Research C2 + Pultec Pair' },
+      ],
+      stems: [
+        { id: 'master', name: 'Full Club Master', type: 'Stem Summed', frequencyNote: 'Analog Glued' },
+        { id: 'brass', name: 'Live Highlife Brass', type: 'Ribbon Stereo', frequencyNote: 'Pultec Air Boost' },
+        { id: 'kick', name: '808 Kick & Sub Punch', type: 'Low End Stem', frequencyNote: 'Tight 60Hz Curve' },
+        { id: 'chords', name: 'Kalimba & Synth Arps', type: 'Mid Harmonics', frequencyNote: 'Dangerous BAX EQ' },
+      ],
+      galleryImages: [vocalBoothImg, masterSuiteImg, controlRoomImg],
+    },
+  },
+  {
+    id: 'proj-02',
+    title: 'Analog Solitude',
+    artist: 'Tomiwa & The Vault Quartet',
+    category: 'Mix & Master',
+    categorySlug: 'mix-master',
+    duration: '4:15',
+    year: '2026',
+    bpm: 92,
+    key: 'C major',
+    image: masterSuiteImg,
+    description: 'Direct-to-tape acoustic tracking captured on Studer A800 2-inch machine with pure outboard equalization.',
+    caseStudy: {
+      heroQuote: '"Every harmonic breath intact. Zero digital brickwalling. An homage to high-fidelity mastering."',
+      overview: 'Mastering an intimate four-piece acoustic ensemble recorded in Lagos. The client requested a pristine, high-resolution master that sounds as lifelike on consumer airbuds as it does through reference mastering monitors.',
+      creativeChallenge: 'Preserving the micro-dynamics of delicate nylon-string acoustic guitar while maintaining commercial loudness without harsh transient clipping.',
+      studioRoom: 'Studio B · Analog Mastering Suite',
+      signalChain: [
+        { stage: 'D/A Conversion', hardware: 'Lavry Gold DA924', role: 'Ultra-linear analog reconstruction' },
+        { stage: 'Mastering EQ', hardware: 'Manley Massive Passive Mastering Version', role: 'Air band boost at 27kHz and high-pass 22Hz' },
+        { stage: 'Mastering Bus', hardware: 'Shadow Hills Mastering Compressor', role: 'Dual discrete & optical compression' },
+        { stage: 'A/D Final Print', hardware: 'Lavry Quintessence AD122-96 MX', role: 'Pristine 96kHz archive digitization' },
+      ],
+      sessionLog: [
+        '14:00 — Critical acoustic listening in the tuned mastering suite; identifying 240Hz boominess.',
+        '15:30 — Discrete transformer stage selected on Shadow Hills for harmonic body.',
+        '17:15 — Final M/S balance adjusted to widen natural acoustic room reflections.',
+      ],
+      technicalSpecs: [
+        { label: 'Sample Rate', value: '192 kHz / 32-bit Float Master' },
+        { label: 'Target Loudness', value: '-14.0 LUFS Integrated / -1.0 dBTP' },
+        { label: 'Acoustic Room', value: 'Northward Acoustics FTB Certified' },
+        { label: 'Delivery', value: 'Apple Digital Masters + DDP Image' },
+      ],
+      stems: [
+        { id: 'master', name: 'Master Print (Lavry)', type: 'Master File', frequencyNote: 'Full Band Stereo' },
+        { id: 'vocal', name: 'Lead Vocal Pass', type: 'Neumann U87', frequencyNote: 'Optical Tube Compressed' },
+        { id: 'drums', name: 'Acoustic String Ensemble', type: 'Stereo Pair', frequencyNote: 'Schoeps Colette pair' },
+        { id: 'bass', name: 'Upright Acoustic Bass', type: 'Mic + DI', frequencyNote: 'AKG D12 VR + Avalon U5' },
+      ],
+      galleryImages: [masterSuiteImg, controlRoomImg, vocalBoothImg],
+    },
+  },
+  {
+    id: 'proj-07',
+    title: 'Golden Hour Frequencies',
+    artist: 'Adekunle & The Lagos Strings',
+    category: 'Mix & Master',
+    categorySlug: 'mix-master',
+    duration: '3:28',
+    year: '2026',
+    bpm: 104,
+    key: 'D major',
+    image: controlRoomImg,
+    description: 'Hybrid SSL 4000 G+ analog summing paired with Rupert Neve MBT bus processing for rich stereo depth and silky modern highs.',
+    caseStudy: {
+      heroQuote: '"The sweet equilibrium of analog warmth and crystalline digital translation across global DSPs."',
+      overview: 'A multi-layered Afro-fusion production featuring live kora, brass section, and stacked lead vocals. Mixed on the SSL AWS 948 and mastered with true-peak limiter precision.',
+      creativeChallenge: 'Preserving the intricate transient pluck of African kora strings while achieving punchy modern bass weight without phase smearing.',
+      studioRoom: 'Studio A · SSL Console & Mastering Outboard',
+      signalChain: [
+        { stage: 'Stem Summing', hardware: 'SSL 4000 G+ 48-Channel Desk', role: 'Analog separation and VCA cohesion' },
+        { stage: 'Bus Saturation', hardware: 'Rupert Neve Designs MBT', role: 'Super Silk harmonics and stereo field' },
+        { stage: 'Dynamic EQ', hardware: 'Pultec EQP-1A Tube Equalizers', role: 'Air-band sparkle at 16kHz' },
+        { stage: 'Peak Limiting', hardware: 'Weiss DS1-MK3 Digital Mastering Limiter', role: 'Pristine transparent loudness' },
+      ],
+      sessionLog: [
+        '13:00 — Live kora and acoustic guitar phase alignment using stereo oscilloscope.',
+        '16:30 — Neve Silk Red texture applied to enrich mid-range vocal harmonics.',
+        '18:45 — Apple Digital Masters compliance verification pass.',
+      ],
+      technicalSpecs: [
+        { label: 'Sample Rate', value: '96 kHz / 24-bit WAV' },
+        { label: 'True Peak', value: '-0.8 dBTP Compliant' },
+        { label: 'Target Loudness', value: '-13.8 LUFS Integrated' },
+        { label: 'Summing Bus', value: 'SSL AWS 948 Delta SuperAnalogue' },
+      ],
+      stems: [
+        { id: 'master', name: 'Master Print (Neve MBT)', type: 'Master File', frequencyNote: 'Super Silk 48kHz' },
+        { id: 'strings', name: 'Live Kora & Acoustic Guitar', type: 'Stereo Pair', frequencyNote: 'Royer R-121 Ribbons' },
+        { id: 'brass', name: 'Horn Section Stems', type: 'Outboard Treated', frequencyNote: 'Neve 1073 Saturated' },
+        { id: 'drums', name: 'Afro-Perk Master Bus', type: 'VCA Glued', frequencyNote: 'SSL G-Master Bus' },
+      ],
+      galleryImages: [controlRoomImg, masterSuiteImg, recordingRoomImg],
+    },
+  },
+  {
     id: 'proj-05',
     title: 'Obsidian Horizon',
     artist: 'Lagos Cinema & Kinetic Sound',
@@ -251,7 +327,6 @@ const PROJECTS_DATA: ProjectRecord[] = [
     bpm: 78,
     key: 'D minor',
     image: recordingRoomImg,
-    desktopSpan: 'col-span-12 lg:col-span-6',
     description: 'Spatial audio branding, granular synthesis, and bespoke architectural foley for an international luxury campaign.',
     caseStudy: {
       heroQuote: '"Sound that defines physical architecture. Low-end weight that commands physical presence."',
@@ -285,47 +360,46 @@ const PROJECTS_DATA: ProjectRecord[] = [
     },
   },
   {
-    id: 'proj-06',
-    title: 'Neon Lagos Pulse',
-    artist: 'Afro-Electronic Sound Lab',
-    category: 'Original Productions',
-    categorySlug: 'original-productions',
-    duration: '3:50',
+    id: 'proj-08',
+    title: 'Eko Meridian (Atmospheric Score)',
+    artist: 'Sonic Cinema Lab · Lagos Noir',
+    category: 'Sound in Motion',
+    categorySlug: 'sound-in-motion',
+    duration: '2:55',
     year: '2026',
-    bpm: 124,
-    key: 'G minor',
-    image: vocalBoothImg,
-    desktopSpan: 'col-span-12 lg:col-span-6',
-    description: 'Stem mixing and hybrid analog summing combining syncopated highlife brass with punchy club low-end.',
+    bpm: 82,
+    key: 'B minor',
+    image: artistMasterImg,
+    description: 'Object-based Dolby Atmos cinematic score featuring granular field recordings from Lekki shoreline, modular sub-bass, and orchestral brass.',
     caseStudy: {
-      heroQuote: '"The sweet spot where vintage Lagos highlife arrangements meet 2026 electronic festival sound."',
-      overview: 'A high-energy club track featuring live trumpet, kalimba, and dual synth leads. Mastered using analog stem summing across eight stereo stems to preserve separation and headroom.',
-      creativeChallenge: 'Maintaining the punchy transient response of modern 124 BPM club kicks while letting organic brass dynamics flourish without being pushed back in the mix.',
-      studioRoom: 'Studio A & C Hybrid Workflow',
+      heroQuote: '"Immersive 7.1.4 spatial architecture turning natural acoustic environments into cinematic tension."',
+      overview: 'Composed for a pan-African film trailer, integrating spatial audio panning with live modular synth filters and ambient room textures captured at 96kHz.',
+      creativeChallenge: 'Balancing ultra-low 30Hz cinematic rumble with ambient coastal field recordings without creating masking in dialog dialogue channels.',
+      studioRoom: 'Dolby Atmos 7.1.4 Certified Mix Suite',
       signalChain: [
-        { stage: 'Stem Processing', hardware: 'Dangerous 2-BUS+ 16-Channel Summing', role: 'Analog headroom and spatial width' },
-        { stage: 'Bus EQ', hardware: 'Pultec EQP-1A Tube Equalizers (Matched Pair)', role: 'Low-end low-shelf boost at 60Hz' },
-        { stage: 'VCA Limiting', hardware: 'Smart Research C2 Stereo Compressor', role: '"Crush" mode subtle parallel excitement' },
-        { stage: 'Stereo Imaging', hardware: 'Dangerous BAX EQ', role: 'Smooth 70kHz broad shelf clarity' },
+        { stage: 'Spatial Field', hardware: 'Sennheiser AMBEO VR Mic', role: '3D spatial ocean & wind capture' },
+        { stage: 'Modular Synthesis', hardware: 'Make Noise Shared System Modular', role: 'Dynamic voltage control tension' },
+        { stage: 'Low End Foundation', hardware: 'Moog Subsequent 37 DI', role: 'Tactile sub-harmonic impact' },
+        { stage: 'Atmos Authoring', hardware: 'Dolby Atmos Mastering Suite RMU', role: 'Object metadata & spatial beds' },
       ],
       sessionLog: [
-        '10:30 — Brass stem cleanup and phase correlation check across stereo overheads.',
-        '14:00 — Pultec 60Hz trick applied to round out electronic 808 kick drum.',
-        '16:45 — Analog print to 1/2-inch tape at +6 over 185 nWb/m.',
+        '10:00 — Binaural microphone setup at Lekki Peninsula for authentic shoreline resonance.',
+        '14:15 — Modular patch generative sequencing and real-time low-pass modulation.',
+        '17:30 — Dolby Atmos 7.1.4 speaker alignment and phase check.',
       ],
       technicalSpecs: [
-        { label: 'Summing', value: 'Dangerous 2-BUS+ 16-Ch Discrete' },
-        { label: 'Clarity', value: 'Total Harmonic Distortion < 0.002%' },
-        { label: 'Max Peak', value: '-0.3 dB True Peak' },
-        { label: 'Master Bus', value: 'Smart Research C2 + Pultec Pair' },
+        { label: 'Format', value: 'Dolby Atmos ADM BWF 96kHz / 24-bit' },
+        { label: 'Channel Bed', value: '7.1.2 Bed + 16 Audio Objects' },
+        { label: 'Monitoring', value: 'Genelec Smart Active Monitor 7.1.4 Array' },
+        { label: 'Headphone Render', value: 'Binaural with Spatial Head Tracking' },
       ],
       stems: [
-        { id: 'master', name: 'Full Club Master', type: 'Stem Summed', frequencyNote: 'Analog Glued' },
-        { id: 'brass', name: 'Live Highlife Brass', type: 'Ribbon Stereo', frequencyNote: 'Pultec Air Boost' },
-        { id: 'kick', name: '808 Kick & Sub Punch', type: 'Low End Stem', frequencyNote: 'Tight 60Hz Curve' },
-        { id: 'chords', name: 'Kalimba & Synth Arps', type: 'Mid Harmonics', frequencyNote: 'Dangerous BAX EQ' },
+        { id: 'master', name: 'Dolby Atmos Print Master', type: 'Atmos ADM', frequencyNote: '7.1.4 Spatial Bed' },
+        { id: 'modular', name: 'Modular Tension Drone', type: 'Analog Patch', frequencyNote: '30Hz - 220Hz' },
+        { id: 'foley', name: 'Lekki Coastal Ambisonics', type: 'Field Recording', frequencyNote: 'AMBEO Spatial' },
+        { id: 'brass', name: 'Cinematic Low Brass', type: 'Live Room Take', frequencyNote: 'Neve 1073 Staged' },
       ],
-      galleryImages: [vocalBoothImg, masterSuiteImg, controlRoomImg],
+      galleryImages: [artistMasterImg, recordingRoomImg, controlRoomImg],
     },
   },
 ];
@@ -343,18 +417,6 @@ export default function SelectedWork({ onOpenBooking }: SelectedWorkProps) {
   const [playbackProgress, setPlaybackProgress] = useState(0);
   const timerRef = useRef<number | null>(null);
   const { playTrack, pauseTrack } = useAudioPlayer();
-
-  // Scroll parallax for section floating sonic geometry
-  const sectionRef = useRef<HTMLElement | null>(null);
-  const { scrollYProgress } = useScroll({
-    target: sectionRef,
-    offset: ['start end', 'end start'],
-  });
-
-  const smoothProgress = useSpring(scrollYProgress, { stiffness: 60, damping: 20 });
-  const geomY1 = useTransform(smoothProgress, [0, 1], [-40, 60]);
-  const geomY2 = useTransform(smoothProgress, [0, 1], [30, -50]);
-  const waveformPhase = useTransform(smoothProgress, [0, 1], [0, 120]);
 
   // Audio toggle helper
   const handlePlayToggle = (project: ProjectRecord, e?: React.MouseEvent) => {
@@ -413,18 +475,15 @@ export default function SelectedWork({ onOpenBooking }: SelectedWorkProps) {
   return (
     <section
       id="work"
-      ref={sectionRef}
-      className="relative py-28 sm:py-40 bg-[#0A0A0A] text-[#F5F5F3] overflow-hidden border-t border-white/10"
+      className="relative py-24 sm:py-36 bg-[#070a12] text-[#F5F5F3] overflow-hidden border-t border-white/10"
     >
       {/* Background Architectural Grid Lines */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.03] bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:4rem_4rem]" />
 
-      {/* 1. FLOATING SONIC GEOMETRY & SECTION OPENING */}
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-12">
-        {/* Floating Geometric Squares (Field of 8 small geometric squares with parallax and vertical bobbing) */}
-        <div className="relative h-24 sm:h-32 w-full pointer-events-none mb-6 overflow-hidden">
-          {/* Fine Electric-Blue Waveform Line Moving Through Composition */}
-          <svg className="absolute inset-0 w-full h-full stroke-[#4E85BF]/40" preserveAspectRatio="none" viewBox="0 0 1200 120">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 space-y-12 sm:space-y-16">
+        {/* Subtle Electric-Blue Waveform Line & Ambient Accents */}
+        <div className="relative h-12 sm:h-16 w-full pointer-events-none overflow-hidden">
+          <svg className="absolute inset-0 w-full h-full stroke-[#4E85BF]/40" preserveAspectRatio="none" viewBox="0 0 1200 60">
             <defs>
               <linearGradient id="sonicWaveGrad" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" stopColor="#89AACC" stopOpacity="0.1" />
@@ -433,83 +492,28 @@ export default function SelectedWork({ onOpenBooking }: SelectedWorkProps) {
                 <stop offset="100%" stopColor="#4E85BF" stopOpacity="0.1" />
               </linearGradient>
             </defs>
-            <motion.path
-              d="M0,60 Q150,15 300,60 T600,60 T900,60 T1200,60"
+            <path
+              d="M0,30 Q150,10 300,30 T600,30 T900,30 T1200,30"
               fill="none"
               stroke="url(#sonicWaveGrad)"
               strokeWidth="1.5"
               strokeDasharray="4 4"
-              style={{ x: waveformPhase }}
             />
-            {/* Waveform Nodes / Sample Beats */}
-            <circle cx="300" cy="60" r="3" fill="#89AACC" className="animate-ping opacity-75" />
-            <circle cx="600" cy="60" r="4" fill="#4E85BF" />
-            <circle cx="900" cy="60" r="3.5" fill="#89AACC" />
+            <circle cx="300" cy="30" r="3" fill="#89AACC" className="animate-ping opacity-75" />
+            <circle cx="600" cy="30" r="4" fill="#4E85BF" />
+            <circle cx="900" cy="30" r="3.5" fill="#89AACC" />
           </svg>
-
-          {/* Square 1 */}
-          <motion.div
-            style={{ y: geomY1 }}
-            className="absolute left-[8%] top-[20%] w-6 h-6 border border-[#89AACC]/40 bg-[#141414]/80 backdrop-blur-sm rotate-12 shadow-[0_0_15px_rgba(78,133,191,0.2)] animate-pulse"
-          />
-          {/* Square 2 */}
-          <motion.div
-            style={{ y: geomY2 }}
-            className="absolute left-[24%] top-[55%] w-4 h-4 bg-[#89AACC]/30 border border-white/20 -rotate-6"
-          />
-          {/* Square 3 - Node on timeline */}
-          <motion.div
-            style={{ y: geomY1 }}
-            className="absolute left-[38%] top-[38%] w-8 h-8 border border-[#4E85BF]/60 bg-black/60 rotate-45 flex items-center justify-center"
-          >
-            <div className="w-2 h-2 bg-[#89AACC] rounded-full" />
-          </motion.div>
-          {/* Square 4 */}
-          <motion.div
-            style={{ y: geomY2 }}
-            className="absolute left-[54%] top-[15%] w-5 h-5 bg-[#141414] border border-white/15 rotate-12"
-          />
-          {/* Square 5 */}
-          <motion.div
-            style={{ y: geomY1 }}
-            className="absolute left-[68%] top-[50%] w-7 h-7 border border-[#89AACC]/50 bg-[#141414]/90 -rotate-12 flex items-center justify-center"
-          >
-            <div className="w-1.5 h-1.5 bg-[#4E85BF]" />
-          </motion.div>
-          {/* Square 6 */}
-          <motion.div
-            style={{ y: geomY2 }}
-            className="absolute left-[80%] top-[25%] w-4 h-4 bg-[#89AACC]/20 border border-white/25 rotate-6"
-          />
-          {/* Square 7 */}
-          <motion.div
-            style={{ y: geomY1 }}
-            className="absolute left-[92%] top-[45%] w-6 h-6 border border-[#4E85BF]/40 bg-black/70 rotate-45"
-          />
-          {/* Square 8 */}
-          <motion.div
-            style={{ y: geomY2 }}
-            className="absolute left-[48%] top-[70%] w-3 h-3 bg-[#4E85BF]/60 rounded-[1px]"
-          />
         </div>
 
         {/* Section Heading & Editorial Introduction */}
-        <motion.div
-          initial={{ opacity: 0, y: 28 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: '-60px' }}
-          transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-          className="space-y-6 pb-12 border-b border-white/10"
-        >
-          {/* Eyebrow */}
+        <div className="space-y-6 pb-8 sm:pb-12 border-b border-white/10">
           <div className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono uppercase tracking-[0.28em] text-[#89AACC]">
             <Sparkles className="w-3.5 h-3.5 text-[#4E85BF]" />
             <span>SELECTED WORK · SONICVAULT STUDIOS</span>
           </div>
 
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
-            {/* Main Editorial Heading */}
-            <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black uppercase tracking-tight leading-[0.92] text-white">
+            <h2 className="text-4xl sm:text-6xl md:text-7xl font-extrabold uppercase tracking-tight leading-[0.95] text-white font-display">
               SOUND MADE <br />
               <span className="font-editorial normal-case font-normal text-[#89AACC] tracking-normal inline-block pr-2">
                 into something
@@ -517,12 +521,11 @@ export default function SelectedWork({ onOpenBooking }: SelectedWorkProps) {
               TIMELESS.
             </h2>
 
-            {/* Supporting Editorial Paragraph */}
             <div className="max-w-md space-y-4">
-              <p className="text-sm sm:text-base text-[#858585] font-sans leading-relaxed">
+              <p className="text-sm sm:text-base text-slate-400 font-sans leading-relaxed">
                 A look inside the recordings, productions, and creative processes that bring ideas to life inside our Lekki Phase 1 tracking and mixing rooms.
               </p>
-              <div className="flex items-center gap-6 text-xs font-mono text-slate-400">
+              <div className="flex items-center gap-4 sm:gap-6 text-xs font-mono text-slate-400">
                 <span className="flex items-center gap-2">
                   <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
                   <span>MASTER AUDIO READY</span>
@@ -532,10 +535,10 @@ export default function SelectedWork({ onOpenBooking }: SelectedWorkProps) {
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
 
-        {/* 2. CATEGORY FILTER TABS */}
-        <div className="py-8 sm:py-10 flex flex-wrap items-center gap-2 sm:gap-3">
+        {/* Category Filter Tabs with Smooth Feedback */}
+        <div className="flex flex-wrap items-center gap-2.5 sm:gap-3">
           {categories.map((cat) => {
             const isActive = activeCategory === cat.id;
             return (
@@ -545,16 +548,16 @@ export default function SelectedWork({ onOpenBooking }: SelectedWorkProps) {
                   audioEngine.playClick();
                   setActiveCategory(cat.id as ProjectCategory);
                 }}
-                className={`relative px-4 py-2 rounded-xl text-xs sm:text-sm font-mono tracking-wider uppercase transition-all duration-300 flex items-center gap-2 cursor-pointer ${
+                className={`relative px-4 py-2.5 rounded-full text-xs font-mono tracking-wider uppercase transition-all duration-300 flex items-center gap-2 cursor-pointer ${
                   isActive
-                    ? 'text-white bg-white/10 border border-[#89AACC]/60 shadow-[0_0_20px_rgba(78,133,191,0.25)]'
-                    : 'text-[#858585] hover:text-white bg-white/[0.02] border border-white/5 hover:border-white/15'
+                    ? 'text-white bg-white/15 border border-[#89AACC] shadow-[0_0_20px_rgba(78,133,191,0.3)] scale-[1.02]'
+                    : 'text-slate-400 hover:text-white bg-white/[0.03] border border-white/10 hover:border-white/20'
                 }`}
               >
                 <span>{cat.label}</span>
                 <span
-                  className={`text-[10px] px-1.5 py-0.5 rounded-full ${
-                    isActive ? 'bg-[#4E85BF] text-white' : 'bg-white/5 text-slate-400'
+                  className={`text-[10px] px-2 py-0.5 rounded-full font-mono font-semibold ${
+                    isActive ? 'bg-[#4E85BF] text-white' : 'bg-white/10 text-slate-400'
                   }`}
                 >
                   {cat.count}
@@ -564,9 +567,16 @@ export default function SelectedWork({ onOpenBooking }: SelectedWorkProps) {
           })}
         </div>
 
-        {/* 3. CINEMATIC ASYMMETRICAL BENTO GRID */}
-        <div className="grid grid-cols-12 gap-6 sm:gap-8">
-          <AnimatePresence mode="popLayout">
+        {/* Perfectly Even 50/50 Symmetrical Grid across All Categories */}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={activeCategory}
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -15 }}
+            transition={{ duration: 0.35, ease: 'easeOut' }}
+            className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 items-stretch"
+          >
             {filteredProjects.map((project, idx) => (
               <ProjectCard
                 key={project.id}
@@ -578,11 +588,11 @@ export default function SelectedWork({ onOpenBooking }: SelectedWorkProps) {
                 onOpenCaseStudy={() => setSelectedCaseStudy(project)}
               />
             ))}
-          </AnimatePresence>
-        </div>
+          </motion.div>
+        </AnimatePresence>
       </div>
 
-      {/* 4. EXPANDABLE PROJECT CASE STUDY MODAL */}
+      {/* Expandable Project Case Study Modal */}
       <AnimatePresence>
         {selectedCaseStudy && (
           <CaseStudyModal
@@ -600,7 +610,7 @@ export default function SelectedWork({ onOpenBooking }: SelectedWorkProps) {
 }
 
 // ==========================================
-// INDIVIDUAL PROJECT CARD WITH PIXEL-DISSOLVE & MAGNETIC SQUARES
+// INDIVIDUAL PROJECT CARD (EVEN 50/50 PROPORTION)
 // ==========================================
 interface ProjectCardProps {
   project: ProjectRecord;
@@ -619,156 +629,37 @@ function ProjectCard({
   onPlayToggle,
   onOpenCaseStudy,
 }: ProjectCardProps) {
-  const cardRef = useRef<HTMLDivElement>(null);
-  const [isHovered, setIsHovered] = useState(false);
-
-  // Magnetic geometric squares physics (Stiffness: 80, Damping: 18, Mass: 0.6)
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  const springConfig = { stiffness: 80, damping: 18, mass: 0.6 };
-  const smoothX = useSpring(mouseX, springConfig);
-  const smoothY = useSpring(mouseY, springConfig);
-
-  // Discrete magnetic square transforms
-  const sq1X = useTransform(smoothX, [-150, 150], [-18, 18]);
-  const sq1Y = useTransform(smoothY, [-150, 150], [-18, 18]);
-
-  const sq2X = useTransform(smoothX, [-150, 150], [14, -14]);
-  const sq2Y = useTransform(smoothY, [-150, 150], [14, -14]);
-
-  const sq3X = useTransform(smoothX, [-150, 150], [-22, 22]);
-  const sq3Y = useTransform(smoothY, [-150, 150], [10, -10]);
-
-  const sq4X = useTransform(smoothX, [-150, 150], [16, -16]);
-  const sq4Y = useTransform(smoothY, [-150, 150], [-12, 12]);
-
-  const sq5X = useTransform(smoothX, [-150, 150], [-10, 10]);
-  const sq5Y = useTransform(smoothY, [-150, 150], [18, -18]);
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    if (!cardRef.current) return;
-    const rect = cardRef.current.getBoundingClientRect();
-    const centerX = rect.left + rect.width / 2;
-    const centerY = rect.top + rect.height / 2;
-    mouseX.set(e.clientX - centerX);
-    mouseY.set(e.clientY - centerY);
-  };
-
-  const handleMouseLeave = () => {
-    setIsHovered(false);
-    mouseX.set(0);
-    mouseY.set(0);
-  };
-
   return (
     <motion.div
-      layout
-      ref={cardRef}
-      initial={{ opacity: 0, y: 35 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      exit={{ opacity: 0, scale: 0.95 }}
-      viewport={{ once: true, margin: '-40px' }}
-      transition={{ duration: 0.6, delay: index * 0.08, ease: [0.22, 1, 0.36, 1] }}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={handleMouseLeave}
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, delay: index * 0.05, ease: 'easeOut' }}
       onClick={onOpenCaseStudy}
-      className={`${project.desktopSpan} group relative rounded-3xl overflow-hidden border border-white/10 bg-[#141414]/90 hover:border-[#89AACC]/50 transition-all duration-500 flex flex-col justify-between cursor-pointer shadow-[0_12px_40px_rgba(0,0,0,0.6)]`}
+      className="group relative rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 bg-[#0b0f19] hover:border-[#4E85BF]/60 transition-all duration-500 flex flex-col h-full cursor-pointer shadow-[0_12px_40px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_50px_rgba(78,133,191,0.22)]"
     >
-      {/* Background Media Container */}
-      <div className="relative aspect-[16/10] sm:aspect-auto sm:h-80 lg:h-96 w-full overflow-hidden bg-black">
+      {/* Top Half: Visual Media Container (Even 50% Visual Proportion) */}
+      <div className="relative aspect-[16/10] sm:aspect-[16/9] lg:h-80 w-full overflow-hidden bg-black shrink-0">
         <img
           src={project.image}
           alt={project.title}
-          className="w-full h-full object-cover transition-transform duration-1000 ease-out group-hover:scale-105 filter brightness-[0.78] contrast-[1.08] saturate-[1.05]"
+          className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 filter brightness-[0.8] contrast-[1.08] saturate-[1.05]"
         />
 
-        {/* Film grain / dark vignette gradient overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] via-[#0A0A0A]/40 to-black/30 pointer-events-none" />
-
-        {/* PIXEL-DISSOLVE HOVER EFFECT (12 Columns x 8 Rows = 96 Blocks) */}
-        <div
-          className="absolute inset-0 grid grid-cols-12 grid-rows-8 pointer-events-none z-10 p-1 gap-1"
-          aria-hidden="true"
-        >
-          {Array.from({ length: 96 }).map((_, blockIdx) => {
-            const row = Math.floor(blockIdx / 12);
-            const col = blockIdx % 12;
-            const diagonalScore = row + col; // 0 to 18
-            const delayMs = diagonalScore * 14;
-
-            return (
-              <div
-                key={blockIdx}
-                style={{
-                  transitionDelay: isHovered ? `${delayMs}ms` : `${(18 - diagonalScore) * 10}ms`,
-                }}
-                className={`w-full h-full rounded-[2px] transition-all duration-300 ease-out border ${
-                  isHovered
-                    ? 'opacity-85 scale-100 bg-[#0A0A0A]/95 border-[#89AACC]/30 shadow-[0_0_8px_rgba(78,133,191,0.2)]'
-                    : 'opacity-0 scale-50 bg-transparent border-transparent'
-                }`}
-              />
-            );
-          })}
-        </div>
-
-        {/* Hidden Layer Revealed by Pixel Dissolve: Subtle Waveform Radar Visual */}
-        <div
-          className={`absolute inset-0 flex items-center justify-center transition-opacity duration-500 z-10 pointer-events-none ${
-            isHovered ? 'opacity-90' : 'opacity-0'
-          }`}
-        >
-          <div className="flex items-center gap-1.5 px-4 py-2 rounded-full bg-black/80 backdrop-blur-md border border-[#89AACC]/40 text-[#89AACC] font-mono text-xs uppercase tracking-widest">
-            <Maximize2 className="w-3.5 h-3.5 text-[#4E85BF] animate-pulse" />
-            <span>EXPLORE CASE STUDY</span>
-          </div>
-        </div>
-
-        {/* MAGNETIC GEOMETRIC SQUARES (5 Cursor-Reactive Floating Elements) */}
-        <div className="absolute inset-0 pointer-events-none z-20 overflow-hidden">
-          {/* Square 1: Top Left Graphite */}
-          <motion.div
-            style={{ x: sq1X, y: sq1Y }}
-            className="absolute top-8 left-8 w-5 h-5 bg-[#141414]/90 border border-white/20 rotate-12 backdrop-blur-sm transition-opacity duration-300"
-          />
-          {/* Square 2: Top Right Electric Blue Detail */}
-          <motion.div
-            style={{ x: sq2X, y: sq2Y }}
-            className="absolute top-16 right-20 w-3.5 h-3.5 bg-[#4E85BF]/80 border border-[#89AACC] -rotate-6 shadow-[0_0_12px_rgba(78,133,191,0.5)]"
-          />
-          {/* Square 3: Center Node */}
-          <motion.div
-            style={{ x: sq3X, y: sq3Y }}
-            className="absolute bottom-16 left-16 w-6 h-6 border border-[#89AACC]/60 bg-black/60 rotate-45 flex items-center justify-center"
-          >
-            <div className="w-1.5 h-1.5 bg-[#89AACC] rounded-full" />
-          </motion.div>
-          {/* Square 4: Bottom Right Soft Translucent */}
-          <motion.div
-            style={{ x: sq4X, y: sq4Y }}
-            className="absolute bottom-12 right-14 w-4 h-4 bg-white/10 border border-white/25 rotate-12"
-          />
-          {/* Square 5: Muted Blue Node */}
-          <motion.div
-            style={{ x: sq5X, y: sq5Y }}
-            className="absolute top-1/2 left-10 w-2.5 h-2.5 bg-[#89AACC]/70"
-          />
-        </div>
+        {/* Ambient Dark Gradient */}
+        <div className="absolute inset-0 bg-gradient-to-t from-[#0b0f19] via-[#0b0f19]/30 to-black/30 pointer-events-none" />
 
         {/* Top Badges */}
-        <div className="absolute top-5 left-5 right-5 flex items-center justify-between text-[11px] font-mono z-30 pointer-events-none">
-          <span className="px-3 py-1 rounded-full bg-black/80 backdrop-blur-md border border-white/15 text-[#89AACC] tracking-wider uppercase font-medium">
+        <div className="absolute top-4 left-4 right-16 flex items-center gap-2 text-[10px] sm:text-[11px] font-mono z-20 pointer-events-none">
+          <span className="px-2.5 sm:px-3 py-1 rounded-full bg-black/80 backdrop-blur-md border border-white/15 text-[#89AACC] tracking-wider uppercase font-medium shadow-sm truncate">
             {project.category}
           </span>
-          <span className="px-2.5 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/15 text-slate-300">
+          <span className="px-2 sm:px-2.5 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/15 text-slate-300 shrink-0">
             {project.year}
           </span>
         </div>
 
-        {/* Upper-Right Project Action Control Button */}
-        <div className="absolute top-5 right-5 z-30">
+        {/* Upper-Right Project Action Trigger */}
+        <div className="absolute top-4 right-4 z-30">
           <button
             type="button"
             onClick={(e) => {
@@ -776,7 +667,7 @@ function ProjectCard({
               onOpenCaseStudy();
             }}
             aria-label={`Open case study for ${project.title}`}
-            className="w-11 h-11 rounded-2xl bg-black/80 backdrop-blur-md border border-white/20 hover:border-[#89AACC] hover:bg-white hover:text-black text-white flex items-center justify-center transition-all duration-300 shadow-xl group/btn cursor-pointer"
+            className="w-10 h-10 rounded-full bg-black/80 backdrop-blur-md border border-white/20 hover:border-[#89AACC] hover:bg-white hover:text-black text-white flex items-center justify-center transition-all duration-300 shadow-xl group/btn cursor-pointer"
           >
             <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
           </button>
@@ -791,7 +682,7 @@ function ProjectCard({
             className={`pointer-events-auto w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center transition-all duration-300 shadow-2xl cursor-pointer ${
               isPlaying
                 ? 'accent-gradient text-white scale-110 shadow-[0_0_35px_rgba(78,133,191,0.6)]'
-                : 'bg-black/80 hover:bg-white hover:text-black text-white border border-white/25 group-hover:scale-105'
+                : 'bg-black/80 hover:bg-[#4E85BF] text-white border border-white/25 group-hover:scale-105 group-hover:border-[#89AACC]'
             }`}
           >
             {isPlaying ? (
@@ -801,34 +692,43 @@ function ProjectCard({
             )}
           </button>
         </div>
+
+        {/* Clean, Elegant Hover Cue */}
+        <div className="absolute bottom-4 left-4 right-4 flex justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-20">
+          <span className="px-4 py-1.5 rounded-full bg-black/85 backdrop-blur-md border border-[#89AACC]/40 text-[#89AACC] font-mono text-[11px] uppercase tracking-wider flex items-center gap-1.5 shadow-lg">
+            <Maximize2 className="w-3.5 h-3.5 text-[#4E85BF]" />
+            <span>EXPLORE CASE STUDY</span>
+          </span>
+        </div>
       </div>
 
-      {/* Project Details & Integrated Waveform Bar */}
-      <div className="p-6 sm:p-8 space-y-5 bg-[#0A0A0A] relative z-20 border-t border-white/5">
-        <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-2">
-          <div className="space-y-1">
-            <span className="text-[11px] font-mono tracking-widest text-[#858585] uppercase">
+      {/* Bottom Half: Editorial Content & Integrated Waveform Bar */}
+      <div className="p-6 sm:p-8 flex-1 flex flex-col justify-between space-y-5 bg-[#0b0f19] border-t border-white/5">
+        <div className="space-y-3">
+          <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1.5">
+            <span className="text-[11px] font-mono tracking-widest text-[#89AACC] uppercase block font-semibold">
               {project.artist}
             </span>
-            <h3 className="text-2xl sm:text-3xl font-extrabold text-white font-display tracking-tight group-hover:text-[#89AACC] transition-colors">
-              {project.title}
-            </h3>
+            <div className="flex items-center gap-2 text-xs font-mono text-slate-500">
+              <span className="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-slate-300">{project.key}</span>
+              <span>{project.bpm} BPM</span>
+              <span>·</span>
+              <span>{project.duration}</span>
+            </div>
           </div>
-          <div className="flex items-center gap-2 text-xs font-mono text-[#858585]">
-            <span className="px-2 py-0.5 rounded bg-white/5 border border-white/10">{project.key}</span>
-            <span>{project.bpm} BPM</span>
-            <span>·</span>
-            <span>{project.duration}</span>
-          </div>
+
+          <h3 className="text-2xl sm:text-3xl font-extrabold text-white font-display tracking-tight group-hover:text-[#89AACC] transition-colors">
+            {project.title}
+          </h3>
+
+          <p className="text-xs sm:text-sm text-slate-400 font-sans leading-relaxed line-clamp-2">
+            {project.description}
+          </p>
         </div>
 
-        <p className="text-xs sm:text-sm text-[#858585] font-sans leading-relaxed line-clamp-2">
-          {project.description}
-        </p>
-
-        {/* Waveform Scrubber & Session Bar */}
-        <div className="space-y-2 pt-2 border-t border-white/10">
-          <div className="flex items-center justify-between text-[11px] font-mono text-[#858585]">
+        {/* Waveform Scrubber & Session Bar (Evenly Pinned to Bottom) */}
+        <div className="space-y-2 pt-3 border-t border-white/10 mt-auto">
+          <div className="flex items-center justify-between text-[11px] font-mono text-slate-400">
             <span className="flex items-center gap-2">
               <Disc3 className={`w-3.5 h-3.5 text-[#4E85BF] ${isPlaying ? 'animate-spin' : ''}`} />
               <span className={isPlaying ? 'text-[#89AACC] font-semibold' : ''}>
@@ -855,7 +755,7 @@ function ProjectCard({
                   className={`flex-1 rounded-sm transition-all duration-150 ${
                     isBarActive
                       ? 'accent-gradient'
-                      : 'bg-[#141414] group-hover:bg-slate-700/60'
+                      : 'bg-slate-800 group-hover:bg-slate-700/80'
                   }`}
                 />
               );
@@ -866,7 +766,6 @@ function ProjectCard({
     </motion.div>
   );
 }
-
 // ==========================================
 // FULL-FEATURED PROJECT CASE STUDY MODAL
 // ==========================================
@@ -904,7 +803,7 @@ function CaseStudyModal({ project, onClose, onOpenBooking }: CaseStudyModalProps
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 lg:p-10 overflow-y-auto">
+    <div className="fixed inset-0 z-50 flex items-start sm:items-center justify-center p-3 sm:p-6 lg:p-10 overflow-y-auto">
       {/* Backdrop */}
       <motion.div
         initial={{ opacity: 0 }}

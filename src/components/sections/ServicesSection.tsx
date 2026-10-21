@@ -1,5 +1,5 @@
 import { motion } from 'motion/react';
-import { ArrowUpRight, Mic, Sliders, Music, Radio, Disc, Sparkles, AudioWaveform, Headphones } from 'lucide-react';
+import { ArrowUpRight, Mic, Sliders, Music, Radio, Disc, Sparkles, AudioWaveform, Headphones, ShieldCheck } from 'lucide-react';
 
 import vocalBoothImg from '../../assets/images/studio_02_vocal_booth_1792446832131.jpg';
 import controlRoomImg from '../../assets/images/studio_control_live_performance_1792447671011.jpg';
@@ -7,6 +7,7 @@ import productionLabImg from '../../assets/images/studio_04_production_lab_17924
 import masterSuiteImg from '../../assets/images/studio_05_master_suite_1792446834087.jpg';
 import recordingRoomImg from '../../assets/images/hero_recording_room_v2_1792444696580.jpg';
 import artistMasterImg from '../../assets/images/hero_artist_master_v2_1792444696981.jpg';
+import entranceImg from '../../assets/images/studio_01_entrance_1792446831639.jpg';
 
 interface ServicesSectionProps {
   onSelectService: (serviceName: string) => void;
@@ -18,9 +19,10 @@ export interface StudioService {
   category: string;
   description: string;
   image: string;
-  span: string; // Tailwind grid span for desktop bento layout
   icon: typeof Mic;
   tag: string;
+  room: string;
+  rateHint: string;
 }
 
 export const STUDIO_SERVICES: StudioService[] = [
@@ -28,10 +30,11 @@ export const STUDIO_SERVICES: StudioService[] = [
     id: 'vocal-recording',
     title: 'Vocal Recording',
     category: 'TRACKING & CAPTURE',
+    room: 'The Vocal Booth',
+    rateHint: 'FROM ₦35,000 / HR',
     description:
       'Ultra-quiet decoupled vocal booth with vintage Neumann U87, BAE 1073 preamp, and Tube-Tech CL 1B optical leveling for radio-ready intimacy.',
     image: vocalBoothImg,
-    span: 'col-span-12 lg:col-span-7',
     icon: Mic,
     tag: 'FLAGSHIP CHAMBER',
   },
@@ -39,10 +42,11 @@ export const STUDIO_SERVICES: StudioService[] = [
     id: 'music-production',
     title: 'Music Production',
     category: 'COMPOSITION & ARRANGEMENT',
+    room: 'The Production Lab',
+    rateHint: 'FROM ₦150,000 / TRACK',
     description:
       'Collaborative production sessions with in-house sound architects, world-class modular synths, and multi-display DAW matrices.',
     image: productionLabImg,
-    span: 'col-span-12 lg:col-span-5',
     icon: Music,
     tag: 'CREATIVE RESIDENCY',
   },
@@ -50,10 +54,11 @@ export const STUDIO_SERVICES: StudioService[] = [
     id: 'beat-production',
     title: 'Beat Production',
     category: 'SOUND DESIGN & DRUMS',
+    room: 'The Production Lab',
+    rateHint: 'FROM ₦150,000 / TRACK',
     description:
       'Bespoke rhythmic foundations, MPC Live II grooves, analog 808 sculpting, and proprietary Afrobeat, Alté, and Amapiano drum samples.',
     image: artistMasterImg,
-    span: 'col-span-12 lg:col-span-4',
     icon: Sliders,
     tag: 'ANALOG DRUM LAB',
   },
@@ -61,10 +66,11 @@ export const STUDIO_SERVICES: StudioService[] = [
     id: 'mixing',
     title: 'Analog & In-The-Box Mixing',
     category: 'BALANCE & DEPTH',
+    room: 'The Control Room',
+    rateHint: 'FROM ₦100,000 / TRACK',
     description:
       'Surgical 48-channel SSL 4000 G+ console summing, Neve outboard EQ, and 3D stereo spatial depth for punch, warmth, and radio translation.',
     image: controlRoomImg,
-    span: 'col-span-12 lg:col-span-8',
     icon: AudioWaveform,
     tag: 'SSL 4000 G+',
   },
@@ -72,10 +78,11 @@ export const STUDIO_SERVICES: StudioService[] = [
     id: 'mastering',
     title: 'Stereo & Stem Mastering',
     category: 'FINAL FINISH & RELEASE',
+    room: 'The Mastering Suite',
+    rateHint: 'FROM ₦50,000 / TRACK',
     description:
       'Studer A800 2-inch tape saturation, Manley Massive Passive tube equalization, and Burl Mothership conversion ready for DSP distribution.',
     image: masterSuiteImg,
-    span: 'col-span-12 lg:col-span-6',
     icon: Disc,
     tag: 'APPLE DIGITAL MASTERS',
   },
@@ -83,10 +90,11 @@ export const STUDIO_SERVICES: StudioService[] = [
     id: 'vocal-tuning',
     title: 'Vocal Editing & Tuning',
     category: 'CORRECTION & HARMONIES',
+    room: 'The Vocal Booth',
+    rateHint: 'FROM ₦60,000 / TRACK',
     description:
       'Micro-pitch Melodyne alignment, natural formant tracking, breath optimization, and lush multi-part vocal harmony stack engineering.',
     image: vocalBoothImg,
-    span: 'col-span-12 lg:col-span-6',
     icon: Headphones,
     tag: 'SURGICAL PRECISION',
   },
@@ -94,10 +102,11 @@ export const STUDIO_SERVICES: StudioService[] = [
     id: 'full-production',
     title: 'Full Music Production',
     category: 'END-TO-END ALBUMS',
+    room: 'Full Studio Access',
+    rateHint: 'FROM ₦300,000 / TRACK',
     description:
       'Turn an initial voice memo into an internationally competitive release: songwriting, live rhythm tracking, vocal production, mix, and master.',
     image: recordingRoomImg,
-    span: 'col-span-12 lg:col-span-8',
     icon: Sparkles,
     tag: 'EXECUTIVE DIRECTION',
   },
@@ -105,10 +114,11 @@ export const STUDIO_SERVICES: StudioService[] = [
     id: 'podcast-recording',
     title: 'Podcast Recording',
     category: 'BROADCAST & SPOKEN WORD',
+    room: 'The Live Room',
+    rateHint: 'FROM ₦50,000 / HR',
     description:
       'Multi-microphone broadcast setup with Shure SM7B arrays, 4K multi-cam studio capture, and real-time noise-floor cancellation.',
     image: controlRoomImg,
-    span: 'col-span-12 lg:col-span-4',
     icon: Radio,
     tag: '4-MIC BROADCAST',
   },
@@ -116,12 +126,25 @@ export const STUDIO_SERVICES: StudioService[] = [
     id: 'voiceover',
     title: 'Voice-Over Recording',
     category: 'COMMERCIAL & FILM ADR',
+    room: 'The Vocal Booth',
+    rateHint: 'FROM ₦35,000 / HR',
     description:
       'Source-Connect enabled vocal booth for national commercial voice-over, video game dialogue, and film dialogue replacement with ultra-low latency.',
     image: vocalBoothImg,
-    span: 'col-span-12',
     icon: Mic,
     tag: 'SOURCE-CONNECT LIVE',
+  },
+  {
+    id: 'lockout-residency',
+    title: 'Studio Lockout & VIP Residency',
+    category: 'EXCLUSIVE FACILITY HIRE',
+    room: 'All Studio Chambers',
+    rateHint: 'FROM ₦450,000 / DAY',
+    description:
+      'Complete private lockout of all 5 chambers in Lekki Phase 1 with dedicated senior engineer, VIP artist lounge, catering, and 24/7 access.',
+    image: entranceImg,
+    icon: ShieldCheck,
+    tag: 'VIP ALBUM RESIDENCY',
   },
 ];
 
@@ -145,63 +168,72 @@ export default function ServicesSection({ onSelectService }: ServicesSectionProp
           </p>
         </div>
 
-        {/* Asymmetrical Bento Grid */}
-        <div className="grid grid-cols-12 gap-5 sm:gap-6">
+        {/* Perfectly Even 50/50 Proportional Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 items-stretch">
           {STUDIO_SERVICES.map((service) => {
             const Icon = service.icon;
             return (
               <motion.div
                 key={service.id}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 25 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-40px' }}
                 transition={{ duration: 0.5, ease: 'easeOut' }}
-                className={`${service.span} relative group rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 bg-slate-900/40 hover:border-[#4E85BF]/50 transition-all duration-500 flex flex-col justify-between`}
+                className="group relative rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 bg-[#0b0f19] hover:border-[#4E85BF]/60 transition-all duration-500 flex flex-col h-full shadow-[0_10px_30px_rgba(0,0,0,0.5)] hover:shadow-[0_20px_45px_rgba(78,133,191,0.18)]"
               >
-                {/* Background Image with Ambient Gradient */}
-                <div className="relative aspect-[16/10] sm:aspect-auto sm:h-64 lg:h-72 w-full overflow-hidden">
+                {/* Top Half: Visual Media Container (Even 50% Visual Proportion) */}
+                <div className="relative aspect-[16/10] sm:aspect-[16/9] lg:h-72 w-full overflow-hidden shrink-0 bg-black">
                   <img
                     src={service.image}
                     alt={service.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter brightness-[0.75] contrast-[1.05]"
+                    className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 filter brightness-[0.8] contrast-[1.05]"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-[#070a12] via-[#070a12]/40 to-transparent pointer-events-none" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-[#0b0f19] via-[#0b0f19]/30 to-black/30 pointer-events-none" />
 
-                  {/* Top Badge */}
-                  <div className="absolute top-4 left-4 right-4 flex items-center justify-between text-[10px] font-mono">
-                    <span className="px-3 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/15 text-[#89AACC] tracking-wider uppercase">
+                  {/* Top Badge & Functional Icon */}
+                  <div className="absolute top-4 left-4 right-4 flex items-center justify-between text-[10px] font-mono z-10 pointer-events-none">
+                    <span className="px-3 py-1 rounded-full bg-black/75 backdrop-blur-md border border-white/15 text-[#89AACC] tracking-wider uppercase font-medium shadow-sm">
                       {service.tag}
                     </span>
-                    <span className="w-8 h-8 rounded-full bg-black/60 backdrop-blur-md border border-white/15 text-white flex items-center justify-center group-hover:accent-gradient transition-all">
+                    <span className="w-8 h-8 rounded-full bg-black/70 backdrop-blur-md border border-white/15 text-white flex items-center justify-center group-hover:bg-[#4E85BF] group-hover:border-[#89AACC] group-hover:shadow-[0_0_15px_rgba(78,133,191,0.6)] transition-all">
                       <Icon className="w-4 h-4" />
                     </span>
                   </div>
                 </div>
 
-                {/* Card Content & Action Button */}
-                <div className="p-6 sm:p-8 space-y-4 relative z-10 flex-1 flex flex-col justify-between">
-                  <div className="space-y-2">
-                    <span className="text-[10px] font-mono tracking-widest text-slate-400 uppercase block">
-                      {service.category}
-                    </span>
-                    <h3 className="text-xl sm:text-2xl font-bold text-white font-display">
+                {/* Bottom Half: Editorial Content Container (Even 50% Content Proportion) */}
+                <div className="p-5 sm:p-7 lg:p-8 flex-1 flex flex-col justify-between space-y-5 bg-[#0b0f19]">
+                  <div className="space-y-3">
+                    <div className="flex items-center justify-between gap-2">
+                      <span className="text-[10px] font-mono tracking-widest text-[#89AACC] uppercase block font-semibold truncate">
+                        {service.category}
+                      </span>
+                      <span className="text-[10px] font-mono text-slate-500 uppercase shrink-0">
+                        {service.room}
+                      </span>
+                    </div>
+
+                    <h3 className="text-xl sm:text-2xl font-bold text-white font-display tracking-tight group-hover:text-[#89AACC] transition-colors">
                       {service.title}
                     </h3>
+
                     <p className="text-xs sm:text-sm text-slate-400 font-sans leading-relaxed">
                       {service.description}
                     </p>
                   </div>
 
-                  <div className="pt-2 flex items-center justify-between border-t border-white/10">
+                  {/* Pinned Action Bar */}
+                  <div className="pt-4 flex flex-wrap sm:flex-nowrap items-center justify-between gap-2 border-t border-white/10 mt-auto">
                     <button
+                      type="button"
                       onClick={() => onSelectService(service.title)}
-                      className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-white hover:text-[#89AACC] transition-colors cursor-pointer group-hover:translate-x-1 duration-300"
+                      className="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-white hover:text-[#89AACC] transition-colors cursor-pointer group-hover:translate-x-1 duration-300"
                     >
                       <span>BOOK THIS SERVICE</span>
                       <ArrowUpRight className="w-4 h-4 text-[#4E85BF]" />
                     </button>
-                    <span className="text-[11px] font-mono text-slate-500">
-                      ENQUIRE FOR PRICING
+                    <span className="text-[11px] font-mono text-slate-500 tracking-wide shrink-0">
+                      {service.rateHint}
                     </span>
                   </div>
                 </div>

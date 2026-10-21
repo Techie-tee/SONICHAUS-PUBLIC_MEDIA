@@ -573,6 +573,18 @@ apiRouter.post('/chatbot/query', (req, res) => {
   });
 });
 
+// Public FAQ endpoint for Landing Page Accordion
+apiRouter.get('/faqs', (_req, res) => {
+  const allKnowledge = db.get('chatbotKnowledge') || [];
+  const published = allKnowledge.filter((k) => k.isPublished);
+  const categories = Array.from(new Set(published.map((k) => k.category)));
+  res.json({
+    faqs: published,
+    categories,
+    total: published.length,
+  });
+});
+
 apiRouter.get('/chatbot/knowledge', requireAdmin, (_req, res) => {
   res.json(db.get('chatbotKnowledge'));
 });

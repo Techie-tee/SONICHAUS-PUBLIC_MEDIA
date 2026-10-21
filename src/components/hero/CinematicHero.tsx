@@ -560,11 +560,8 @@ export default function CinematicHero({ onOpenBooking, onExploreSpaces }: Cinema
         {/* Seamless bottom fade that cleanly bridges into the next section */}
         <div className="absolute bottom-0 inset-x-0 h-36 bg-gradient-to-t from-[#040609] via-[#040609]/80 to-transparent pointer-events-none z-20" />
 
-        {/* Layer 4: Top spacer for floating navigation */}
-        <div className="relative z-20 pt-10 sm:pt-14 pointer-events-none" />
-
-        {/* Layer 5: Main Headline & Intro Branding — Anchored cleanly at the bottom so the entire architectural entrance sign is 100% visible */}
-        <main className="relative z-20 flex-1 flex flex-col justify-end items-center text-center px-4 sm:px-6 max-w-3xl mx-auto pointer-events-none w-full pb-3 sm:pb-4 md:pb-5">
+        {/* Layer 5: Main Headline & Intro Branding — Positioned in the upper hero region just below the SONIC VAULT STUDIOS header */}
+        <main className="relative z-20 flex-1 flex flex-col justify-start items-center text-center px-4 sm:px-6 max-w-3xl mx-auto pointer-events-none w-full pt-16 sm:pt-20 md:pt-24 lg:pt-28 pb-4">
           {headlineOpacity > 0.01 && (
             <div
               className="space-y-1.5 sm:space-y-2 pointer-events-auto flex flex-col items-center justify-center text-center px-2 w-full max-w-full"
@@ -574,7 +571,7 @@ export default function CinematicHero({ onOpenBooking, onExploreSpaces }: Cinema
                 willChange: 'opacity, transform',
               }}
             >
-              {/* Refined compact location badge positioned cleanly below the entrance */}
+              {/* Refined compact location badge positioned cleanly below the header */}
               <div className="inline-flex items-center justify-center gap-1.5 px-3 py-1 rounded-full bg-black/85 backdrop-blur-md border border-cyan-400/35 text-[9px] sm:text-[10px] font-mono uppercase tracking-[0.22em] text-cyan-300 shadow-[0_0_12px_rgba(0,240,255,0.18)]">
                 <SonicVaultVectorMark size={11} />
                 <span>LEKKI PHASE 1 · LAGOS, NIGERIA</span>

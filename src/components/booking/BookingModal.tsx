@@ -123,7 +123,7 @@ export default function BookingModal({ isOpen, onClose, initialRoomId }: Booking
       role="dialog"
       aria-modal="true"
       aria-labelledby="booking-modal-title"
-      className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-md overflow-y-auto"
+      className="fixed inset-0 z-50 flex items-start sm:items-center justify-center p-3 sm:p-6 bg-black/85 backdrop-blur-md overflow-y-auto"
     >
       <div className="relative w-full max-w-3xl bg-[#090d16] border border-white/15 rounded-2xl sm:rounded-3xl p-5 sm:p-10 shadow-2xl my-4 sm:my-8 text-white">
         {/* Close Button */}

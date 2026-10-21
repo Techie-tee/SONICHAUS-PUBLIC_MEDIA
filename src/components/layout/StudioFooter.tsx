@@ -59,6 +59,9 @@ export default function StudioFooter({ onOpenBooking }: StudioFooterProps) {
               <Link to="/about" className="hover:text-white transition-colors">About Us & Team</Link>
             </li>
             <li>
+              <a href="/#faq" className="hover:text-white transition-colors">Studio FAQs</a>
+            </li>
+            <li>
               <Link to="/contact" className="hover:text-white transition-colors">Contact & Directions</Link>
             </li>
             <li>

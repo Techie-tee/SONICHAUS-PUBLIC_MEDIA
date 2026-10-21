@@ -8,6 +8,7 @@ import SelectedWork from '../components/sections/SelectedWork';
 import JournalSection from '../components/sections/JournalSection';
 import VisualExplorations from '../components/sections/VisualExplorations';
 import StudioApproach from '../components/sections/StudioApproach';
+import StudioFAQ from '../components/sections/StudioFAQ';
 import BookingSection from '../components/sections/BookingSection';
 import FinalCinematicCTA from '../components/sections/FinalCinematicCTA';
 
@@ -55,10 +56,13 @@ export default function HomePage({ onOpenBooking }: HomePageProps) {
       {/* 9. The SonicVault Approach (4 Pillars) */}
       <StudioApproach />
 
-      {/* 10. Book A Session (Connected Booking Section & WhatsApp Concierge) */}
+      {/* 10. Studio FAQ (Dynamic Accordion & Common Inquiries) */}
+      <StudioFAQ onOpenBooking={onOpenBooking} />
+
+      {/* 11. Book A Session (Connected Booking Section & WhatsApp Concierge) */}
       <BookingSection />
 
-      {/* 11. Final Cinematic CTA (Continuous Marquee & Resolution) */}
+      {/* 12. Final Cinematic CTA (Continuous Marquee & Resolution) */}
       <FinalCinematicCTA onOpenBooking={() => onOpenBooking()} />
     </main>
   );

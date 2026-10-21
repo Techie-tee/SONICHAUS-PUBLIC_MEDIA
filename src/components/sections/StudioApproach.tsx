@@ -67,7 +67,7 @@ export default function StudioApproach() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-40px' }}
                 transition={{ duration: 0.5 }}
-                className="pt-8 md:pt-0 md:px-6 lg:px-8 space-y-5 flex flex-col justify-between first:pl-0"
+                className="pt-8 md:pt-0 first:pt-0 pb-8 md:pb-0 last:pb-0 md:px-6 lg:px-8 space-y-5 flex flex-col justify-between first:pl-0"
               >
                 <div className="space-y-4">
                   <div className="flex items-center justify-between">

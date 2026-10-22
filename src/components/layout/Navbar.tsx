@@ -131,8 +131,8 @@ export default function Navbar({ onOpenBooking }: NavbarProps) {
             {/* Primary Action Button with subtle ripple glow / scale-up on hover */}
             <div className="hidden sm:inline-flex relative group">
               <span
-                className="absolute -inset-1 rounded-full bg-[#4E85BF]/40 animate-ping pointer-events-none group-hover:scale-125 group-hover:opacity-85 group-hover:bg-[#4E85BF]/60 group-hover:shadow-[0_0_22px_rgba(78,133,191,0.9)] transition-all duration-300"
-                style={{ animationDuration: '3s', animationIterationCount: 'infinite' }}
+                className="absolute -inset-0.5 rounded-full bg-[#4E85BF]/15 animate-ping pointer-events-none group-hover:scale-125 group-hover:opacity-30 group-hover:bg-[#4E85BF]/30 group-hover:shadow-[0_0_10px_rgba(78,133,191,0.3)] transition-all duration-500 blur-[1px]"
+                style={{ animationDuration: '4s', animationIterationCount: 'infinite' }}
                 aria-hidden="true"
               />
               <button

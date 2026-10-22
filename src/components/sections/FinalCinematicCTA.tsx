@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ArrowUpRight, MessageCircle, Sparkles, Music } from 'lucide-react';
 
-import masterSuiteImg from '../../assets/images/mastering_suite_active_1792675343261.jpg';
+import masterSuiteImg from '../../assets/images/mastering_suite_collaborating_1792679626184.jpg';
 
 interface FinalCinematicCTAProps {
   onOpenBooking: () => void;
@@ -82,8 +82,8 @@ export default function FinalCinematicCTA({ onOpenBooking }: FinalCinematicCTAPr
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
           <div className="relative group w-full sm:w-auto">
             <span
-              className="absolute -inset-1 rounded-full bg-[#4E85BF]/40 animate-ping pointer-events-none group-hover:scale-125 group-hover:opacity-85 group-hover:bg-[#4E85BF]/60 group-hover:shadow-[0_0_30px_rgba(78,133,191,0.9)] transition-all duration-300"
-              style={{ animationDuration: '3s', animationIterationCount: 'infinite' }}
+              className="absolute -inset-0.5 rounded-full bg-[#4E85BF]/15 animate-ping pointer-events-none group-hover:scale-125 group-hover:opacity-30 group-hover:bg-[#4E85BF]/30 group-hover:shadow-[0_0_12px_rgba(78,133,191,0.3)] transition-all duration-500 blur-[1px]"
+              style={{ animationDuration: '4s', animationIterationCount: 'infinite' }}
               aria-hidden="true"
             />
             <button

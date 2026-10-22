@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback } from 'react';
+import { Play, Pause, ChevronLeft, ChevronRight, Volume2, VolumeX } from 'lucide-react';
 import { audioEngine } from '../../services/audioEngine';
 
 import entranceImg from '../../assets/images/studio_01_entrance_1792446831639.jpg';
@@ -9,7 +10,7 @@ import controlRoomImg from '../../assets/images/studio_control_live_performance_
 import controlRoomMobileImg from '../../assets/images/control_room_mobile_1792483021817.jpg';
 import productionLabImg from '../../assets/images/studio_04_production_lab_1792446833465.jpg';
 import productionLabMobileImg from '../../assets/images/production_lab_mobile_1792482735447.jpg';
-import masterSuiteImg from '../../assets/images/mastering_suite_active_1792675343261.jpg';
+import masterSuiteImg from '../../assets/images/mastering_suite_collaborating_1792679626184.jpg';
 import masterSuiteMobileImg from '../../assets/images/master_suite_mobile_1792482735792.jpg';
 
 interface CinematicHeroProps {
@@ -168,19 +169,91 @@ function smoothstep(min: number, max: number, value: number): number {
   return x * x * (3 - 2 * x);
 }
 
+// 28 Symmetrical Musical Frequency Equalizer Bars with harmonic heights and phase-staggered delays
+const MUSIC_WAVE_BARS = [
+  { height: 20, delay: '0.45s', duration: '0.7s' },
+  { height: 32, delay: '0.2s', duration: '0.55s' },
+  { height: 48, delay: '0.6s', duration: '0.65s' },
+  { height: 64, delay: '0.1s', duration: '0.5s' },
+  { height: 82, delay: '0.35s', duration: '0.6s' },
+  { height: 104, delay: '0.05s', duration: '0.75s' },
+  { height: 122, delay: '0.25s', duration: '0.52s' },
+  { height: 100, delay: '0.4s', duration: '0.68s' },
+  { height: 118, delay: '0.15s', duration: '0.58s' },
+  { height: 135, delay: '0.3s', duration: '0.72s' },
+  { height: 148, delay: '0.0s', duration: '0.62s' },
+  { height: 125, delay: '0.2s', duration: '0.54s' },
+  { height: 95, delay: '0.5s', duration: '0.66s' },
+  { height: 65, delay: '0.1s', duration: '0.48s' },
+  // Mirrored right half for balanced acoustic symmetry
+  { height: 65, delay: '0.1s', duration: '0.48s' },
+  { height: 95, delay: '0.5s', duration: '0.66s' },
+  { height: 125, delay: '0.2s', duration: '0.54s' },
+  { height: 148, delay: '0.0s', duration: '0.62s' },
+  { height: 135, delay: '0.3s', duration: '0.72s' },
+  { height: 118, delay: '0.15s', duration: '0.58s' },
+  { height: 100, delay: '0.4s', duration: '0.68s' },
+  { height: 122, delay: '0.25s', duration: '0.52s' },
+  { height: 104, delay: '0.05s', duration: '0.75s' },
+  { height: 82, delay: '0.35s', duration: '0.6s' },
+  { height: 64, delay: '0.1s', duration: '0.5s' },
+  { height: 48, delay: '0.6s', duration: '0.65s' },
+  { height: 32, delay: '0.2s', duration: '0.55s' },
+  { height: 20, delay: '0.45s', duration: '0.7s' },
+];
+
+const AUTO_TRANSITION_INTERVAL = 5000; // 5 seconds per chamber
+
 export default function CinematicHero({ onOpenBooking, onExploreSpaces }: CinematicHeroProps) {
   const [scrollProgress, setScrollProgress] = useState(0);
   const [activeSceneIndex, setActiveSceneIndex] = useState(0);
+  const [prevSceneIndex, setPrevSceneIndex] = useState(0);
+  const [autoProgress, setAutoProgress] = useState(0);
+  const [isAutoPlay, setIsAutoPlay] = useState(true);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isHeroInView, setIsHeroInView] = useState(true);
+  const [isMusicWaveActive, setIsMusicWaveActive] = useState(false);
   const [isAudioMuted, setIsAudioMuted] = useState(() => audioEngine.getMuted());
   const [imagesLoaded, setImagesLoaded] = useState(false);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const activeSceneRef = useRef(0);
   const rafRef = useRef<number | null>(null);
+  const waveTimeoutRef = useRef<number | null>(null);
 
   const targetProgressRef = useRef(0);
   const currentProgressRef = useRef(0);
   const prefersReducedMotionRef = useRef(false);
+
+  // Transition to a specific scene with audio trigger and musical wave effect
+  const goToScene = useCallback((index: number) => {
+    setPrevSceneIndex(activeSceneRef.current);
+    activeSceneRef.current = index;
+    setActiveSceneIndex(index);
+    setAutoProgress(0);
+    audioEngine.triggerRoomAudio(index);
+
+    // Trigger Music Wave Fade-In & Fade-Out effect
+    setIsMusicWaveActive(true);
+    if (waveTimeoutRef.current) clearTimeout(waveTimeoutRef.current);
+    waveTimeoutRef.current = window.setTimeout(() => {
+      setIsMusicWaveActive(false);
+    }, 1800);
+  }, []);
+
+  const handleNextScene = useCallback(() => {
+    const next = (activeSceneIndex + 1) % CINEMATIC_SCENES.length;
+    goToScene(next);
+  }, [activeSceneIndex, goToScene]);
+
+  const handlePrevScene = useCallback(() => {
+    const prev = (activeSceneIndex - 1 + CINEMATIC_SCENES.length) % CINEMATIC_SCENES.length;
+    goToScene(prev);
+  }, [activeSceneIndex, goToScene]);
+
+  const toggleAutoPlay = useCallback(() => {
+    setIsAutoPlay((prev) => !prev);
+  }, []);
 
   // Preload all 5 scenes upfront so there is never a blank frame or pop
   useEffect(() => {
@@ -211,7 +284,6 @@ export default function CinematicHero({ onOpenBooking, onExploreSpaces }: Cinema
       };
     });
 
-    // Safety timeout: ensure imagesLoaded is true after 1s even on slow connections
     const timer = setTimeout(() => setImagesLoaded(true), 1200);
     return () => clearTimeout(timer);
   }, []);
@@ -235,6 +307,29 @@ export default function CinematicHero({ onOpenBooking, onExploreSpaces }: Cinema
     const interval = setInterval(checkAudio, 1000);
     return () => clearInterval(interval);
   }, []);
+
+  // 5-Second Auto-Transition Engine with 60fps smooth progress fill
+  useEffect(() => {
+    if (!isAutoPlay || isHovered || !isHeroInView) return;
+
+    const tickMs = 50;
+    const stepIncrement = (tickMs / AUTO_TRANSITION_INTERVAL) * 100;
+
+    const timer = setInterval(() => {
+      setAutoProgress((current) => {
+        const next = current + stepIncrement;
+        if (next >= 100) {
+          const nextIndex = (activeSceneRef.current + 1) % CINEMATIC_SCENES.length;
+          goToScene(nextIndex);
+          return 0;
+        }
+        return next;
+      });
+    }, tickMs);
+
+    return () => clearInterval(timer);
+  }, [isAutoPlay, isHovered, isHeroInView, goToScene]);
+
   // Master scroll listener with RAF interpolation & dampening
   useEffect(() => {
     let isRunning = true;
@@ -251,6 +346,9 @@ export default function CinematicHero({ onOpenBooking, onExploreSpaces }: Cinema
       const currentScroll = Math.max(0, -rect.top);
       const rawProgress = Math.min(1, Math.max(0, currentScroll / totalScrollHeight));
       targetProgressRef.current = rawProgress;
+
+      // Pause auto-transition if user scrolled deeply past hero
+      setIsHeroInView(rect.bottom > 80 && rect.top < viewportH);
     };
 
     const animateLoop = () => {
@@ -260,7 +358,6 @@ export default function CinematicHero({ onOpenBooking, onExploreSpaces }: Cinema
       if (prefersReducedMotionRef.current) {
         currentProgressRef.current = targetProgressRef.current;
       } else if (Math.abs(diff) > 0.0001) {
-        // High-precision smooth follow (0.16) for buttery continuous tracking without input lag
         currentProgressRef.current += diff * 0.16;
       } else {
         currentProgressRef.current = targetProgressRef.current;
@@ -268,41 +365,6 @@ export default function CinematicHero({ onOpenBooking, onExploreSpaces }: Cinema
 
       const p = currentProgressRef.current;
       setScrollProgress(p);
-
-      // Determine active scene based on sweetest spot proximity and visibility
-      let activeIndex = 0;
-      let highestOpacity = -1;
-
-      for (let i = 0; i < CINEMATIC_SCENES.length; i++) {
-        const sc = CINEMATIC_SCENES[i];
-        let op = 0;
-        if (p >= sc.inStart && p <= sc.outEnd) {
-          if (i === 0) {
-            op = p <= sc.outStart ? 1 : 1 - smoothstep(sc.outStart, sc.outEnd, p);
-          } else if (i === CINEMATIC_SCENES.length - 1) {
-            op = p < sc.inEnd ? smoothstep(sc.inStart, sc.inEnd, p) : 1;
-          } else {
-            if (p < sc.inEnd) {
-              op = smoothstep(sc.inStart, sc.inEnd, p);
-            } else if (p <= sc.outStart) {
-              op = 1;
-            } else {
-              op = 1 - smoothstep(sc.outStart, sc.outEnd, p);
-            }
-          }
-        }
-
-        if (op > highestOpacity) {
-          highestOpacity = op;
-          activeIndex = i;
-        }
-      }
-
-      if (activeIndex !== activeSceneRef.current) {
-        activeSceneRef.current = activeIndex;
-        setActiveSceneIndex(activeIndex);
-        audioEngine.triggerRoomAudio(activeIndex);
-      }
 
       rafRef.current = requestAnimationFrame(animateLoop);
     };
@@ -325,6 +387,9 @@ export default function CinematicHero({ onOpenBooking, onExploreSpaces }: Cinema
       if (rafRef.current !== null) {
         cancelAnimationFrame(rafRef.current);
       }
+      if (waveTimeoutRef.current) {
+        clearTimeout(waveTimeoutRef.current);
+      }
     };
   }, []);
 
@@ -333,53 +398,32 @@ export default function CinematicHero({ onOpenBooking, onExploreSpaces }: Cinema
     const handleKeyDown = (e: KeyboardEvent) => {
       if (['INPUT', 'TEXTAREA'].includes((e.target as HTMLElement)?.tagName)) return;
 
-      if (e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === 'ArrowRight') {
-        const container = containerRef.current;
-        if (!container) return;
-        const rect = container.getBoundingClientRect();
-        if (rect.bottom > 0 && rect.top <= 0) {
-          e.preventDefault();
-          const nextIdx = Math.min(CINEMATIC_SCENES.length - 1, activeSceneRef.current + 1);
-          scrollToScene(nextIdx);
-        }
-      } else if (e.key === 'ArrowUp' || e.key === 'PageUp' || e.key === 'ArrowLeft') {
-        const container = containerRef.current;
-        if (!container) return;
-        const rect = container.getBoundingClientRect();
-        if (rect.bottom > 0 && rect.top <= 0) {
-          e.preventDefault();
-          const prevIdx = Math.max(0, activeSceneRef.current - 1);
-          scrollToScene(prevIdx);
-        }
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+        e.preventDefault();
+        handleNextScene();
+      } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+        e.preventDefault();
+        handlePrevScene();
+      } else if (e.key === ' ') {
+        e.preventDefault();
+        toggleAutoPlay();
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, []);
-
-  // Direct scene navigation on indicator click
-  const scrollToScene = useCallback((index: number) => {
-    const container = containerRef.current;
-    if (!container) return;
-    const targetScene = CINEMATIC_SCENES[index];
-    if (!targetScene) return;
-
-    const viewportH = window.innerHeight || document.documentElement.clientHeight;
-    const totalScrollHeight = container.scrollHeight - viewportH;
-    const targetScroll = targetScene.sweetSpot * totalScrollHeight;
-    const containerTop = container.getBoundingClientRect().top + window.scrollY;
-
-    window.scrollTo({
-      top: containerTop + targetScroll,
-      behavior: 'smooth',
-    });
-  }, []);
+  }, [handleNextScene, handlePrevScene, toggleAutoPlay]);
 
   // Handle scroll to enter next studio section
   const handleScrollToEnter = useCallback(() => {
-    scrollToScene(1);
-  }, [scrollToScene]);
+    const container = containerRef.current;
+    if (!container) return;
+    const viewportH = window.innerHeight || document.documentElement.clientHeight;
+    window.scrollTo({
+      top: container.offsetTop + viewportH,
+      behavior: 'smooth',
+    });
+  }, []);
 
   const handleSoundToggle = () => {
     const muted = audioEngine.toggleMute();
@@ -406,70 +450,25 @@ export default function CinematicHero({ onOpenBooking, onExploreSpaces }: Cinema
       {/* Pinned Cinematic Viewport */}
       <div className="sticky top-0 w-full h-[100dvh] overflow-hidden flex flex-col justify-between select-none">
         
-        {/* Layer 1: Living Cinematic Scenes Stack with Scroll Scrubbing */}
+        {/* Layer 1: Living Cinematic Scenes Stack with Auto-Transition & Ken Burns Drift */}
         <div className="absolute inset-0 w-full h-full overflow-hidden bg-[#040609]">
           {CINEMATIC_SCENES.map((scene, idx) => {
-            const p = scrollProgress;
-            let opacity = 0;
+            const isActive = idx === activeSceneIndex;
+            const isPrev = idx === prevSceneIndex;
             const isReducedMotion = prefersReducedMotionRef.current;
 
-            // Compute exact smoothstep opacity for scene
-            if (idx === 0) {
-              if (p <= scene.outStart) {
-                opacity = 1;
-              } else if (p <= scene.outEnd) {
-                opacity = 1 - smoothstep(scene.outStart, scene.outEnd, p);
-              } else {
-                opacity = 0;
-              }
-            } else if (idx === CINEMATIC_SCENES.length - 1) {
-              if (p < scene.inStart) {
-                opacity = 0;
-              } else if (p < scene.inEnd) {
-                opacity = smoothstep(scene.inStart, scene.inEnd, p);
-              } else {
-                opacity = 1;
-              }
-            } else {
-              if (p < scene.inStart || p > scene.outEnd) {
-                opacity = 0;
-              } else if (p < scene.inEnd) {
-                opacity = smoothstep(scene.inStart, scene.inEnd, p);
-              } else if (p <= scene.outStart) {
-                opacity = 1;
-              } else {
-                opacity = 1 - smoothstep(scene.outStart, scene.outEnd, p);
-              }
-            }
-
-            // Zero GPU compositor overhead for completely inactive scenes
-            if (opacity <= 0.001) {
+            // Only mount the active and outgoing scenes to maintain peak 60fps performance
+            if (!isActive && !isPrev) {
               return null;
             }
-
-            // Continuous camera push-in and perspective drift
-            let localProgress = 0;
-            if (scene.outEnd > scene.inStart) {
-              localProgress = Math.max(0, Math.min(1, (p - scene.inStart) / (scene.outEnd - scene.inStart)));
-            }
-
-            const currentScale = isReducedMotion
-              ? 1.0
-              : scene.scaleStart + (scene.scaleEnd - scene.scaleStart) * localProgress;
-            const currentPanX = isReducedMotion
-              ? 0
-              : scene.panXStart + (scene.panXEnd - scene.panXStart) * localProgress;
-            const currentPanY = isReducedMotion
-              ? (scene.panYStart || 0)
-              : scene.panYStart + (scene.panYEnd - scene.panYStart) * localProgress;
 
             return (
               <div
                 key={scene.id}
-                className="absolute inset-0 w-full h-full pointer-events-none transform-gpu"
+                className={`absolute inset-0 w-full h-full pointer-events-none transform-gpu transition-opacity duration-1000 ease-in-out ${
+                  isActive ? 'opacity-100 z-10' : 'opacity-0 z-0'
+                }`}
                 style={{
-                  opacity,
-                  zIndex: idx + 1,
                   willChange: 'opacity, transform',
                 }}
               >
@@ -489,10 +488,13 @@ export default function CinematicHero({ onOpenBooking, onExploreSpaces }: Cinema
                     alt={scene.title}
                     loading={idx === 0 ? 'eager' : 'lazy'}
                     referrerPolicy="no-referrer"
-                    className="w-full h-full object-cover filter contrast-[1.05] brightness-[0.96] saturate-[1.06]"
+                    className={`w-full h-full object-cover filter contrast-[1.05] brightness-[0.96] saturate-[1.06] transition-transform duration-[5000ms] ease-out ${
+                      isActive && !isReducedMotion
+                        ? 'scale-[1.045] translate-x-[0.3%]'
+                        : 'scale-100 translate-x-0'
+                    }`}
                     style={{
                       objectPosition: scene.objectPosition || 'center center',
-                      transform: `scale(${currentScale}) translate3d(${currentPanX}%, ${currentPanY}%, 0)`,
                       transformOrigin: scene.transformOrigin || 'center 20%',
                     }}
                   />
@@ -502,7 +504,102 @@ export default function CinematicHero({ onOpenBooking, onExploreSpaces }: Cinema
           })}
         </div>
 
-        {/* Layer 2: Cinematic Atmospheric Vignettes & Contrast Scrims */}
+        {/* Layer 2: Music Wave Fade-In & Fade-Out Transition Effect (No middle line, purely organic audio wave) */}
+        <div
+          className={`absolute inset-0 pointer-events-none z-20 flex flex-col items-center justify-center transition-all duration-700 ease-in-out ${
+            isMusicWaveActive
+              ? 'opacity-100 scale-100 translate-y-0'
+              : 'opacity-0 scale-95 translate-y-2 pointer-events-none'
+          }`}
+          aria-hidden="true"
+        >
+          {/* Soft atmospheric radial bloom — no harsh lines */}
+          <div className="absolute inset-0 bg-radial from-cyan-500/10 via-transparent to-transparent mix-blend-screen pointer-events-none" />
+
+          {/* Organic Audio Waveform & Equalizer Visualizer */}
+          <div className="relative w-full max-w-xl px-4 flex flex-col items-center justify-center pointer-events-none">
+            {/* Dual Oscillating Audio Sine Wave Paths */}
+            <svg
+              className="w-full h-12 sm:h-16 overflow-visible drop-shadow-[0_0_12px_rgba(0,240,255,0.6)]"
+              viewBox="0 0 600 80"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <defs>
+                <linearGradient id="sonicWaveGrad1" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#38bdf8" stopOpacity="0" />
+                  <stop offset="25%" stopColor="#38bdf8" stopOpacity="0.85" />
+                  <stop offset="50%" stopColor="#00f0ff" stopOpacity="1" />
+                  <stop offset="75%" stopColor="#818cf8" stopOpacity="0.85" />
+                  <stop offset="100%" stopColor="#818cf8" stopOpacity="0" />
+                </linearGradient>
+                <linearGradient id="sonicWaveGrad2" x1="0%" y1="0%" x2="100%" y2="0%">
+                  <stop offset="0%" stopColor="#4E85BF" stopOpacity="0" />
+                  <stop offset="30%" stopColor="#4E85BF" stopOpacity="0.65" />
+                  <stop offset="50%" stopColor="#38bdf8" stopOpacity="0.9" />
+                  <stop offset="70%" stopColor="#4E85BF" stopOpacity="0.65" />
+                  <stop offset="100%" stopColor="#4E85BF" stopOpacity="0" />
+                </linearGradient>
+                <filter id="waveGlow" x="-20%" y="-20%" width="140%" height="140%">
+                  <feGaussianBlur stdDeviation="3" result="blur" />
+                  <feMerge>
+                    <feMergeNode in="blur" />
+                    <feMergeNode in="SourceGraphic" />
+                  </feMerge>
+                </filter>
+              </defs>
+
+              {/* Primary Harmonic Sound Wave Curve */}
+              <path
+                d="M 0,40 C 75,18 125,62 200,40 C 275,18 325,62 400,40 C 475,18 525,62 600,40"
+                stroke="url(#sonicWaveGrad1)"
+                strokeWidth="2.5"
+                strokeLinecap="round"
+                filter="url(#waveGlow)"
+                className="wave-oscillate"
+                style={{
+                  strokeDasharray: '600',
+                }}
+              />
+
+              {/* Secondary Phase-Shifted Wave Curve */}
+              <path
+                d="M 0,40 C 60,56 140,24 220,40 C 300,56 380,24 460,40 C 530,52 570,32 600,40"
+                stroke="url(#sonicWaveGrad2)"
+                strokeWidth="1.5"
+                strokeLinecap="round"
+                opacity="0.65"
+              />
+            </svg>
+
+            {/* Symmetrical Harmonic Equalizer Frequency Bars */}
+            <div className="flex items-end justify-center gap-1 sm:gap-1.5 h-12 sm:h-14 px-4 py-1 mt-1">
+              {MUSIC_WAVE_BARS.map((bar, bIdx) => (
+                <div
+                  key={bIdx}
+                  className={`w-1 sm:w-1.5 rounded-full bg-gradient-to-t from-[#4E85BF] via-[#38bdf8] to-[#00f0ff] shadow-[0_0_8px_rgba(56,189,248,0.7)] origin-bottom transition-all ${
+                    isMusicWaveActive ? 'music-wave-bar' : ''
+                  }`}
+                  style={{
+                    height: `${bar.height * 0.35}px`,
+                    animationDuration: bar.duration,
+                    animationDelay: bar.delay,
+                  }}
+                />
+              ))}
+            </div>
+
+            {/* Subtle Chamber Transition Acoustic Pill */}
+            <div className="flex items-center gap-2 mt-2 px-3 py-0.5 rounded-full bg-black/60 border border-cyan-400/30 backdrop-blur-md shadow-[0_4px_16px_rgba(0,240,255,0.25)]">
+              <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping" />
+              <span className="text-[8px] sm:text-[9px] font-mono tracking-[0.25em] text-cyan-300 uppercase select-none">
+                {CINEMATIC_SCENES[activeSceneIndex]?.roomTag || 'ACOUSTIC RESONANCE'}
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* Layer 3: Cinematic Atmospheric Vignettes & Contrast Scrims */}
         <div className="absolute inset-0 bg-radial from-transparent via-black/25 to-black/80 pointer-events-none z-10" />
 
         {/* Minimal soft top gradient that keeps navbar legible without dimming the illuminated SONICVAULT STUDIOS sign */}
@@ -556,43 +653,105 @@ export default function CinematicHero({ onOpenBooking, onExploreSpaces }: Cinema
           )}
         </main>
 
-        {/* Layer 6: Cinematic Studio Tour HUD (Synchronized Scene Indicator & Sound Bar) */}
-        <div className="relative z-30 pb-4 sm:pb-6 flex justify-center pointer-events-auto">
-          <div className="px-3.5 sm:px-5 py-2 sm:py-2.5 rounded-full bg-black/85 backdrop-blur-2xl border border-white/20 shadow-[0_12px_40px_rgba(0,0,0,0.85)] flex items-center gap-2.5 sm:gap-4 max-w-[94vw] transition-all duration-300">
+        {/* Layer 6: Cinematic Studio Tour HUD (Synchronized Scene Indicator, 5s Auto-Transition Gauge & Controls) */}
+        <div
+          className="relative z-30 pb-4 sm:pb-6 flex justify-center pointer-events-auto"
+          onMouseEnter={() => setIsHovered(true)}
+          onMouseLeave={() => setIsHovered(false)}
+        >
+          <div className="px-3 sm:px-4 py-2 sm:py-2.5 rounded-full bg-black/85 backdrop-blur-2xl border border-white/20 shadow-[0_12px_40px_rgba(0,0,0,0.85)] flex items-center gap-2 sm:gap-3 max-w-[96vw] transition-all duration-300 hover:border-cyan-500/50">
+            {/* Auto Play/Pause Button */}
+            <button
+              onClick={toggleAutoPlay}
+              className="p-1 sm:p-1.5 rounded-full text-white/70 hover:text-cyan-300 hover:bg-white/10 transition-colors cursor-pointer focus:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400 shrink-0"
+              title={isAutoPlay ? 'Auto-Transition Active (5s) — Click to pause' : 'Auto-Transition Paused — Click to play'}
+              aria-label={isAutoPlay ? 'Pause auto transition' : 'Play auto transition'}
+            >
+              {isAutoPlay ? (
+                <Pause className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-cyan-400" />
+              ) : (
+                <Play className="w-3 h-3 sm:w-3.5 sm:h-3.5 text-white/80" />
+              )}
+            </button>
+
+            {/* Previous Chamber Chevron */}
+            <button
+              onClick={handlePrevScene}
+              className="p-1 rounded-full text-white/60 hover:text-white hover:bg-white/10 transition-colors cursor-pointer focus:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400 shrink-0"
+              title="Previous studio chamber"
+              aria-label="Previous studio chamber"
+            >
+              <ChevronLeft className="w-3.5 h-3.5" />
+            </button>
+
             {/* Active cyan pulse dot */}
             <span className="w-2 h-2 rounded-full bg-cyan-400 animate-pulse shrink-0 shadow-[0_0_8px_rgba(0,240,255,0.8)]" />
             
-            {/* Counter and Room Name */}
-            <div className="flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs font-mono text-white whitespace-nowrap">
+            {/* Counter and Room Name with smooth transition */}
+            <div className="flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs font-mono text-white whitespace-nowrap overflow-hidden">
               <span className="text-cyan-300 font-bold tabular-nums">{`0${activeSceneIndex + 1}`}</span>
               <span className="text-white/40">/</span>
               <span className="text-white/60 tabular-nums">{`0${CINEMATIC_SCENES.length}`}</span>
               <span className="text-white/30 hidden sm:inline">·</span>
-              <span className="tracking-wider uppercase truncate font-medium text-slate-200 max-w-[160px] sm:max-w-[260px] md:max-w-none">
+              <span className="tracking-wider uppercase truncate font-medium text-slate-200 max-w-[140px] sm:max-w-[220px] md:max-w-none transition-all duration-300">
                 {CINEMATIC_SCENES[activeSceneIndex]?.title}
               </span>
             </div>
 
-            {/* Interactive Room Progress Dots with Instant Transition */}
+            {/* Next Chamber Chevron */}
+            <button
+              onClick={handleNextScene}
+              className="p-1 rounded-full text-white/60 hover:text-white hover:bg-white/10 transition-colors cursor-pointer focus:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400 shrink-0"
+              title="Next studio chamber"
+              aria-label="Next studio chamber"
+            >
+              <ChevronRight className="w-3.5 h-3.5" />
+            </button>
+
+            {/* Interactive Room Progress Dots with 5-Second Active Gauge */}
             <div className="flex items-center gap-1.5 pl-2 sm:pl-3 border-l border-white/20 shrink-0">
               {CINEMATIC_SCENES.map((scene, sIdx) => {
                 const isActive = sIdx === activeSceneIndex;
                 return (
                   <button
                     key={scene.id}
-                    onClick={() => scrollToScene(sIdx)}
-                    className={`h-2 rounded-full transition-all duration-300 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-400 ${
+                    onClick={() => goToScene(sIdx)}
+                    className={`h-2 rounded-full transition-all duration-300 cursor-pointer focus:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400 relative overflow-hidden ${
                       isActive
-                        ? 'bg-cyan-400 w-5 sm:w-6 shadow-[0_0_12px_rgba(0,240,255,0.8)]'
-                        : 'bg-white/30 hover:bg-white/60 w-2'
+                        ? 'bg-white/20 w-10 sm:w-14 shadow-[0_0_12px_rgba(0,240,255,0.6)]'
+                        : 'bg-white/30 hover:bg-white/60 w-2 hover:scale-125'
                     }`}
-                    title={`Tour Scene 0${sIdx + 1}: ${scene.title}`}
-                    aria-label={`Jump to Scene 0${sIdx + 1}: ${scene.title}`}
+                    title={`Chamber 0${sIdx + 1}: ${scene.title} (Click to view)`}
+                    aria-label={`Jump to Chamber 0${sIdx + 1}: ${scene.title}`}
                     aria-current={isActive ? 'step' : undefined}
-                  />
+                  >
+                    {isActive && (
+                      <span
+                        className="absolute inset-y-0 left-0 bg-cyan-400 rounded-full shadow-[0_0_10px_rgba(0,240,255,0.9)]"
+                        style={{
+                          width: `${isAutoPlay && !isHovered ? autoProgress : 100}%`,
+                          transition: 'width 60ms linear',
+                        }}
+                      />
+                    )}
+                  </button>
                 );
               })}
             </div>
+
+            {/* Ambient Sound Toggle Button */}
+            <button
+              onClick={handleSoundToggle}
+              className="hidden sm:flex items-center justify-center p-1 sm:p-1.5 rounded-full text-white/60 hover:text-cyan-300 hover:bg-white/10 transition-colors cursor-pointer shrink-0 ml-1"
+              title={isAudioMuted ? 'Unmute Ambient Room Audio' : 'Mute Ambient Room Audio'}
+              aria-label={isAudioMuted ? 'Unmute studio audio' : 'Mute studio audio'}
+            >
+              {isAudioMuted ? (
+                <VolumeX className="w-3 h-3 text-white/40" />
+              ) : (
+                <Volume2 className="w-3 h-3 text-cyan-400" />
+              )}
+            </button>
           </div>
         </div>
 
@@ -600,3 +759,4 @@ export default function CinematicHero({ onOpenBooking, onExploreSpaces }: Cinema
     </div>
   );
 }
+

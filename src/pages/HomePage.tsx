@@ -12,7 +12,7 @@ import controlRoomImg from '../assets/images/studio_03_control_room_179244683303
 import vocalBoothImg from '../assets/images/studio_02_vocal_booth_1792446832131.jpg';
 import liveRoomImg from '../assets/images/hero_recording_room_v2_1792444696580.jpg';
 import productionLabImg from '../assets/images/studio_04_production_lab_1792446833465.jpg';
-import masterSuiteImg from '../assets/images/mastering_suite_active_1792675343261.jpg';
+import masterSuiteImg from '../assets/images/mastering_suite_collaborating_1792679626184.jpg';
 
 interface HomePageProps {
   onOpenBooking: (serviceOrRoom?: string) => void;

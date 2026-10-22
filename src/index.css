@@ -74,3 +74,51 @@
 ::-webkit-scrollbar-thumb:hover {
   background: #38bdf8;
 }
+
+/* Music Waveform Visualizer Animation */
+@keyframes musicWaveBar {
+  0%, 100% {
+    transform: scaleY(0.18);
+    opacity: 0.4;
+  }
+  50% {
+    transform: scaleY(1);
+    opacity: 1;
+  }
+}
+
+@keyframes waveOscillate {
+  0% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: 200;
+  }
+}
+
+/* Minimally subtle luxury ripple ping for CTA buttons */
+@keyframes ping {
+  0% {
+    transform: scale(0.99);
+    opacity: 0.22;
+  }
+  50% {
+    transform: scale(1.05);
+    opacity: 0.12;
+  }
+  100% {
+    transform: scale(1.1);
+    opacity: 0;
+  }
+}
+
+.music-wave-bar {
+  animation: musicWaveBar ease-in-out infinite alternate;
+}
+
+.wave-oscillate {
+  animation: waveOscillate 4s linear infinite;
+}
+
+
+

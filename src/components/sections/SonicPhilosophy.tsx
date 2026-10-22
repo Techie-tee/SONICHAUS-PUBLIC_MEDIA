@@ -6,22 +6,22 @@ export default function SonicPhilosophy() {
   const shouldReduceMotion = useReducedMotion();
   const principles = [
     {
+      id: 'capture-moment',
       icon: Mic,
-      number: '01',
       title: 'Capture the moment.',
       description:
         'Honoring raw emotional truth and unrepeatable spontaneous takes before technical overthinking interferes.',
     },
     {
+      id: 'shape-emotion',
       icon: Activity,
-      number: '02',
       title: 'Shape the emotion.',
       description:
         'Sculpting analog tone, harmonic saturation, dynamic impact, and architectural acoustic space to support the artist’s narrative.',
     },
     {
+      id: 'perfect-details',
       icon: Disc,
-      number: '03',
       title: 'Perfect the details.',
       description:
         'Surgical frequency calibration, phase alignment, and master bus cohesion so your sound translates impeccably everywhere.',
@@ -89,20 +89,17 @@ export default function SonicPhilosophy() {
             const Icon = principle.icon;
             return (
               <motion.div
-                key={principle.number}
+                key={principle.id}
                 initial={{ opacity: 0, y: 30 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-50px' }}
                 transition={{ duration: 0.6, ease: 'easeOut' }}
                 className="p-8 sm:p-10 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-[#4E85BF]/40 transition-all duration-300 space-y-5 group relative"
               >
-                <div className="flex items-center justify-between">
+                <div>
                   <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-[#89AACC] group-hover:scale-110 transition-transform">
                     <Icon className="w-5 h-5" />
                   </div>
-                  <span className="text-xs font-mono text-slate-500 font-bold tracking-widest">
-                    {principle.number}
-                  </span>
                 </div>
 
                 <div className="space-y-2">

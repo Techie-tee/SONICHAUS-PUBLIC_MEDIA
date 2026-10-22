@@ -71,10 +71,10 @@ export default function FloatingWhatsApp() {
       className={`fixed ${bottomClass} left-3 sm:left-6 z-40 transition-all duration-300`}
     >
       <div className="relative group">
-        {/* Subtle, non-distracting ping / ripple aura that catches the eye with hover glow and scale-up transition */}
+        {/* Minimally subtle ping / ripple aura with soft hover glow */}
         <span
-          className="absolute -inset-1 rounded-full bg-[#25D366]/35 animate-ping pointer-events-none group-hover:scale-125 group-hover:opacity-75 group-hover:bg-[#25D366]/55 group-hover:shadow-[0_0_22px_rgba(37,211,102,0.85)] transition-all duration-300"
-          style={{ animationDuration: '3s', animationIterationCount: 'infinite' }}
+          className="absolute -inset-0.5 rounded-full bg-[#25D366]/15 animate-ping pointer-events-none group-hover:scale-125 group-hover:opacity-30 group-hover:bg-[#25D366]/30 group-hover:shadow-[0_0_10px_rgba(37,211,102,0.3)] transition-all duration-500 blur-[1px]"
+          style={{ animationDuration: '4s', animationIterationCount: 'infinite' }}
           aria-hidden="true"
         />
 

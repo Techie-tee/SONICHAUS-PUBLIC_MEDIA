@@ -80,13 +80,20 @@ export default function FinalCinematicCTA({ onOpenBooking }: FinalCinematicCTAPr
 
         {/* Dual Actions */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-          <button
-            onClick={onOpenBooking}
-            className="w-full sm:w-auto px-9 py-4 rounded-full accent-gradient text-white text-xs sm:text-sm font-bold uppercase tracking-wider shadow-[0_0_35px_rgba(78,133,191,0.45)] hover:opacity-90 transition-opacity cursor-pointer inline-flex items-center justify-center gap-2"
-          >
-            <span>BOOK A SESSION</span>
-            <ArrowUpRight className="w-4 h-4" />
-          </button>
+          <div className="relative group w-full sm:w-auto">
+            <span
+              className="absolute -inset-1 rounded-full bg-[#4E85BF]/40 animate-ping pointer-events-none group-hover:scale-125 group-hover:opacity-85 group-hover:bg-[#4E85BF]/60 group-hover:shadow-[0_0_30px_rgba(78,133,191,0.9)] transition-all duration-300"
+              style={{ animationDuration: '3s', animationIterationCount: 'infinite' }}
+              aria-hidden="true"
+            />
+            <button
+              onClick={onOpenBooking}
+              className="relative w-full sm:w-auto px-9 py-4 rounded-full accent-gradient text-white text-xs sm:text-sm font-bold uppercase tracking-wider shadow-[0_0_35px_rgba(78,133,191,0.45)] hover:opacity-90 active:scale-95 transition-all cursor-pointer inline-flex items-center justify-center gap-2"
+            >
+              <span>BOOK A SESSION</span>
+              <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+            </button>
+          </div>
 
           <a
             href={whatsappUrl}

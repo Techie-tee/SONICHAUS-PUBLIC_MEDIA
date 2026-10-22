@@ -1,4 +1,4 @@
-import { MapPin, Mail, Phone, MessageCircle, ArrowUpRight, ArrowUp, Instagram } from 'lucide-react';
+import { MapPin, Mail, Phone, MessageCircle, ArrowUpRight, ArrowUp, Instagram, Twitter, Linkedin } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import BrandLogo from '../common/BrandLogo';
 
@@ -125,9 +125,40 @@ export default function StudioFooter({ onOpenBooking }: StudioFooterProps) {
               </a>
             </div>
 
-            <div className="pt-1 flex items-center gap-2 text-slate-400">
-              <Instagram className="w-4 h-4 text-[#89AACC] shrink-0" />
-              <span className="font-mono text-[11px]">@SONICVAULTSTUDIO38</span>
+            {/* Social Media Links */}
+            <div className="pt-2">
+              <span className="text-[10px] uppercase tracking-widest text-slate-400 font-mono block mb-2">
+                Connect With Us
+              </span>
+              <div className="flex items-center gap-3">
+                <a
+                  href="https://instagram.com/sonicvaultstudio38"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-8 h-8 rounded-full bg-white/5 border border-white/10 hover:border-cyan-400/50 hover:bg-cyan-500/10 flex items-center justify-center text-slate-300 hover:text-cyan-400 transition-all group"
+                  aria-label="Follow SonicVault Studios on Instagram (opens in new tab)"
+                >
+                  <Instagram className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                </a>
+                <a
+                  href="https://twitter.com/sonicvaultstudios"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-8 h-8 rounded-full bg-white/5 border border-white/10 hover:border-cyan-400/50 hover:bg-cyan-500/10 flex items-center justify-center text-slate-300 hover:text-cyan-400 transition-all group"
+                  aria-label="Follow SonicVault Studios on Twitter (opens in new tab)"
+                >
+                  <Twitter className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                </a>
+                <a
+                  href="https://linkedin.com/company/sonicvault-studios"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-8 h-8 rounded-full bg-white/5 border border-white/10 hover:border-cyan-400/50 hover:bg-cyan-500/10 flex items-center justify-center text-slate-300 hover:text-cyan-400 transition-all group"
+                  aria-label="Connect with SonicVault Studios on LinkedIn (opens in new tab)"
+                >
+                  <Linkedin className="w-4 h-4 group-hover:scale-110 transition-transform" />
+                </a>
+              </div>
             </div>
           </div>
         </div>

@@ -1,5 +1,6 @@
 import { Router, Request, Response, NextFunction } from 'express';
 import crypto from 'crypto';
+import { GoogleGenAI } from '@google/genai';
 import { db, hashPassword } from '../db/store.ts';
 
 export const apiRouter = Router();
@@ -536,7 +537,7 @@ apiRouter.patch('/enquiries/:id', requireAdmin, (req, res) => {
 // ==========================================
 // 11. CHATBOT KNOWLEDGE BASE & AI QUERY
 // ==========================================
-apiRouter.post('/chatbot/query', (req, res) => {
+apiRouter.post('/chatbot/query', async (req, res) => {
   const { query } = req.body;
   if (!query || typeof query !== 'string') {
     return res.status(400).json({ error: 'Query text required' });
@@ -550,26 +551,55 @@ apiRouter.post('/chatbot/query', (req, res) => {
     item.keywords.some((kw) => normalized.includes(kw.toLowerCase()))
   );
 
-  if (!matched) {
-    // Fuzzy fallback based on common intent
-    if (normalized.includes('hello') || normalized.includes('hi') || normalized.includes('hey')) {
-      return res.json({
-        answer: 'Welcome to SONICVAULT STUDIOS — where sound becomes art. 🎙️ Are you here to book a session, explore our services, discover our equipment, or listen to our work?',
-        suggestions: ['Book a Session', 'View Services', 'Studio Location', 'Speak on WhatsApp'],
-      });
-    }
-
+  if (matched) {
     return res.json({
-      answer: "I don't have verified information on that specific detail in our published vault guide. For bespoke requests or direct questions, please message our studio team immediately on WhatsApp at +2349015104502 or call 09015104502.",
-      suggestions: ['Speak on WhatsApp', 'Book a Session', 'View Equipment'],
-      whatsappUrl: 'https://wa.me/2349015104502',
+      answer: matched.answer,
+      category: matched.category,
+      suggestions: ['Book a Session', 'View Equipment', 'Studio Tour', 'WhatsApp Support'],
     });
   }
 
-  res.json({
-    answer: matched.answer,
-    category: matched.category,
-    suggestions: ['Book a Session', 'View Equipment', 'Studio Tour', 'WhatsApp Support'],
+  // Quick greetings
+  if (normalized.includes('hello') || normalized.includes('hi') || normalized.includes('hey')) {
+    return res.json({
+      answer: 'Welcome to SONICVAULT STUDIOS — where sound becomes art. 🎙️ Are you here to book a session, explore our services, discover our equipment, or listen to our work?',
+      suggestions: ['Book a Session', 'View Services', 'Studio Location', 'Speak on WhatsApp'],
+    });
+  }
+
+  // Server-side Gemini 2.5 Flash integration when GEMINI_API_KEY is configured
+  if (process.env.GEMINI_API_KEY) {
+    try {
+      const ai = new GoogleGenAI();
+      const settings = db.get('siteSettings');
+      const response = await ai.models.generateContent({
+        model: 'gemini-2.5-flash',
+        contents: query,
+        config: {
+          systemInstruction: `You are the concierge AI assistant for SONICVAULT STUDIOS, a luxury, state-of-the-art music recording and production studio located at ${settings.address || '38 Olanrewaju Ninalowo Crescent, Lekki Phase 1, Lagos, Nigeria'}.
+Studio Contact: Phone ${settings.phone || '09015104502'}, WhatsApp +${settings.internationalWhatsApp || '2349015104502'}, Email ${settings.email || 'Sonicvaultstudios@gmail.com'}.
+Key Facilities: Vocal Booth, Live Recording Room, Analog Control Room, Production Lab, Mastering Suite.
+Tone: Warm, sophisticated, professional, concise (1-3 sentences max).
+Encourage booking a session or reaching out on WhatsApp. Do not make up unverified pricing.`,
+        },
+      });
+
+      if (response.text) {
+        return res.json({
+          answer: response.text.trim(),
+          suggestions: ['Book a Session', 'Speak on WhatsApp', 'View Equipment', 'Studio Tour'],
+          whatsappUrl: `https://wa.me/${settings.internationalWhatsApp || '2349015104502'}`,
+        });
+      }
+    } catch (aiErr) {
+      console.warn('[AI Concierge] Gemini generation error, using fallback:', aiErr);
+    }
+  }
+
+  return res.json({
+    answer: "I don't have verified information on that specific detail in our published vault guide. For bespoke requests or direct questions, please message our studio team immediately on WhatsApp at +2349015104502 or call 09015104502.",
+    suggestions: ['Speak on WhatsApp', 'Book a Session', 'View Equipment'],
+    whatsappUrl: 'https://wa.me/2349015104502',
   });
 });
 

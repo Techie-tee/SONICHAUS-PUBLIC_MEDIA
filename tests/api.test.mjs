@@ -333,21 +333,119 @@ describe('SONICVAULT STUDIOS — Core Infrastructure & Security Tests', () => {
     assert.ok(modalCode.includes('items-start sm:items-center'), 'BookingModal must support items-start on mobile to avoid modal clipping');
   });
 
-  test('15. Hero Section: Headline Upper Alignment Just Below Fixed Header', async () => {
+  test('15. Hero Section: Lowered Headline Alignment in Space Below Logo and Above Entering Figure', async () => {
     const fs = await import('node:fs');
     const path = await import('node:path');
 
     const heroCode = fs.readFileSync(path.resolve(process.cwd(), 'src/components/hero/CinematicHero.tsx'), 'utf-8');
 
-    // 1. Must position headline in upper region using justify-start
+    // 1. Must position headline using justify-start
     assert.ok(heroCode.includes('justify-start'), 'Hero main headline must use justify-start to align in the upper viewport region');
     assert.strictEqual(heroCode.includes('justify-end items-center text-center px-4 sm:px-6 max-w-3xl mx-auto pointer-events-none w-full pb-3'), false, 'Old bottom-anchored justify-end must be removed');
 
-    // 2. Must define top padding clearance to sit just below the fixed header
+    // 2. Must define lowered top clearance to sit below SONICVAULT STUDIOS logo and above entering figure
     assert.ok(
-      heroCode.includes('pt-16') || heroCode.includes('pt-20') || heroCode.includes('pt-24'),
-      'Hero headline must provide responsive top clearance below the fixed navbar header'
+      heroCode.includes('clamp(') || heroCode.includes('26.5vh') || heroCode.includes('28vh') || heroCode.includes('pt-'),
+      'Hero headline must provide responsive clearance lowering it below the entrance logo'
+    );
+  });
+
+  test('16. Transom Header Unit: Centered Architectural Alignment & Mobile Responsiveness', async () => {
+    const fs = await import('node:fs');
+    const path = await import('node:path');
+
+    const heroCode = fs.readFileSync(path.resolve(process.cwd(), 'src/components/hero/CinematicHero.tsx'), 'utf-8');
+
+    // 1. Must define dedicated centered transom unit for WORLD-CLASS ACOUSTIC SANCTUARY and SCROLL TO ENTER
+    assert.ok(
+      heroCode.includes('WORLD-CLASS ACOUSTIC SANCTUARY'),
+      'Hero must render WORLD-CLASS ACOUSTIC SANCTUARY'
+    );
+    assert.ok(
+      heroCode.includes('SCROLL TO ENTER'),
+      'Hero must render SCROLL TO ENTER'
+    );
+
+    // 2. Must feature vertical clearance offset (mt-2 or mt-3) to clear the blue neon strip
+    assert.ok(
+      heroCode.includes('mt-2') || heroCode.includes('mt-2.5') || heroCode.includes('mt-3') || heroCode.includes('mt-3.5') || heroCode.includes('mt-4'),
+      'Transom header must define vertical offset to clear the blue neon accent strip'
+    );
+
+    // 3. Must center horizontally and vertically within an architectural capsule
+    assert.ok(
+      heroCode.includes('flex flex-col items-center justify-center text-center'),
+      'Transom header must center horizontally and vertically'
+    );
+
+    // 4. Must enforce mobile-responsive tracking and typography to prevent line wrapping on narrow screens
+    assert.ok(
+      heroCode.includes('whitespace-nowrap'),
+      'Transom header text must prevent awkward line wrapping'
+    );
+    assert.ok(
+      heroCode.includes('text-[7.5px]') || heroCode.includes('text-[8.5px]'),
+      'Transom header text must have responsive typography for small mobile viewports'
+    );
+
+    // 5. Must eliminate aggressive bounce collision with the door sensor
+    assert.strictEqual(
+      heroCode.includes('animate-bounce drop-shadow cursor-pointer pointer-events-auto hover:text-cyan-300'),
+      false,
+      'Old unconstrained bounce collision with door sensor must be removed'
+    );
+  });
+
+  test('17. Engagement Analytics: WhatsApp Concierge Button Click Tracker & Hover Ripple Glow', async () => {
+    const fs = await import('node:fs');
+    const path = await import('node:path');
+
+    const waCode = fs.readFileSync(path.resolve(process.cwd(), 'src/components/chat/FloatingWhatsApp.tsx'), 'utf-8');
+
+    // 1. Must define click event handler logging to console
+    assert.ok(
+      waCode.includes('handleWhatsAppClick') && waCode.includes('console.log('),
+      'WhatsApp component must have handleWhatsAppClick logging to console'
+    );
+
+    // 2. Must log structured engagement tracking metadata
+    assert.ok(
+      waCode.includes('[ENGAGEMENT_TRACKER]') && waCode.includes('whatsapp_concierge_open'),
+      'Click logger must report [ENGAGEMENT_TRACKER] with whatsapp_concierge_open action'
+    );
+
+    // 3. Must attach onClick handler to anchor tag
+    assert.ok(
+      waCode.includes('onClick={handleWhatsAppClick}'),
+      'Anchor element must attach onClick={handleWhatsAppClick}'
+    );
+
+    // 4. Must feature subtle ping ripple aura with hover scale-up and glow
+    assert.ok(
+      waCode.includes('animate-ping') && waCode.includes('group-hover:scale-125'),
+      'FloatingWhatsApp must render a subtle ping / ripple aura with hover scale-up and glow'
+    );
+  });
+
+  test('18. Conversion Buttons: Book a Session Hover Ripple & Scale-Up Glow Effect', async () => {
+    const fs = await import('node:fs');
+    const path = await import('node:path');
+
+    const navCode = fs.readFileSync(path.resolve(process.cwd(), 'src/components/layout/Navbar.tsx'), 'utf-8');
+    const ctaCode = fs.readFileSync(path.resolve(process.cwd(), 'src/components/sections/FinalCinematicCTA.tsx'), 'utf-8');
+
+    // 1. Navbar booking button must feature ripple ping effect with hover scale-up
+    assert.ok(
+      navCode.includes('animate-ping') && navCode.includes('group-hover:scale-125'),
+      'Navbar BOOK A SESSION button must have ripple ping effect with hover scale-up transition'
+    );
+
+    // 2. Final Cinematic CTA button must feature ripple ping effect with hover scale-up
+    assert.ok(
+      ctaCode.includes('animate-ping') && ctaCode.includes('group-hover:scale-125'),
+      'Final CTA BOOK A SESSION button must have ripple ping effect with hover scale-up transition'
     );
   });
 });
+
 

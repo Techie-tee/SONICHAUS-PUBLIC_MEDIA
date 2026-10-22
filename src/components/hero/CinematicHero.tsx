@@ -1,7 +1,6 @@
 import { useState, useEffect, useRef, useMemo, useCallback } from 'react';
 import { Volume2, VolumeX, Sparkles, Sliders, ChevronDown } from 'lucide-react';
 import { audioEngine } from '../../services/audioEngine';
-import { SonicVaultVectorMark } from '../common/BrandLogo';
 
 import entranceImg from '../../assets/images/studio_01_entrance_1792446831639.jpg';
 import entranceMobileImg from '../../assets/images/mobile/scene_01_entrance_mobile.jpg';
@@ -560,8 +559,8 @@ export default function CinematicHero({ onOpenBooking, onExploreSpaces }: Cinema
         {/* Seamless bottom fade that cleanly bridges into the next section */}
         <div className="absolute bottom-0 inset-x-0 h-36 bg-gradient-to-t from-[#040609] via-[#040609]/80 to-transparent pointer-events-none z-20" />
 
-        {/* Layer 5: Main Headline & Intro Branding — Positioned in the upper hero region just below the SONIC VAULT STUDIOS header */}
-        <main className="relative z-20 flex-1 flex flex-col justify-start items-center text-center px-4 sm:px-6 max-w-3xl mx-auto pointer-events-none w-full pt-16 sm:pt-20 md:pt-24 lg:pt-28 pb-4">
+        {/* Layer 5: Main Headline & Intro Branding — Positioned downward into the balanced space between the entrance logo and the tip of the entering figure */}
+        <main className="relative z-20 flex-1 flex flex-col justify-start items-center text-center px-4 sm:px-6 max-w-3xl mx-auto pointer-events-none w-full pt-[clamp(20rem,43.5vh,26rem)] sm:pt-[clamp(22rem,48vh,30rem)] md:pt-[clamp(24rem,53vh,35rem)] lg:pt-[clamp(15rem,32.5vh,20rem)] pb-4">
           {headlineOpacity > 0.01 && (
             <div
               className="space-y-1.5 sm:space-y-2 pointer-events-auto flex flex-col items-center justify-center text-center px-2 w-full max-w-full"
@@ -571,39 +570,36 @@ export default function CinematicHero({ onOpenBooking, onExploreSpaces }: Cinema
                 willChange: 'opacity, transform',
               }}
             >
-              {/* Refined compact location badge positioned cleanly below the header */}
-              <div className="inline-flex items-center justify-center gap-1.5 px-3 py-1 rounded-full bg-black/85 backdrop-blur-md border border-cyan-400/35 text-[9px] sm:text-[10px] font-mono uppercase tracking-[0.22em] text-cyan-300 shadow-[0_0_12px_rgba(0,240,255,0.18)]">
-                <SonicVaultVectorMark size={11} />
-                <span>LEKKI PHASE 1 · LAGOS, NIGERIA</span>
-              </div>
-
-              {/* Refined Headline: MAKE MAGIC. MAKE HISTORY. (Reduced font size to harmonize with architecture) */}
+              {/* Main Headline: MAKE MAGIC. MAKE HISTORY. */}
               <div className="text-center w-full">
-                <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-black tracking-tight text-white font-display uppercase leading-tight drop-shadow-[0_4px_20px_rgba(0,0,0,0.95)]">
+                <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-3xl font-black tracking-tight text-white font-display uppercase leading-tight drop-shadow-[0_4px_24px_rgba(0,0,0,0.98)]">
                   <span className="text-white">MAKE MAGIC. </span>
                   <span className="accent-gradient-text">MAKE HISTORY.</span>
                 </h1>
               </div>
 
               {/* Subhead and signature tagline */}
-              <div className="space-y-0.5 text-center max-w-md mx-auto">
-                <p className="text-[11px] sm:text-xs font-medium tracking-wide text-slate-200 font-display drop-shadow-[0_2px_10px_rgba(0,0,0,0.95)]">
-                  WHERE SOUND BECOMES ART.
-                </p>
-                <p className="text-[9px] sm:text-[10px] font-mono tracking-widest text-[#89AACC] uppercase">
-                  WORLD-CLASS ACOUSTIC SANCTUARY
-                </p>
-              </div>
+              <p className="text-xs sm:text-sm font-medium tracking-wide text-slate-200 font-display drop-shadow-[0_2px_12px_rgba(0,0,0,0.98)]">
+                WHERE SOUND BECOMES ART.
+              </p>
 
-              {/* Interactive Scroll Prompt Button */}
-              <button
-                type="button"
-                onClick={() => scrollToScene(1)}
-                className="pt-0.5 flex flex-col items-center justify-center gap-0.5 text-[9px] sm:text-[10px] font-mono text-slate-400 tracking-wider animate-bounce drop-shadow cursor-pointer pointer-events-auto hover:text-cyan-300 transition-colors group"
-                aria-label="Scroll to enter the studio tour"
-              >
-                <span className="group-hover:text-cyan-300 transition-colors">SCROLL TO ENTER ↓</span>
-              </button>
+              {/* Architectural Transom Supporting Unit — Anchored directly in the upper entrance doorway area */}
+              <div className="mt-2.5 sm:mt-3 flex flex-col items-center justify-center text-center max-w-full">
+                <div className="inline-flex flex-col items-center justify-center text-center gap-[3px] py-0.5 px-2.5 max-w-full">
+                  <p className="text-[7.5px] sm:text-[8.5px] md:text-[9.5px] font-mono tracking-[0.22em] text-[#89AACC] uppercase leading-none select-none whitespace-nowrap drop-shadow-[0_2px_6px_rgba(0,0,0,0.98)]">
+                    WORLD-CLASS ACOUSTIC SANCTUARY
+                  </p>
+                  <button
+                    type="button"
+                    onClick={() => scrollToScene(1)}
+                    className="inline-flex items-center justify-center gap-1 text-[7px] sm:text-[8px] md:text-[8.5px] font-mono text-slate-300 hover:text-cyan-300 tracking-wider cursor-pointer pointer-events-auto transition-colors leading-none group"
+                    aria-label="Scroll to enter the studio tour"
+                  >
+                    <span className="group-hover:text-cyan-300 transition-colors">SCROLL TO ENTER</span>
+                    <span className="text-cyan-400 group-hover:translate-y-0.5 transition-transform animate-pulse font-bold">↓</span>
+                  </button>
+                </div>
+              </div>
             </div>
           )}
         </main>

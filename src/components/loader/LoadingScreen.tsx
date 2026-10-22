@@ -14,8 +14,16 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
   const [wordIndex, setWordIndex] = useState(0);
   const [isExiting, setIsExiting] = useState(false);
 
+  // Support instant test preview when requested via ?noload=true
+  useEffect(() => {
+    if (typeof window !== 'undefined' && window.location.search.includes('noload')) {
+      onComplete();
+    }
+  }, [onComplete]);
+
   // Animate percentage 0 to 100 over ~1.8 seconds
   useEffect(() => {
+    if (typeof window !== 'undefined' && window.location.search.includes('noload')) return;
     const startTime = performance.now();
     const duration = 1800; // 1.8 seconds
 

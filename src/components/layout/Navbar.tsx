@@ -128,14 +128,21 @@ export default function Navbar({ onOpenBooking }: NavbarProps) {
               <span className="hidden md:inline">{isAudioMuted ? 'SOUND: OFF' : 'SOUND: LIVE'}</span>
             </button>
 
-            {/* Primary Action Button - Hidden on mobile (<640px) to prevent layout cramping; visible on sm+ */}
-            <button
-              onClick={handleBookClick}
-              className="hidden sm:inline-flex items-center gap-1 px-3 sm:px-4 py-1.5 sm:py-2 text-[10px] sm:text-xs font-semibold text-white accent-gradient hover:opacity-95 active:scale-95 transition-all rounded-full shadow-md whitespace-nowrap cursor-pointer shrink-0"
-            >
-              <span>BOOK A SESSION</span>
-              <ArrowUpRight className="w-3.5 h-3.5 shrink-0" />
-            </button>
+            {/* Primary Action Button with subtle ripple glow / scale-up on hover */}
+            <div className="hidden sm:inline-flex relative group">
+              <span
+                className="absolute -inset-1 rounded-full bg-[#4E85BF]/40 animate-ping pointer-events-none group-hover:scale-125 group-hover:opacity-85 group-hover:bg-[#4E85BF]/60 group-hover:shadow-[0_0_22px_rgba(78,133,191,0.9)] transition-all duration-300"
+                style={{ animationDuration: '3s', animationIterationCount: 'infinite' }}
+                aria-hidden="true"
+              />
+              <button
+                onClick={handleBookClick}
+                className="relative inline-flex items-center gap-1 px-3 sm:px-4 py-1.5 sm:py-2 text-[10px] sm:text-xs font-semibold text-white accent-gradient hover:opacity-95 active:scale-95 transition-all rounded-full shadow-md whitespace-nowrap cursor-pointer shrink-0"
+              >
+                <span>BOOK A SESSION</span>
+                <ArrowUpRight className="w-3.5 h-3.5 shrink-0 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+              </button>
+            </div>
 
             {/* Mobile Menu Hamburger */}
             <button

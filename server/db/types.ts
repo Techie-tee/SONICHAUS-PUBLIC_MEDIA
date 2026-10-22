@@ -122,6 +122,10 @@ export interface ProjectItem {
     producedBy?: string;
     studioRoom?: string;
   };
+  genre?: string;
+  type?: string;
+  bpm?: number;
+  key?: string;
   caseStudyOverview: string;
   isPublished: boolean;
 }

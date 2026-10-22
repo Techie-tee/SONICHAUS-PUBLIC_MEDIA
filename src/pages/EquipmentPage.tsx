@@ -119,6 +119,7 @@ export default function EquipmentPage() {
                   <img
                     src={item.imageUrl}
                     alt={item.name}
+                    referrerPolicy="no-referrer"
                     className="max-h-full max-w-full object-contain filter contrast-105 group-hover:scale-105 transition-transform duration-500"
                   />
                   <div className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-md bg-black/80 backdrop-blur-md border border-white/10 text-[9px] font-mono text-[#89AACC]">
@@ -194,6 +195,7 @@ export default function EquipmentPage() {
                 <img
                   src={activeModalItem.imageUrl}
                   alt={activeModalItem.name}
+                  referrerPolicy="no-referrer"
                   className="max-h-full max-w-full object-contain"
                 />
               </div>

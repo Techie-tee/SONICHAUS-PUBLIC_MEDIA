@@ -12,7 +12,7 @@ import controlRoomImg from '../assets/images/studio_03_control_room_179244683303
 import vocalBoothImg from '../assets/images/studio_02_vocal_booth_1792446832131.jpg';
 import liveRoomImg from '../assets/images/hero_recording_room_v2_1792444696580.jpg';
 import productionLabImg from '../assets/images/studio_04_production_lab_1792446833465.jpg';
-import masterSuiteImg from '../assets/images/studio_05_master_suite_1792446834087.jpg';
+import masterSuiteImg from '../assets/images/mastering_suite_active_1792675343261.jpg';
 
 interface HomePageProps {
   onOpenBooking: (serviceOrRoom?: string) => void;
@@ -73,7 +73,7 @@ export default function HomePage({ onOpenBooking }: HomePageProps) {
       />
 
       {/* Architectural Studio Credentials & Acoustic Metrics Ribbon: Bridges Hero into Philosophy */}
-      <div className="bg-[#030508] border-y border-white/10 py-6 px-4 sm:px-6 lg:px-12 relative z-20">
+      <div id="studio-metrics" className="bg-[#030508] border-y border-white/10 py-6 px-4 sm:px-6 lg:px-12 relative z-20">
         <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 items-center text-center">
           <div className="space-y-1">
             <span className="font-display text-2xl sm:text-3xl font-extrabold text-[#89AACC]">-85 dB</span>

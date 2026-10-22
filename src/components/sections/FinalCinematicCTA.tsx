@@ -2,7 +2,7 @@ import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ArrowUpRight, MessageCircle, Sparkles, Music } from 'lucide-react';
 
-import masterSuiteImg from '../../assets/images/studio_05_master_suite_1792446834087.jpg';
+import masterSuiteImg from '../../assets/images/mastering_suite_active_1792675343261.jpg';
 
 interface FinalCinematicCTAProps {
   onOpenBooking: () => void;

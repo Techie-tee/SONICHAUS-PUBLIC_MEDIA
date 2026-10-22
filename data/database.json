@@ -1510,6 +1510,62 @@
   ],
   "auditLogs": [
     {
+      "id": "log_1792675739337_s61u",
+      "action": "BOOKING_CREATED",
+      "user": "test.artist@example.com",
+      "details": "Booking SV-20261022-6IN0 for Vocal Recording on 2099-01-01",
+      "timestamp": "2026-10-22T13:28:59.337Z"
+    },
+    {
+      "id": "log_1792674990515_c4cr",
+      "action": "BOOKING_CREATED",
+      "user": "test.artist@example.com",
+      "details": "Booking SV-20261022-C813 for Vocal Recording on 2099-01-01",
+      "timestamp": "2026-10-22T13:16:30.515Z"
+    },
+    {
+      "id": "log_1792674278368_9i5f",
+      "action": "BOOKING_CREATED",
+      "user": "test.artist@example.com",
+      "details": "Booking SV-20261022-R7M7 for Vocal Recording on 2099-01-01",
+      "timestamp": "2026-10-22T13:04:38.368Z"
+    },
+    {
+      "id": "log_1792673722291_gn0m",
+      "action": "BOOKING_CREATED",
+      "user": "test.artist@example.com",
+      "details": "Booking SV-20261022-1SW3 for Vocal Recording on 2099-01-01",
+      "timestamp": "2026-10-22T12:55:22.291Z"
+    },
+    {
+      "id": "log_1792673503532_yfb6",
+      "action": "BOOKING_CREATED",
+      "user": "test.artist@example.com",
+      "details": "Booking SV-20261022-CZ0K for Vocal Recording on 2099-01-01",
+      "timestamp": "2026-10-22T12:51:43.532Z"
+    },
+    {
+      "id": "log_1792673289214_h21t",
+      "action": "BOOKING_CREATED",
+      "user": "test.artist@example.com",
+      "details": "Booking SV-20261022-TSH8 for Vocal Recording on 2099-01-01",
+      "timestamp": "2026-10-22T12:48:09.214Z"
+    },
+    {
+      "id": "log_1792671219757_gjh8",
+      "action": "BOOKING_CREATED",
+      "user": "test.artist@example.com",
+      "details": "Booking SV-20261022-94Q4 for Vocal Recording on 2099-01-01",
+      "timestamp": "2026-10-22T12:13:39.758Z"
+    },
+    {
+      "id": "log_1792670255718_9eul",
+      "action": "BOOKING_CREATED",
+      "user": "test.artist@example.com",
+      "details": "Booking SV-20261022-5MTK for Vocal Recording on 2099-01-01",
+      "timestamp": "2026-10-22T11:57:35.718Z"
+    },
+    {
       "id": "log_1792669135950_n6sf",
       "action": "BOOKING_CREATED",
       "user": "test.artist@example.com",

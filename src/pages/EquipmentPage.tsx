@@ -2,6 +2,7 @@ import { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { Search, Filter, Sliders, ArrowUpRight, Sparkles, X, Info, CheckCircle2 } from 'lucide-react';
 import { EquipmentItem } from '../types';
+import GearLocker from '../components/studio/GearLocker';
 
 const CATEGORIES = [
   { id: 'all', name: 'ALL EQUIPMENT' },
@@ -63,6 +64,11 @@ export default function EquipmentPage() {
             Every piece of hardware in SONICVAULT is verified, calibrated, and maintained in pristine operating condition. 
             From the legendary Sony C-800G tube chain to SSL SuperAnalogue summing, these are the tools behind records that endure.
           </p>
+        </div>
+
+        {/* Featured Signature Hardware Racks */}
+        <div className="border-t border-white/10 pt-4">
+          <GearLocker />
         </div>
 
         {/* Search & Filter Controls */}

@@ -1,7 +1,7 @@
 import fs from 'fs';
 import path from 'path';
 import crypto from 'crypto';
-import { DatabaseSchema, AdminUser, ServiceItem, Booking, PaymentTransaction, EquipmentItem, TeamMember, ProjectItem, Enquiry, ChatbotKnowledge, AuditLog, SiteSettings } from './types.ts';
+import type { DatabaseSchema, AdminUser, ServiceItem, Booking, PaymentTransaction, EquipmentItem, TeamMember, ProjectItem, Enquiry, ChatbotKnowledge, AuditLog, SiteSettings } from './types.ts';
 
 const DATA_DIR = path.resolve(process.cwd(), 'data');
 const DB_FILE = path.join(DATA_DIR, 'database.json');

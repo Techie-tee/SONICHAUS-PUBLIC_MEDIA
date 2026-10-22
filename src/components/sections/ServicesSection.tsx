@@ -1,5 +1,6 @@
+import { Link } from 'react-router-dom';
 import { motion } from 'motion/react';
-import { ArrowUpRight, Mic, Sliders, Music, Radio, Disc, Sparkles, AudioWaveform, Headphones, ShieldCheck } from 'lucide-react';
+import { ArrowUpRight, Mic, Sliders, Music, Radio, Disc, Sparkles, AudioWaveform, Headphones, ShieldCheck, ArrowRight } from 'lucide-react';
 
 import vocalBoothImg from '../../assets/images/studio_02_vocal_booth_1792446832131.jpg';
 import controlRoomImg from '../../assets/images/studio_control_live_performance_1792447671011.jpg';
@@ -11,6 +12,7 @@ import entranceImg from '../../assets/images/studio_01_entrance_1792446831639.jp
 
 interface ServicesSectionProps {
   onSelectService: (serviceName: string) => void;
+  isHomepage?: boolean;
 }
 
 export interface StudioService {
@@ -148,12 +150,14 @@ export const STUDIO_SERVICES: StudioService[] = [
   },
 ];
 
-export default function ServicesSection({ onSelectService }: ServicesSectionProps) {
+export default function ServicesSection({ onSelectService, isHomepage = false }: ServicesSectionProps) {
+  const displayedServices = isHomepage ? STUDIO_SERVICES.slice(0, 4) : STUDIO_SERVICES;
+
   return (
-    <section id="services" className="py-24 sm:py-36 px-4 sm:px-6 lg:px-12 bg-[#070a12] border-t border-white/10">
-      <div className="max-w-7xl mx-auto space-y-12 sm:space-y-16">
+    <section id="services" className="py-16 sm:py-24 px-4 sm:px-6 lg:px-12 bg-[#070a12] border-t border-white/10">
+      <div className="max-w-7xl mx-auto space-y-8 sm:space-y-12">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/10 pb-8 sm:pb-12">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/10 pb-6 sm:pb-8">
           <div className="space-y-3">
             <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.25em] text-[#89AACC]">
               <Sparkles className="w-3.5 h-3.5 text-[#4E85BF]" />
@@ -170,7 +174,7 @@ export default function ServicesSection({ onSelectService }: ServicesSectionProp
 
         {/* Perfectly Even 50/50 Proportional Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 items-stretch">
-          {STUDIO_SERVICES.map((service) => {
+          {displayedServices.map((service) => {
             const Icon = service.icon;
             return (
               <motion.div
@@ -241,6 +245,22 @@ export default function ServicesSection({ onSelectService }: ServicesSectionProp
             );
           })}
         </div>
+
+        {/* Dedicated Services Page Navigation Bridge for Homepage */}
+        {isHomepage && (
+          <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+            <p className="text-xs font-mono text-slate-400">
+              SHOWING 4 CORE DISCIPLINES · 9 VERIFIED RECORDING, MIXING & MASTERING SERVICES AVAILABLE
+            </p>
+            <Link
+              to="/services"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/5 hover:bg-white/10 border border-white/15 text-xs font-mono uppercase tracking-wider text-white hover:text-sky-300 transition-all cursor-pointer shadow-sm group"
+            >
+              <span>EXPLORE ALL SERVICES & RATES</span>
+              <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform text-[#4E85BF]" />
+            </Link>
+          </div>
+        )}
       </div>
     </section>
   );

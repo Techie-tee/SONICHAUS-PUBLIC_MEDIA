@@ -1,6 +1,9 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ArrowUpRight, Volume2, ShieldCheck, CheckCircle2, Sliders, Sparkles, Layers, Maximize2 } from 'lucide-react';
+import AcousticalEngineering from '../components/studio/AcousticalEngineering';
+import StudioGallery from '../components/sections/StudioGallery';
+import VisualExplorations from '../components/sections/VisualExplorations';
 
 interface StudioRoom {
   id: string;
@@ -175,6 +178,7 @@ const ROOMS: StudioRoom[] = [
 ];
 
 export default function StudioTourPage() {
+  const navigate = useNavigate();
   const [selectedRoom, setSelectedRoom] = useState<StudioRoom>(ROOMS[0]);
   const [activeImage, setActiveImage] = useState<string>(ROOMS[0].primaryImage);
 
@@ -326,6 +330,21 @@ export default function StudioTourPage() {
               </Link>
             </div>
           </div>
+        </div>
+
+        {/* Studio Spaces & Architectural Gallery */}
+        <div className="pt-8 border-t border-white/10">
+          <StudioGallery onOpenBooking={() => navigate('/book-session')} />
+        </div>
+
+        {/* Acoustic Specifications & Scientific Engineering */}
+        <div className="pt-8 border-t border-white/10">
+          <AcousticalEngineering />
+        </div>
+
+        {/* Visual Explorations & Geometric Atmosphere */}
+        <div className="pt-8 border-t border-white/10">
+          <VisualExplorations />
         </div>
 
         {/* Section Closing CTA */}

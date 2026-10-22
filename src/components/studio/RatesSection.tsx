@@ -8,7 +8,7 @@ export const RATES_PACKAGES = [
   {
     name: 'Standard Tracking Day',
     hours: '10 Hours',
-    price: '$1,850',
+    price: '₦350,000',
     description: 'Perfect for full band live tracking, vocal tracking, or rhythm section capture.',
     features: [
       'Studio A Live Recording Hall or Control Room',
@@ -24,7 +24,7 @@ export const RATES_PACKAGES = [
   {
     name: 'Album Production Residency',
     hours: '3-Day Lockout',
-    price: '$5,200',
+    price: '₦1,250,000',
     description: 'Immersive creative residency for producers, songwriters, and recording artists.',
     features: [
       '24-Hour continuous facility lockout',
@@ -40,7 +40,7 @@ export const RATES_PACKAGES = [
   {
     name: 'Analog Master Suite',
     hours: 'Full Day',
-    price: '$1,650',
+    price: '₦450,000',
     description: 'Audiophile tape mastering, surgical analog equalization, and stereo bus stem mastering.',
     features: [
       'Master Control Suite with SSL 4000 G+',

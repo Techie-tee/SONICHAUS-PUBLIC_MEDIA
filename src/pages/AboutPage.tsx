@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { ArrowUpRight, Sparkles, Award, ShieldCheck, Heart, Radio, Music } from 'lucide-react';
 import { TeamMember } from '../types';
 import BrandLogo, { SonicVaultVectorMark } from '../components/common/BrandLogo';
+import StudioApproach from '../components/sections/StudioApproach';
+import JournalSection from '../components/sections/JournalSection';
 
 export default function AboutPage() {
   const [team, setTeam] = useState<TeamMember[]>([]);
@@ -240,6 +242,16 @@ export default function AboutPage() {
               ))}
             </div>
           )}
+        </div>
+
+        {/* The SonicVault Approach & Production Philosophy */}
+        <div className="pt-8 border-t border-white/10">
+          <StudioApproach />
+        </div>
+
+        {/* Journal from the Control Room */}
+        <div className="pt-8 border-t border-white/10">
+          <JournalSection />
         </div>
 
         {/* Closing CTA */}

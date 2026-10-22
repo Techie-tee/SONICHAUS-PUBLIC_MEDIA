@@ -179,12 +179,12 @@ export default function StudioFAQ({ onOpenBooking }: StudioFAQProps) {
   };
 
   return (
-    <section id="faq" className="py-24 sm:py-32 px-4 sm:px-6 lg:px-12 bg-[#040609] border-t border-white/10 relative overflow-hidden">
+    <section id="faq" className="py-16 sm:py-24 px-4 sm:px-6 lg:px-12 bg-[#040609] border-t border-white/10 relative overflow-hidden">
       {/* Background Decorative Blur Gradients */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-[#4E85BF]/10 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute bottom-10 left-10 w-96 h-96 bg-[#89AACC]/5 rounded-full blur-[120px] pointer-events-none" />
 
-      <div className="max-w-6xl mx-auto space-y-12 sm:space-y-16 relative z-10">
+      <div className="max-w-6xl mx-auto space-y-8 sm:space-y-12 relative z-10">
         {/* Section Header with subtle fade-in-up entrance */}
         <motion.div
           initial={{ opacity: 0, y: 22 }}

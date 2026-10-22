@@ -1,5 +1,6 @@
+import { Link } from 'react-router-dom';
 import { motion, useReducedMotion } from 'motion/react';
-import { Sparkles, Mic, Activity, Disc } from 'lucide-react';
+import { Sparkles, Mic, Activity, Disc, ArrowRight } from 'lucide-react';
 
 export default function SonicPhilosophy() {
   const shouldReduceMotion = useReducedMotion();
@@ -28,13 +29,13 @@ export default function SonicPhilosophy() {
   ];
 
   return (
-    <section id="philosophy" className="relative py-24 sm:py-36 px-4 sm:px-6 lg:px-12 bg-[#05070c] overflow-hidden border-t border-white/10">
+    <section id="philosophy" className="relative py-16 sm:py-24 px-4 sm:px-6 lg:px-12 bg-[#05070c] overflow-hidden border-t border-white/10">
       {/* Background Subtle Waveform & Ambient Glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full pointer-events-none opacity-20">
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[350px] bg-[#4E85BF] rounded-full blur-[140px] pointer-events-none" />
       </div>
 
-      <div className="relative max-w-6xl mx-auto space-y-16 sm:space-y-24">
+      <div className="relative max-w-6xl mx-auto space-y-10 sm:space-y-14">
         {/* Animated Sonic Waveform Line (The Sonic Line Motif) */}
         <div className="w-full flex items-center justify-center gap-1.5 py-4 overflow-hidden">
           {Array.from({ length: 48 }).map((_, i) => {
@@ -117,6 +118,17 @@ export default function SonicPhilosophy() {
               </motion.div>
             );
           })}
+        </div>
+
+        {/* Dedicated Story & Philosophy Link */}
+        <div className="pt-2 flex justify-center">
+          <Link
+            to="/about"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/5 hover:bg-white/10 border border-white/15 text-xs font-mono uppercase tracking-wider text-slate-300 hover:text-white transition-all cursor-pointer group"
+          >
+            <span>DISCOVER THE LEKKI PHASE 1 SANCTUARY & ORIGIN</span>
+            <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform text-[#4E85BF]" />
+          </Link>
         </div>
       </div>
     </section>

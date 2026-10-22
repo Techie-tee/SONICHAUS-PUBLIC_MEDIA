@@ -658,9 +658,10 @@ const GENRE_FILTERS = [
 
 interface SelectedWorkProps {
   onOpenBooking?: (service?: string) => void;
+  isHomepage?: boolean;
 }
 
-export default function SelectedWork({ onOpenBooking }: SelectedWorkProps) {
+export default function SelectedWork({ onOpenBooking, isHomepage = false }: SelectedWorkProps) {
   const [activeCategory, setActiveCategory] = useState<ProjectCategory>('all');
   const [activeGenre, setActiveGenre] = useState<string>('ALL GENRES');
   const [selectedCaseStudy, setSelectedCaseStudy] = useState<ProjectRecord | null>(null);
@@ -721,7 +722,7 @@ export default function SelectedWork({ onOpenBooking }: SelectedWorkProps) {
 
   // Filter projects by category and genre
   const filteredProjects = useMemo(() => {
-    return PROJECTS_DATA.filter((p) => {
+    const list = PROJECTS_DATA.filter((p) => {
       const matchCat = activeCategory === 'all' || p.categorySlug === activeCategory;
       const matchGenre =
         activeGenre === 'ALL GENRES' ||
@@ -729,7 +730,8 @@ export default function SelectedWork({ onOpenBooking }: SelectedWorkProps) {
         p.title.toLowerCase().includes(activeGenre.toLowerCase());
       return matchCat && matchGenre;
     });
-  }, [activeCategory, activeGenre]);
+    return isHomepage && activeCategory === 'all' && activeGenre === 'ALL GENRES' ? list.slice(0, 4) : list;
+  }, [activeCategory, activeGenre, isHomepage]);
 
   const categories = [
     { id: 'all', label: 'All Work', count: PROJECTS_DATA.length },
@@ -742,7 +744,7 @@ export default function SelectedWork({ onOpenBooking }: SelectedWorkProps) {
   return (
     <section
       id="work"
-      className="relative py-24 sm:py-36 bg-[#070a12] text-[#F5F5F3] overflow-hidden border-t border-white/10"
+      className="relative py-16 sm:py-24 bg-[#070a12] text-[#F5F5F3] overflow-hidden border-t border-white/10"
     >
       {/* Background Architectural Grid Lines */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.03] bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:4rem_4rem]" />

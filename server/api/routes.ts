@@ -1,4 +1,5 @@
-import { Router, Request, Response, NextFunction } from 'express';
+import { Router } from 'express';
+import type { Request, Response, NextFunction } from 'express';
 import crypto from 'crypto';
 import { GoogleGenAI } from '@google/genai';
 import { db, hashPassword } from '../db/store.ts';

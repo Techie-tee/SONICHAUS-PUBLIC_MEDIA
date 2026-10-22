@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ArrowUpRight, CheckCircle2, Clock, Sparkles, Layers, Sliders, ChevronDown, ChevronUp, FileCheck } from 'lucide-react';
 import { ServiceItem } from '../types';
+import RatesSection from '../components/studio/RatesSection';
 
 const JOURNEY_STEPS = [
   { step: '01', title: 'IDEA', desc: 'Concept, harmonic progression, reference listening & creative brief.' },
@@ -270,6 +271,11 @@ export default function ServicesPage() {
               })}
             </div>
           )}
+        </div>
+
+        {/* Studio Lockout & Residency Rates */}
+        <div className="pt-8 border-t border-white/10">
+          <RatesSection onOpenBooking={(room) => navigate(`/book-session${room ? `?room=${room}` : ''}`)} />
         </div>
       </div>
     </div>

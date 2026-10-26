@@ -305,14 +305,14 @@ export default function StudioFAQ({ onOpenBooking }: StudioFAQProps) {
                   {/* Accordion Trigger */}
                   <button
                     onClick={() => toggleAccordion(item.id)}
-                    className="w-full text-left p-5 sm:p-6 flex items-center justify-between gap-4 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4E85BF]"
+                    className="w-full text-left p-5 sm:p-6 flex items-center justify-between gap-4 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4E85BF] bg-transparent"
                     aria-expanded={isOpen}
                   >
                     <div className="flex items-center gap-3 sm:gap-4 min-w-0">
                       <span className="text-xs font-mono font-bold text-[#89AACC] tracking-wider px-2 py-0.5 rounded bg-white/5 border border-white/10 shrink-0">
                         {numStr}
                       </span>
-                      <h3 className="text-sm sm:text-base md:text-lg font-bold text-white font-display uppercase tracking-tight line-clamp-2">
+                      <h3 className="text-sm sm:text-base md:text-lg font-bold text-white font-display uppercase tracking-tight line-clamp-2 faq-question-title">
                         {item.question}
                       </h3>
                     </div>
@@ -398,17 +398,23 @@ export default function StudioFAQ({ onOpenBooking }: StudioFAQProps) {
         </div>
 
         {/* Studio Concierge Callout Banner */}
-        <div className="max-w-4xl mx-auto rounded-3xl p-6 sm:p-8 bg-gradient-to-r from-[#090d16] via-[#0d1424] to-[#090d16] border border-[#4E85BF]/30 shadow-2xl relative overflow-hidden">
+        <div className="faq-concierge-banner max-w-4xl mx-auto rounded-3xl p-6 sm:p-8 bg-gradient-to-r from-[#090d16] via-[#0d1424] to-[#090d16] border border-[#4E85BF]/30 shadow-2xl relative overflow-hidden">
           <div className="flex flex-col md:flex-row items-center justify-between gap-6">
             <div className="space-y-2 text-center md:text-left">
-              <div className="inline-flex items-center gap-2 text-xs font-mono text-[#89AACC] uppercase tracking-wider">
+              <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-wider text-[#89AACC]">
                 <ShieldCheck className="w-4 h-4 text-[#4E85BF]" />
-                <span>CONFIDENTIAL ARTIST CONCIERGE</span>
+                <span style={{ color: '#89AACC' }}>CONFIDENTIAL ARTIST CONCIERGE</span>
               </div>
-              <h3 className="text-xl sm:text-2xl font-bold text-white font-display uppercase">
+              <h3
+                style={{ color: '#FFFFFF' }}
+                className="text-xl sm:text-2xl font-bold text-white font-display uppercase tracking-tight drop-shadow-md"
+              >
                 HAVE A BESPOKE PROJECT OR ALBUM LOCKOUT?
               </h3>
-              <p className="text-xs sm:text-sm text-slate-300 font-sans max-w-xl">
+              <p
+                style={{ color: '#E2E8F0' }}
+                className="text-xs sm:text-sm text-slate-200 font-sans max-w-xl drop-shadow-sm"
+              >
                 Our studio manager and chief acoustician are available 24/7 on WhatsApp for custom session riders, multi-day bookings, and equipment inquiries.
               </p>
             </div>

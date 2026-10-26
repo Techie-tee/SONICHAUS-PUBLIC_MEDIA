@@ -494,7 +494,7 @@ export default function BookingPage() {
                     required
                     value={clientName}
                     onChange={(e) => setClientName(e.target.value)}
-                    placeholder="e.g. Temitope Adesioye"
+                    placeholder="e.g. Michael Adeleke"
                     className="w-full bg-black/40 border border-white/10 rounded-xl px-4 py-2.5 text-xs text-white focus:outline-none focus:border-[#4E85BF] transition-colors"
                   />
                 </div>

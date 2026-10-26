@@ -8,6 +8,7 @@ import FloatingChatbot from './components/chat/FloatingChatbot';
 import FloatingWhatsApp from './components/chat/FloatingWhatsApp';
 import ScrollToTop from './components/common/ScrollToTop';
 import { AudioPlayerProvider } from './context/AudioPlayerContext';
+import { ThemeProvider } from './context/ThemeContext';
 import GlobalAudioPlayer from './components/audio/GlobalAudioPlayer';
 
 // Dedicated Route Pages
@@ -54,7 +55,7 @@ function AppLayout() {
   const isAdminRoute = location.pathname.startsWith('/admin');
 
   return (
-    <div className="min-h-screen bg-[#040609] text-slate-100 flex flex-col font-sans selection:bg-[#4E85BF] selection:text-white">
+    <div className="app-shell min-h-screen bg-[#040609] text-slate-100 flex flex-col font-sans selection:bg-[#4E85BF] selection:text-white transition-colors duration-300">
       <ScrollToTop />
 
       {/* 1. Initial Cinematic Loading Screen on initial entry */}
@@ -116,9 +117,11 @@ function AppLayout() {
 export default function App() {
   return (
     <BrowserRouter>
-      <AudioPlayerProvider>
-        <AppLayout />
-      </AudioPlayerProvider>
+      <ThemeProvider>
+        <AudioPlayerProvider>
+          <AppLayout />
+        </AudioPlayerProvider>
+      </ThemeProvider>
     </BrowserRouter>
   );
 }

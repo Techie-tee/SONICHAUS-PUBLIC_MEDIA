@@ -820,16 +820,16 @@ export default function SelectedWork({ onOpenBooking, isHomepage = false }: Sele
                     setActiveCategory(cat.id as ProjectCategory);
                     setActiveGenre('ALL GENRES');
                   }}
-                  className={`relative px-4 py-2.5 rounded-full text-xs font-mono tracking-wider uppercase transition-all duration-300 flex items-center gap-2 cursor-pointer ${
+                  className={`work-category-tab relative px-4 py-2.5 rounded-full text-xs font-mono font-bold tracking-wider uppercase transition-all duration-300 flex items-center gap-2 cursor-pointer ${
                     isActive
-                      ? 'text-white bg-white/15 border border-[#89AACC] shadow-[0_0_20px_rgba(78,133,191,0.3)] scale-[1.02]'
-                      : 'text-slate-400 hover:text-white bg-white/[0.03] border border-white/10 hover:border-white/20'
+                      ? 'work-category-tab-active text-white bg-[#090D16] border border-[#89AACC] shadow-[0_0_20px_rgba(78,133,191,0.3)] scale-[1.02]'
+                      : 'text-slate-300 hover:text-white bg-white/[0.06] border border-white/15 hover:border-white/30'
                   }`}
                 >
-                  <span>{cat.label}</span>
+                  <span className="font-bold">{cat.label}</span>
                   <span
-                    className={`text-[10px] px-2 py-0.5 rounded-full font-mono font-semibold ${
-                      isActive ? 'bg-[#4E85BF] text-white' : 'bg-white/10 text-slate-400'
+                    className={`text-[10px] px-2 py-0.5 rounded-full font-mono font-bold ${
+                      isActive ? 'bg-[#4E85BF] text-white' : 'bg-white/10 text-slate-300'
                     }`}
                   >
                     {cat.count}
@@ -894,10 +894,10 @@ export default function SelectedWork({ onOpenBooking, isHomepage = false }: Sele
           </p>
           <Link
             to="/our-work"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/5 hover:bg-white/10 border border-white/15 text-xs font-mono uppercase tracking-wider text-white hover:text-sky-300 transition-all cursor-pointer shadow-sm group"
+            className="production-catalogue-cta-btn inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-[#090D16] hover:bg-[#111827] active:bg-[#060910] border border-white/20 text-xs font-mono font-bold uppercase tracking-wider text-white shadow-lg transition-all cursor-pointer group hover:border-[#4E85BF]/60 active:scale-[0.98]"
           >
-            <span>EXPLORE FULL PRODUCTION CATALOGUE (12 MASTER TRACKS)</span>
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+            <span className="text-white font-bold tracking-wider">EXPLORE FULL PRODUCTION CATALOGUE (12 MASTER TRACKS)</span>
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform text-[#4E85BF]" />
           </Link>
         </div>
       </div>

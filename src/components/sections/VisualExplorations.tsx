@@ -138,16 +138,25 @@ export default function VisualExplorations() {
               {/* Bottom Content Container - Symmetrical across all cards */}
               <div className="relative z-10 p-6 sm:p-8 space-y-2.5">
                 <div className="flex items-center gap-2">
-                  <span className="text-[10px] font-mono text-[#89AACC] tracking-widest uppercase">
+                  <span
+                    style={{ color: '#89AACC' }}
+                    className="text-[10px] font-mono text-[#89AACC] tracking-widest uppercase font-bold drop-shadow-sm"
+                  >
                     {item.chamber}
                   </span>
                 </div>
 
-                <h3 className="text-xl sm:text-2xl font-bold text-white font-display uppercase tracking-tight group-hover:text-[#89AACC] transition-colors">
+                <h3
+                  style={{ color: '#FFFFFF' }}
+                  className="exploration-card-title text-xl sm:text-2xl lg:text-3xl font-extrabold !text-white font-display uppercase tracking-tight group-hover:text-[#89AACC] transition-colors drop-shadow-[0_2px_16px_rgba(0,0,0,0.95)]"
+                >
                   {item.title}
                 </h3>
 
-                <p className="text-xs sm:text-sm text-slate-300 font-sans leading-relaxed line-clamp-2">
+                <p
+                  style={{ color: '#E2E8F0' }}
+                  className="text-xs sm:text-sm !text-slate-200 font-sans leading-relaxed line-clamp-2 drop-shadow-sm"
+                >
                   {item.concept}
                 </p>
 

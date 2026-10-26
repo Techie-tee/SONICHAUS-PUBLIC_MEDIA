@@ -2,7 +2,6 @@ import { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
 import { Search, Filter, Sliders, ArrowUpRight, Sparkles, X, Info, CheckCircle2 } from 'lucide-react';
 import { EquipmentItem } from '../types';
-import GearLocker from '../components/studio/GearLocker';
 
 const CATEGORIES = [
   { id: 'all', name: 'ALL EQUIPMENT' },
@@ -50,25 +49,26 @@ export default function EquipmentPage() {
 
   return (
     <div className="min-h-screen bg-[#040609] text-slate-100 pt-28 pb-24 px-4 sm:px-6 lg:px-12 font-sans selection:bg-[#4E85BF] selection:text-white">
-      <div className="max-w-7xl mx-auto space-y-12">
+      <div className="max-w-7xl mx-auto space-y-8 sm:space-y-10">
         {/* Header */}
-        <div className="space-y-4 max-w-3xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-[#89AACC]">
-            <Sparkles className="w-3.5 h-3.5 text-[#4E85BF]" />
-            <span>VERIFIED HARDWARE VAULT · LEKKI PHASE 1</span>
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/10 pb-8 sm:pb-10">
+          <div className="space-y-3 max-w-3xl">
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-[#89AACC]">
+              <Sparkles className="w-3.5 h-3.5 text-[#4E85BF]" />
+              <span>VERIFIED HARDWARE VAULT · LEKKI PHASE 1</span>
+            </div>
+            <h1 className="font-display text-4xl sm:text-6xl font-extrabold tracking-tight text-white uppercase">
+              THE EQUIPMENT LIBRARY.
+            </h1>
+            <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
+              Every piece of hardware in SONICVAULT is verified, calibrated, and maintained in pristine operating condition. 
+              From the legendary Sony C-800G tube chain to SSL SuperAnalogue summing, these are the tools behind records that endure.
+            </p>
           </div>
-          <h1 className="font-display text-4xl sm:text-6xl font-extrabold tracking-tight text-white uppercase">
-            THE EQUIPMENT LIBRARY.
-          </h1>
-          <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
-            Every piece of hardware in SONICVAULT is verified, calibrated, and maintained in pristine operating condition. 
-            From the legendary Sony C-800G tube chain to SSL SuperAnalogue summing, these are the tools behind records that endure.
-          </p>
-        </div>
-
-        {/* Featured Signature Hardware Racks */}
-        <div className="border-t border-white/10 pt-4">
-          <GearLocker />
+          <div className="shrink-0 flex items-center gap-2 text-xs font-mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-4 py-2.5 rounded-full self-start md:self-end">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
+            <span>100% CALIBRATED & OPERATIONAL</span>
+          </div>
         </div>
 
         {/* Search & Filter Controls */}

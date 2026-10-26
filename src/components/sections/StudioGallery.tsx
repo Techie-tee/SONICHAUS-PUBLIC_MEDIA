@@ -29,53 +29,53 @@ const GALLERY_ITEMS: GalleryItem[] = [
     id: 'gal-vocal',
     category: 'vocal',
     categoryLabel: 'Vocal Recording Environment',
-    title: 'The Vault Vocal Chamber',
-    caption: 'Dual-isolated floating acoustic shell with RT60 of 0.16s, vintage Neumann U87, and zero ground noise.',
+    title: 'The Vocal Booth',
+    caption: 'Dual-isolated floating acoustic shell with RT60 of 0.16s, Sony C-800G tube chain, vintage Neumann U87 Ai, and zero ground noise.',
     image: vocalBoothImg,
     specs: '180 sq ft · -85 dB Decoupling',
   },
   {
     id: 'gal-performance',
     category: 'performance',
-    categoryLabel: 'Recording & Performance Space',
-    title: 'Studio A Live Recording Hall',
-    caption: 'Direct sightline glass looking into the control room, high ceilings, and prime quadratic residue diffusion wells.',
+    categoryLabel: 'Mixing & Critical Listening',
+    title: 'The Analog Control Room',
+    caption: 'Solid State Logic AWS 948 Delta console, Genelec SAM coaxial point-source monitors, and pristine analog summing with direct sightline into the vocal booth.',
     image: controlRoomImg,
-    specs: '650 sq ft · Direct Glass Sightline',
+    specs: '410 sq ft · Direct Glass Sightline',
   },
   {
     id: 'gal-production',
     category: 'production',
     categoryLabel: 'Production & Mixing Environment',
-    title: 'Lab B Modular Production Suite',
-    caption: 'Moog One, Sequential Prophet-10, Akai MPC X, and Genelec Smart Active Monitoring for pristine composition.',
+    title: 'The Production Lab',
+    caption: 'Moog Subsequent 37 analog synthesizer, Akai MPC X, Focal Trio11 Be monitors, and direct hardware-to-DAW patching for beat creation.',
     image: productionLabImg,
     specs: '340 sq ft · Spatial Nearfield Matrix',
-  },
-  {
-    id: 'gal-collaboration',
-    category: 'collaboration',
-    categoryLabel: 'Creative Collaboration Space',
-    title: 'Analog Mastering & Artist Suite',
-    caption: 'Studer 2-inch tape deck, Manley Massive Passive EQ, and dedicated private artist listening lounge in Lekki Phase 1.',
-    image: masterSuiteImg,
-    specs: '420 sq ft · Master Tape Calibrated',
   },
   {
     id: 'gal-live-tracking',
     category: 'performance',
     categoryLabel: 'Recording & Performance Space',
-    title: 'Studio A Drum & Live Tracking Floor',
-    caption: 'Tuned hardwood acoustic tracking floor with 4.2m ceiling volume for live drum kits, brass sections, and acoustic ensembles.',
+    title: 'The Live Performance Room',
+    caption: 'Tuned hardwood acoustic tracking floor with 4.2m ceiling volume for live drum kits, horn sections, and multi-guest podcast broadcasts.',
     image: liveHallImg,
     specs: '520 sq ft · Tuned Hardwood Floor',
+  },
+  {
+    id: 'gal-collaboration',
+    category: 'collaboration',
+    categoryLabel: 'Mastering & Critical Calibration',
+    title: 'The Mastering Suite',
+    caption: 'Rupert Neve MBT transformer color, Manley Massive Passive tube EQ, and surgical point-source monitoring for international release standards.',
+    image: masterSuiteImg,
+    specs: '420 sq ft · Master Tape Calibrated',
   },
   {
     id: 'gal-entrance',
     category: 'collaboration',
     categoryLabel: 'Creative Collaboration Space',
     title: 'Architectural Reception & Green Room',
-    caption: 'Gated private access, artist hospitality suite, and executive meeting area for management and production teams.',
+    caption: 'Gated private access, artist hospitality suite, and executive meeting area for management and production teams in Lekki Phase 1.',
     image: entranceImg,
     specs: 'Private Access · 24/7 Lockout',
   },
@@ -141,46 +141,53 @@ export default function StudioGallery({ onOpenBooking }: StudioGalleryProps) {
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.96 }}
               transition={{ duration: 0.4 }}
-              className="group relative rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 bg-slate-900/40 hover:border-[#4E85BF]/40 transition-all duration-500 cursor-pointer flex flex-col justify-between"
+              className="group relative rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 bg-[#080b12] hover:border-[#4E85BF]/60 transition-all duration-300 cursor-pointer flex flex-col hover:-translate-y-1 shadow-xl hover:shadow-[0_12px_40px_rgba(78,133,191,0.15)]"
               onClick={() => setActiveLightboxItem(item)}
             >
-              <div className="relative aspect-[16/11] overflow-hidden">
+              {/* Photo Area */}
+              <div className="relative aspect-[16/10] overflow-hidden bg-black shrink-0">
                 <img
                   src={item.image}
                   alt={item.title}
-                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter brightness-[0.85]"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter brightness-95"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent pointer-events-none" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent pointer-events-none" />
 
                 {/* Top Badges */}
-                <div className="absolute top-4 left-4 right-4 flex items-center justify-between text-[10px] font-mono">
-                  <span className="px-3 py-1 rounded-full bg-black/60 backdrop-blur-md border border-white/15 text-[#89AACC]">
+                <div className="absolute top-4 left-4 right-4 flex items-center justify-between text-[10px] font-mono pointer-events-none">
+                  <span className="px-3 py-1 rounded-full bg-black/75 backdrop-blur-md border border-white/15 text-[#89AACC] font-medium">
                     {item.specs}
                   </span>
-                  <span className="w-8 h-8 rounded-full bg-black/60 backdrop-blur-md border border-white/15 text-white flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <Maximize2 className="w-4 h-4" />
+                  <span className="w-8 h-8 rounded-full bg-black/75 backdrop-blur-md border border-white/15 text-white flex items-center justify-center group-hover:scale-110 group-hover:bg-[#4E85BF] transition-all">
+                    <Maximize2 className="w-3.5 h-3.5" />
                   </span>
                 </div>
 
                 {/* Bottom Overlay Info */}
-                <div className="absolute bottom-4 left-4 right-4 space-y-1">
-                  <span className="text-[10px] font-mono tracking-widest text-[#89AACC] uppercase block">
+                <div className="absolute bottom-4 left-4 right-4 space-y-1 z-10">
+                  <span
+                    style={{ color: '#89AACC' }}
+                    className="text-[10px] font-mono tracking-widest text-[#89AACC] uppercase block font-bold drop-shadow-sm"
+                  >
                     {item.categoryLabel}
                   </span>
-                  <h3 className="text-xl font-bold text-white font-display">
+                  <h3
+                    style={{ color: '#FFFFFF' }}
+                    className="studio-gallery-card-title text-xl sm:text-2xl font-extrabold !text-white font-display leading-tight group-hover:text-[#89AACC] transition-colors drop-shadow-[0_2px_14px_rgba(0,0,0,0.95)]"
+                  >
                     {item.title}
                   </h3>
                 </div>
               </div>
 
-              {/* Card Footer Detail */}
-              <div className="p-5 sm:p-6 bg-[#07090e] border-t border-white/5 space-y-3">
+              {/* Card Footer Detail: Flush with image, ZERO gap, solid unified background */}
+              <div className="p-5 sm:p-6 bg-[#080b12] flex-1 flex flex-col justify-between space-y-4">
                 <p className="text-xs text-slate-400 font-sans leading-relaxed">
                   {item.caption}
                 </p>
-                <div className="flex items-center justify-between text-[11px] font-mono text-[#89AACC] pt-1">
-                  <span className="group-hover:translate-x-1 transition-transform inline-flex items-center gap-1">
-                    VIEW ARCHITECTURAL VIEW <ArrowRight className="w-3 h-3" />
+                <div className="pt-3 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-[#89AACC] mt-auto">
+                  <span className="group-hover:translate-x-1 transition-transform inline-flex items-center gap-1.5 font-semibold">
+                    VIEW ARCHITECTURAL VIEW <ArrowRight className="w-3.5 h-3.5 text-[#4E85BF]" />
                   </span>
                 </div>
               </div>

@@ -143,7 +143,10 @@ export default function HomePage({ onOpenBooking }: HomePageProps) {
                     <span className="text-[10px] font-mono text-[#89AACC] uppercase tracking-wider block font-semibold">
                       {chamber.role}
                     </span>
-                    <h3 className="text-sm font-bold text-white font-display group-hover:text-[#89AACC] transition-colors leading-snug">
+                    <h3
+                      style={{ color: '#FFFFFF' }}
+                      className="studio-gallery-card-title text-sm sm:text-base font-extrabold !text-white font-display group-hover:text-[#89AACC] transition-colors leading-snug"
+                    >
                       {chamber.name}
                     </h3>
                   </div>
@@ -162,10 +165,10 @@ export default function HomePage({ onOpenBooking }: HomePageProps) {
             </p>
             <Link
               to="/studio"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/5 hover:bg-white/10 border border-white/15 text-xs font-mono uppercase tracking-wider text-white hover:text-sky-300 transition-all cursor-pointer shadow-sm group"
+              className="studio-tour-cta-btn inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-[#090D16] hover:bg-[#111827] active:bg-[#060910] border border-white/20 text-xs font-mono font-bold uppercase tracking-wider text-white shadow-lg transition-all cursor-pointer group hover:border-[#4E85BF]/60 active:scale-[0.98]"
             >
-              <span>TAKE FULL ARCHITECTURAL STUDIO TOUR</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform text-[#4E85BF]" />
+              <span className="text-white font-bold tracking-wider">TAKE FULL ARCHITECTURAL STUDIO TOUR</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform text-[#4E85BF]" />
             </Link>
           </div>
         </div>
@@ -175,7 +178,7 @@ export default function HomePage({ onOpenBooking }: HomePageProps) {
       <SelectedWork onOpenBooking={onOpenBooking} isHomepage={true} />
 
       {/* 6. Hardware & Sanctuary Origin Deep-Dive Gateways */}
-      <section className="py-16 sm:py-20 px-4 sm:px-6 lg:px-12 bg-[#040609] border-t border-white/10">
+      <section id="studio-gateways" className="py-16 sm:py-20 px-4 sm:px-6 lg:px-12 bg-[#040609] border-t border-white/10">
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Card A: Equipment Locker Gateway */}
           <div className="p-8 sm:p-10 rounded-2xl bg-[#080b12] border border-white/10 hover:border-[#4E85BF]/40 transition-all duration-300 flex flex-col justify-between space-y-6 group">

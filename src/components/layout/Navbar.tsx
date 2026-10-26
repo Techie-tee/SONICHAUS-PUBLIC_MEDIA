@@ -3,6 +3,7 @@ import { Volume2, VolumeX, Menu, X, ArrowUpRight } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { audioEngine } from '../../services/audioEngine';
 import BrandLogo from '../common/BrandLogo';
+import ThemeToggle from '../common/ThemeToggle';
 
 interface NavbarProps {
   onOpenBooking?: (serviceId?: string) => void;
@@ -63,7 +64,7 @@ export default function Navbar({ onOpenBooking }: NavbarProps) {
       <header className="fixed top-0 left-0 right-0 z-50 flex items-center justify-center p-2.5 sm:p-4 lg:p-5 pointer-events-none transition-all duration-300">
         {/* Top Viewport Shroud: Prevents underlying scroll text/cards from peeking into the top gap */}
         <div
-          className={`absolute top-0 inset-x-0 h-20 bg-gradient-to-b from-[#040609] via-[#040609]/70 to-transparent pointer-events-none transition-opacity duration-300 ${
+          className={`navbar-top-shroud absolute top-0 inset-x-0 h-20 bg-gradient-to-b from-[#040609] via-[#040609]/70 to-transparent pointer-events-none transition-opacity duration-300 ${
             isScrolled ? 'opacity-100' : 'opacity-20'
           }`}
           aria-hidden="true"
@@ -71,7 +72,7 @@ export default function Navbar({ onOpenBooking }: NavbarProps) {
 
         {/* Floating Consistent Header Pill */}
         <nav
-          className={`relative pointer-events-auto flex items-center justify-between gap-2 sm:gap-4 lg:gap-6 px-3.5 sm:px-5 lg:px-6 py-2 sm:py-2.5 rounded-full border shadow-[0_12px_40px_rgba(0,0,0,0.85)] w-full max-w-7xl transition-all duration-300 ${
+          className={`navbar-pill relative pointer-events-auto flex items-center justify-between gap-2 sm:gap-4 lg:gap-6 px-3.5 sm:px-5 lg:px-6 py-2 sm:py-2.5 rounded-full border shadow-[0_12px_40px_rgba(0,0,0,0.85)] w-full max-w-7xl transition-all duration-300 ${
             isScrolled
               ? 'bg-[#060913]/98 backdrop-blur-2xl border-white/20 shadow-[0_16px_50px_rgba(0,0,0,0.95)]'
               : 'bg-[#070a13]/95 backdrop-blur-2xl border-white/15'
@@ -128,6 +129,9 @@ export default function Navbar({ onOpenBooking }: NavbarProps) {
               <span className="hidden md:inline">{isAudioMuted ? 'SOUND: OFF' : 'SOUND: LIVE'}</span>
             </button>
 
+            {/* Intelligent Dual-Theme Toggle (Daylight / Dark Mode) */}
+            <ThemeToggle variant="navbar" />
+
             {/* Primary Action Button with subtle ripple glow / scale-up on hover */}
             <div className="hidden sm:inline-flex relative group">
               <span
@@ -158,7 +162,7 @@ export default function Navbar({ onOpenBooking }: NavbarProps) {
 
       {/* Mobile Animated Drawer Menu */}
       {isMobileMenuOpen && (
-        <div className="fixed inset-0 z-50 bg-black/98 backdrop-blur-3xl lg:hidden flex flex-col justify-between p-6 pt-20 overflow-y-auto animate-in fade-in duration-200">
+        <div className="mobile-drawer-panel fixed inset-0 z-50 bg-black/98 backdrop-blur-3xl lg:hidden flex flex-col justify-between p-6 pt-20 overflow-y-auto animate-in fade-in duration-200">
           <div className="space-y-6">
             <div className="pb-4 border-b border-white/10 flex items-center justify-between">
               <BrandLogo variant="horizontal" size="md" />
@@ -188,7 +192,10 @@ export default function Navbar({ onOpenBooking }: NavbarProps) {
             </div>
           </div>
 
-          <div className="pt-8 space-y-4 border-t border-white/10">
+          <div className="pt-6 space-y-4 border-t border-white/10">
+            {/* Theme Toggle within Mobile Navigation */}
+            <ThemeToggle variant="drawer" />
+
             <button
               onClick={handleBookClick}
               className="w-full py-3.5 text-sm font-bold text-white accent-gradient rounded-full shadow-lg flex items-center justify-center gap-2 cursor-pointer"

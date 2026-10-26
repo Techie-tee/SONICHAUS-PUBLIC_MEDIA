@@ -35,21 +35,21 @@ export default function AboutPage() {
           <h1 className="font-display text-4xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight text-white uppercase leading-[1.05]">
             WHERE SOUND / BECOMES ART.
           </h1>
-          <p className="text-slate-300 text-base sm:text-lg font-editorial italic leading-relaxed">
+          <p className="about-hero-quote text-slate-300 text-base sm:text-lg font-editorial italic leading-relaxed">
             "We did not build SONICVAULT STUDIOS to be another commercial rental room in Lagos. We built an uncompromising architectural sanctuary where the most ambitious ideas in contemporary African and global music are given infinite space to flourish."
           </p>
         </div>
 
         {/* Studio Origin & Narrative */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-          <div className="lg:col-span-6 space-y-6 text-slate-300 text-sm sm:text-base leading-relaxed">
+          <div className="lg:col-span-6 space-y-6 text-sm sm:text-base leading-relaxed">
             <h2 className="font-display text-2xl sm:text-3xl font-bold text-white uppercase tracking-tight">
               THE LEKKI PHASE 1 SANCTUARY
             </h2>
-            <p>
+            <p className="about-genesis-text text-slate-300 leading-relaxed font-normal">
               Situated at 38 Olanrewaju Ninalowo Crescent in the heart of Lekki Phase 1, SONICVAULT STUDIOS was conceived from a fundamental realization: great music requires more than expensive microphones. It requires an environment of complete acoustic honesty, emotional security, and unhurried creative focus.
             </p>
-            <p>
+            <p className="about-genesis-text text-slate-300 leading-relaxed font-normal">
               In a city that never stops vibrating, the Vault offers complete decoupling. Floating concrete slabs, 80dB isolation airspaces, and custom bass traps create a whisper-quiet baseline (NC-15) where the breath of a vocalist, the resonance of a nylon string, or the weight of an 808 transient can be heard with forensic clarity.
             </p>
             <div className="pt-2 grid grid-cols-2 gap-4">
@@ -126,7 +126,7 @@ export default function AboutPage() {
         </div>
 
         {/* Master Brand Identity & Architectural Emblem Showcase */}
-        <div className="relative rounded-3xl p-8 sm:p-12 bg-gradient-to-br from-[#070D1A] via-[#040710] to-[#020307] border border-cyan-500/30 shadow-[0_0_50px_rgba(0,240,255,0.12)] overflow-hidden">
+        <div className="brand-emblem-showcase relative rounded-3xl p-8 sm:p-12 bg-gradient-to-br from-[#070D1A] via-[#040710] to-[#020307] border border-cyan-500/30 shadow-[0_0_50px_rgba(0,240,255,0.12)] overflow-hidden">
           <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
             <div className="lg:col-span-5 flex flex-col items-center justify-center p-6 rounded-2xl bg-black/60 border border-white/10 text-center">
@@ -188,18 +188,19 @@ export default function AboutPage() {
               {team.map((member) => (
                 <div
                   key={member.id}
-                  className={`rounded-2xl p-5 border flex flex-col justify-between space-y-4 ${
+                  className={`team-member-card rounded-2xl p-5 border flex flex-col justify-between space-y-4 transition-all duration-300 ${
                     member.isFounder
-                      ? 'bg-gradient-to-b from-[#0c1322] to-[#080b12] border-[#4E85BF]/60 shadow-[0_10px_30px_rgba(78,133,191,0.2)]'
+                      ? 'is-founder bg-gradient-to-b from-[#0c1322] to-[#080b12] border-[#4E85BF]/60 shadow-[0_10px_30px_rgba(78,133,191,0.2)]'
                       : 'bg-[#080b12] border-white/10'
                   }`}
                 >
                   <div className="space-y-3">
-                    <div className="relative aspect-square rounded-xl overflow-hidden bg-black/40 border border-white/10">
+                    <div className="relative aspect-square rounded-xl overflow-hidden bg-black/40 border border-white/10 shadow-inner">
                       <img
                         src={member.imageUrl}
                         alt={member.name}
-                        className="w-full h-full object-cover"
+                        className="w-full h-full object-cover object-center"
+                        referrerPolicy="no-referrer"
                       />
                       {member.isFounder && (
                         <div className="absolute top-2.5 left-2.5 px-2.5 py-0.5 rounded-full bg-[#4E85BF] text-white text-[9px] font-mono font-bold tracking-wider uppercase shadow-md">
@@ -231,7 +232,7 @@ export default function AboutPage() {
                       <ul className="text-[11px] text-slate-400 space-y-1">
                         {member.credits.map((c, i) => (
                           <li key={i} className="flex items-start gap-1.5">
-                            <span className="text-[#89AACC]">•</span>
+                            <span className="text-[#4E85BF] font-bold">•</span>
                             <span>{c}</span>
                           </li>
                         ))}

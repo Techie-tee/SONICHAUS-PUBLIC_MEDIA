@@ -11,7 +11,7 @@ export const SCENES: StudioSceneData[] = [
     number: '01',
     title: 'THE STUDIO ENTRANCE',
     subtitle: 'Where great records begin.',
-    caption: 'Step through the glass threshold into London’s premier architectural recording sanctuary.',
+    caption: 'Step through the glass threshold into Lekki’s premier architectural recording sanctuary.',
     roomName: 'Main Architectural Reception',
     dimensions: 'Gated Private Access',
     reverbTime: 'Acoustically Decoupled',

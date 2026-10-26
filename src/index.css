@@ -120,5 +120,1452 @@
   animation: waveOscillate 4s linear infinite;
 }
 
+/* ==========================================================================
+   DAYLIGHT MODE (LIGHT THEME) — SONICVAULT STUDIOS
+   Art-directed architectural luxury palette:
+   - Main page background: warm ivory (#F5F4F0)
+   - Primary content surfaces: soft white (#FFFFFF)
+   - Secondary sections: pale neutral (#ECEBE6)
+   - Primary text: deep charcoal (#17191D)
+   - Secondary text: balanced slate grey (#555D68)
+   - Borders and dividers: subtle neutral grey (#D9D9D3)
+   - Brand accents: electric blue (#4E85BF / #89AACC / #38BDF8)
+   ========================================================================== */
 
+html.light {
+  --bg: 43 14% 95%; /* #F5F4F0 Warm Ivory */
+  --surface: 0 0% 100%; /* #FFFFFF Soft White */
+  --text: 220 12% 10%; /* #17191D Deep Charcoal */
+  --muted: 215 10% 37%; /* #555D68 Balanced Slate Grey */
+  --stroke: 60 4% 85%; /* #D9D9D3 Subtle Neutral Grey */
+  --accent: 213 46% 53%; /* #4E85BF Brand Blue */
+  color-scheme: light;
+}
+
+html.dark {
+  --bg: 0 0% 4%;
+  --surface: 0 0% 8%;
+  --text: 0 0% 96%;
+  --muted: 0 0% 53%;
+  --stroke: 0 0% 12%;
+  --accent: 0 0% 96%;
+  color-scheme: dark;
+}
+
+/* Base Body & App Shell */
+html.light body,
+html.light .app-shell {
+  background-color: #F5F4F0 !important;
+  color: #17191D !important;
+}
+
+/* Smooth Daylight Scrollbar */
+html.light ::-webkit-scrollbar-track {
+  background: #ECEBE6;
+}
+html.light ::-webkit-scrollbar-thumb {
+  background: #D9D9D3;
+  border-radius: 3px;
+}
+html.light ::-webkit-scrollbar-thumb:hover {
+  background: #4E85BF;
+}
+
+/* --------------------------------------------------------------------------
+   1. HEADLINE VISIBILITY & TYPOGRAPHIC HIERARCHY
+   Ensure all headlines and titles on daylight surfaces are deep charcoal (#17191D)
+   while strictly preserving white/light text on the Hero tour and inside dark media cards.
+   -------------------------------------------------------------------------- */
+
+/* All page & section titles on daylight surfaces */
+html.light h1:not(#tour h1):not(.dark-surface h1):not(.cinematic-cta-section *):not(.faq-concierge-banner *),
+html.light h2:not(#tour h2):not(.dark-card h2):not(#work .group h2):not(.case-study-modal h2):not(.cinematic-cta-section *):not(.faq-concierge-banner *),
+html.light h3:not(#tour h3):not(.dark-card h3):not(#work .group h3):not(.portfolio-card h3):not(.case-study-modal h3):not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(#explorations *):not(.studio-gallery-card-title):not(.exploration-card-title):not(#spaces .absolute *):not(#spaces .group h3),
+html.light h4:not(#tour h4):not(.dark-card h4):not(#work .group h4):not(.case-study-modal h4):not(.cinematic-cta-section *):not(.faq-concierge-banner *) {
+  color: #17191D !important;
+}
+
+/* Contextual override for text-white on light page surfaces */
+html.light main > div > div > div > h1.text-white:not(.cinematic-cta-section *):not(.faq-concierge-banner *),
+html.light .max-w-7xl h1.text-white:not(.cinematic-cta-section *):not(.faq-concierge-banner *),
+html.light .max-w-5xl h1.text-white:not(.cinematic-cta-section *):not(.faq-concierge-banner *),
+html.light .max-w-4xl h1.text-white:not(.cinematic-cta-section *):not(.faq-concierge-banner *),
+html.light .max-w-3xl h1.text-white:not(.cinematic-cta-section *):not(.faq-concierge-banner *),
+html.light h1.font-display.text-white:not(#tour h1):not(.cinematic-cta-section *):not(.faq-concierge-banner *) {
+  color: #17191D !important;
+}
+
+/* Section H2 and H3 on daylight surfaces */
+html.light section:not(#tour):not(.cinematic-cta-section) h2.text-white:not(.cinematic-cta-section *):not(.faq-concierge-banner *),
+html.light section:not(#tour):not(.cinematic-cta-section):not(#explorations) h3.text-white:not(#work .group h3):not(.dark-card h3):not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(#explorations *):not(.studio-gallery-card-title):not(.exploration-card-title):not(#spaces .absolute *):not(#spaces .group h3),
+html.light section:not(#tour):not(.cinematic-cta-section) h4.text-white:not(#work .group h4):not(.dark-card h4):not(.cinematic-cta-section *):not(.faq-concierge-banner *) {
+  color: #17191D !important;
+}
+
+/* Specific page headlines */
+html.light h1.font-extrabold.text-white:not(#tour *):not(.cinematic-cta-section *):not(.faq-concierge-banner *) {
+  color: #17191D !important;
+}
+
+/* Secondary editorial and body copy on daylight surfaces */
+html.light p.text-slate-400:not(#tour *):not(#work .group *):not(.portfolio-card *):not(.case-study-modal *):not(.cinematic-cta-section *):not(.faq-concierge-banner *),
+html.light p.text-slate-300:not(#tour *):not(#work .group *):not(.portfolio-card *):not(.case-study-modal *):not(.cinematic-cta-section *):not(.faq-concierge-banner *) {
+  color: #555D68 !important;
+}
+
+html.light span.text-slate-400:not(#tour *):not(#work .group *):not(.portfolio-card *):not(.case-study-modal *):not(.cinematic-cta-section *):not(.faq-concierge-banner *),
+html.light span.text-slate-300:not(#tour *):not(#work .group *):not(.portfolio-card *):not(.case-study-modal *):not(.cinematic-cta-section *):not(.faq-concierge-banner *) {
+  color: #555D68 !important;
+}
+
+/* --------------------------------------------------------------------------
+   2. STRICT PRESERVATION: HERO SECTION & PHOTOGRAPHIC SEQUENCES
+   Keep all Hero photography, headlines, and HUD text 100% visible and pristine.
+   -------------------------------------------------------------------------- */
+html.light #tour h1,
+html.light #tour h1 span.text-white {
+  color: #FFFFFF !important;
+  text-shadow: 0 4px 24px rgba(0, 0, 0, 0.98);
+}
+
+html.light #tour p.text-slate-200,
+html.light #tour p.text-slate-300 {
+  color: #E2E8F0 !important;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.98);
+}
+
+html.light #tour button span {
+  color: #E2E8F0;
+}
+
+/* Hero HUD Capsule in Daylight Mode */
+html.light #tour .bg-black\/85 {
+  background-color: rgba(255, 255, 255, 0.92) !important;
+  border-color: #D9D9D3 !important;
+  box-shadow: 0 12px 36px -4px rgba(23, 25, 29, 0.12), 0 4px 12px -2px rgba(23, 25, 29, 0.06) !important;
+  color: #17191D !important;
+}
+
+html.light #tour .bg-black\/85 button {
+  color: #334155 !important;
+}
+
+html.light #tour .bg-black\/85 button:hover {
+  background-color: rgba(0, 0, 0, 0.06) !important;
+}
+
+html.light #tour .bg-black\/85 .text-white {
+  color: #17191D !important;
+}
+
+html.light #tour .bg-black\/85 .text-slate-200 {
+  color: #17191D !important;
+}
+
+html.light #tour .bg-black\/85 .border-white\/20 {
+  border-color: #D9D9D3 !important;
+}
+
+html.light #tour .bg-black\/85 .bg-white\/30 {
+  background-color: rgba(0, 0, 0, 0.15) !important;
+}
+
+/* --------------------------------------------------------------------------
+   3. STRICT PRESERVATION: DARK PROJECT CARDS & PORTFOLIO ARTWORK (PROMPT 5)
+   Retain dark card surfaces, rich artwork vignettes, white track titles,
+   translucent genre badges, play triggers, and audio scrubbers.
+   -------------------------------------------------------------------------- */
+html.light #work .group,
+html.light .min-h-\[460px\].group,
+html.light .grid > .group.relative.rounded-2xl.overflow-hidden {
+  background-color: #0b0f19 !important;
+  border-color: rgba(23, 25, 29, 0.15) !important;
+  box-shadow: 0 16px 40px -8px rgba(23, 25, 29, 0.22), 0 4px 12px -2px rgba(23, 25, 29, 0.08) !important;
+}
+
+html.light #work .group:hover,
+html.light .min-h-\[460px\].group:hover {
+  border-color: rgba(78, 133, 191, 0.7) !important;
+  box-shadow: 0 20px 50px -8px rgba(78, 133, 191, 0.25) !important;
+}
+
+/* Inside dark project cards: titles and text must remain light */
+html.light #work .group h3,
+html.light .min-h-\[460px\].group h3 {
+  color: #FFFFFF !important;
+}
+
+html.light #work .group p,
+html.light .min-h-\[460px\].group p {
+  color: #94A3B8 !important;
+}
+
+html.light #work .group .text-slate-400,
+html.light #work .group .text-slate-300,
+html.light .min-h-\[460px\].group .text-slate-300,
+html.light .min-h-\[460px\].group .text-slate-400 {
+  color: #94A3B8 !important;
+}
+
+html.light #work .group .text-white,
+html.light .min-h-\[460px\].group .text-white {
+  color: #FFFFFF !important;
+}
+
+html.light #work .group .border-white\/10,
+html.light #work .group .border-white\/5,
+html.light .min-h-\[460px\].group .border-white\/10,
+html.light .min-h-\[460px\].group .border-white\/5 {
+  border-color: rgba(255, 255, 255, 0.1) !important;
+}
+
+html.light #work .group .bg-white\/\[0\.03\],
+html.light .min-h-\[460px\].group .bg-white\/\[0\.03\] {
+  background-color: rgba(255, 255, 255, 0.05) !important;
+}
+
+/* Protect All Media Assets: No filters, no inversions, no washing out */
+html.light img,
+html.light picture,
+html.light video {
+  filter: none !important;
+}
+
+/* --------------------------------------------------------------------------
+   4. ARCHITECTURE & SERVICES REFINEMENTS (PROMPT 4)
+   Room tabs, journey steps, expandable cards, specs boxes.
+   -------------------------------------------------------------------------- */
+
+/* Room selection tabs (StudioTourPage) */
+html.light .scrollbar-none button.bg-white\/5 {
+  background-color: #FFFFFF !important;
+  border-color: #D9D9D3 !important;
+  color: #555D68 !important;
+  box-shadow: 0 2px 6px -1px rgba(23, 25, 29, 0.04);
+}
+
+html.light .scrollbar-none button.bg-white\/5:hover {
+  color: #17191D !important;
+  border-color: #4E85BF !important;
+  background-color: #FFFFFF !important;
+}
+
+/* Active tab retains rich blue gradient */
+html.light .scrollbar-none button.accent-gradient,
+html.light button.accent-gradient {
+  color: #FFFFFF !important;
+}
+
+/* Technical Specs & Hardware boxes on StudioTourPage */
+html.light .bg-\[\#0c1018\] {
+  background-color: #FFFFFF !important;
+  border-color: #D9D9D3 !important;
+  box-shadow: 0 4px 16px -2px rgba(23, 25, 29, 0.04) !important;
+}
+
+html.light .bg-\[\#0c1018\] span,
+html.light .bg-\[\#0c1018\] li span {
+  color: #17191D !important;
+}
+
+/* ServicesPage Journey Steps */
+html.light .bg-\[\#0b0f17\] {
+  background-color: #FFFFFF !important;
+  border-color: #D9D9D3 !important;
+  box-shadow: 0 6px 20px -2px rgba(23, 25, 29, 0.04) !important;
+}
+
+html.light .bg-\[\#0b0f17\] .bg-white\/5 {
+  background-color: #F5F4F0 !important;
+  border-color: #D9D9D3 !important;
+}
+
+html.light .bg-\[\#0b0f17\] h4 {
+  color: #17191D !important;
+}
+
+html.light .bg-\[\#0b0f17\] p {
+  color: #555D68 !important;
+}
+
+/* Expandable Services Cards on ServicesPage */
+html.light .bg-\[\#080b12\]:not(#work *):not(.min-h-\[460px\]) {
+  background-color: #FFFFFF !important;
+  border-color: #D9D9D3 !important;
+  box-shadow: 0 4px 16px -2px rgba(23, 25, 29, 0.04) !important;
+}
+
+html.light .bg-\[\#080b12\]:not(#work *):not(.min-h-\[460px\]):hover {
+  border-color: rgba(78, 133, 191, 0.4) !important;
+}
+
+html.light .bg-\[\#0a0e16\]:not(#work *):not(.min-h-\[460px\]) {
+  background-color: #FFFFFF !important;
+  border-color: #4E85BF !important;
+  box-shadow: 0 8px 30px -4px rgba(78, 133, 191, 0.12) !important;
+}
+
+html.light .bg-\[\#080b12\] h3,
+html.light .bg-\[\#0a0e16\] h3 {
+  color: #17191D !important;
+}
+
+/* Category & Genre Filter Pills (Portfolio & Equipment) */
+html.light .border-y button.bg-white\/5,
+html.light .border-y button.bg-white\/\[0\.04\],
+html.light .bg-\[\#0a0e16\] button.bg-white\/5 {
+  background-color: #FFFFFF !important;
+  border-color: #D9D9D3 !important;
+  color: #555D68 !important;
+}
+
+html.light .border-y button.bg-white\/5:hover,
+html.light .border-y button.bg-white\/\[0\.04\]:hover,
+html.light .bg-\[\#0a0e16\] button.bg-white\/5:hover {
+  color: #17191D !important;
+  border-color: #4E85BF !important;
+  background-color: #F5F4F0 !important;
+}
+
+/* RatesSection Packages */
+html.light #rates {
+  background-color: #F5F4F0 !important;
+  border-color: #D9D9D3 !important;
+}
+
+html.light #rates .bg-white\/\[0\.02\] {
+  background-color: #FFFFFF !important;
+  border-color: #D9D9D3 !important;
+  box-shadow: 0 4px 16px -2px rgba(23, 25, 29, 0.04) !important;
+}
+
+html.light #rates .bg-gradient-to-b {
+  background: #FFFFFF !important;
+  border-color: #4E85BF !important;
+  box-shadow: 0 10px 30px -4px rgba(78, 133, 191, 0.15) !important;
+}
+
+html.light #rates h2,
+html.light #rates h3 {
+  color: #17191D !important;
+}
+
+html.light #rates .font-mono.text-white {
+  color: #17191D !important;
+}
+
+html.light #rates p {
+  color: #555D68 !important;
+}
+
+html.light #rates li {
+  color: #555D68 !important;
+}
+
+html.light #rates li span {
+  color: #555D68 !important;
+}
+
+html.light #rates button.bg-white {
+  background-color: #17191D !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 12px -2px rgba(23, 25, 29, 0.15) !important;
+}
+
+html.light #rates button.bg-white:hover {
+  background-color: #4E85BF !important;
+  color: #FFFFFF !important;
+}
+
+html.light #rates button.bg-sky-400 {
+  background-color: #4E85BF !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 16px -2px rgba(78, 133, 191, 0.3) !important;
+}
+
+html.light #rates button.bg-sky-400:hover {
+  background-color: #3D6E9F !important;
+  color: #FFFFFF !important;
+}
+
+/* AcousticalEngineering specs cards */
+html.light #acoustics {
+  background-color: #ECEBE6 !important;
+  border-color: #D9D9D3 !important;
+}
+
+html.light #acoustics .bg-white\/\[0\.02\] {
+  background-color: #FFFFFF !important;
+  border-color: #D9D9D3 !important;
+  box-shadow: 0 4px 16px -2px rgba(23, 25, 29, 0.04) !important;
+}
+
+html.light #acoustics h2,
+html.light #acoustics h4 {
+  color: #17191D !important;
+}
+
+/* Section Surfaces: Alternating Warm Ivory (#F5F4F0), Soft White (#FFFFFF), and Pale Neutral (#ECEBE6) */
+/* Philosophy */
+html.light #philosophy {
+  background-color: #FFFFFF !important;
+  border-color: #D9D9D3 !important;
+}
+
+html.light #philosophy h2,
+html.light #philosophy h2 span.font-editorial,
+html.light #philosophy h3 {
+  color: #17191D !important;
+}
+
+html.light #philosophy p {
+  color: #555D68 !important;
+}
+
+html.light #philosophy .bg-white\/\[0\.02\] {
+  background-color: #ECEBE6 !important;
+  border-color: #D9D9D3 !important;
+  box-shadow: 0 4px 16px -2px rgba(23, 25, 29, 0.04);
+}
+
+html.light #philosophy .bg-white\/\[0\.02\]:hover {
+  border-color: #4E85BF !important;
+  box-shadow: 0 10px 25px -3px rgba(78, 133, 191, 0.12);
+}
+
+html.light #philosophy .bg-white\/5 {
+  background-color: #FFFFFF !important;
+  border-color: #D9D9D3 !important;
+}
+
+/* Discover the Lekki Phase 1 Sanctuary & Origin Button */
+html.light #philosophy .sanctuary-origin-pill,
+html.light #philosophy .bg-white\/10 {
+  background-color: #FFFFFF !important;
+  border-color: #CBD5E1 !important;
+  color: #0F172A !important;
+  box-shadow: 0 4px 16px -2px rgba(15, 23, 42, 0.1) !important;
+}
+
+html.light #philosophy .sanctuary-origin-pill span,
+html.light #philosophy a[href="/about"] span {
+  color: #0F172A !important;
+  font-weight: 800 !important;
+}
+
+html.light #philosophy .sanctuary-origin-pill svg {
+  color: #2563EB !important;
+}
+
+html.light #philosophy .sanctuary-origin-pill:hover {
+  background-color: #F8FAFC !important;
+  border-color: #4E85BF !important;
+  box-shadow: 0 6px 20px -2px rgba(78, 133, 191, 0.22) !important;
+}
+
+/* Featured Spaces */
+html.light #spaces {
+  background-color: #F5F4F0 !important;
+  border-color: #D9D9D3 !important;
+}
+
+html.light #spaces h2 {
+  color: #17191D !important;
+}
+
+/* Chamber Cards inside #spaces retain dark photo contrast & bold bright white typography */
+html.light #spaces .studio-gallery-card-title,
+html.light #spaces .group h3,
+html.light #spaces .absolute h3,
+html.light #spaces h3.studio-gallery-card-title,
+#spaces .studio-gallery-card-title,
+#spaces .group h3,
+#spaces .absolute h3 {
+  color: #FFFFFF !important;
+  font-weight: 800 !important;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95) !important;
+}
+
+html.light #spaces .absolute span,
+#spaces .absolute span {
+  color: #89AACC !important;
+  font-weight: 700 !important;
+}
+
+html.light #spaces p {
+  color: #555D68 !important;
+}
+
+html.light #spaces .bg-white\/\[0\.02\],
+html.light #spaces .bg-black\/40 {
+  background-color: #FFFFFF !important;
+  border-color: #D9D9D3 !important;
+  box-shadow: 0 4px 16px -2px rgba(23, 25, 29, 0.05);
+}
+
+html.light #spaces .group.relative {
+  background-color: #FFFFFF !important;
+  border-color: #D9D9D3 !important;
+  box-shadow: 0 4px 16px -2px rgba(23, 25, 29, 0.05) !important;
+}
+
+html.light #spaces .group.relative .bg-\[\#080b12\] {
+  background-color: #FFFFFF !important;
+}
+
+html.light #spaces .group.relative p {
+  color: #4B5563 !important;
+}
+
+html.light #spaces .group.relative .border-t.border-white\/5 {
+  border-color: #ECEBE6 !important;
+}
+
+/* Studio Tour CTA Capsule Button (Image 4 reference: solid dark obsidian, crisp white text, stays dark on touch) */
+html.light #spaces .studio-tour-cta-btn,
+html.light #spaces a[href="/studio"],
+html.light .studio-tour-cta-btn,
+.studio-tour-cta-btn {
+  background-color: #090D16 !important;
+  border-color: rgba(255, 255, 255, 0.22) !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 8px 24px -4px rgba(9, 13, 22, 0.35) !important;
+}
+
+html.light #spaces .studio-tour-cta-btn span,
+html.light #spaces a[href="/studio"] span,
+.studio-tour-cta-btn span {
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+}
+
+html.light #spaces .studio-tour-cta-btn svg,
+html.light #spaces a[href="/studio"] svg,
+.studio-tour-cta-btn svg {
+  color: #4E85BF !important;
+}
+
+/* Touch, Active, Hover, Focus: Strictly stays solid dark with bright white text */
+html.light #spaces .studio-tour-cta-btn:hover,
+html.light #spaces .studio-tour-cta-btn:focus,
+html.light #spaces .studio-tour-cta-btn:active,
+html.light #spaces a[href="/studio"]:hover,
+html.light #spaces a[href="/studio"]:focus,
+html.light #spaces a[href="/studio"]:active,
+.studio-tour-cta-btn:hover,
+.studio-tour-cta-btn:focus,
+.studio-tour-cta-btn:active {
+  background-color: #111827 !important;
+  border-color: #4E85BF !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 10px 30px -4px rgba(78, 133, 191, 0.45) !important;
+}
+
+html.light #spaces .studio-tour-cta-btn:hover span,
+html.light #spaces .studio-tour-cta-btn:focus span,
+html.light #spaces .studio-tour-cta-btn:active span,
+html.light #spaces a[href="/studio"]:hover span,
+html.light #spaces a[href="/studio"]:focus span,
+html.light #spaces a[href="/studio"]:active span,
+.studio-tour-cta-btn:hover span,
+.studio-tour-cta-btn:focus span,
+.studio-tour-cta-btn:active span {
+  color: #FFFFFF !important;
+}
+
+html.light #spaces .studio-tour-cta-btn:hover svg,
+html.light #spaces .studio-tour-cta-btn:active svg,
+.studio-tour-cta-btn:hover svg,
+.studio-tour-cta-btn:active svg {
+  color: #38BDF8 !important;
+}
+
+/* Services */
+html.light #services {
+  background-color: #FFFFFF !important;
+  border-color: #D9D9D3 !important;
+}
+
+html.light #services h2,
+html.light #services h3 {
+  color: #17191D !important;
+}
+
+html.light #services p {
+  color: #555D68 !important;
+}
+
+html.light #services .bg-white\/\[0\.02\],
+html.light #services .bg-black\/30,
+html.light #services .bg-\[\#060912\],
+html.light #services .bg-\[\#070a14\] {
+  background-color: #ECEBE6 !important;
+  border-color: #D9D9D3 !important;
+  box-shadow: 0 4px 16px -2px rgba(23, 25, 29, 0.05);
+}
+
+/* Work section background surface */
+html.light #work {
+  background-color: #F5F4F0 !important;
+  border-color: #D9D9D3 !important;
+}
+
+html.light #work h2 {
+  color: #17191D !important;
+}
+
+html.light #work > div > div > p {
+  color: #555D68 !important;
+}
+
+/* Production Catalogue CTA Capsule Button (Image 4 reference: solid dark obsidian, crisp white text, stays dark on touch) */
+html.light #work .production-catalogue-cta-btn,
+html.light #work a[href="/our-work"],
+html.light .production-catalogue-cta-btn,
+.production-catalogue-cta-btn {
+  background-color: #090D16 !important;
+  border-color: rgba(255, 255, 255, 0.22) !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 8px 24px -4px rgba(9, 13, 22, 0.35) !important;
+}
+
+html.light #work .production-catalogue-cta-btn span,
+html.light #work a[href="/our-work"] span,
+.production-catalogue-cta-btn span {
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+}
+
+html.light #work .production-catalogue-cta-btn svg,
+html.light #work a[href="/our-work"] svg,
+.production-catalogue-cta-btn svg {
+  color: #4E85BF !important;
+}
+
+html.light #work .production-catalogue-cta-btn:hover,
+html.light #work .production-catalogue-cta-btn:focus,
+html.light #work .production-catalogue-cta-btn:active,
+html.light #work a[href="/our-work"]:hover,
+html.light #work a[href="/our-work"]:focus,
+html.light #work a[href="/our-work"]:active,
+.production-catalogue-cta-btn:hover,
+.production-catalogue-cta-btn:focus,
+.production-catalogue-cta-btn:active {
+  background-color: #111827 !important;
+  border-color: #4E85BF !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 10px 30px -4px rgba(78, 133, 191, 0.45) !important;
+}
+
+html.light #work .production-catalogue-cta-btn:hover span,
+html.light #work .production-catalogue-cta-btn:focus span,
+html.light #work .production-catalogue-cta-btn:active span,
+.production-catalogue-cta-btn:hover span,
+.production-catalogue-cta-btn:focus span,
+.production-catalogue-cta-btn:active span {
+  color: #FFFFFF !important;
+}
+
+/* Category filter tabs in Daylight mode (Image 3 fix) */
+html.light #work .work-category-tab:not(.work-category-tab-active) {
+  background-color: #FFFFFF !important;
+  border-color: #CBD5E1 !important;
+  color: #17191D !important;
+  box-shadow: 0 2px 8px -1px rgba(15, 23, 42, 0.06) !important;
+}
+
+html.light #work .work-category-tab:not(.work-category-tab-active) span:first-child {
+  color: #17191D !important;
+  font-weight: 700 !important;
+}
+
+html.light #work .work-category-tab:not(.work-category-tab-active) span:last-child {
+  background-color: #F1F5F9 !important;
+  color: #334155 !important;
+  font-weight: 700 !important;
+}
+
+html.light #work .work-category-tab.work-category-tab-active {
+  background-color: #090D16 !important;
+  border-color: #4E85BF !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 16px -2px rgba(9, 13, 22, 0.35) !important;
+}
+
+html.light #work .work-category-tab.work-category-tab-active span:first-child {
+  color: #FFFFFF !important;
+  font-weight: 800 !important;
+}
+
+html.light #work .work-category-tab.work-category-tab-active span:last-child {
+  background-color: #4E85BF !important;
+  color: #FFFFFF !important;
+  font-weight: 700 !important;
+}
+
+/* Process Section */
+html.light #process {
+  background-color: #FFFFFF !important;
+  border-color: #D9D9D3 !important;
+}
+
+html.light #process h2,
+html.light #process h3 {
+  color: #17191D !important;
+}
+
+html.light #process p {
+  color: #555D68 !important;
+}
+
+/* --------------------------------------------------------------------------
+   VISUAL EXPLORATIONS (WHERE SOUND BECOMES VISION)
+   Warm ivory architectural surface with high-contrast headline while
+   preserving dark photographic artwork cards with rich depth.
+   -------------------------------------------------------------------------- */
+html.light #explorations {
+  background-color: #F5F4F0 !important;
+  border-color: #D9D9D3 !important;
+}
+
+html.light #explorations h2 {
+  color: #17191D !important;
+}
+
+html.light #explorations p.text-slate-400 {
+  color: #555D68 !important;
+}
+
+/* Strictly retain dark photographic cards for architectural visual gallery */
+html.light #explorations .group {
+  background-color: #090d16 !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 16px 40px -8px rgba(23, 25, 29, 0.22) !important;
+}
+
+html.light #explorations .group:hover {
+  border-color: rgba(78, 133, 191, 0.6) !important;
+  box-shadow: 0 20px 50px -8px rgba(78, 133, 191, 0.2) !important;
+}
+
+html.light #explorations .group h3,
+html.light #explorations .exploration-card-title,
+html.light #explorations h3,
+#explorations .group h3,
+#explorations .exploration-card-title,
+.exploration-card-title {
+  color: #FFFFFF !important;
+  font-weight: 800 !important;
+  text-shadow: 0 2px 16px rgba(0, 0, 0, 0.95), 0 0 24px rgba(78, 133, 191, 0.3) !important;
+}
+
+html.light #explorations .group p,
+#explorations .group p {
+  color: #E2E8F0 !important;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.8) !important;
+}
+
+html.light #explorations .group .text-slate-300,
+#explorations .group .text-slate-300 {
+  color: #E2E8F0 !important;
+}
+
+html.light #explorations .group .text-slate-400,
+#explorations .group .text-slate-400 {
+  color: #CBD5E1 !important;
+}
+
+/* --------------------------------------------------------------------------
+   STUDIO METRICS & HARDWARE / SANCTUARY GATEWAYS (HOMEPAGE)
+   -------------------------------------------------------------------------- */
+html.light #studio-metrics {
+  background-color: #ECEBE6 !important;
+  border-color: #D9D9D3 !important;
+}
+
+html.light #studio-metrics .text-white {
+  color: #17191D !important;
+}
+
+html.light #studio-metrics p {
+  color: #555D68 !important;
+}
+
+html.light #studio-gateways {
+  background-color: #F5F4F0 !important;
+  border-color: #D9D9D3 !important;
+}
+
+html.light #studio-gateways .rounded-2xl {
+  background-color: #FFFFFF !important;
+  border-color: #D9D9D3 !important;
+  box-shadow: 0 6px 24px -2px rgba(23, 25, 29, 0.05) !important;
+}
+
+html.light #studio-gateways .rounded-2xl:hover {
+  border-color: #4E85BF !important;
+  box-shadow: 0 12px 32px -4px rgba(78, 133, 191, 0.12) !important;
+}
+
+html.light #studio-gateways h3 {
+  color: #17191D !important;
+}
+
+html.light #studio-gateways p {
+  color: #555D68 !important;
+}
+
+html.light #studio-gateways a {
+  color: #17191D !important;
+}
+
+html.light #studio-gateways a:hover {
+  color: #4E85BF !important;
+}
+
+/* --------------------------------------------------------------------------
+   THE SONICVAULT APPROACH & CONTROL ROOM JOURNAL (ABOUT / PILLARS)
+   -------------------------------------------------------------------------- */
+html.light #approach {
+  background-color: #ECEBE6 !important;
+  border-color: #D9D9D3 !important;
+}
+
+html.light #approach h2,
+html.light #approach h3 {
+  color: #17191D !important;
+}
+
+html.light #approach p {
+  color: #555D68 !important;
+}
+
+html.light #approach .divide-white\/10 {
+  border-color: #D9D9D3 !important;
+}
+
+html.light #approach .bg-white\/5 {
+  background-color: #FFFFFF !important;
+  border-color: #D9D9D3 !important;
+}
+
+html.light #journal {
+  background-color: #FFFFFF !important;
+  border-color: #D9D9D3 !important;
+}
+
+html.light #journal h2,
+html.light #journal h3 {
+  color: #17191D !important;
+}
+
+html.light #journal p {
+  color: #555D68 !important;
+}
+
+html.light #journal .divide-white\/10,
+html.light #journal .border-white\/10 {
+  border-color: #D9D9D3 !important;
+}
+
+html.light #journal article.group:hover {
+  background-color: #F5F4F0 !important;
+}
+
+html.light #journal .border-white\/15.bg-white\/5 {
+  background-color: #F5F4F0 !important;
+  border-color: #D9D9D3 !important;
+  color: #17191D !important;
+}
+
+/* --------------------------------------------------------------------------
+   STUDIO FAQ & CONCIERGE ACCORDION (NO BLANK CONTROLS)
+   Art-directed architectural surface with precise control styling:
+   - Category tabs: White inactive / Brand Blue active
+   - Search bar: Crisp white input with dark text
+   - Accordion cards: Soft white with subtle grey borders
+   - Headings & answers: High-contrast charcoal and slate
+   - Actions: Rich blue booking button, WhatsApp green, and clear specs links
+   - Concierge banner: Retains luxury dark gradient with clear white typography
+   -------------------------------------------------------------------------- */
+html.light #faq {
+  background-color: #ECEBE6 !important;
+  border-color: #D9D9D3 !important;
+}
+
+html.light #faq h2 {
+  color: #17191D !important;
+}
+
+html.light #faq p.text-slate-400 {
+  color: #555D68 !important;
+}
+
+/* Search input */
+html.light #faq input[type="text"] {
+  background-color: #FFFFFF !important;
+  border-color: #D9D9D3 !important;
+  color: #17191D !important;
+  box-shadow: 0 4px 16px -2px rgba(23, 25, 29, 0.04) !important;
+}
+
+html.light #faq input[type="text"]::placeholder {
+  color: #94A3B8 !important;
+}
+
+/* Category filter buttons in FAQ */
+html.light #faq .overflow-x-auto button.bg-white\/5 {
+  background-color: #FFFFFF !important;
+  border-color: #D9D9D3 !important;
+  color: #555D68 !important;
+}
+
+html.light #faq .overflow-x-auto button.bg-white\/5:hover {
+  background-color: #F5F4F0 !important;
+  color: #17191D !important;
+  border-color: #4E85BF !important;
+}
+
+html.light #faq .overflow-x-auto button.bg-\[\#4E85BF\] {
+  background-color: #4E85BF !important;
+  border-color: #4E85BF !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 12px -1px rgba(78, 133, 191, 0.25) !important;
+}
+
+/* Collapse/Expand All toggle button */
+html.light #faq button:has(svg.lucide-sliders-horizontal),
+html.light #faq button:has(svg.lucide-sliders) {
+  background-color: #FFFFFF !important;
+  border-color: #D9D9D3 !important;
+  color: #555D68 !important;
+}
+
+html.light #faq button:has(svg.lucide-sliders-horizontal):hover,
+html.light #faq button:has(svg.lucide-sliders):hover {
+  background-color: #F5F4F0 !important;
+  color: #17191D !important;
+  border-color: #4E85BF !important;
+}
+
+/* Accordion card items */
+html.light #faq .rounded-2xl.border:not(.faq-concierge-banner *) {
+  background-color: #FFFFFF !important;
+  border-color: #D9D9D3 !important;
+  box-shadow: 0 4px 16px -2px rgba(23, 25, 29, 0.04) !important;
+}
+
+html.light #faq .rounded-2xl.border:hover:not(.faq-concierge-banner *) {
+  border-color: rgba(78, 133, 191, 0.4) !important;
+}
+
+/* Accordion trigger button must remain transparent inside the card */
+html.light #faq .rounded-2xl.border > button {
+  background-color: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+/* Accordion questions */
+html.light #faq .faq-question-title,
+html.light #faq .rounded-2xl.border h3 {
+  color: #17191D !important;
+}
+
+/* Accordion answers */
+html.light #faq .rounded-2xl.border p {
+  color: #555D68 !important;
+}
+
+/* Number badge inside FAQ card */
+html.light #faq .rounded-2xl.border .font-mono.text-\[\#89AACC\] {
+  background-color: #F5F4F0 !important;
+  border-color: #D9D9D3 !important;
+  color: #4E85BF !important;
+}
+
+/* Chevron expander circle */
+html.light #faq .rounded-2xl.border .w-8.h-8.rounded-full {
+  background-color: #F5F4F0 !important;
+  border-color: #D9D9D3 !important;
+  color: #17191D !important;
+}
+
+/* Interactive Action Buttons inside expanded accordion */
+html.light #faq .rounded-2xl.border button.bg-\[\#4E85BF\] {
+  background-color: #4E85BF !important;
+  color: #FFFFFF !important;
+  border-color: #4E85BF !important;
+  box-shadow: 0 4px 12px -2px rgba(78, 133, 191, 0.25) !important;
+}
+
+html.light #faq .rounded-2xl.border button.bg-\[\#4E85BF\]:hover {
+  background-color: #3D6E9F !important;
+}
+
+html.light #faq .rounded-2xl.border a.bg-white\/5 {
+  background-color: #F5F4F0 !important;
+  border-color: #D9D9D3 !important;
+  color: #17191D !important;
+}
+
+html.light #faq .rounded-2xl.border a.bg-white\/5:hover {
+  background-color: #ECEBE6 !important;
+  border-color: #4E85BF !important;
+}
+
+html.light #faq .rounded-2xl.border a.bg-\[\#25D366\]\/10 {
+  background-color: #F0FDF4 !important;
+  border-color: rgba(37, 211, 102, 0.4) !important;
+  color: #15803D !important;
+}
+
+html.light #faq .rounded-2xl.border a.bg-\[\#25D366\]\/10:hover {
+  background-color: #DCFCE7 !important;
+  border-color: #25D366 !important;
+}
+
+/* Studio Concierge Callout Banner at bottom of FAQ (Always dark luxury gradient with pure white & cyan typography) */
+html.light .faq-concierge-banner,
+.faq-concierge-banner {
+  background: linear-gradient(135deg, #090d16 0%, #111a2e 50%, #090d16 100%) !important;
+  border-color: rgba(78, 133, 191, 0.5) !important;
+  box-shadow: 0 20px 50px -10px rgba(9, 13, 22, 0.4) !important;
+}
+
+html.light .faq-concierge-banner h3,
+html.light #faq .faq-concierge-banner h3,
+html.light section .faq-concierge-banner h3,
+.faq-concierge-banner h3 {
+  color: #FFFFFF !important;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.85) !important;
+}
+
+html.light .faq-concierge-banner p,
+html.light #faq .faq-concierge-banner p,
+html.light section .faq-concierge-banner p,
+.faq-concierge-banner p {
+  color: #E2E8F0 !important;
+  text-shadow: 0 1px 8px rgba(0, 0, 0, 0.7) !important;
+}
+
+html.light .faq-concierge-banner span,
+html.light #faq .faq-concierge-banner span,
+.faq-concierge-banner span {
+  color: #89AACC !important;
+}
+
+html.light .faq-concierge-banner a.bg-\[\#25D366\] {
+  background-color: #25D366 !important;
+  color: #000000 !important;
+}
+
+html.light .faq-concierge-banner button.bg-white\/10 {
+  background-color: #4E85BF !important;
+  border-color: #4E85BF !important;
+  color: #FFFFFF !important;
+}
+
+html.light .faq-concierge-banner button.bg-white\/10:hover {
+  background-color: #3D6E9F !important;
+}
+
+/* --------------------------------------------------------------------------
+   5. HEADER & FLOATING CONTROLS (PROMPT 6)
+   -------------------------------------------------------------------------- */
+html.light .navbar-top-shroud {
+  background: linear-gradient(to bottom, rgba(245, 244, 240, 0.95), rgba(245, 244, 240, 0.6), transparent) !important;
+}
+
+html.light .navbar-pill {
+  background-color: rgba(255, 255, 255, 0.92) !important;
+  backdrop-filter: blur(24px) !important;
+  -webkit-backdrop-filter: blur(24px) !important;
+  border-color: #D9D9D3 !important;
+  box-shadow: 0 8px 30px -4px rgba(23, 25, 29, 0.08), 0 2px 8px -2px rgba(23, 25, 29, 0.04) !important;
+}
+
+html.light .navbar-pill a {
+  color: #555D68 !important;
+}
+
+html.light .navbar-pill a:hover {
+  color: #17191D !important;
+  background-color: rgba(0, 0, 0, 0.04) !important;
+}
+
+html.light .navbar-pill a.bg-white\/15 {
+  color: #17191D !important;
+  background-color: #ECEBE6 !important;
+  font-weight: 600 !important;
+}
+
+html.light .navbar-pill button.border-white\/15 {
+  border-color: #D9D9D3 !important;
+  color: #555D68 !important;
+  background-color: rgba(0, 0, 0, 0.02) !important;
+}
+
+html.light .navbar-pill button.border-white\/15:hover {
+  color: #17191D !important;
+  border-color: #4E85BF !important;
+}
+
+/* Mobile Drawer in Daylight Mode */
+html.light .mobile-drawer-panel {
+  background-color: rgba(245, 244, 240, 0.98) !important;
+  backdrop-filter: blur(24px) !important;
+  -webkit-backdrop-filter: blur(24px) !important;
+}
+
+html.light .mobile-drawer-panel .text-slate-200 {
+  color: #17191D !important;
+}
+
+html.light .mobile-drawer-panel .border-white\/10,
+html.light .mobile-drawer-panel .border-white\/5 {
+  border-color: #D9D9D3 !important;
+}
+
+/* Brand Logo Text */
+html.light .brand-logo-text-primary {
+  color: #17191D !important;
+  text-shadow: none !important;
+}
+
+html.light .brand-logo-text-gold {
+  color: #B45309 !important;
+  text-shadow: none !important;
+}
+
+/* Global Studio Footer */
+html.light .studio-footer-container {
+  background-color: #ECEBE6 !important;
+  border-color: #D9D9D3 !important;
+  color: #555D68 !important;
+}
+
+html.light .studio-footer-container .border-white\/10 {
+  border-color: #D9D9D3 !important;
+}
+
+html.light .studio-footer-container .text-white {
+  color: #17191D !important;
+}
+
+html.light .studio-footer-container .text-slate-300,
+html.light .studio-footer-container .text-slate-400 {
+  color: #555D68 !important;
+}
+
+html.light .studio-footer-container a:hover {
+  color: #17191D !important;
+}
+
+/* --------------------------------------------------------------------------
+   6. GLOBAL INNER PAGES & FORMS
+   -------------------------------------------------------------------------- */
+html.light .min-h-screen.bg-\[\#040609\] {
+  background-color: #F5F4F0 !important;
+}
+
+html.light .border-white\/10,
+html.light .border-white\/15,
+html.light .border-white\/5,
+html.light .border-white\/20 {
+  border-color: #D9D9D3 !important;
+}
+
+/* Form Inputs in Daylight Mode */
+html.light input:not([type="checkbox"]):not([type="radio"]),
+html.light textarea,
+html.light select {
+  background-color: #FFFFFF !important;
+  border-color: #D9D9D3 !important;
+  color: #17191D !important;
+}
+
+html.light input:focus,
+html.light textarea:focus,
+html.light select:focus {
+  border-color: #4E85BF !important;
+  outline: none !important;
+}
+
+html.light input::placeholder,
+html.light textarea::placeholder {
+  color: #94A3B8 !important;
+}
+
+/* Contact page details card */
+html.light .bg-\[\#080b12\].p-6 {
+  background-color: #FFFFFF !important;
+  border-color: #D9D9D3 !important;
+  box-shadow: 0 6px 24px -2px rgba(23, 25, 29, 0.05) !important;
+}
+
+/* Gear Locker Cards on EquipmentPage & Homepage */
+html.light .group.rounded-2xl.bg-\[\#080b12\]:not(#work *):not(.min-h-\[460px\]) {
+  background-color: #FFFFFF !important;
+  border-color: #D9D9D3 !important;
+  box-shadow: 0 4px 16px -2px rgba(23, 25, 29, 0.05) !important;
+}
+
+html.light .group.rounded-2xl.bg-\[\#080b12\]:not(#work *):not(.min-h-\[460px\]) h3 {
+  color: #17191D !important;
+}
+
+html.light .group.rounded-2xl.bg-\[\#080b12\]:not(#work *):not(.min-h-\[460px\]) p.text-slate-400 {
+  color: #374151 !important;
+}
+
+html.light .group.rounded-2xl.bg-\[\#080b12\]:not(#work *):not(.min-h-\[460px\]) .text-slate-500 {
+  color: #4B5563 !important;
+}
+
+html.light .group.rounded-2xl.bg-\[\#080b12\]:not(#work *):not(.min-h-\[460px\]) .aspect-square.bg-black\/60 {
+  background-color: #ECEBE6 !important;
+  border-color: #D9D9D3 !important;
+}
+
+/* Team Cards on AboutPage (Daylight Mode: All cards including Founder use clean light surface) */
+html.light .team-member-card,
+html.light .grid.grid-cols-1.md\:grid-cols-2.lg\:grid-cols-4 > div {
+  background: #FFFFFF !important;
+  background-image: none !important;
+  border-color: #D9D9D3 !important;
+  box-shadow: 0 4px 16px -2px rgba(23, 25, 29, 0.05) !important;
+}
+
+html.light .team-member-card.is-founder {
+  background: #FFFFFF !important;
+  background-image: none !important;
+  border-color: #4E85BF !important;
+  box-shadow: 0 8px 24px -2px rgba(78, 133, 191, 0.16) !important;
+}
+
+html.light .team-member-card h3,
+html.light .grid.grid-cols-1.md\:grid-cols-2.lg\:grid-cols-4 > div h3 {
+  color: #17191D !important;
+}
+
+html.light .team-member-card p,
+html.light .grid.grid-cols-1.md\:grid-cols-2.lg\:grid-cols-4 > div p,
+html.light .team-member-card .text-slate-300,
+html.light .team-member-card .text-slate-400 {
+  color: #555D68 !important;
+}
+
+html.light .team-member-card .text-slate-500 {
+  color: #64748B !important;
+}
+
+html.light .team-member-card .text-\[\#89AACC\] {
+  color: #2A5A8C !important;
+}
+
+html.light .team-member-card .aspect-square {
+  background-color: #F5F4F0 !important;
+  border-color: #D9D9D3 !important;
+}
+
+html.light .team-member-card .border-white\/5,
+html.light .team-member-card .border-white\/10 {
+  border-color: #ECEBE6 !important;
+}
+
+/* Final Cinematic CTA (Preserve dark photograph backdrop & brilliant white headline) */
+html.light .cinematic-cta-section,
+html.light section.cinematic-cta-section,
+.cinematic-cta-section {
+  background-color: #040609 !important;
+}
+
+html.light .cinematic-cta-section h2,
+html.light .cinematic-cta-section h2.text-white,
+html.light .cinematic-cta-section h2 span.text-white,
+html.light section.cinematic-cta-section h2,
+html.light section.cinematic-cta-section h2.text-white,
+.cinematic-cta-section h2 {
+  color: #FFFFFF !important;
+  text-shadow: 0 4px 30px rgba(0, 0, 0, 0.95), 0 0 50px rgba(78, 133, 191, 0.35) !important;
+}
+
+html.light .cinematic-cta-section p,
+html.light section.cinematic-cta-section p,
+html.light .cinematic-cta-section .text-slate-300,
+html.light .cinematic-cta-section p.text-slate-200,
+html.light .cinematic-cta-section p.text-slate-300,
+.cinematic-cta-section p {
+  color: #E2E8F0 !important;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.85) !important;
+}
+
+/* Brand Emblem Showcase in AboutPage (Preserve dark neon vault chamber) */
+html.light .brand-emblem-showcase h3,
+html.light .brand-emblem-showcase .text-white {
+  color: #FFFFFF !important;
+}
+
+html.light .brand-emblem-showcase p,
+html.light .brand-emblem-showcase .text-slate-300 {
+  color: #E2E8F0 !important;
+}
+
+/* Interactive Booking, Case Study & Equipment Modals in Daylight Mode */
+html.light [role="dialog"],
+html.light [role="dialog"] .bg-\[\#090d16\],
+html.light .fixed.inset-0 .bg-\[\#0a0e16\],
+html.light .fixed.inset-0 .bg-\[\#090d16\] {
+  background-color: #FFFFFF !important;
+  border-color: #D9D9D3 !important;
+  color: #17191D !important;
+  box-shadow: 0 25px 60px -12px rgba(23, 25, 29, 0.25) !important;
+}
+
+html.light [role="dialog"] h2,
+html.light [role="dialog"] h3,
+html.light .fixed.inset-0 .bg-\[\#0a0e16\] h2,
+html.light .fixed.inset-0 .bg-\[\#0a0e16\] h3 {
+  color: #17191D !important;
+}
+
+html.light [role="dialog"] p,
+html.light .fixed.inset-0 .bg-\[\#0a0e16\] p {
+  color: #555D68 !important;
+}
+
+html.light [role="dialog"] label,
+html.light [role="dialog"] span.text-slate-300,
+html.light [role="dialog"] span.text-slate-400,
+html.light .fixed.inset-0 .bg-\[\#0a0e16\] span.text-slate-300,
+html.light .fixed.inset-0 .bg-\[\#0a0e16\] span.text-slate-400 {
+  color: #555D68 !important;
+}
+
+html.light [role="dialog"] input,
+html.light [role="dialog"] select,
+html.light [role="dialog"] textarea,
+html.light .fixed.inset-0 .bg-\[\#0a0e16\] input {
+  background-color: #FFFFFF !important;
+  border-color: #D9D9D3 !important;
+  color: #17191D !important;
+}
+
+html.light [role="dialog"] .bg-white\/5,
+html.light .fixed.inset-0 .bg-\[\#0a0e16\] .bg-white\/5 {
+  background-color: #F5F4F0 !important;
+  border-color: #D9D9D3 !important;
+  color: #17191D !important;
+}
+
+html.light .fixed.inset-0 .bg-\[\#05080e\] {
+  background-color: #F5F4F0 !important;
+  border-color: #D9D9D3 !important;
+}
+
+html.light .fixed.inset-0 .bg-\[\#05080e\] span {
+  color: #17191D !important;
+}
+
+html.light .fixed.inset-0 .bg-\[\#05080e\] .text-slate-500 {
+  color: #64748B !important;
+}
+
+html.light .fixed.inset-0 .bg-\[\#05080e\] .text-slate-300,
+html.light .fixed.inset-0 .bg-\[\#05080e\] .text-slate-200 {
+  color: #17191D !important;
+}
+
+html.light [role="dialog"] .border-white\/10,
+html.light [role="dialog"] .border-white\/15,
+html.light [role="dialog"] .border-white\/5,
+html.light .fixed.inset-0 .bg-\[\#0a0e16\] .border-white\/10,
+html.light .fixed.inset-0 .bg-\[\#0a0e16\] .border-white\/20 {
+  border-color: #D9D9D3 !important;
+}
+
+html.light [role="dialog"] button:has(.lucide-x),
+html.light .fixed.inset-0 button:has(.lucide-x) {
+  background-color: #F5F4F0 !important;
+  color: #17191D !important;
+  border-color: #D9D9D3 !important;
+}
+
+/* Floating Chatbot Assistant in Daylight Mode */
+html.light .fixed.bottom-20.bg-\[\#0c101a\],
+html.light .fixed.bottom-24.bg-\[\#0c101a\] {
+  background-color: #FFFFFF !important;
+  border-color: #D9D9D3 !important;
+  box-shadow: 0 20px 50px -10px rgba(23, 25, 29, 0.2) !important;
+}
+
+html.light .fixed.bottom-20.bg-\[\#0c101a\] .bg-\[\#0e131e\],
+html.light .fixed.bottom-24.bg-\[\#0c101a\] .bg-\[\#0e131e\] {
+  background-color: #F5F4F0 !important;
+  border-color: #D9D9D3 !important;
+}
+
+html.light .fixed.bottom-20.bg-\[\#0c101a\] .bg-\[\#0a0d14\],
+html.light .fixed.bottom-24.bg-\[\#0c101a\] .bg-\[\#0a0d14\] {
+  background-color: #ECEBE6 !important;
+  border-color: #D9D9D3 !important;
+}
+
+html.light .fixed.bottom-20.bg-\[\#0c101a\] .text-white,
+html.light .fixed.bottom-24.bg-\[\#0c101a\] .text-white {
+  color: #17191D !important;
+}
+
+html.light .fixed.bottom-20.bg-\[\#0c101a\] .bg-white\/5,
+html.light .fixed.bottom-24.bg-\[\#0c101a\] .bg-white\/5 {
+  background-color: #FFFFFF !important;
+  border-color: #D9D9D3 !important;
+  color: #555D68 !important;
+}
+
+html.light .fixed.bottom-20.bg-\[\#0c101a\] .bg-\[\#131a29\],
+html.light .fixed.bottom-24.bg-\[\#0c101a\] .bg-\[\#131a29\] {
+  background-color: #F5F4F0 !important;
+  border-color: #D9D9D3 !important;
+  color: #17191D !important;
+}
+
+/* --------------------------------------------------------------------------
+   ABOUT PAGE & ARCHITECTURAL PHILOSOPHY NARRATIVE (DAYLIGHT MODE)
+   Ensure the origin & genesis text ("Situated at 38 Olanrewaju Ninalowo Crescent...")
+   renders with rich dark charcoal (#17191D / #1E293B) and perfect legibility.
+   -------------------------------------------------------------------------- */
+html.light .about-genesis-text,
+html.light p.about-genesis-text,
+html.light .lg\:col-span-6 p.about-genesis-text {
+  color: #17191D !important;
+  font-weight: 450 !important;
+  opacity: 0.95 !important;
+}
+
+html.light .about-hero-quote,
+html.light p.about-hero-quote {
+  color: #1E293B !important;
+  font-weight: 400 !important;
+}
+
+html.light .lg\:col-span-6 .bg-white\/5 {
+  background-color: #FFFFFF !important;
+  border-color: #D9D9D3 !important;
+  box-shadow: 0 4px 14px -2px rgba(23, 25, 29, 0.05) !important;
+}
+
+html.light .lg\:col-span-6 .bg-white\/5 span.text-slate-400 {
+  color: #334155 !important;
+}
+
+/* Team cards bio and descriptions on AboutPage in Daylight Mode */
+html.light .team-member-card p.text-slate-300 {
+  color: #334155 !important;
+}
+
+html.light .team-member-card span.text-slate-500 {
+  color: #64748B !important;
+}
 

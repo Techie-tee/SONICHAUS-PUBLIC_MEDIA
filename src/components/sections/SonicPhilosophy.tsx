@@ -121,10 +121,10 @@ export default function SonicPhilosophy() {
         <div className="pt-2 flex justify-center">
           <Link
             to="/about"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/5 hover:bg-white/10 border border-white/15 text-xs font-mono uppercase tracking-wider text-slate-300 hover:text-white transition-all cursor-pointer group"
+            className="sanctuary-origin-pill inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-white/10 hover:bg-white/15 border border-white/20 text-xs font-mono font-bold uppercase tracking-wider text-white transition-all cursor-pointer group shadow-md hover:scale-[1.02]"
           >
-            <span>DISCOVER THE LEKKI PHASE 1 SANCTUARY & ORIGIN</span>
-            <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform text-[#4E85BF]" />
+            <span className="font-extrabold tracking-wider">DISCOVER THE LEKKI PHASE 1 SANCTUARY & ORIGIN</span>
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform text-[#4E85BF]" />
           </Link>
         </div>
       </div>

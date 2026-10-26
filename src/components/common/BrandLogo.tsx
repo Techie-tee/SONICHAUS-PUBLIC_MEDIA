@@ -334,16 +334,16 @@ export default function BrandLogo({
           <div
             className={`font-display font-black uppercase text-white ${currentSize.text} ${currentSize.letterSpacing} flex items-center justify-center gap-2 whitespace-nowrap`}
           >
-            <span className="text-white drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
+            <span className="text-white brand-logo-text-primary drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
               SONIC<span className="text-cyan-400">VAULT</span>
             </span>
-            <span className="text-[#FDE68A] font-semibold tracking-[0.22em] text-[0.8em]">
+            <span className="text-[#FDE68A] brand-logo-text-gold font-semibold tracking-[0.22em] text-[0.8em]">
               STUDIOS
             </span>
           </div>
 
           <div
-            className={`font-mono text-cyan-200/80 tracking-[0.28em] uppercase ${currentSize.subText} flex items-center justify-center gap-2 whitespace-nowrap`}
+            className={`font-mono text-cyan-200/80 brand-logo-tagline tracking-[0.28em] uppercase ${currentSize.subText} flex items-center justify-center gap-2 whitespace-nowrap`}
           >
             <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse" />
             <span>WHERE SOUND BECOMES ART · LEKKI PHASE 1</span>
@@ -372,8 +372,8 @@ export default function BrandLogo({
           <div
             className={`font-display font-extrabold uppercase text-white ${currentSize.text} ${currentSize.letterSpacing} flex items-center justify-center sm:justify-start gap-2 whitespace-nowrap`}
           >
-            <span className="text-white">SONIC<span className="text-cyan-400">VAULT</span></span>
-            <span className="text-[#FDE68A] font-medium tracking-[0.22em] text-[0.82em]">
+            <span className="text-white brand-logo-text-primary">SONIC<span className="text-cyan-400">VAULT</span></span>
+            <span className="text-[#FDE68A] brand-logo-text-gold font-medium tracking-[0.22em] text-[0.82em]">
               STUDIOS
             </span>
           </div>
@@ -408,10 +408,10 @@ export default function BrandLogo({
         <div
           className={`font-display font-black ${currentSize.letterSpacing} uppercase text-white ${currentSize.text} flex items-center gap-1.5 whitespace-nowrap`}
         >
-          <span className="text-white group-hover:text-slate-100 transition-colors drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+          <span className="text-white brand-logo-text-primary group-hover:text-slate-100 transition-colors drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
             SONIC<span className="text-cyan-400">VAULT</span>
           </span>
-          <span className="text-[#FDE68A] font-bold text-[0.75em] tracking-[0.22em] sm:tracking-[0.24em] group-hover:text-[#FFFBEB] transition-colors drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+          <span className="text-[#FDE68A] brand-logo-text-gold font-bold text-[0.75em] tracking-[0.22em] sm:tracking-[0.24em] group-hover:text-[#FFFBEB] transition-colors drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
             STUDIOS
           </span>
         </div>

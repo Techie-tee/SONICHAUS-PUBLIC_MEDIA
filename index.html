@@ -3,6 +3,27 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <script>
+      (function() {
+        try {
+          var saved = localStorage.getItem('sonicvault_theme');
+          var prefersLight = window.matchMedia && window.matchMedia('(prefers-color-scheme: light)').matches;
+          var theme = saved ? saved : (prefersLight ? 'light' : 'dark');
+          var root = document.documentElement;
+          if (theme === 'light') {
+            root.classList.remove('dark');
+            root.classList.add('light');
+            root.setAttribute('data-theme', 'light');
+            root.style.colorScheme = 'light';
+          } else {
+            root.classList.remove('light');
+            root.classList.add('dark');
+            root.setAttribute('data-theme', 'dark');
+            root.style.colorScheme = 'dark';
+          }
+        } catch (e) {}
+      })();
+    </script>
     <title>SONICVAULT STUDIOS — Where Sound Becomes Art | Lekki Phase 1, Lagos</title>
     <meta name="description" content="SONICVAULT STUDIOS is a premier music recording, production, mixing, and mastering studio in Lekki Phase 1, Lagos, Nigeria. Where sound becomes art." />
     <meta property="og:title" content="SONICVAULT STUDIOS — Where Sound Becomes Art | Lagos, Nigeria" />

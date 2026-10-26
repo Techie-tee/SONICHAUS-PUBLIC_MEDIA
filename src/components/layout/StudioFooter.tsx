@@ -14,7 +14,7 @@ export default function StudioFooter({ onOpenBooking }: StudioFooterProps) {
   };
 
   return (
-    <footer className="bg-[#030508] border-t border-white/10 text-slate-400 py-16 sm:py-20 px-4 sm:px-6 lg:px-12 text-xs font-mono select-none">
+    <footer className="studio-footer-container bg-[#030508] border-t border-white/10 text-slate-400 py-16 sm:py-20 px-4 sm:px-6 lg:px-12 text-xs font-mono select-none">
       <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 sm:gap-12 border-b border-white/10 pb-12 sm:pb-16">
         {/* Col 1 & 2: Brand Identity & Monogram */}
         <div className="space-y-5 lg:col-span-2">

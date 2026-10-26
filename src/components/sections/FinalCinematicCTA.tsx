@@ -34,7 +34,7 @@ export default function FinalCinematicCTA({ onOpenBooking }: FinalCinematicCTAPr
   const whatsappUrl = 'https://wa.me/2349015104502?text=Hello%20SONICVAULT%20STUDIOS!%20I%20would%20like%20to%20enquire%20about%20booking%20a%20recording%20session.';
 
   return (
-    <section className="relative py-28 sm:py-40 bg-[#040609] overflow-hidden border-t border-white/10 select-none">
+    <section className="cinematic-cta-section relative py-28 sm:py-40 bg-[#040609] overflow-hidden border-t border-white/10 select-none">
       {/* Background Cinematic Studio Visual with Radial Gradient */}
       <div className="absolute inset-0 pointer-events-none opacity-30">
         <img
@@ -69,11 +69,17 @@ export default function FinalCinematicCTA({ onOpenBooking }: FinalCinematicCTAPr
 
         {/* Closing Headline */}
         <div className="space-y-4">
-          <h2 className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white font-display uppercase tracking-tight leading-[1.05]">
+          <h2
+            style={{ color: '#FFFFFF' }}
+            className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white font-display uppercase tracking-tight leading-[1.05] drop-shadow-[0_4px_30px_rgba(0,0,0,0.95)]"
+          >
             YOUR NEXT GREAT RECORD <br className="hidden sm:inline" />
             <span className="accent-gradient-text">STARTS HERE.</span>
           </h2>
-          <p className="text-base sm:text-xl md:text-2xl font-light text-slate-300 font-sans max-w-2xl mx-auto">
+          <p
+            style={{ color: '#E2E8F0' }}
+            className="text-base sm:text-xl md:text-2xl font-light text-slate-200 font-sans max-w-2xl mx-auto drop-shadow-md"
+          >
             Bring the idea. We'll help you shape the sound.
           </p>
         </div>

@@ -125,8 +125,7 @@ export default function ServicesPage() {
                           )}
                         </div>
                         <h3
-                          style={{ color: '#FFFFFF' }}
-                          className="service-card-title font-display text-xl sm:text-2xl font-extrabold !text-white tracking-wide drop-shadow-[0_2px_14px_rgba(0,0,0,0.95)]"
+                          className="service-card-title font-display text-xl sm:text-2xl font-extrabold font-bold text-black dark:text-white tracking-wide"
                         >
                           {srv.title}
                         </h3>

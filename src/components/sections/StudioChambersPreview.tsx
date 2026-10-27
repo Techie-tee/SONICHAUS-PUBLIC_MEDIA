@@ -125,8 +125,7 @@ export default function StudioChambersPreview({ onOpenBooking }: StudioChambersP
               <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between space-y-4">
                 <div className="space-y-2 flex-1 flex flex-col justify-end">
                   <h3
-                    style={{ color: '#FFFFFF' }}
-                    className="service-card-title text-xl sm:text-2xl font-extrabold !text-white font-display tracking-tight group-hover:text-[#89AACC] transition-colors drop-shadow-[0_2px_14px_rgba(0,0,0,0.95)] min-h-[3.25rem] flex items-end"
+                    className="service-card-title text-xl sm:text-2xl font-extrabold font-bold text-black dark:text-white font-display tracking-tight group-hover:text-[#4E85BF] transition-colors min-h-[3.25rem] flex items-end"
                   >
                     {chamber.name}
                   </h3>

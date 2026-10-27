@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { motion } from 'motion/react';
 import { ArrowUpRight, Sparkles, Award, ShieldCheck, Heart, Radio, Music } from 'lucide-react';
 import { TeamMember } from '../types';
 import BrandLogo, { SonicVaultVectorMark } from '../components/common/BrandLogo';
@@ -126,10 +127,16 @@ export default function AboutPage() {
         </div>
 
         {/* Master Brand Identity & Architectural Emblem Showcase */}
-        <div className="brand-emblem-showcase relative rounded-3xl p-8 sm:p-12 bg-gradient-to-br from-[#070D1A] via-[#040710] to-[#020307] border border-cyan-500/30 shadow-[0_0_50px_rgba(0,240,255,0.12)] overflow-hidden">
+        <motion.div
+          initial={{ opacity: 0, y: 32 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.15 }}
+          transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+          className="brand-emblem-showcase relative rounded-3xl p-8 sm:p-12 bg-gradient-to-br from-[#070D1A] via-[#040710] to-[#020307] border border-cyan-500/40 shadow-[0_0_50px_rgba(0,240,255,0.18)] overflow-hidden"
+        >
           <div className="absolute top-0 right-0 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl pointer-events-none" />
           <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <div className="lg:col-span-5 flex flex-col items-center justify-center p-6 rounded-2xl bg-black/60 border border-white/10 text-center">
+            <div className="lg:col-span-5 flex flex-col items-center justify-center p-6 rounded-2xl bg-black/70 border border-white/10 text-center shadow-2xl">
               <SonicVaultVectorMark size={140} className="drop-shadow-[0_0_30px_rgba(0,240,255,0.6)]" />
               <div className="mt-6">
                 <BrandLogo variant="horizontal" size="md" showTagline={true} />
@@ -137,33 +144,33 @@ export default function AboutPage() {
             </div>
 
             <div className="lg:col-span-7 space-y-4">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/10 border border-cyan-500/30 text-cyan-300 text-[11px] font-mono tracking-widest uppercase">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/15 border border-cyan-500/40 text-cyan-300 text-[11px] font-mono tracking-widest uppercase font-semibold">
                 <Sparkles className="w-3.5 h-3.5 text-cyan-400" />
                 <span>THE BRAND EMBLEM & ACOUSTIC IDENTITY</span>
               </div>
-              <h3 className="font-display text-2xl sm:text-3xl font-extrabold text-white tracking-tight">
+              <h3 className="brand-emblem-title font-display text-2xl sm:text-3xl md:text-4xl font-black text-white tracking-tight drop-shadow-[0_2px_20px_rgba(0,240,255,0.6)]">
                 ANATOMY OF THE SONICVAULT MARK
               </h3>
-              <p className="text-slate-300 text-sm leading-relaxed">
+              <p className="text-slate-200 text-sm leading-relaxed font-normal">
                 Our emblem represents the fusion of an uncompromising bank vault portal and an analog waveform. The outer polished titanium bezel houses precision locking lugs representing sound isolation, while the glowing electric cyan resonance ring and acoustic frequencies converge on the interlocking champagne gold <span className="text-[#FDE68A] font-bold">SV</span> monogram.
               </p>
               <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
-                <div className="p-3.5 rounded-xl bg-white/5 border border-white/5 text-xs">
-                  <span className="font-display font-bold text-white block">Acoustic Vault</span>
-                  <span className="text-slate-400 text-[11px]">80dB Decoupled Sanctuary</span>
+                <div className="p-3.5 rounded-xl bg-white/10 border border-white/15 text-xs">
+                  <span className="font-display font-bold text-white block text-sm">Acoustic Vault</span>
+                  <span className="text-slate-300 text-[11px]">80dB Decoupled Sanctuary</span>
                 </div>
-                <div className="p-3.5 rounded-xl bg-white/5 border border-white/5 text-xs">
-                  <span className="font-display font-bold text-cyan-400 block">Cyan Resonance</span>
-                  <span className="text-slate-400 text-[11px]">Sub-bass Frequency Flow</span>
+                <div className="p-3.5 rounded-xl bg-cyan-950/40 border border-cyan-500/40 text-xs">
+                  <span className="font-display font-bold text-cyan-300 block text-sm">Cyan Resonance</span>
+                  <span className="text-slate-300 text-[11px]">Sub-bass Frequency Flow</span>
                 </div>
-                <div className="p-3.5 rounded-xl bg-white/5 border border-white/5 text-xs">
-                  <span className="font-display font-bold text-[#FDE68A] block">Gold Monogram</span>
-                  <span className="text-slate-400 text-[11px]">Precision Sound Craft</span>
+                <div className="p-3.5 rounded-xl bg-amber-950/40 border border-amber-500/40 text-xs">
+                  <span className="font-display font-bold text-[#FDE68A] block text-sm">Gold Monogram</span>
+                  <span className="text-slate-300 text-[11px]">Precision Sound Craft</span>
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Team Section (Founder Presented First) */}
         <div className="space-y-10">
@@ -256,8 +263,14 @@ export default function AboutPage() {
         </div>
 
         {/* Closing CTA */}
-        <div className="mt-20 pt-16 border-t border-white/10 text-center space-y-4">
-          <span className="text-xs font-mono text-[#89AACC] tracking-widest uppercase block">
+        <motion.div
+          initial={{ opacity: 0, y: 24 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+          className="mt-20 pt-16 border-t border-white/10 text-center space-y-4"
+        >
+          <span className="text-xs font-mono text-[#89AACC] tracking-widest uppercase block font-semibold">
             CREATE YOUR LEGACY
           </span>
           <h3 className="font-display text-3xl sm:text-4xl font-extrabold text-white">
@@ -266,21 +279,21 @@ export default function AboutPage() {
           <p className="text-slate-400 text-xs sm:text-sm max-w-lg mx-auto">
             Experience the difference of recording in a world-class environment in Lekki Phase 1, Lagos.
           </p>
-          <div className="pt-4 flex items-center justify-center gap-4">
+          <div className="pt-4 flex flex-wrap items-center justify-center gap-4">
             <Link
               to="/book-session"
-              className="py-3 px-6 rounded-full accent-gradient text-white font-semibold text-xs tracking-wide shadow-md hover:opacity-90 transition-opacity"
+              className="py-3.5 px-7 rounded-full accent-gradient text-white font-bold text-xs uppercase tracking-wider shadow-lg hover:scale-105 active:scale-95 transition-all"
             >
               BOOK A SESSION
             </Link>
             <Link
               to="/contact"
-              className="py-3 px-6 rounded-full bg-white/5 border border-white/15 text-slate-300 font-semibold text-xs tracking-wide hover:text-white hover:bg-white/10 transition-colors"
+              className="about-contact-btn py-3.5 px-7 rounded-full bg-[#090D16] text-white border border-white/20 font-bold text-xs uppercase tracking-wider shadow-lg hover:bg-[#111827] hover:border-[#4E85BF] hover:scale-105 active:scale-95 transition-all cursor-pointer inline-flex items-center justify-center"
             >
               CONTACT THE TEAM
             </Link>
           </div>
-        </div>
+        </motion.div>
       </div>
     </div>
   );

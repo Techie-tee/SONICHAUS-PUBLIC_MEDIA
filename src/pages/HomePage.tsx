@@ -73,26 +73,75 @@ export default function HomePage({ onOpenBooking }: HomePageProps) {
       />
 
       {/* Architectural Studio Credentials & Acoustic Metrics Ribbon: Bridges Hero into Philosophy */}
-      <div id="studio-metrics" className="bg-[#030508] border-y border-white/10 py-6 px-4 sm:px-6 lg:px-12 relative z-20">
-        <div className="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8 items-center text-center">
-          <div className="space-y-1">
-            <span className="font-display text-2xl sm:text-3xl font-extrabold text-[#89AACC]">-85 dB</span>
-            <p className="text-[10px] sm:text-xs font-mono uppercase tracking-wider text-slate-400">STRUCTURAL ISOLATION</p>
+      <section
+        id="studio-metrics"
+        aria-label="Acoustic Credentials & Studio Specifications"
+        className="relative z-20 py-8 sm:py-10 px-4 sm:px-6 lg:px-12 bg-[#060911] border-y border-white/10 transition-colors duration-500"
+      >
+        <div className="max-w-7xl mx-auto">
+          {/* Subtle Lead-in Header */}
+          <div className="text-center mb-6 sm:mb-8">
+            <p className="text-[9px] sm:text-[10px] font-mono tracking-[0.25em] text-[#89AACC] uppercase select-none font-semibold">
+              UNCOMPROMISING ACOUSTIC BENCHMARKS · LEKKI PHASE 1
+            </p>
           </div>
-          <div className="space-y-1">
-            <span className="font-display text-2xl sm:text-3xl font-extrabold text-[#4E85BF]">NC-15</span>
-            <p className="text-[10px] sm:text-xs font-mono uppercase tracking-wider text-slate-400">NOISE CRITERIA BASELINE</p>
-          </div>
-          <div className="space-y-1">
-            <span className="font-display text-2xl sm:text-3xl font-extrabold text-white">48 CH</span>
-            <p className="text-[10px] sm:text-xs font-mono uppercase tracking-wider text-slate-400">SSL AWS 948 CONSOLE</p>
-          </div>
-          <div className="space-y-1">
-            <span className="font-display text-2xl sm:text-3xl font-extrabold text-emerald-400">24/7</span>
-            <p className="text-[10px] sm:text-xs font-mono uppercase tracking-wider text-slate-400">PRIVATE VIP LOCKOUTS</p>
+
+          {/* 4 Architectural Metric Pillars */}
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8 items-stretch">
+            {/* Metric 1: Structural Isolation */}
+            <div className="studio-metric-card p-4 sm:p-5 rounded-xl border border-white/10 bg-white/[0.02] flex flex-col items-center justify-center text-center transition-all duration-300 hover:border-[#4E85BF]/50">
+              <span className="metric-value font-display text-2xl sm:text-3xl lg:text-4xl font-black text-[#38BDF8] tracking-tight tabular-nums">
+                -85 dB
+              </span>
+              <p className="metric-label mt-1.5 text-[10px] sm:text-[11px] font-mono uppercase tracking-[0.18em] font-bold text-slate-200">
+                STRUCTURAL ISOLATION
+              </p>
+              <p className="metric-context mt-1 text-[11px] sm:text-xs text-slate-400">
+                Floating concrete box-in-box
+              </p>
+            </div>
+
+            {/* Metric 2: Noise Criteria */}
+            <div className="studio-metric-card p-4 sm:p-5 rounded-xl border border-white/10 bg-white/[0.02] flex flex-col items-center justify-center text-center transition-all duration-300 hover:border-[#4E85BF]/50">
+              <span className="metric-value font-display text-2xl sm:text-3xl lg:text-4xl font-black text-[#60A5FA] tracking-tight tabular-nums">
+                NC-15
+              </span>
+              <p className="metric-label mt-1.5 text-[10px] sm:text-[11px] font-mono uppercase tracking-[0.18em] font-bold text-slate-200">
+                NOISE CRITERIA BASELINE
+              </p>
+              <p className="metric-context mt-1 text-[11px] sm:text-xs text-slate-400">
+                Silenced ultra-low airflow HVAC
+              </p>
+            </div>
+
+            {/* Metric 3: Console */}
+            <div className="studio-metric-card p-4 sm:p-5 rounded-xl border border-white/10 bg-white/[0.02] flex flex-col items-center justify-center text-center transition-all duration-300 hover:border-[#4E85BF]/50">
+              <span className="metric-value font-display text-2xl sm:text-3xl lg:text-4xl font-black text-white tracking-tight tabular-nums">
+                48 CH
+              </span>
+              <p className="metric-label mt-1.5 text-[10px] sm:text-[11px] font-mono uppercase tracking-[0.18em] font-bold text-slate-200">
+                SSL AWS 948 CONSOLE
+              </p>
+              <p className="metric-context mt-1 text-[11px] sm:text-xs text-slate-400">
+                Dual analog & DAW summing
+              </p>
+            </div>
+
+            {/* Metric 4: Lockouts */}
+            <div className="studio-metric-card p-4 sm:p-5 rounded-xl border border-white/10 bg-white/[0.02] flex flex-col items-center justify-center text-center transition-all duration-300 hover:border-emerald-500/50">
+              <span className="metric-value font-display text-2xl sm:text-3xl lg:text-4xl font-black text-emerald-400 tracking-tight tabular-nums">
+                24/7
+              </span>
+              <p className="metric-label mt-1.5 text-[10px] sm:text-[11px] font-mono uppercase tracking-[0.18em] font-bold text-slate-200">
+                PRIVATE VIP LOCKOUTS
+              </p>
+              <p className="metric-context mt-1 text-[11px] sm:text-xs text-slate-400">
+                Biometric access & lounge
+              </p>
+            </div>
           </div>
         </div>
-      </div>
+      </section>
 
       {/* 2. The Sonic Philosophy (Beyond The Sound · Great music needs more than a room) */}
       <SonicPhilosophy />
@@ -144,8 +193,7 @@ export default function HomePage({ onOpenBooking }: HomePageProps) {
                       {chamber.role}
                     </span>
                     <h3
-                      style={{ color: '#FFFFFF' }}
-                      className="studio-gallery-card-title text-sm sm:text-base font-extrabold !text-white font-display group-hover:text-[#89AACC] transition-colors leading-snug min-h-[2.5rem] flex items-end"
+                      className="studio-gallery-card-title text-sm sm:text-base font-extrabold font-bold text-black dark:text-white font-display group-hover:text-[#4E85BF] transition-colors leading-snug min-h-[2.5rem] flex items-end"
                     >
                       {chamber.name}
                     </h3>

@@ -612,53 +612,109 @@ export default function CinematicHero({ onOpenBooking, onExploreSpaces }: Cinema
         {isDaylight && <div className="absolute inset-0 daylight-sun-glow pointer-events-none z-10 opacity-75" />}
 
         {/* Minimal soft top gradient that keeps navbar legible without dimming the illuminated SONICVAULT STUDIOS sign */}
-        <div className={`absolute top-0 inset-x-0 h-16 pointer-events-none z-10 transition-colors duration-500 ${isDaylight ? 'bg-gradient-to-b from-[#f4f7fb]/80 via-[#f4f7fb]/20 to-transparent' : 'bg-gradient-to-b from-[#040609]/70 via-[#040609]/20 to-transparent'}`} />
+        <div className={`absolute top-0 inset-x-0 h-20 pointer-events-none z-10 transition-colors duration-500 ${isDaylight ? 'bg-gradient-to-b from-black/40 via-black/10 to-transparent' : 'bg-gradient-to-b from-[#040609]/75 via-[#040609]/20 to-transparent'}`} />
 
-        {/* Seamless bottom fade that cleanly bridges into the next section */}
-        <div className={`absolute bottom-0 inset-x-0 h-28 pointer-events-none z-20 transition-colors duration-500 ${isDaylight ? 'bg-gradient-to-t from-[#f4f7fb] via-[#f4f7fb]/80 to-transparent' : 'bg-gradient-to-t from-[#040609] via-[#040609]/80 to-transparent'}`} />
+        {/* Layer 4: Cinematic bottom vignette & contrast scrim — Preserves rich console & room details without milky haze */}
+        <div className={`absolute bottom-0 inset-x-0 h-24 sm:h-28 pointer-events-none z-20 transition-colors duration-500 ${
+          isDaylight
+            ? 'bg-gradient-to-t from-black/60 via-black/20 to-transparent'
+            : 'bg-gradient-to-t from-[#040609]/90 via-[#040609]/40 to-transparent'
+        }`} />
+        <div className={`absolute bottom-0 inset-x-0 h-[1px] pointer-events-none z-30 transition-colors duration-500 ${
+          isDaylight ? 'bg-white/20' : 'bg-white/10'
+        }`} />
 
         {/* Layer 5: Main Headline & Intro Branding — Positioned downward into the balanced space below the entrance logo and doorframe */}
         <main className="relative z-20 flex-1 flex flex-col justify-start items-center text-center px-4 sm:px-6 max-w-4xl mx-auto pointer-events-none w-full pt-[clamp(21.5rem,47vh,28rem)] sm:pt-[clamp(23.5rem,51vh,32rem)] md:pt-[clamp(25.5rem,56vh,36rem)] lg:pt-[clamp(18rem,38.5vh,23rem)] pb-4">
           {headlineOpacity > 0.01 && (
-            <div
-              className="space-y-1.5 sm:space-y-2 pointer-events-auto flex flex-col items-center justify-center text-center px-2 w-full max-w-full"
-              style={{
-                opacity: headlineOpacity,
-                transform: `translate3d(0, ${headlineTranslateY}px, 0) scale(${headlineScale})`,
-                willChange: 'opacity, transform',
-              }}
-            >
-              {/* Main Headline: MAKE MAGIC. MAKE HISTORY. */}
-              <div className="text-center w-full">
-                <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-3xl font-black tracking-tight text-white font-display uppercase leading-tight drop-shadow-[0_4px_24px_rgba(0,0,0,0.98)]">
-                  <span className="text-white">MAKE MAGIC. </span>
-                  <span className="accent-gradient-text">MAKE HISTORY.</span>
-                </h1>
+            activeSceneIndex === 0 ? (
+              <div
+                className="space-y-1.5 sm:space-y-2 pointer-events-auto flex flex-col items-center justify-center text-center px-2 w-full max-w-full"
+                style={{
+                  opacity: headlineOpacity,
+                  transform: `translate3d(0, ${headlineTranslateY}px, 0) scale(${headlineScale})`,
+                  willChange: 'opacity, transform',
+                }}
+              >
+                {/* Main Headline: MAKE MAGIC. MAKE HISTORY. */}
+                <div className="text-center w-full">
+                  <h1 className="text-xl sm:text-2xl md:text-3xl lg:text-3xl font-black tracking-tight text-white font-display uppercase leading-tight drop-shadow-[0_4px_24px_rgba(0,0,0,0.98)]">
+                    <span className="text-white">MAKE MAGIC. </span>
+                    <span className="accent-gradient-text">MAKE HISTORY.</span>
+                  </h1>
+                </div>
+
+                {/* Subhead and signature tagline */}
+                <p className="text-xs sm:text-sm font-medium tracking-wide text-slate-200 font-display drop-shadow-[0_2px_12px_rgba(0,0,0,0.98)]">
+                  WHERE SOUND BECOMES ART.
+                </p>
+
+                {/* Architectural Transom Supporting Unit — Anchored directly in the upper entrance doorway area */}
+                <div className="mt-2.5 sm:mt-3 flex flex-col items-center justify-center text-center max-w-full">
+                  <div className="inline-flex flex-col items-center justify-center text-center gap-[3px] py-0.5 px-2.5 max-w-full">
+                    <p className="text-[7.5px] sm:text-[8.5px] md:text-[9.5px] font-mono tracking-[0.22em] text-[#89AACC] uppercase leading-none select-none whitespace-nowrap drop-shadow-[0_2px_6px_rgba(0,0,0,0.98)]">
+                      WORLD-CLASS ACOUSTIC SANCTUARY
+                    </p>
+                    <button
+                      type="button"
+                      onClick={handleScrollToEnter}
+                      className="inline-flex items-center justify-center gap-1 text-[7px] sm:text-[8px] md:text-[8.5px] font-mono text-slate-300 hover:text-cyan-300 tracking-wider cursor-pointer pointer-events-auto transition-colors leading-none group"
+                      aria-label="Scroll to enter the studio tour"
+                    >
+                      <span className="group-hover:text-cyan-300 transition-colors">SCROLL TO ENTER</span>
+                      <span className="text-cyan-400 group-hover:translate-y-0.5 transition-transform animate-pulse font-bold">↓</span>
+                    </button>
+                  </div>
+                </div>
               </div>
+            ) : (
+              <div
+                key={activeSceneIndex}
+                className="space-y-2 pointer-events-auto flex flex-col items-center justify-center text-center px-4 w-full max-w-2xl transition-all duration-500"
+                style={{
+                  opacity: headlineOpacity,
+                  transform: `translate3d(0, ${headlineTranslateY}px, 0) scale(${headlineScale})`,
+                  willChange: 'opacity, transform',
+                }}
+              >
+                {/* Chamber Kicker Badge */}
+                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-black/60 border border-cyan-400/30 backdrop-blur-md shadow-[0_4px_16px_rgba(0,0,0,0.4)]">
+                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping" />
+                  <span className="text-[9px] sm:text-[10px] font-mono tracking-[0.22em] text-cyan-300 uppercase select-none">
+                    CHAMBER 0{activeSceneIndex + 1} OF 05 · {CINEMATIC_SCENES[activeSceneIndex]?.roomTag}
+                  </span>
+                </div>
 
-              {/* Subhead and signature tagline */}
-              <p className="text-xs sm:text-sm font-medium tracking-wide text-slate-200 font-display drop-shadow-[0_2px_12px_rgba(0,0,0,0.98)]">
-                WHERE SOUND BECOMES ART.
-              </p>
+                {/* Chamber Title */}
+                <h2 className="text-lg sm:text-2xl md:text-3xl font-black tracking-tight text-white font-display uppercase leading-tight drop-shadow-[0_4px_24px_rgba(0,0,0,0.98)]">
+                  {CINEMATIC_SCENES[activeSceneIndex]?.title}
+                </h2>
 
-              {/* Architectural Transom Supporting Unit — Anchored directly in the upper entrance doorway area */}
-              <div className="mt-2.5 sm:mt-3 flex flex-col items-center justify-center text-center max-w-full">
-                <div className="inline-flex flex-col items-center justify-center text-center gap-[3px] py-0.5 px-2.5 max-w-full">
-                  <p className="text-[7.5px] sm:text-[8.5px] md:text-[9.5px] font-mono tracking-[0.22em] text-[#89AACC] uppercase leading-none select-none whitespace-nowrap drop-shadow-[0_2px_6px_rgba(0,0,0,0.98)]">
-                    WORLD-CLASS ACOUSTIC SANCTUARY
-                  </p>
+                {/* Chamber Subtitle / Acoustic Identity */}
+                <p className="text-xs sm:text-sm font-medium tracking-wide text-slate-200 font-display drop-shadow-[0_2px_12px_rgba(0,0,0,0.98)] max-w-lg">
+                  {CINEMATIC_SCENES[activeSceneIndex]?.subtitle}
+                </p>
+
+                {/* Chamber Quick CTAs */}
+                <div className="pt-1 flex items-center justify-center gap-2.5">
                   <button
                     type="button"
-                    onClick={handleScrollToEnter}
-                    className="inline-flex items-center justify-center gap-1 text-[7px] sm:text-[8px] md:text-[8.5px] font-mono text-slate-300 hover:text-cyan-300 tracking-wider cursor-pointer pointer-events-auto transition-colors leading-none group"
-                    aria-label="Scroll to enter the studio tour"
+                    onClick={() => onExploreSpaces?.()}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] sm:text-xs font-mono font-semibold tracking-wider text-white bg-black/60 hover:bg-black/85 border border-white/20 hover:border-cyan-400/60 backdrop-blur-md transition-all shadow-md group cursor-pointer"
                   >
-                    <span className="group-hover:text-cyan-300 transition-colors">SCROLL TO ENTER</span>
-                    <span className="text-cyan-400 group-hover:translate-y-0.5 transition-transform animate-pulse font-bold">↓</span>
+                    <span>EXPLORE CHAMBERS</span>
+                    <span className="text-cyan-400 group-hover:translate-x-0.5 transition-transform">→</span>
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => onOpenBooking?.(CINEMATIC_SCENES[activeSceneIndex]?.id)}
+                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-[10px] sm:text-xs font-mono font-bold tracking-wider text-white bg-gradient-to-r from-[#2563EB] to-[#0284C7] hover:from-[#1D4ED8] hover:to-[#0369A1] shadow-[0_4px_16px_rgba(37,99,235,0.4)] transition-all cursor-pointer"
+                  >
+                    <span>RESERVE SESSION</span>
                   </button>
                 </div>
               </div>
-            </div>
+            )
           )}
         </main>
 
@@ -670,8 +726,8 @@ export default function CinematicHero({ onOpenBooking, onExploreSpaces }: Cinema
         >
           <div className={`px-3 sm:px-4 py-2 sm:py-2.5 rounded-full backdrop-blur-2xl border transition-all duration-300 flex items-center gap-2 sm:gap-3 max-w-[96vw] ${
             isDaylight
-              ? 'bg-white/90 border-slate-300/80 text-slate-800 shadow-[0_12px_40px_rgba(0,0,0,0.12)] hover:border-[#4E85BF]'
-              : 'bg-black/85 border-white/20 text-white shadow-[0_12px_40px_rgba(0,0,0,0.85)] hover:border-cyan-500/50'
+              ? 'bg-white/95 border-slate-200/90 text-slate-900 shadow-[0_16px_40px_rgba(0,0,0,0.2)] hover:border-[#4E85BF]'
+              : 'bg-black/85 border-white/20 text-white shadow-[0_16px_40px_rgba(0,0,0,0.85)] hover:border-cyan-500/50'
           }`}>
             {/* Auto Play/Pause Button */}
             <button
@@ -706,14 +762,14 @@ export default function CinematicHero({ onOpenBooking, onExploreSpaces }: Cinema
             
             {/* Counter and Room Name with smooth transition */}
             <div className={`flex items-center gap-1.5 sm:gap-2 text-[10px] sm:text-xs font-mono whitespace-nowrap overflow-hidden ${
-              isDaylight ? 'text-slate-800' : 'text-white'
+              isDaylight ? 'text-slate-900' : 'text-white'
             }`}>
               <span className="text-cyan-500 font-bold tabular-nums">{`0${activeSceneIndex + 1}`}</span>
               <span className={isDaylight ? 'text-slate-400' : 'text-white/40'}>/</span>
-              <span className={`tabular-nums ${isDaylight ? 'text-slate-500' : 'text-white/60'}`}>{`0${CINEMATIC_SCENES.length}`}</span>
+              <span className={`tabular-nums ${isDaylight ? 'text-slate-600 font-semibold' : 'text-white/60'}`}>{`0${CINEMATIC_SCENES.length}`}</span>
               <span className={`hidden sm:inline ${isDaylight ? 'text-slate-300' : 'text-white/30'}`}>·</span>
               <span className={`tracking-wider uppercase truncate max-w-[140px] sm:max-w-[220px] md:max-w-none transition-all duration-300 ${
-                isDaylight ? 'text-slate-700 font-semibold' : 'text-slate-200 font-medium'
+                isDaylight ? 'text-slate-900 font-bold' : 'text-slate-100 font-semibold'
               }`}>
                 {CINEMATIC_SCENES[activeSceneIndex]?.title}
               </span>

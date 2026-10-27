@@ -180,7 +180,7 @@ html.light ::-webkit-scrollbar-thumb:hover {
 /* All page & section titles on daylight surfaces */
 html.light h1:not(#tour h1):not(.dark-surface h1):not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(.work-card-title):not(.portfolio-card *),
 html.light h2:not(#tour h2):not(.dark-card h2):not(#work .group h2):not(.case-study-modal h2):not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(.work-card-title):not(.portfolio-card *),
-html.light h3:not(#tour h3):not(.dark-card h3):not(#work .group h3):not(.portfolio-card h3):not(.case-study-modal h3):not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(#explorations *):not(.studio-gallery-card-title):not(.exploration-card-title):not(#spaces .absolute *):not(#spaces .group h3):not(.service-card-title):not(#services .group h3):not(#services .service-card-title):not(.work-card-title):not(.work-card-title *):not(.portfolio-card *),
+html.light h3:not(#tour h3):not(.dark-card h3):not(#work .group h3):not(.portfolio-card h3):not(.case-study-modal h3):not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(#explorations *):not(.studio-gallery-card-title):not(.exploration-card-title):not(#spaces .absolute *):not(#spaces .group h3):not(.service-card-title):not(#services .group h3):not(#services .service-card-title):not(.work-card-title):not(.work-card-title *):not(.portfolio-card *):not(.brand-emblem-showcase *):not(.brand-emblem-title),
 html.light h4:not(#tour h4):not(.dark-card h4):not(#work .group h4):not(.case-study-modal h4):not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(.work-card-title):not(.portfolio-card *) {
   color: #17191D !important;
 }
@@ -197,7 +197,7 @@ html.light h1.font-display.text-white:not(#tour h1):not(.cinematic-cta-section *
 
 /* Section H2 and H3 on daylight surfaces */
 html.light section:not(#tour):not(.cinematic-cta-section) h2.text-white:not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(.work-card-title),
-html.light section:not(#tour):not(.cinematic-cta-section):not(#explorations) h3.text-white:not(#work .group h3):not(.dark-card h3):not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(#explorations *):not(.studio-gallery-card-title):not(.exploration-card-title):not(#spaces .absolute *):not(#spaces .group h3):not(.service-card-title):not(#services .group h3):not(#services .service-card-title):not(.work-card-title):not(.work-card-title *):not(.portfolio-card *),
+html.light section:not(#tour):not(.cinematic-cta-section):not(#explorations) h3.text-white:not(#work .group h3):not(.dark-card h3):not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(#explorations *):not(.studio-gallery-card-title):not(.exploration-card-title):not(#spaces .absolute *):not(#spaces .group h3):not(.service-card-title):not(#services .group h3):not(#services .service-card-title):not(.work-card-title):not(.work-card-title *):not(.portfolio-card *):not(.brand-emblem-showcase *):not(.brand-emblem-title),
 html.light section:not(#tour):not(.cinematic-cta-section) h4.text-white:not(#work .group h4):not(.dark-card h4):not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(.work-card-title):not(.portfolio-card *) {
   color: #17191D !important;
 }
@@ -223,7 +223,8 @@ html.light span.text-slate-300:not(#tour *):not(#work .group *):not(.portfolio-c
    Keep all Hero photography, headlines, and HUD text 100% visible and pristine.
    -------------------------------------------------------------------------- */
 html.light #tour h1,
-html.light #tour h1 span.text-white {
+html.light #tour h1 span.text-white,
+html.light #tour h2 {
   color: #FFFFFF !important;
   text-shadow: 0 4px 24px rgba(0, 0, 0, 0.98);
 }
@@ -587,17 +588,26 @@ html.light #spaces h2 {
   color: #17191D !important;
 }
 
-/* Chamber Cards inside #spaces retain dark photo contrast & bold bright white typography */
-html.light #spaces .studio-gallery-card-title,
-html.light #spaces .group h3,
-html.light #spaces .absolute h3,
-html.light #spaces h3.studio-gallery-card-title,
-#spaces .studio-gallery-card-title,
-#spaces .group h3,
+/* Chamber Cards in Dark Mode or on Dark Photographic Overlays */
+html.dark #spaces .studio-gallery-card-title,
+html.dark #spaces .group h3,
+html.dark #spaces .absolute h3,
 #spaces .absolute h3 {
   color: #FFFFFF !important;
   font-weight: 800 !important;
   text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95) !important;
+}
+
+/* Daylight mode: Chamber titles on white cards inside #spaces MUST be solid black (#000000) and bold, not white */
+html.light #spaces .studio-gallery-card-title,
+html.light #spaces .group h3,
+html.light #spaces .group.rounded-2xl h3,
+html.light #spaces h3.studio-gallery-card-title,
+html.light .studio-gallery-card-title {
+  color: #000000 !important;
+  font-weight: 800 !important;
+  text-shadow: none !important;
+  filter: none !important;
 }
 
 html.light #spaces .absolute span,
@@ -802,18 +812,28 @@ html.dark #services .group {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
 }
 
-#services .service-card-title,
-#services .group h3,
-html.light #services .service-card-title,
-html.light #services .group h3,
+/* Service Card Titles in Dark Mode: Crisp white with subtle shadow */
 html.dark #services .service-card-title,
 html.dark #services .group h3,
+html.dark .service-card-title,
 .service-card-title {
   color: #FFFFFF !important;
   font-weight: 800 !important;
   text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95) !important;
   opacity: 1 !important;
   visibility: visible !important;
+}
+
+/* Service Card Titles in Daylight Mode: Solid Black (#000000) and Bold, Not White */
+html.light .service-card-title,
+html.light #services .service-card-title,
+html.light .bg-\[\#080b12\] .service-card-title,
+html.light .bg-\[\#0a0e16\] .service-card-title,
+html.light h3.service-card-title {
+  color: #000000 !important;
+  font-weight: 800 !important;
+  text-shadow: none !important;
+  filter: none !important;
 }
 
 #services .group p,
@@ -997,16 +1017,49 @@ html.light #explorations .group .text-slate-400,
    STUDIO METRICS & HARDWARE / SANCTUARY GATEWAYS (HOMEPAGE)
    -------------------------------------------------------------------------- */
 html.light #studio-metrics {
-  background-color: #ECEBE6 !important;
-  border-color: #D9D9D3 !important;
+  background-color: #F8F7F4 !important;
+  border-color: #E2E8F0 !important;
+  box-shadow: 0 4px 20px -2px rgba(23, 25, 29, 0.03);
 }
 
-html.light #studio-metrics .text-white {
-  color: #17191D !important;
+html.light #studio-metrics p.font-mono {
+  color: #0284C7 !important;
 }
 
-html.light #studio-metrics p {
-  color: #555D68 !important;
+html.light .studio-metric-card {
+  background-color: #FFFFFF !important;
+  border-color: #E2E8F0 !important;
+  box-shadow: 0 4px 16px -2px rgba(23, 25, 29, 0.05) !important;
+}
+
+html.light .studio-metric-card:hover {
+  border-color: #0284C7 !important;
+  box-shadow: 0 8px 24px -4px rgba(2, 132, 199, 0.12) !important;
+}
+
+html.light .studio-metric-card:nth-child(1) .metric-value {
+  color: #0284C7 !important;
+}
+
+html.light .studio-metric-card:nth-child(2) .metric-value {
+  color: #2563EB !important;
+}
+
+html.light .studio-metric-card:nth-child(3) .metric-value {
+  color: #0F172A !important;
+}
+
+html.light .studio-metric-card:nth-child(4) .metric-value {
+  color: #059669 !important;
+}
+
+html.light .studio-metric-card .metric-label {
+  color: #0F172A !important;
+  font-weight: 800 !important;
+}
+
+html.light .studio-metric-card .metric-context {
+  color: #64748B !important;
 }
 
 html.light #studio-gateways {
@@ -1188,6 +1241,16 @@ html.light #faq .rounded-2xl.border > button {
 html.light #faq .faq-question-title,
 html.light #faq .rounded-2xl.border h3 {
   color: #17191D !important;
+}
+
+/* Active filter status label (e.g. ALL QUESTIONS) MUST be solid black (#000000) and bold, not white */
+html.light #faq span.text-black.uppercase,
+html.light #faq span.uppercase.font-extrabold,
+html.light #faq .font-semibold.text-white,
+html.light #faq span.font-extrabold {
+  color: #000000 !important;
+  font-weight: 800 !important;
+  text-shadow: none !important;
 }
 
 /* Accordion answers */
@@ -1739,4 +1802,78 @@ html.light .team-member-card p.text-slate-300 {
 html.light .team-member-card span.text-slate-500 {
   color: #64748B !important;
 }
+
+/* ==========================================================================
+   ABOUT PAGE: BRAND EMBLEM SHOWCASE & CONTACT THE TEAM CTA
+   Guarantees high visibility, bold typography, and visual clarity on scroll
+   ========================================================================== */
+
+.brand-emblem-showcase,
+html.light .brand-emblem-showcase,
+html.dark .brand-emblem-showcase {
+  background: linear-gradient(135deg, #070D1A 0%, #040710 50%, #020307 100%) !important;
+  border-color: rgba(0, 240, 255, 0.45) !important;
+  box-shadow: 0 0 60px rgba(0, 240, 255, 0.18), 0 20px 40px rgba(0, 0, 0, 0.6) !important;
+}
+
+.brand-emblem-showcase .brand-emblem-title,
+.brand-emblem-showcase h3,
+html.light .brand-emblem-showcase .brand-emblem-title,
+html.light .brand-emblem-showcase h3,
+html.dark .brand-emblem-showcase .brand-emblem-title,
+html.dark .brand-emblem-showcase h3 {
+  color: #FFFFFF !important;
+  font-weight: 900 !important;
+  text-shadow: 0 2px 20px rgba(0, 240, 255, 0.6), 0 0 40px rgba(0, 240, 255, 0.3) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.brand-emblem-showcase p,
+html.light .brand-emblem-showcase p,
+html.dark .brand-emblem-showcase p {
+  color: #E2E8F0 !important;
+}
+
+.brand-emblem-showcase .text-slate-400,
+html.light .brand-emblem-showcase .text-slate-400,
+html.dark .brand-emblem-showcase .text-slate-400 {
+  color: #94A3B8 !important;
+}
+
+.brand-emblem-showcase .text-white,
+html.light .brand-emblem-showcase .text-white {
+  color: #FFFFFF !important;
+}
+
+/* Contact The Team CTA Button: Bold, high-contrast, prominent across daylight & dark modes */
+.about-contact-btn,
+html.light .about-contact-btn {
+  background-color: #090D16 !important;
+  border-color: rgba(0, 0, 0, 0.25) !important;
+  color: #FFFFFF !important;
+  font-weight: 800 !important;
+  box-shadow: 0 8px 24px -4px rgba(9, 13, 22, 0.35) !important;
+}
+
+html.light .about-contact-btn:hover {
+  background-color: #111827 !important;
+  border-color: #4E85BF !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 12px 30px -4px rgba(78, 133, 191, 0.3) !important;
+}
+
+html.dark .about-contact-btn {
+  background-color: #090D16 !important;
+  border-color: rgba(255, 255, 255, 0.22) !important;
+  color: #FFFFFF !important;
+  font-weight: 800 !important;
+}
+
+html.dark .about-contact-btn:hover {
+  background-color: #111827 !important;
+  border-color: #4E85BF !important;
+  color: #FFFFFF !important;
+}
+
 

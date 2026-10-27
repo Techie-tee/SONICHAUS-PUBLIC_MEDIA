@@ -443,7 +443,7 @@ export default function StudioFAQ({ onOpenBooking }: StudioFAQProps) {
           <div className="flex items-center justify-between text-xs font-mono text-slate-400 px-1 pt-1">
             <div className="flex items-center gap-2">
               <span className="text-[#89AACC]">Active Filter:</span>
-              <span className="font-semibold text-white uppercase">{currentCategoryObj.label}</span>
+              <span className="font-extrabold font-bold text-black dark:text-white uppercase tracking-wider">{currentCategoryObj.label}</span>
               <span>•</span>
               <span>{filteredFaqs.length} {filteredFaqs.length === 1 ? 'question' : 'questions'} available</span>
             </div>
@@ -485,7 +485,6 @@ export default function StudioFAQ({ onOpenBooking }: StudioFAQProps) {
           ) : (
             filteredFaqs.map((item, index) => {
               const isOpen = openIds.includes(item.id);
-              const numStr = String(index + 1).padStart(2, '0');
               const rawCategory = (item.category || 'general').toLowerCase();
               const badgeStyle = CATEGORY_BADGE_STYLES[rawCategory] || {
                 bg: 'bg-white/5',
@@ -518,9 +517,6 @@ export default function StudioFAQ({ onOpenBooking }: StudioFAQProps) {
                     aria-expanded={isOpen}
                   >
                     <div className="flex items-center gap-3 sm:gap-4 min-w-0">
-                      <span className="text-xs font-mono font-bold text-[#89AACC] tracking-wider px-2 py-0.5 rounded bg-white/5 border border-white/10 shrink-0">
-                        {numStr}
-                      </span>
                       <h3 className="text-sm sm:text-base md:text-lg font-bold text-white font-display uppercase tracking-tight line-clamp-2 faq-question-title">
                         {item.question}
                       </h3>

@@ -178,32 +178,32 @@ html.light ::-webkit-scrollbar-thumb:hover {
    -------------------------------------------------------------------------- */
 
 /* All page & section titles on daylight surfaces */
-html.light h1:not(#tour h1):not(.dark-surface h1):not(.cinematic-cta-section *):not(.faq-concierge-banner *),
-html.light h2:not(#tour h2):not(.dark-card h2):not(#work .group h2):not(.case-study-modal h2):not(.cinematic-cta-section *):not(.faq-concierge-banner *),
-html.light h3:not(#tour h3):not(.dark-card h3):not(#work .group h3):not(.portfolio-card h3):not(.case-study-modal h3):not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(#explorations *):not(.studio-gallery-card-title):not(.exploration-card-title):not(#spaces .absolute *):not(#spaces .group h3),
-html.light h4:not(#tour h4):not(.dark-card h4):not(#work .group h4):not(.case-study-modal h4):not(.cinematic-cta-section *):not(.faq-concierge-banner *) {
+html.light h1:not(#tour h1):not(.dark-surface h1):not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(.work-card-title):not(.portfolio-card *),
+html.light h2:not(#tour h2):not(.dark-card h2):not(#work .group h2):not(.case-study-modal h2):not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(.work-card-title):not(.portfolio-card *),
+html.light h3:not(#tour h3):not(.dark-card h3):not(#work .group h3):not(.portfolio-card h3):not(.case-study-modal h3):not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(#explorations *):not(.studio-gallery-card-title):not(.exploration-card-title):not(#spaces .absolute *):not(#spaces .group h3):not(.service-card-title):not(#services .group h3):not(#services .service-card-title):not(.work-card-title):not(.work-card-title *):not(.portfolio-card *),
+html.light h4:not(#tour h4):not(.dark-card h4):not(#work .group h4):not(.case-study-modal h4):not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(.work-card-title):not(.portfolio-card *) {
   color: #17191D !important;
 }
 
 /* Contextual override for text-white on light page surfaces */
-html.light main > div > div > div > h1.text-white:not(.cinematic-cta-section *):not(.faq-concierge-banner *),
-html.light .max-w-7xl h1.text-white:not(.cinematic-cta-section *):not(.faq-concierge-banner *),
-html.light .max-w-5xl h1.text-white:not(.cinematic-cta-section *):not(.faq-concierge-banner *),
-html.light .max-w-4xl h1.text-white:not(.cinematic-cta-section *):not(.faq-concierge-banner *),
-html.light .max-w-3xl h1.text-white:not(.cinematic-cta-section *):not(.faq-concierge-banner *),
-html.light h1.font-display.text-white:not(#tour h1):not(.cinematic-cta-section *):not(.faq-concierge-banner *) {
+html.light main > div > div > div > h1.text-white:not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(.work-card-title),
+html.light .max-w-7xl h1.text-white:not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(.work-card-title),
+html.light .max-w-5xl h1.text-white:not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(.work-card-title),
+html.light .max-w-4xl h1.text-white:not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(.work-card-title),
+html.light .max-w-3xl h1.text-white:not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(.work-card-title),
+html.light h1.font-display.text-white:not(#tour h1):not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(.work-card-title) {
   color: #17191D !important;
 }
 
 /* Section H2 and H3 on daylight surfaces */
-html.light section:not(#tour):not(.cinematic-cta-section) h2.text-white:not(.cinematic-cta-section *):not(.faq-concierge-banner *),
-html.light section:not(#tour):not(.cinematic-cta-section):not(#explorations) h3.text-white:not(#work .group h3):not(.dark-card h3):not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(#explorations *):not(.studio-gallery-card-title):not(.exploration-card-title):not(#spaces .absolute *):not(#spaces .group h3),
-html.light section:not(#tour):not(.cinematic-cta-section) h4.text-white:not(#work .group h4):not(.dark-card h4):not(.cinematic-cta-section *):not(.faq-concierge-banner *) {
+html.light section:not(#tour):not(.cinematic-cta-section) h2.text-white:not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(.work-card-title),
+html.light section:not(#tour):not(.cinematic-cta-section):not(#explorations) h3.text-white:not(#work .group h3):not(.dark-card h3):not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(#explorations *):not(.studio-gallery-card-title):not(.exploration-card-title):not(#spaces .absolute *):not(#spaces .group h3):not(.service-card-title):not(#services .group h3):not(#services .service-card-title):not(.work-card-title):not(.work-card-title *):not(.portfolio-card *),
+html.light section:not(#tour):not(.cinematic-cta-section) h4.text-white:not(#work .group h4):not(.dark-card h4):not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(.work-card-title):not(.portfolio-card *) {
   color: #17191D !important;
 }
 
 /* Specific page headlines */
-html.light h1.font-extrabold.text-white:not(#tour *):not(.cinematic-cta-section *):not(.faq-concierge-banner *) {
+html.light h1.font-extrabold.text-white:not(#tour *):not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(.work-card-title) {
   color: #17191D !important;
 }
 
@@ -289,10 +289,24 @@ html.light .min-h-\[460px\].group:hover {
   box-shadow: 0 20px 50px -8px rgba(78, 133, 191, 0.25) !important;
 }
 
-/* Inside dark project cards: titles and text must remain light */
+/* Inside dark project and track cards: titles must remain bold, high-contrast, pure white (#FFFFFF) */
+.work-card-title,
+#work .work-card-title,
+.portfolio-card .work-card-title,
+.portfolio-card h3,
+#work .group h3,
+.dark-card h3,
+html.light .work-card-title,
+html.light #work .work-card-title,
+html.light .portfolio-card .work-card-title,
+html.light .portfolio-card h3,
 html.light #work .group h3,
-html.light .min-h-\[460px\].group h3 {
+html.light .dark-card h3,
+html.light .min-h-\[460px\].group h3,
+html.light .min-h-\[460px\] h3 {
   color: #FFFFFF !important;
+  font-weight: 800 !important;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95), 0 0 4px rgba(0, 0, 0, 0.8) !important;
 }
 
 html.light #work .group p,
@@ -603,45 +617,74 @@ html.light #spaces .bg-black\/40 {
   box-shadow: 0 4px 16px -2px rgba(23, 25, 29, 0.05);
 }
 
-html.light #spaces .group.relative {
-  background-color: #FFFFFF !important;
-  border-color: #D9D9D3 !important;
-  box-shadow: 0 4px 16px -2px rgba(23, 25, 29, 0.05) !important;
+html.light #spaces .group.relative,
+#spaces .group.relative {
+  background-color: #080b12 !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 10px 30px -4px rgba(0, 0, 0, 0.45) !important;
 }
 
-html.light #spaces .group.relative .bg-\[\#080b12\] {
-  background-color: #FFFFFF !important;
+html.light #spaces .group.relative .bg-\[\#080b12\],
+#spaces .group.relative .bg-\[\#080b12\] {
+  background-color: #080b12 !important;
 }
 
-html.light #spaces .group.relative p {
-  color: #4B5563 !important;
+html.light #spaces .group.relative p,
+#spaces .group.relative p {
+  color: #94A3B8 !important;
 }
 
-html.light #spaces .group.relative .border-t.border-white\/5 {
-  border-color: #ECEBE6 !important;
+html.light #spaces .group.relative .border-t.border-white\/5,
+#spaces .group.relative .border-t.border-white\/5 {
+  border-color: rgba(255, 255, 255, 0.08) !important;
 }
 
-/* Studio Tour CTA Capsule Button (Image 4 reference: solid dark obsidian, crisp white text, stays dark on touch) */
+/* Flagship Architectural & Services CTA Capsule Buttons (Solid dark obsidian, crisp white text, stays dark on touch/hover/scroll) */
 html.light #spaces .studio-tour-cta-btn,
 html.light #spaces a[href="/studio"],
+html.light #services .services-catalogue-cta-btn,
+html.light #services a[href="/services"],
 html.light .studio-tour-cta-btn,
-.studio-tour-cta-btn {
+html.light .services-catalogue-cta-btn,
+html.light .studio-tour-explore-services-btn,
+.studio-tour-cta-btn,
+.services-catalogue-cta-btn,
+.studio-tour-explore-services-btn {
   background-color: #090D16 !important;
+  background: #090D16 !important;
   border-color: rgba(255, 255, 255, 0.22) !important;
   color: #FFFFFF !important;
   box-shadow: 0 8px 24px -4px rgba(9, 13, 22, 0.35) !important;
+  -webkit-tap-highlight-color: transparent !important;
+  touch-action: manipulation;
 }
 
 html.light #spaces .studio-tour-cta-btn span,
 html.light #spaces a[href="/studio"] span,
-.studio-tour-cta-btn span {
+html.light #services .services-catalogue-cta-btn span,
+html.light #services a[href="/services"] span,
+html.light .studio-tour-cta-btn span,
+html.light .services-catalogue-cta-btn span,
+html.light .studio-tour-explore-services-btn span,
+.studio-tour-cta-btn span,
+.services-catalogue-cta-btn span,
+.studio-tour-explore-services-btn span {
   color: #FFFFFF !important;
   font-weight: 700 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 html.light #spaces .studio-tour-cta-btn svg,
 html.light #spaces a[href="/studio"] svg,
-.studio-tour-cta-btn svg {
+html.light #services .services-catalogue-cta-btn svg,
+html.light #services a[href="/services"] svg,
+html.light .studio-tour-cta-btn svg,
+html.light .services-catalogue-cta-btn svg,
+html.light .studio-tour-explore-services-btn svg,
+.studio-tour-cta-btn svg,
+.services-catalogue-cta-btn svg,
+.studio-tour-explore-services-btn svg {
   color: #4E85BF !important;
 }
 
@@ -652,10 +695,32 @@ html.light #spaces .studio-tour-cta-btn:active,
 html.light #spaces a[href="/studio"]:hover,
 html.light #spaces a[href="/studio"]:focus,
 html.light #spaces a[href="/studio"]:active,
+html.light #services .services-catalogue-cta-btn:hover,
+html.light #services .services-catalogue-cta-btn:focus,
+html.light #services .services-catalogue-cta-btn:active,
+html.light #services a[href="/services"]:hover,
+html.light #services a[href="/services"]:focus,
+html.light #services a[href="/services"]:active,
+html.light .studio-tour-cta-btn:hover,
+html.light .studio-tour-cta-btn:focus,
+html.light .studio-tour-cta-btn:active,
+html.light .services-catalogue-cta-btn:hover,
+html.light .services-catalogue-cta-btn:focus,
+html.light .services-catalogue-cta-btn:active,
+html.light .studio-tour-explore-services-btn:hover,
+html.light .studio-tour-explore-services-btn:focus,
+html.light .studio-tour-explore-services-btn:active,
 .studio-tour-cta-btn:hover,
 .studio-tour-cta-btn:focus,
-.studio-tour-cta-btn:active {
+.studio-tour-cta-btn:active,
+.services-catalogue-cta-btn:hover,
+.services-catalogue-cta-btn:focus,
+.services-catalogue-cta-btn:active,
+.studio-tour-explore-services-btn:hover,
+.studio-tour-explore-services-btn:focus,
+.studio-tour-explore-services-btn:active {
   background-color: #111827 !important;
+  background: #111827 !important;
   border-color: #4E85BF !important;
   color: #FFFFFF !important;
   box-shadow: 0 10px 30px -4px rgba(78, 133, 191, 0.45) !important;
@@ -667,41 +732,94 @@ html.light #spaces .studio-tour-cta-btn:active span,
 html.light #spaces a[href="/studio"]:hover span,
 html.light #spaces a[href="/studio"]:focus span,
 html.light #spaces a[href="/studio"]:active span,
+html.light #services .services-catalogue-cta-btn:hover span,
+html.light #services .services-catalogue-cta-btn:focus span,
+html.light #services .services-catalogue-cta-btn:active span,
+html.light #services a[href="/services"]:hover span,
+html.light #services a[href="/services"]:focus span,
+html.light #services a[href="/services"]:active span,
+html.light .studio-tour-cta-btn:hover span,
+html.light .studio-tour-cta-btn:focus span,
+html.light .studio-tour-cta-btn:active span,
+html.light .services-catalogue-cta-btn:hover span,
+html.light .services-catalogue-cta-btn:focus span,
+html.light .services-catalogue-cta-btn:active span,
+html.light .studio-tour-explore-services-btn:hover span,
+html.light .studio-tour-explore-services-btn:focus span,
+html.light .studio-tour-explore-services-btn:active span,
 .studio-tour-cta-btn:hover span,
 .studio-tour-cta-btn:focus span,
-.studio-tour-cta-btn:active span {
+.studio-tour-cta-btn:active span,
+.services-catalogue-cta-btn:hover span,
+.services-catalogue-cta-btn:focus span,
+.services-catalogue-cta-btn:active span,
+.studio-tour-explore-services-btn:hover span,
+.studio-tour-explore-services-btn:focus span,
+.studio-tour-explore-services-btn:active span {
   color: #FFFFFF !important;
+  opacity: 1 !important;
 }
 
 html.light #spaces .studio-tour-cta-btn:hover svg,
 html.light #spaces .studio-tour-cta-btn:active svg,
+html.light #services .services-catalogue-cta-btn:hover svg,
+html.light #services .services-catalogue-cta-btn:active svg,
+html.light .studio-tour-cta-btn:hover svg,
+html.light .studio-tour-cta-btn:active svg,
+html.light .services-catalogue-cta-btn:hover svg,
+html.light .services-catalogue-cta-btn:active svg,
+html.light .studio-tour-explore-services-btn:hover svg,
+html.light .studio-tour-explore-services-btn:active svg,
 .studio-tour-cta-btn:hover svg,
-.studio-tour-cta-btn:active svg {
+.studio-tour-cta-btn:active svg,
+.services-catalogue-cta-btn:hover svg,
+.services-catalogue-cta-btn:active svg,
+.studio-tour-explore-services-btn:hover svg,
+.studio-tour-explore-services-btn:active svg {
   color: #38BDF8 !important;
 }
 
-/* Services */
+/* Services Section */
 html.light #services {
-  background-color: #FFFFFF !important;
+  background-color: #F5F4F0 !important;
   border-color: #D9D9D3 !important;
 }
 
-html.light #services h2,
-html.light #services h3 {
+html.light #services h2 {
   color: #17191D !important;
 }
 
-html.light #services p {
+html.light #services > div > div > p {
   color: #555D68 !important;
 }
 
-html.light #services .bg-white\/\[0\.02\],
-html.light #services .bg-black\/30,
-html.light #services .bg-\[\#060912\],
-html.light #services .bg-\[\#070a14\] {
-  background-color: #ECEBE6 !important;
-  border-color: #D9D9D3 !important;
-  box-shadow: 0 4px 16px -2px rgba(23, 25, 29, 0.05);
+/* Service Cards in #services: Always dark luxury cards with bold crisp white titles */
+#services .group,
+html.light #services .group,
+html.dark #services .group {
+  background-color: #0b0f19 !important;
+  border-color: rgba(255, 255, 255, 0.12) !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5) !important;
+}
+
+#services .service-card-title,
+#services .group h3,
+html.light #services .service-card-title,
+html.light #services .group h3,
+html.dark #services .service-card-title,
+html.dark #services .group h3,
+.service-card-title {
+  color: #FFFFFF !important;
+  font-weight: 800 !important;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+#services .group p,
+html.light #services .group p,
+html.dark #services .group p {
+  color: #CBD5E1 !important;
 }
 
 /* Work section background surface */
@@ -1149,15 +1267,68 @@ html.light section .faq-concierge-banner p,
   text-shadow: 0 1px 8px rgba(0, 0, 0, 0.7) !important;
 }
 
-html.light .faq-concierge-banner span,
-html.light #faq .faq-concierge-banner span,
-.faq-concierge-banner span {
+html.light .faq-concierge-banner span:not(.faq-whatsapp-btn *):not(a[href*="wa.me"] *):not(button *),
+html.light #faq .faq-concierge-banner span:not(.faq-whatsapp-btn *):not(a[href*="wa.me"] *):not(button *),
+.faq-concierge-banner span:not(.faq-whatsapp-btn *):not(a[href*="wa.me"] *):not(button *) {
   color: #89AACC !important;
 }
 
-html.light .faq-concierge-banner a.bg-\[\#25D366\] {
+/* WhatsApp CTA Buttons (Floating Concierge & Landing Page Concierge Banner) */
+.whatsapp-floating-btn,
+.faq-whatsapp-btn,
+a.faq-whatsapp-btn,
+a[href*="wa.me"].bg-\[\#25D366\],
+html.light a.faq-whatsapp-btn,
+html.light .faq-concierge-banner a[href*="wa.me"],
+html.light .faq-concierge-banner a.faq-whatsapp-btn,
+.faq-concierge-banner a[href*="wa.me"],
+.faq-concierge-banner a.faq-whatsapp-btn {
   background-color: #25D366 !important;
-  color: #000000 !important;
+  background: #25D366 !important;
+  border: 1px solid #20BA59 !important;
+  box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4) !important;
+  color: #FFFFFF !important;
+}
+
+.whatsapp-floating-btn:hover,
+.faq-whatsapp-btn:hover,
+a.faq-whatsapp-btn:hover,
+html.light a.faq-whatsapp-btn:hover,
+html.light .faq-concierge-banner a[href*="wa.me"]:hover,
+.faq-concierge-banner a[href*="wa.me"]:hover {
+  background-color: #20BA59 !important;
+  background: #20BA59 !important;
+  border-color: #1EBE5D !important;
+  box-shadow: 0 6px 25px rgba(37, 211, 102, 0.55) !important;
+}
+
+.whatsapp-floating-btn span,
+.faq-whatsapp-btn span,
+a.faq-whatsapp-btn span,
+a[href*="wa.me"].bg-\[\#25D366\] span,
+html.light a.faq-whatsapp-btn span,
+html.light .faq-concierge-banner a[href*="wa.me"] span,
+html.light .faq-concierge-banner a.faq-whatsapp-btn span,
+.faq-concierge-banner a[href*="wa.me"] span,
+.faq-concierge-banner a.faq-whatsapp-btn span {
+  color: #FFFFFF !important;
+  font-weight: 800 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25) !important;
+}
+
+.whatsapp-floating-btn svg,
+.faq-whatsapp-btn svg,
+a.faq-whatsapp-btn svg,
+a[href*="wa.me"].bg-\[\#25D366\] svg,
+html.light a.faq-whatsapp-btn svg,
+html.light .faq-concierge-banner a[href*="wa.me"] svg,
+html.light .faq-concierge-banner a.faq-whatsapp-btn svg,
+.faq-concierge-banner a[href*="wa.me"] svg,
+.faq-concierge-banner a.faq-whatsapp-btn svg {
+  color: #FFFFFF !important;
+  fill: #FFFFFF !important;
 }
 
 html.light .faq-concierge-banner button.bg-white\/10 {

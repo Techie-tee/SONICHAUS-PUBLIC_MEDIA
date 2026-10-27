@@ -124,7 +124,10 @@ export default function ServicesPage() {
                             </span>
                           )}
                         </div>
-                        <h3 className="font-display text-xl sm:text-2xl font-bold text-white tracking-wide">
+                        <h3
+                          style={{ color: '#FFFFFF' }}
+                          className="service-card-title font-display text-xl sm:text-2xl font-extrabold !text-white tracking-wide drop-shadow-[0_2px_14px_rgba(0,0,0,0.95)]"
+                        >
                           {srv.title}
                         </h3>
                         <p className="text-xs sm:text-sm text-slate-400 max-w-2xl">

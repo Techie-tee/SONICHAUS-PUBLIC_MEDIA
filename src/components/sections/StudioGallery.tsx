@@ -164,16 +164,16 @@ export default function StudioGallery({ onOpenBooking }: StudioGalleryProps) {
                 </div>
 
                 {/* Bottom Overlay Info */}
-                <div className="absolute bottom-4 left-4 right-4 space-y-1 z-10">
+                <div className="absolute bottom-4 left-4 right-4 space-y-1.5 z-10 flex flex-col justify-end">
                   <span
                     style={{ color: '#89AACC' }}
-                    className="text-[10px] font-mono tracking-widest text-[#89AACC] uppercase block font-bold drop-shadow-sm"
+                    className="text-[10px] font-mono tracking-widest text-[#89AACC] uppercase block font-bold drop-shadow-sm min-h-[1.25rem] flex items-end"
                   >
                     {item.categoryLabel}
                   </span>
                   <h3
                     style={{ color: '#FFFFFF' }}
-                    className="studio-gallery-card-title text-xl sm:text-2xl font-extrabold !text-white font-display leading-tight group-hover:text-[#89AACC] transition-colors drop-shadow-[0_2px_14px_rgba(0,0,0,0.95)]"
+                    className="studio-gallery-card-title text-xl sm:text-2xl font-extrabold !text-white font-display leading-tight group-hover:text-[#89AACC] transition-colors drop-shadow-[0_2px_14px_rgba(0,0,0,0.95)] min-h-[3.5rem] flex items-end"
                   >
                     {item.title}
                   </h3>

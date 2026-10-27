@@ -81,10 +81,10 @@ export default function StudioChambersPreview({ onOpenBooking }: StudioChambersP
             </p>
             <Link
               to="/studio"
-              className="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-white/5 hover:bg-white/10 border border-white/15 text-xs font-mono uppercase tracking-wider text-white transition-all shrink-0 hover:translate-x-1"
+              className="studio-tour-cta-btn inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-[#090D16] hover:bg-[#111827] active:bg-[#060910] border border-white/20 text-xs font-mono font-bold uppercase tracking-wider text-white shadow-lg transition-all shrink-0 cursor-pointer group hover:border-[#4E85BF]/60 active:scale-[0.98]"
             >
-              <span>Full 3D Tour & Dimensions</span>
-              <ArrowRight className="w-4 h-4 text-[#4E85BF]" />
+              <span className="text-white font-bold tracking-wider">FULL 3D TOUR & DIMENSIONS</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform text-[#4E85BF]" />
             </Link>
           </div>
         </div>
@@ -123,8 +123,11 @@ export default function StudioChambersPreview({ onOpenBooking }: StudioChambersP
 
               {/* Card Details */}
               <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between space-y-4">
-                <div className="space-y-2">
-                  <h3 className="text-xl sm:text-2xl font-bold font-display text-white tracking-tight group-hover:text-[#89AACC] transition-colors">
+                <div className="space-y-2 flex-1 flex flex-col justify-end">
+                  <h3
+                    style={{ color: '#FFFFFF' }}
+                    className="service-card-title text-xl sm:text-2xl font-extrabold !text-white font-display tracking-tight group-hover:text-[#89AACC] transition-colors drop-shadow-[0_2px_14px_rgba(0,0,0,0.95)] min-h-[3.25rem] flex items-end"
+                  >
                     {chamber.name}
                   </h3>
                   <p className="text-xs text-slate-400 font-sans leading-relaxed">

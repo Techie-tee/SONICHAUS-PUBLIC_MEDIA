@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ArrowUpRight, Volume2, ShieldCheck, CheckCircle2, Sliders, Sparkles, Layers, Maximize2 } from 'lucide-react';
+import { ArrowUpRight, ArrowRight, Volume2, ShieldCheck, CheckCircle2, Sliders, Sparkles, Layers, Maximize2 } from 'lucide-react';
 import AcousticalEngineering from '../components/studio/AcousticalEngineering';
 import StudioGallery from '../components/sections/StudioGallery';
 import VisualExplorations from '../components/sections/VisualExplorations';
@@ -317,16 +317,18 @@ export default function StudioTourPage() {
             <div className="pt-2 flex flex-col sm:flex-row items-center gap-3">
               <Link
                 to={`/book-session?room=${encodeURIComponent(selectedRoom.id)}`}
-                className="w-full sm:w-auto flex-1 py-3 px-6 rounded-xl accent-gradient text-white font-bold text-xs tracking-wider uppercase flex items-center justify-center gap-2 hover:opacity-90 transition-opacity shadow-lg cursor-pointer"
+                className="w-full sm:w-auto flex-1 py-3.5 px-6 rounded-xl accent-gradient text-white font-bold text-xs tracking-wider uppercase flex items-center justify-center gap-2 hover:opacity-90 active:scale-[0.98] transition-all shadow-lg cursor-pointer"
               >
                 <span>BOOK THIS ROOM</span>
                 <ArrowUpRight className="w-4 h-4" />
               </Link>
               <Link
                 to="/services"
-                className="w-full sm:w-auto py-3 px-5 rounded-xl bg-white/5 border border-white/15 text-slate-300 hover:text-white hover:bg-white/10 text-xs font-medium tracking-wide flex items-center justify-center transition-all cursor-pointer"
+                className="studio-tour-explore-services-btn w-full sm:w-auto py-3.5 px-6 rounded-xl bg-[#090D16] hover:bg-[#111827] active:bg-[#060910] border border-white/20 text-white font-bold text-xs font-mono tracking-wider uppercase flex items-center justify-center gap-2 transition-all cursor-pointer shadow-md group hover:border-[#4E85BF]/60 active:scale-[0.98]"
+                style={{ backgroundColor: '#090D16', color: '#FFFFFF' }}
               >
-                <span>EXPLORE SERVICES</span>
+                <span className="text-white font-bold tracking-wider" style={{ color: '#FFFFFF' }}>EXPLORE SERVICES</span>
+                <ArrowRight className="w-3.5 h-3.5 text-[#4E85BF] group-hover:translate-x-1 transition-transform" />
               </Link>
             </div>
           </div>

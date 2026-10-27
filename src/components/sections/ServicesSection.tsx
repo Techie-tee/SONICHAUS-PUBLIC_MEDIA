@@ -217,7 +217,10 @@ export default function ServicesSection({ onSelectService, isHomepage = false }:
                       </span>
                     </div>
 
-                    <h3 className="text-xl sm:text-2xl font-bold text-white font-display tracking-tight group-hover:text-[#89AACC] transition-colors">
+                    <h3
+                      style={{ color: '#FFFFFF' }}
+                      className="service-card-title text-2xl sm:text-3xl font-extrabold !text-white font-display tracking-tight group-hover:text-[#89AACC] transition-colors drop-shadow-[0_2px_14px_rgba(0,0,0,0.95)]"
+                    >
                       {service.title}
                     </h3>
 
@@ -254,9 +257,9 @@ export default function ServicesSection({ onSelectService, isHomepage = false }:
             </p>
             <Link
               to="/services"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-white/5 hover:bg-white/10 border border-white/15 text-xs font-mono uppercase tracking-wider text-white hover:text-sky-300 transition-all cursor-pointer shadow-sm group"
+              className="services-catalogue-cta-btn inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-[#090D16] hover:bg-[#111827] active:bg-[#060910] border border-white/20 text-xs font-mono font-bold uppercase tracking-wider text-white shadow-lg transition-all cursor-pointer group hover:border-[#4E85BF]/60 active:scale-[0.98]"
             >
-              <span>EXPLORE ALL SERVICES & RATES</span>
+              <span className="text-white font-bold tracking-wider">EXPLORE ALL SERVICES & RATES</span>
               <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform text-[#4E85BF]" />
             </Link>
           </div>

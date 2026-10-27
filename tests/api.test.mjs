@@ -446,6 +446,129 @@ describe('SONICVAULT STUDIOS — Core Infrastructure & Security Tests', () => {
       'Final CTA BOOK A SESSION button must have ripple ping effect with hover scale-up transition'
     );
   });
+
+  test('19. Flagship Architectural & Services CTA Button Visibility & Touch Consistency', async () => {
+    const fs = await import('node:fs');
+    const path = await import('node:path');
+
+    const cssCode = fs.readFileSync(path.resolve(process.cwd(), 'src/index.css'), 'utf-8');
+    const homeCode = fs.readFileSync(path.resolve(process.cwd(), 'src/pages/HomePage.tsx'), 'utf-8');
+    const servicesCode = fs.readFileSync(path.resolve(process.cwd(), 'src/components/sections/ServicesSection.tsx'), 'utf-8');
+
+    // 1. Verify CTA buttons use solid dark obsidian styling with crisp white typography
+    assert.ok(
+      homeCode.includes('studio-tour-cta-btn') && homeCode.includes('bg-[#090D16]'),
+      'HomePage CTA must use studio-tour-cta-btn class with solid obsidian background'
+    );
+    assert.ok(
+      servicesCode.includes('services-catalogue-cta-btn') && servicesCode.includes('bg-[#090D16]'),
+      'ServicesSection CTA must use services-catalogue-cta-btn class with solid obsidian background'
+    );
+
+    // 2. Verify StudioTourPage EXPLORE SERVICES button uses high contrast class and styling
+    const tourCode = fs.readFileSync(path.resolve(process.cwd(), 'src/pages/StudioTourPage.tsx'), 'utf-8');
+    assert.ok(
+      tourCode.includes('studio-tour-explore-services-btn') && tourCode.includes('EXPLORE SERVICES'),
+      'StudioTourPage must use studio-tour-explore-services-btn with high contrast styling'
+    );
+
+    // 3. Verify CSS defines solid obsidian background and white text for daylight & touch states
+    assert.ok(
+      cssCode.includes('.services-catalogue-cta-btn') && cssCode.includes('.studio-tour-cta-btn') && cssCode.includes('.studio-tour-explore-services-btn'),
+      'CSS must include explicit rules for studio-tour, services-catalogue, and explore-services buttons'
+    );
+    assert.ok(
+      cssCode.includes('touch-action: manipulation') && cssCode.includes('-webkit-tap-highlight-color: transparent'),
+      'CSS must suppress mobile touch tap flicker and optimize touch-action'
+    );
+  });
+
+  test('20. Studio FAQ Dynamic Category Filtering by Booking, Pricing, and Technical via React State', async () => {
+    const fs = await import('node:fs');
+    const path = await import('node:path');
+
+    const faqCode = fs.readFileSync(path.resolve(process.cwd(), 'src/components/sections/StudioFAQ.tsx'), 'utf-8');
+
+    // 1. Verify Category Tabs definition includes Booking, Pricing, and Technical
+    assert.ok(faqCode.includes("key: 'booking'") && faqCode.includes("label: 'Booking'"), 'Must include Booking category tab');
+    assert.ok(faqCode.includes("key: 'pricing'") && faqCode.includes("label: 'Pricing'"), 'Must include Pricing category tab');
+    assert.ok(faqCode.includes("key: 'technical'") && faqCode.includes("label: 'Technical'"), 'Must include Technical category tab');
+
+    // 2. Verify React state management for visibility
+    assert.ok(faqCode.includes('const [selectedCategory, setSelectedCategory] = useState'), 'Must manage category state via useState');
+    assert.ok(faqCode.includes('categoryCounts'), 'Must compute dynamic category count badges');
+    assert.ok(faqCode.includes('onClick={() => setSelectedCategory('), 'Buttons must update React state on click');
+    assert.ok(faqCode.includes('filteredFaqs'), 'Must filter FAQs based on selectedCategory state');
+
+    // 3. Verify category badges on individual cards
+    assert.ok(faqCode.includes('CATEGORY_BADGE_STYLES'), 'Must define category badge styles for cards');
+  });
+
+  test('21. WhatsApp CTA Default Brand Color (#25D366) & High-Contrast Typography Verification', async () => {
+    const fs = await import('node:fs');
+    const path = await import('node:path');
+
+    const floatCode = fs.readFileSync(path.resolve(process.cwd(), 'src/components/chat/FloatingWhatsApp.tsx'), 'utf-8');
+    const faqCode = fs.readFileSync(path.resolve(process.cwd(), 'src/components/sections/StudioFAQ.tsx'), 'utf-8');
+    const ctaCode = fs.readFileSync(path.resolve(process.cwd(), 'src/components/sections/FinalCinematicCTA.tsx'), 'utf-8');
+    const cssCode = fs.readFileSync(path.resolve(process.cwd(), 'src/index.css'), 'utf-8');
+
+    // 1. Floating WhatsApp CTA must use default WhatsApp green #25D366
+    assert.ok(
+      floatCode.includes('bg-[#25D366]'),
+      'Floating WhatsApp CTA must use default WhatsApp green #25D366'
+    );
+    assert.ok(
+      floatCode.includes('text-white'),
+      'Floating WhatsApp CTA must feature crisp white text'
+    );
+
+    // 2. Landing page Concierge WhatsApp button must use #25D366 and visible white text
+    assert.ok(
+      faqCode.includes('bg-[#25D366]') && faqCode.includes('CHAT ON WHATSAPP'),
+      'FAQ concierge banner must feature #25D366 WhatsApp button with bold CHAT ON WHATSAPP text'
+    );
+    assert.ok(
+      ctaCode.includes('bg-[#25D366]') && ctaCode.includes('CHAT ON WHATSAPP'),
+      'Final Cinematic CTA must feature #25D366 WhatsApp button with bold CHAT ON WHATSAPP text'
+    );
+
+    // 3. CSS must safeguard WhatsApp button text from washed-out / faded overrides
+    assert.ok(
+      cssCode.includes('.whatsapp-floating-btn') && cssCode.includes('.faq-whatsapp-btn'),
+      'CSS must include explicit high-contrast rules for WhatsApp buttons'
+    );
+  });
+
+  test('22. Core Service Titles Visibility & Contemporary Chamber Cards Bottom Alignment', async () => {
+    const fs = await import('node:fs');
+    const path = await import('node:path');
+
+    const servicesCode = fs.readFileSync(path.resolve(process.cwd(), 'src/components/sections/ServicesSection.tsx'), 'utf-8');
+    const homeCode = fs.readFileSync(path.resolve(process.cwd(), 'src/pages/HomePage.tsx'), 'utf-8');
+    const cssCode = fs.readFileSync(path.resolve(process.cwd(), 'src/index.css'), 'utf-8');
+
+    // 1. Core 4 Service Titles are bold, pure white, and decorated with text-shadow
+    assert.ok(
+      servicesCode.includes('service-card-title') && servicesCode.includes('font-extrabold'),
+      'ServicesSection must define service-card-title with font-extrabold and crisp styling'
+    );
+    assert.ok(
+      cssCode.includes('.service-card-title') && cssCode.includes('color: #FFFFFF !important'),
+      'CSS must strictly safeguard service-card-title as pure white (#FFFFFF) across all themes'
+    );
+
+    // 2. The Production Lab chamber card text sits well below alongside contemporaries
+    assert.ok(
+      homeCode.includes('items-end') && homeCode.includes('min-h-[2.5rem]'),
+      'HomePage chamber cards must align titles with items-end and min-h so The Production Lab sits well below'
+    );
+    assert.ok(
+      homeCode.includes('The Production Lab') && homeCode.includes('Beat-Making, Analog Synthesis & Drums'),
+      'The Production Lab chamber must have balanced two-line depth matching its contemporary cards'
+    );
+  });
 });
+
 
 

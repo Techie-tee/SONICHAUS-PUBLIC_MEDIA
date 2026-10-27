@@ -176,9 +176,10 @@ export default function EquipmentPage() {
             </Link>
             <Link
               to="/studio"
-              className="py-3 px-6 rounded-full bg-white/5 border border-white/15 text-slate-300 font-semibold text-xs tracking-wide hover:text-white hover:bg-white/10 transition-colors"
+              className="studio-tour-cta-btn py-3 px-6 rounded-full bg-[#090D16] hover:bg-[#111827] active:bg-[#060910] border border-white/20 text-white font-bold text-xs font-mono tracking-wider uppercase transition-all shadow-md cursor-pointer group hover:border-[#4E85BF]/60 active:scale-[0.98]"
+              style={{ backgroundColor: '#090D16', color: '#FFFFFF' }}
             >
-              EXPLORE ROOMS
+              <span className="text-white font-bold tracking-wider" style={{ color: '#FFFFFF' }}>EXPLORE ROOMS</span>
             </Link>
           </div>
         </div>

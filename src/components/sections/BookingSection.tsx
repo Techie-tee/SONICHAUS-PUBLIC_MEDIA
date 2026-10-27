@@ -283,10 +283,11 @@ export default function BookingSection({ initialService }: BookingSectionProps) 
                     href={whatsappUrl}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="w-full sm:w-auto px-5 py-3 rounded-full bg-[#25D366]/20 border border-[#25D366]/40 text-[#25D366] hover:bg-[#25D366]/30 text-xs font-bold uppercase tracking-wider inline-flex items-center justify-center gap-2 transition-colors"
+                    className="faq-whatsapp-btn w-full sm:w-auto px-6 py-3 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white text-xs font-bold uppercase tracking-wider inline-flex items-center justify-center gap-2 transition-all shadow-md shadow-[#25D366]/25 hover:shadow-[#25D366]/40 cursor-pointer group border border-[#20ba59]/60"
+                    style={{ backgroundColor: '#25D366', color: '#FFFFFF' }}
                   >
-                    <MessageCircle className="w-4 h-4 fill-current" />
-                    <span>CHAT ON WHATSAPP</span>
+                    <MessageCircle className="w-4 h-4 fill-white text-[#25D366] group-hover:rotate-12 transition-transform shrink-0" />
+                    <span className="text-white font-bold tracking-wider" style={{ color: '#FFFFFF' }}>CHAT ON WHATSAPP</span>
                   </a>
 
                   <button

@@ -947,7 +947,7 @@ function ProjectCard({
       animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.4, delay: index * 0.04, ease: 'easeOut' }}
       onClick={onOpenCaseStudy}
-      className="group relative rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 bg-[#0b0f19] hover:border-[#4E85BF]/70 transition-all duration-500 flex flex-col h-full cursor-pointer shadow-[0_12px_40px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_50px_rgba(78,133,191,0.22)]"
+      className="portfolio-card dark-card dark-surface group relative rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 bg-[#0b0f19] hover:border-[#4E85BF]/70 transition-all duration-500 flex flex-col h-full cursor-pointer shadow-[0_12px_40px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_50px_rgba(78,133,191,0.22)]"
     >
       {/* Top Half: Visual Media Container with Album Cover Art (Even 50% Visual Proportion) */}
       <div className="relative aspect-[16/10] sm:aspect-[16/9] lg:h-80 w-full overflow-hidden bg-black shrink-0">
@@ -1040,7 +1040,10 @@ function ProjectCard({
             </div>
           </div>
 
-          <h3 className="text-2xl sm:text-3xl font-extrabold text-white font-display tracking-tight group-hover:text-sky-300 transition-colors">
+          <h3
+            style={{ color: '#FFFFFF' }}
+            className="work-card-title text-2xl sm:text-3xl font-extrabold !text-white font-display tracking-tight group-hover:text-sky-300 transition-colors drop-shadow-[0_2px_14px_rgba(0,0,0,0.95)]"
+          >
             {project.title}
           </h3>
 
@@ -1187,7 +1190,11 @@ function CaseStudyModal({ project, onClose, onOpenBooking }: CaseStudyModalProps
               </span>
             </div>
 
-            <h1 id="case-study-title" className="text-3xl sm:text-5xl lg:text-6xl font-black font-display text-white tracking-tight">
+            <h1
+              id="case-study-title"
+              style={{ color: '#FFFFFF' }}
+              className="work-card-title text-3xl sm:text-5xl lg:text-6xl font-black font-display !text-white tracking-tight drop-shadow-[0_2px_14px_rgba(0,0,0,0.95)]"
+            >
               {project.title}
             </h1>
             <p className="text-sm sm:text-base font-mono text-[#89AACC]">

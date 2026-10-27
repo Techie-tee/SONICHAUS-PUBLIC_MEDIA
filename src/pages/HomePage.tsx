@@ -43,7 +43,7 @@ const FEATURED_CHAMBERS = [
   {
     id: 'production-lab',
     name: 'The Production Lab',
-    role: 'Beat-Making & Analog Synthesis',
+    role: 'Beat-Making, Analog Synthesis & Drums',
     gear: 'Moog Subsequent 37 · Akai MPC X · Focal Trio11 Be',
     image: productionLabImg,
   },
@@ -137,20 +137,20 @@ export default function HomePage({ onOpenBooking }: HomePageProps) {
                   <div className="absolute inset-0 bg-gradient-to-t from-[#080b12] via-transparent to-transparent pointer-events-none" />
                 </div>
 
-                {/* Text Description */}
-                <div className="p-4 space-y-1.5 flex-1 flex flex-col justify-between">
-                  <div className="space-y-1">
-                    <span className="text-[10px] font-mono text-[#89AACC] uppercase tracking-wider block font-semibold">
+                {/* Text Description: Consistent bottom-aligned layout so all chamber titles sit well below */}
+                <div className="p-4 flex-1 flex flex-col justify-between">
+                  <div className="space-y-1.5 flex-1 flex flex-col justify-end">
+                    <span className="text-[10px] font-mono text-[#89AACC] uppercase tracking-wider block font-semibold min-h-[2rem] flex items-end">
                       {chamber.role}
                     </span>
                     <h3
                       style={{ color: '#FFFFFF' }}
-                      className="studio-gallery-card-title text-sm sm:text-base font-extrabold !text-white font-display group-hover:text-[#89AACC] transition-colors leading-snug"
+                      className="studio-gallery-card-title text-sm sm:text-base font-extrabold !text-white font-display group-hover:text-[#89AACC] transition-colors leading-snug min-h-[2.5rem] flex items-end"
                     >
                       {chamber.name}
                     </h3>
                   </div>
-                  <p className="text-[11px] text-slate-400 font-mono line-clamp-1 pt-2 border-t border-white/5">
+                  <p className="text-[11px] text-slate-400 font-mono line-clamp-1 pt-2 border-t border-white/5 mt-3">
                     {chamber.gear}
                   </p>
                 </div>

@@ -1485,10 +1485,78 @@
         "ssl",
         "neumann",
         "tube tech",
-        "monitors"
+        "monitors",
+        "technical"
       ],
       "answer": "The Vault is equipped with reference instruments and analog hardware including the Sony C-800G tube microphone, Neumann U87 Ai, Tube-Tech CL 1B compressor, Neve 1073SPX, SSL AWS 948 Delta console, and Genelec 8351B point-source monitors.",
-      "category": "equipment",
+      "category": "technical",
+      "isPublished": true
+    },
+    {
+      "id": "cb_acoustics",
+      "question": "What are the acoustical specifications and isolation ratings of your chambers?",
+      "keywords": [
+        "acoustic",
+        "isolation",
+        "nc15",
+        "floating slab",
+        "decibel",
+        "technical",
+        "specs",
+        "noise"
+      ],
+      "answer": "Every chamber at SonicVault is physically decoupled on floating concrete slabs to deliver -85dB isolation between concurrent sessions, meeting NC-15 background noise criteria with calibrated timber diffusers and bass absorption.",
+      "category": "technical",
+      "isPublished": true
+    },
+    {
+      "id": "cb_file_prep",
+      "question": "How should I prepare stems and multitrack sessions for mixing or mastering?",
+      "keywords": [
+        "stem",
+        "stems",
+        "wav",
+        "export",
+        "technical",
+        "sample rate",
+        "daw",
+        "multitrack"
+      ],
+      "answer": "Export 24-bit or 32-bit float WAV/AIFF stems at 44.1kHz or 48kHz, all consolidated from timecode 0:00:00 with bypass on master bus limiters and dithering. Include rough mixes and key/tempo metadata.",
+      "category": "technical",
+      "isPublished": true
+    },
+    {
+      "id": "cb_lockouts",
+      "question": "Do you offer full-day lockouts or multi-day album production packages?",
+      "keywords": [
+        "lockout",
+        "full day",
+        "day rate",
+        "package",
+        "album",
+        "residency",
+        "booking"
+      ],
+      "answer": "Yes. We offer 12-hour full facility lockouts and multi-day production residencies. Lockouts include private lounge privileges, unmetered access to all analog outboard chains, and dedicated sound engineers.",
+      "category": "booking",
+      "isPublished": true
+    },
+    {
+      "id": "cb_payment_methods",
+      "question": "What payment methods do you accept, and is a deposit required?",
+      "keywords": [
+        "pay",
+        "payment",
+        "deposit",
+        "paystack",
+        "card",
+        "transfer",
+        "ussd",
+        "pricing"
+      ],
+      "answer": "We accept secure online payments via Paystack including Nigerian debit/credit cards, bank transfers, and USSD. A 50% deposit is required to lock in your confirmed calendar slot, with the balance cleared prior to stem delivery.",
+      "category": "pricing",
       "isPublished": true
     },
     {
@@ -1509,6 +1577,69 @@
     }
   ],
   "auditLogs": [
+    {
+      "id": "log_1793059991058_2388",
+      "action": "BOOKING_CREATED",
+      "user": "test.artist@example.com",
+      "details": "Booking SV-20261027-QPW0 for Vocal Recording on 2099-01-01",
+      "timestamp": "2026-10-27T00:13:11.058Z"
+    },
+    {
+      "id": "log_1793059879245_qjmk",
+      "action": "BOOKING_CREATED",
+      "user": "test.artist@example.com",
+      "details": "Booking SV-20261027-OFPR for Vocal Recording on 2099-01-01",
+      "timestamp": "2026-10-27T00:11:19.245Z"
+    },
+    {
+      "id": "log_1793058401697_qo75",
+      "action": "BOOKING_CREATED",
+      "user": "test.artist@example.com",
+      "details": "Booking SV-20261026-8WW9 for Vocal Recording on 2099-01-01",
+      "timestamp": "2026-10-26T23:46:41.697Z"
+    },
+    {
+      "id": "log_1793058355173_swz5",
+      "action": "BOOKING_CREATED",
+      "user": "test.artist@example.com",
+      "details": "Booking SV-20261026-6VZR for Vocal Recording on 2099-01-01",
+      "timestamp": "2026-10-26T23:45:55.173Z"
+    },
+    {
+      "id": "log_1793057879441_ro3s",
+      "action": "BOOKING_CREATED",
+      "user": "test.artist@example.com",
+      "details": "Booking SV-20261026-MHMB for Vocal Recording on 2099-01-01",
+      "timestamp": "2026-10-26T23:37:59.441Z"
+    },
+    {
+      "id": "log_1793057856520_26bl",
+      "action": "BOOKING_CREATED",
+      "user": "test.artist@example.com",
+      "details": "Booking SV-20261026-U5IB for Vocal Recording on 2099-01-01",
+      "timestamp": "2026-10-26T23:37:36.520Z"
+    },
+    {
+      "id": "log_1793057189335_byhj",
+      "action": "BOOKING_CREATED",
+      "user": "test.artist@example.com",
+      "details": "Booking SV-20261026-RKF2 for Vocal Recording on 2099-01-01",
+      "timestamp": "2026-10-26T23:26:29.335Z"
+    },
+    {
+      "id": "log_1793057165879_86zy",
+      "action": "BOOKING_CREATED",
+      "user": "test.artist@example.com",
+      "details": "Booking SV-20261026-XIMW for Vocal Recording on 2099-01-01",
+      "timestamp": "2026-10-26T23:26:05.879Z"
+    },
+    {
+      "id": "log_1793056294428_ux3f",
+      "action": "BOOKING_CREATED",
+      "user": "test.artist@example.com",
+      "details": "Booking SV-20261026-SEI2 for Vocal Recording on 2099-01-01",
+      "timestamp": "2026-10-26T23:11:34.428Z"
+    },
     {
       "id": "log_1793055358338_qiqb",
       "action": "BOOKING_CREATED",

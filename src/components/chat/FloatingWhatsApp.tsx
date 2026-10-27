@@ -105,12 +105,16 @@ export default function FloatingWhatsApp() {
           target="_blank"
           rel="noopener noreferrer"
           onClick={handleWhatsAppClick}
-          className="relative flex items-center gap-2 px-3 sm:px-4 py-2.5 sm:py-3 rounded-full bg-[#128C7E] text-white shadow-[0_8px_30px_rgba(18,140,126,0.35)] hover:bg-[#075E54] hover:scale-105 active:scale-95 transition-all duration-300 group cursor-pointer"
+          className="whatsapp-floating-btn relative flex items-center gap-2 px-3.5 sm:px-4 py-2.5 sm:py-3 rounded-full bg-[#25D366] text-white shadow-[0_8px_30px_rgba(37,211,102,0.45)] hover:bg-[#20ba59] hover:scale-105 active:scale-95 transition-all duration-300 group cursor-pointer border border-[#20ba59]/50"
+          style={{ backgroundColor: '#25D366', color: '#FFFFFF' }}
           aria-label="Chat with SonicVault on WhatsApp (+234 901 510 4502)"
           title="Direct WhatsApp Concierge: +234 901 510 4502 (Operating 24/7)"
         >
-          <MessageCircle className="w-4 h-4 fill-white text-[#128C7E] group-hover:rotate-12 transition-transform shrink-0" />
-          <span className="font-display text-[11px] sm:text-xs font-semibold tracking-wider uppercase whitespace-nowrap">
+          <MessageCircle className="w-4 h-4 fill-white text-[#25D366] group-hover:rotate-12 transition-transform shrink-0" />
+          <span
+            className="font-display text-[11px] sm:text-xs font-bold tracking-wider uppercase whitespace-nowrap text-white"
+            style={{ color: '#FFFFFF' }}
+          >
             <span className="hidden sm:inline">WHATSAPP CONCIERGE</span>
             <span className="sm:hidden">WHATSAPP</span>
           </span>

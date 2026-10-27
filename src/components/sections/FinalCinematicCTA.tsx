@@ -105,10 +105,11 @@ export default function FinalCinematicCTA({ onOpenBooking }: FinalCinematicCTAPr
             href={whatsappUrl}
             target="_blank"
             rel="noopener noreferrer"
-            className="w-full sm:w-auto px-8 py-4 rounded-full bg-[#25D366]/20 border border-[#25D366]/40 text-[#25D366] hover:bg-[#25D366]/30 text-xs sm:text-sm font-bold uppercase tracking-wider transition-colors inline-flex items-center justify-center gap-2"
+            className="faq-whatsapp-btn w-full sm:w-auto px-8 py-4 rounded-full bg-[#25D366] hover:bg-[#20ba59] text-white text-xs sm:text-sm font-bold uppercase tracking-wider transition-all shadow-[0_4px_25px_rgba(37,211,102,0.4)] hover:shadow-[0_6px_30px_rgba(37,211,102,0.6)] inline-flex items-center justify-center gap-2.5 cursor-pointer group border border-[#20ba59]/60"
+            style={{ backgroundColor: '#25D366', color: '#FFFFFF' }}
           >
-            <MessageCircle className="w-4 h-4 fill-current" />
-            <span>CHAT ON WHATSAPP</span>
+            <MessageCircle className="w-4 h-4 fill-white text-[#25D366] group-hover:rotate-12 transition-transform shrink-0" />
+            <span className="text-white font-bold tracking-wider" style={{ color: '#FFFFFF' }}>CHAT ON WHATSAPP</span>
           </a>
         </div>
       </div>

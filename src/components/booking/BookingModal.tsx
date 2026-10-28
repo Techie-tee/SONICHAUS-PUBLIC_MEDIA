@@ -25,6 +25,7 @@ export default function BookingModal({ isOpen, onClose, initialRoomId }: Booking
   const timeSlotSelectId = useId();
   const clientNameInputId = useId();
   const clientEmailInputId = useId();
+  const clientPhoneInputId = useId();
   const projectNameInputId = useId();
   const sessionNotesTextareaId = useId();
 
@@ -335,11 +336,11 @@ export default function BookingModal({ isOpen, onClose, initialRoomId }: Booking
               </div>
 
               <div className="space-y-1">
-                <label htmlFor={projectNameInputId} className="block text-[11px] font-mono uppercase text-slate-400">
+                <label htmlFor={clientPhoneInputId} className="block text-[11px] font-mono uppercase text-slate-400">
                   Phone / WhatsApp *
                 </label>
                 <input
-                  id={projectNameInputId}
+                  id={clientPhoneInputId}
                   required
                   type="tel"
                   placeholder="09015104502"

@@ -1,0 +1,640 @@
+# SONICVAULT STUDIOS — MASTER CROSS-DEVICE CONSISTENCY, RESPONSIVE OPTIMIZATION & COMPLETE WEBSITE QA PROMPT
+
+## 1. MASTER EXECUTION DIRECTIVE
+
+Act as an award-winning senior frontend engineer, full-stack developer, responsive design specialist, cross-browser compatibility engineer, typography specialist, animation engineer, accessibility expert, performance engineer, and automated QA testing specialist.
+
+My website has already been designed and built. The current PC desktop preview represents the approved visual reference for the website. However, I have identified differences between the desktop version and the mobile and tablet versions, including inconsistencies in characters, typography, text presentation, section layouts, visual effects, and responsive behaviour.
+
+Your mission is to perform a comprehensive audit of the entire existing website, correct all inconsistencies, optimize every page for different devices, and thoroughly test the final implementation.
+
+**This is an implementation task, not a redesign proposal. Inspect the existing codebase, make the necessary corrections directly, and verify the results.**
+
+The final website must achieve all four objectives:
+
+1. **Visual consistency:** All devices must retain the same approved brand identity, characters, typography, content, visual assets, and intended effects as the current PC preview.
+2. **Responsive adaptation:** Every element must fit its viewport naturally without clipping, distortion, unwanted cropping, overlapping, or loss of essential information.
+3. **Functional consistency:** Navigation, buttons, forms, interactions, animations, scrolling, and all other working features must function correctly across supported devices.
+4. **Verified quality:** Test the actual implementation, fix discovered defects, and report what was genuinely tested and what remains unverified.
+
+Do not merely tell me what needs fixing. Make the fixes.
+
+---
+
+## 2. THE CURRENT PC PREVIEW IS THE MASTER REFERENCE
+
+Use the existing PC desktop preview as the primary visual and content reference for every other device.
+
+Before making changes, carefully inspect the current desktop preview and the existing source code to identify the exact approved design and implementation.
+
+Treat the current PC preview as the source of truth for:
+
+- All characters, fonts, typefaces, and font families.
+- Font weights, font styles, and text rendering.
+- Headings, paragraphs, labels, navigation text, captions, and button labels.
+- Exact spelling, wording, capitalization, punctuation, and character sequences.
+- Brand logos, wordmarks, icons, symbols, and other visual identifiers.
+- Colours, gradients, overlays, shadows, textures, and background treatments.
+- Images, video assets, image positioning, and visual composition.
+- Section order, component hierarchy, layout relationships, and alignment.
+- Hero section composition and text positioning.
+- Animations, scroll-triggered effects, transitions, and interactive states.
+- Buttons, menus, navigation elements, and other interface components.
+
+Reproduce the same approved visual identity across mobile, tablet, laptop, and desktop environments.
+
+**Important distinction:** The PC preview is the master reference for design, content, assets, and visual identity. It is not permission to force a desktop-sized layout onto a mobile screen. Adapt the dimensions and arrangement to each screen while preserving the same underlying design, content, and intended experience.
+
+If the mobile version currently uses different fonts, substitute characters, alternative icons, different wording, missing text, different visual assets, or unintended animation variants, identify the cause and correct it.
+
+Do not create a new design interpretation for mobile.
+
+Do not replace approved characters or typography with visually similar alternatives.
+
+Do not invent new visual elements to compensate for responsive problems.
+
+If the current preview does not provide enough information to identify a font, character, asset, or effect precisely, inspect the existing source code, font declarations, asset files, and component configuration rather than guessing.
+
+---
+
+## 3. CHARACTER, TYPOGRAPHY AND TEXT UNIFORMITY AUDIT
+
+This is a critical requirement and must be tested independently across the entire website.
+
+Compare the PC preview against every responsive version, section by section.
+
+### A. Exact character consistency
+
+Verify that all text uses the same intended characters across devices, including:
+
+- Uppercase and lowercase letters.
+- Numbers and numerical formatting.
+- Punctuation marks.
+- Apostrophes and quotation marks.
+- Hyphens, en dashes, and em dashes.
+- Special characters and symbols.
+- Currency symbols and mathematical characters.
+- Registered trademarks and other brand-specific symbols where present.
+- Accented characters and non-English characters where applicable.
+- Unicode characters, decorative symbols, and icon glyphs.
+
+Investigate any character that appears different, missing, substituted, incorrectly encoded, or visually inconsistent on mobile.
+
+Check for encoding issues, unsupported glyphs, missing font weights, fallback fonts, incorrect font declarations, and CSS rules that alter text rendering.
+
+Do not replace a special character with a plain-text approximation unless the original character cannot be supported and an explicitly approved alternative is necessary.
+
+### B. Exact text-content consistency
+
+Verify that all essential text remains identical to the approved PC version.
+
+Check every heading, paragraph, navigation item, label, caption, button, and text-based interface element.
+
+Correct:
+- Missing words or letters.
+- Incorrect spelling.
+- Truncated text.
+- Unexpected text substitutions.
+- Incorrect capitalization.
+- Missing punctuation.
+- Inconsistent wording between breakpoints.
+- Text hidden by overflow rules.
+- Content conditionally removed on mobile.
+- Text duplicated or rendered more than once.
+- Text that changes unexpectedly when the viewport changes.
+
+Responsive CSS must never silently remove essential information.
+
+Do not shorten headlines, abbreviate words, remove phrases, or replace original copy simply because the mobile screen is smaller.
+
+If text needs more space, improve the layout, adjust appropriate spacing, allow additional lines, or reposition surrounding elements.
+
+### C. Font and typography consistency
+
+Identify the actual approved fonts and weights used in the PC preview.
+
+Ensure that all devices use the same intended:
+- Font family.
+- Font files and font loading configuration.
+- Font weight.
+- Font style.
+- Letter spacing.
+- Text transformation.
+- Text colour.
+- Intended typographic character and personality.
+
+Inspect whether mobile media queries unintentionally override fonts or font weights.
+
+Verify that the correct font files load successfully on mobile Safari, Android browsers, tablets, and desktop browsers.
+
+Where a font does not contain a required glyph, investigate the font's character coverage and use an appropriate, deliberate fallback only where necessary. Do not allow random system-font substitutions to alter the design.
+
+Typography may scale responsively to maintain readability, but it must retain the same font identity and visual character.
+
+### D. Automated text comparison
+
+Where technically feasible, extract the text from the rendered desktop and mobile pages and compare corresponding content.
+
+Flag differences in:
+- Text content.
+- Character sequences.
+- Heading hierarchy.
+- Missing or duplicated text.
+- Unexpectedly hidden elements.
+
+Ignore legitimate visual differences such as line wrapping and responsive spacing when comparing content.
+
+Produce a discrepancy list and correct every unintended difference.
+
+---
+
+## 4. PRESERVE THE ORIGINAL WEBSITE ARCHITECTURE
+
+Before modifying the website, inspect the existing architecture, framework, components, routing, stylesheets, design tokens, animation systems, assets, backend integrations, and responsive breakpoints.
+
+Preserve all working features, including:
+
+- The existing website structure and individual page routes.
+- The approved homepage and cinematic hero.
+- The existing brand identity and design system.
+- The original images, videos, and other media assets.
+- Existing navigation, menus, and interactive elements.
+- Booking forms and submission workflows.
+- Backend APIs and database integrations.
+- Authentication, payment processing, and other existing integrations.
+- Existing animations, scroll effects, and transitions.
+- The established component hierarchy and code conventions.
+
+Do not rebuild the site from scratch.
+
+Do not replace existing sections with generic templates.
+
+Do not remove functionality to make testing easier.
+
+Do not introduce duplicate sections, competing design systems, unnecessary components, or unrelated redesigns.
+
+Correct the underlying implementation with the smallest safe and effective changes wherever possible.
+
+Before editing shared components, identify which pages and devices depend on them.
+
+---
+
+## 5. COMPLETE RESPONSIVE DEVICE TESTING
+
+Test every page and major component at representative viewport sizes.
+
+### Mobile widths
+
+Test at:
+
+320px, 360px, 375px, 390px, 393px, 414px, 430px, and 480px.
+
+Include small-screen devices, modern iPhones, Android phones, portrait orientation, and landscape orientation.
+
+### Tablet widths
+
+Test at:
+
+600px, 768px, 820px, 834px, 1024px, and 1180px.
+
+Include iPads, iPadOS Safari, Android tablets, portrait and landscape orientations, and constrained layouts where practical.
+
+### Laptop and desktop widths
+
+Test at:
+
+1024px, 1280px, 1366px, 1440px, 1600px, 1920px, and 2560px where practical.
+
+Include shorter and taller viewport heights to detect vertical clipping and incorrectly positioned content.
+
+### Browser and operating-system coverage
+
+Test the supported website experience on:
+
+- iOS Safari.
+- Android Chrome.
+- Samsung Internet where available.
+- Windows Chrome, Edge, and Firefox.
+- macOS Safari and Chrome.
+- Other browsers officially supported by the project.
+
+Use real devices, browser emulation, automated browser tests, or remote device services as available.
+
+Do not claim to have tested every mobile device in existence. Document the actual device and browser coverage, including environments that were unavailable.
+
+---
+
+## 6. HERO SECTION — CRITICAL RESPONSIVE REQUIREMENTS
+
+The hero must retain the same approved identity and content as the PC preview.
+
+Inspect every responsive version for:
+
+- Missing or truncated headline characters.
+- Cropped words or text.
+- Incorrect font substitutions.
+- Different typography or unexpected font weights.
+- Misaligned text.
+- Text overlapping images or animations.
+- Images covering the headline.
+- Incorrect hero height.
+- Excessive empty space.
+- Incorrect positioning of the primary call to action.
+- Media that extends outside the viewport.
+- Broken layering and stacking contexts.
+- Unwanted horizontal scrolling.
+- Content hidden behind browser interfaces or device safe areas.
+- Scroll-triggered transitions that skip, flicker, or vanish prematurely.
+- Hero content that cannot be reached or read on smaller screens.
+
+Preserve the exact approved headline, supporting text, branding, and other essential information.
+
+Do not solve a responsive problem by hiding part of the headline, clipping the text container, reducing opacity, removing words, or placing content outside the viewport.
+
+Use fluid typography and responsive positioning, with appropriate constraints such as `clamp()`, `min()`, `max()`, and flexible layout rules.
+
+Allow headings to wrap naturally when necessary while preserving their exact text and intended hierarchy.
+
+Maintain the intended visual relationship between the hero text, images, backgrounds, and animations.
+
+If the hero uses a cinematic scroll experience, ensure that its sequence remains coherent on mobile without requiring awkward scrolling, excessive pinning, forced horizontal movement, or inaccessible controls.
+
+Where the existing cinematic effect cannot operate reliably on a particular device, implement a deliberate, visually consistent responsive adaptation that preserves the essential content and narrative. Do not simply remove the effect without evaluating an appropriate alternative.
+
+---
+
+## 7. IMAGE, VIDEO AND ASSET CONSISTENCY
+
+Audit all images, videos, backgrounds, logos, illustrations, and media components.
+
+Use the same approved source assets across devices unless the project already contains intentional, art-directed responsive variants.
+
+Correct:
+- Images stretched beyond their natural proportions.
+- Blurry or low-resolution images.
+- Incorrect asset substitutions.
+- Missing images.
+- Incorrect image ordering.
+- Unintended image cropping.
+- Subject matter cut off at important points.
+- Videos with broken aspect ratios.
+- Incorrect mobile video sizing.
+- Slow or failed media loading.
+- Layout shifts while media loads.
+- Missing poster images.
+- Broken responsive image sources.
+- Incorrect background positioning.
+
+Use appropriate responsive image sizing, `srcset`, `sizes`, aspect ratios, and `object-position` or equivalent techniques where appropriate.
+
+Do not blindly apply `object-fit: cover` to every image. Where cropping is necessary, preserve the important subject and visual focal point.
+
+Where full composition matters, use an appropriate responsive layout or a suitable approved asset variant rather than cropping away important details.
+
+Use efficient image formats and resolution-appropriate assets without visibly degrading quality.
+
+For video, preserve the intended composition, loading behaviour, and playback controls. Respect browser autoplay restrictions and avoid forced audio playback.
+
+Verify that each asset remains visually consistent with the approved desktop reference.
+
+---
+
+## 8. SECTION-BY-SECTION VISUAL CONSISTENCY
+
+Audit every section on every page, not only the homepage.
+
+For each section, compare the desktop reference with the corresponding mobile and tablet renderings.
+
+Check:
+- Section order and content.
+- Heading and paragraph consistency.
+- Background colours and visual treatments.
+- Spacing and alignment.
+- Grid and card layouts.
+- Image placement.
+- Typography and character rendering.
+- Button styles and positioning.
+- Borders, shadows, gradients, and overlays.
+- Animation timing and transition behaviour.
+- Section boundaries and scroll continuity.
+- Responsive stacking and element order.
+- Footer layout and legal links.
+
+Maintain the original visual identity and content hierarchy.
+
+Responsive rearrangement is permitted when required for usability, but it must not change the meaning, remove information, or create an unrelated visual experience.
+
+Do not allow one section to use a different font, colour system, icon style, or spacing convention merely because it is rendered on mobile.
+
+Fix unnecessary gaps, overlapping sections, misplaced content, and broken transitions without introducing new layout defects.
+
+---
+
+## 9. ANIMATIONS, SCROLLING AND INTERACTION TESTING
+
+Audit all animations and interactive experiences on touch devices and desktop.
+
+Test:
+- Scroll-triggered animations.
+- GSAP and ScrollTrigger timelines where present.
+- Framer Motion animations where present.
+- Sticky and pinned sections.
+- Parallax effects.
+- Image transitions.
+- Video sequences.
+- Hover effects and their touch equivalents.
+- Page transitions.
+- Navigation menus.
+- Mobile hamburger menus.
+- Accordions, tabs, sliders, and carousels.
+- Modals and overlays.
+- Buttons and clickable cards.
+- Forms and validation.
+- Keyboard and touch interactions.
+
+Fix:
+- Flickering and disappearing content.
+- Animations that trigger too early or too late.
+- Incorrect animation sequences.
+- Scroll locking that prevents users from moving through the site.
+- Stuck scroll positions.
+- Blank gaps between pinned sections.
+- Unexpected jumps when animations initialize.
+- Touch interactions that depend exclusively on hover.
+- Click targets that are too small or too close together.
+- Animations that become unusable on mobile.
+- Components that fail after navigating between pages.
+- Duplicate animation initialization or event listeners.
+- Memory leaks and incorrect animation cleanup.
+
+Verify that animation libraries initialize and clean up correctly when components mount, unmount, or change routes.
+
+Preserve the intended visual effects and timing wherever practical. When a specific effect requires device-specific adjustments, keep the design language and experience consistent rather than introducing a completely different animation.
+
+Respect `prefers-reduced-motion` and provide a usable alternative for users who request reduced motion.
+
+---
+
+## 10. RESPONSIVE CSS AND TECHNICAL IMPLEMENTATION
+
+Investigate the root causes of responsive inconsistencies.
+
+Inspect:
+- Media-query precedence.
+- Conflicting CSS declarations.
+- Component-level styles that override global styles.
+- Fixed pixel widths and heights.
+- Absolute positioning.
+- Overflow rules.
+- Font loading and font fallback.
+- Image and video dimensions.
+- Stacking contexts and `z-index`.
+- CSS transforms and animation properties.
+- Viewport units on mobile browsers.
+- Safe-area insets.
+- Browser-specific rendering differences.
+- Hydration and server/client rendering differences.
+- Conditional rendering based on screen width.
+- Duplicated desktop and mobile components.
+- JavaScript errors and failed network requests.
+
+Use stable, maintainable responsive rules.
+
+Prefer a shared component and design system where possible, with intentional responsive variations rather than multiple implementations that drift apart.
+
+Do not add arbitrary CSS overrides at the end of stylesheets without understanding existing rules.
+
+Do not use broad global selectors that accidentally break unrelated pages.
+
+Do not introduce unnecessary dependencies.
+
+Keep changes focused, maintainable, and compatible with the existing framework.
+
+---
+
+## 11. FULL FUNCTIONAL AND INTERNAL QA
+
+Perform a comprehensive functional test of the website.
+
+Verify:
+
+- All routes load correctly.
+- Internal navigation works.
+- External links work as intended.
+- Mobile menus open, close, and navigate correctly.
+- Buttons respond correctly.
+- Forms accept valid input and reject invalid input.
+- Error messages are understandable.
+- Loading and success states work.
+- Images and videos load successfully.
+- Audio controls function where present.
+- Booking flows remain operational.
+- Payment integrations continue to work where applicable.
+- Authentication and protected routes remain intact.
+- Console errors are investigated.
+- Failed requests and missing assets are investigated.
+- No unintended horizontal overflow exists.
+- No important content is inaccessible at small widths.
+- Keyboard navigation remains usable.
+- Focus states remain visible.
+- Text contrast remains adequate.
+- Touch targets are usable.
+- Browser back and forward navigation works.
+- Reloading a nested route does not produce an unintended error.
+- Responsive changes do not break existing backend functionality.
+
+Run available automated tests, linting, type checking, build validation, and browser-based checks.
+
+Do not expose production secrets or perform destructive production operations during testing.
+
+Use safe test data and appropriate test environments for booking, payment, and account workflows.
+
+---
+
+## 12. PERFORMANCE AND MOBILE USER EXPERIENCE
+
+Optimize the website without sacrificing its approved visual quality.
+
+Inspect:
+- Initial page loading.
+- Largest Contentful Paint.
+- Cumulative Layout Shift.
+- Interaction to Next Paint.
+- JavaScript bundle size.
+- Unnecessary component re-renders.
+- Render-blocking resources.
+- Font-loading delays.
+- Image and video payload sizes.
+- Lazy loading and eager loading priorities.
+- Animation performance.
+- Excessive event listeners.
+- Memory usage and long-running tasks.
+
+Prioritize the main hero content and other critical above-the-fold elements appropriately.
+
+Lazy-load non-critical media where suitable, but do not lazy-load the main hero asset in a way that delays or disrupts the intended first impression.
+
+Use efficient image and video delivery, responsive asset sizes, and appropriate caching strategies.
+
+Avoid unnecessary JavaScript execution on mobile devices.
+
+Preserve smooth animations and visual fidelity while reducing unnecessary processing.
+
+Measure performance where tools are available and distinguish actual measurements from estimates.
+
+---
+
+## 13. REQUIRED VISUAL REGRESSION PROCESS
+
+Use the current PC preview as the visual baseline.
+
+Capture screenshots of the same pages and corresponding sections at desktop, tablet, and mobile sizes.
+
+Compare:
+- Desktop reference versus current desktop.
+- Desktop reference versus mobile.
+- Desktop reference versus tablet.
+- Current implementation versus implementation after fixes.
+- Portrait versus landscape where relevant.
+
+Use screenshot comparison, browser inspection, DOM inspection, computed CSS, and automated visual regression tools where available.
+
+Check for:
+- Typography changes.
+- Different characters or glyphs.
+- Missing content.
+- Incorrect section positioning.
+- Unexpected layout shifts.
+- Inconsistent colours.
+- Broken images.
+- Altered visual hierarchy.
+- Missing animations or interactive states.
+
+Treat visual differences according to their cause.
+
+**Expected responsive differences:** Text wrapping, element stacking, proportional sizing, and spacing adjustments that are necessary for smaller screens.
+
+**Unacceptable unintended differences:** Different wording, missing characters, substituted fonts, deleted content, broken assets, inconsistent brand elements, unexplained section changes, and missing intended functionality.
+
+Correct all unintended differences and repeat the comparison after making changes.
+
+Do not claim pixel-perfect equivalence between different screen sizes when responsive reflow is necessary. The objective is consistent design identity, content, quality, and functionality.
+
+---
+
+## 14. SAFE EXECUTION WORKFLOW
+
+Follow this sequence:
+
+**Phase 1 — Baseline inspection**
+- Inspect the codebase and application architecture.
+- Identify the current PC preview's fonts, characters, content, assets, layout, and animations.
+- Map all routes and major components.
+- Record the existing behaviour before editing.
+
+**Phase 2 — Cross-device audit**
+- Inspect every page at representative viewport sizes.
+- Identify character and typography differences.
+- Detect layout, media, animation, scrolling, accessibility, and performance problems.
+- Record reproducible defects.
+
+**Phase 3 — Root-cause analysis**
+- Identify the underlying code responsible for each defect.
+- Check shared components and breakpoint rules.
+- Determine the smallest safe fix.
+- Avoid treating symptoms with unnecessary hiding or clipping.
+
+**Phase 4 — Implementation**
+- Correct typography, character rendering, and content discrepancies.
+- Repair responsive layouts and component sizing.
+- Correct media positioning and scaling.
+- Fix animation and scrolling problems.
+- Resolve functional and browser compatibility issues.
+- Preserve all existing working features.
+
+**Phase 5 — Regression testing**
+- Re-test every affected page and component.
+- Repeat the tests on the relevant mobile, tablet, and desktop sizes.
+- Run available automated checks.
+- Compare screenshots against the approved reference.
+- Confirm that fixes have not introduced new problems.
+
+**Phase 6 — Final verification**
+- Rebuild the application.
+- Run available tests and production-build checks.
+- Verify important routes and interactions.
+- Confirm that the original desktop experience remains intact.
+- Document completed work and unresolved limitations.
+
+Do not stop after fixing only the first visible issue. Continue through the entire website until all identified issues have been addressed or a genuine limitation has been documented.
+
+---
+
+## 15. STRICT RULES — DO NOT VIOLATE
+
+1. Do not redesign the website.
+2. Do not rebuild the application from scratch.
+3. Do not remove approved content to accommodate mobile layouts.
+4. Do not truncate, shorten, or replace the original hero text.
+5. Do not substitute the approved fonts or characters without a verified technical reason.
+6. Do not hide broken elements to make screenshots look correct.
+7. Do not remove animations simply because they are difficult to optimize.
+8. Do not create separate mobile designs that contradict the approved PC reference.
+9. Do not break desktop layouts while fixing mobile layouts.
+10. Do not introduce unnecessary dependencies or duplicate components.
+11. Do not make unverified claims about testing or successful fixes.
+12. Do not mark a defect as resolved until it has been re-tested.
+13. Do not ignore smaller devices, landscape orientation, or intermediate breakpoints.
+14. Do not change backend, payment, authentication, or booking behaviour without necessity.
+15. Do not leave obvious console errors, broken links, missing assets, or preventable responsive defects unresolved.
+
+When a requested behaviour is technically impossible or an environment is unavailable, explain the specific limitation and implement the best safe alternative without misrepresenting the result.
+
+---
+
+## 16. FINAL ACCEPTANCE CRITERIA
+
+The work is complete only when the following have been verified to the extent supported by the available environment:
+
+- The approved PC visual identity is preserved.
+- The same intended characters, text, fonts, and brand assets are used across devices.
+- No essential text or characters are unintentionally missing, clipped, or substituted.
+- Every page has been audited, not just the homepage.
+- The hero remains readable, visually coherent, and fully usable on mobile.
+- Images and videos preserve their intended composition.
+- Layouts adapt correctly across mobile, tablet, laptop, and desktop widths.
+- No unintended horizontal overflow remains in tested viewports.
+- Navigation, buttons, forms, and other interactive elements work.
+- Scroll effects and animations work without major glitches.
+- Browser and console errors have been investigated and resolved where possible.
+- Existing integrations and core functionality remain intact.
+- Accessibility and performance have been checked.
+- Regression tests have been repeated after fixes.
+- The final desktop experience has not been damaged by responsive changes.
+
+### Required final report
+
+After completing the implementation, provide a concise but detailed report containing:
+
+1. **Pages tested:** List every page and route actually inspected.
+2. **Device coverage:** List the actual viewport sizes, browsers, operating systems, and real devices or emulators used.
+3. **Character and typography corrections:** Identify any font, glyph, text, or rendering inconsistencies found and fixed.
+4. **Layout corrections:** Summarize the responsive defects resolved.
+5. **Hero and animation corrections:** Describe the actual changes and verification performed.
+6. **Functional fixes:** List the interactions and workflows tested.
+7. **Performance and accessibility:** Report actual measurements or checks where available.
+8. **Automated checks:** State which tests, builds, linting, and type checks passed or failed.
+9. **Outstanding issues:** List anything that remains unresolved or could not be verified.
+10. **Final status:** Clearly distinguish verified fixes, untested areas, and remaining limitations.
+
+Do not fabricate test results, device coverage, performance scores, or successful outcomes.
+
+## FINAL EXECUTION COMMAND
+
+Begin by inspecting the current PC preview and the existing implementation. Establish the desktop version as the master reference for approved characters, typography, text, assets, visual identity, and intended effects.
+
+Then audit the entire website across mobile, tablet, laptop, and desktop environments. Identify and correct all actual discrepancies, optimize the responsive implementation, preserve every important detail, and run regression tests to verify the fixes.
+
+**The final result must feel like one unified, professionally engineered SONICVAULT STUDIOS website across every device: the same identity, the same intended characters and content, the same visual quality, and the same core experience—intelligently adapted to every screen size without clipping, deleting, distorting, or compromising essential details.**
+
+Execute the work directly in the existing project. Prioritize accuracy, consistency, functionality, and verified results over superficial changes.

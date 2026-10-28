@@ -43,12 +43,10 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       root.classList.remove('dark');
       root.classList.add('light');
       root.setAttribute('data-theme', 'light');
-      root.style.colorScheme = 'light';
     } else {
       root.classList.remove('light');
       root.classList.add('dark');
       root.setAttribute('data-theme', 'dark');
-      root.style.colorScheme = 'dark';
     }
   }, []);
 
@@ -66,7 +64,15 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   );
 
   const toggleTheme = useCallback(() => {
-    setTheme(theme === 'dark' ? 'light' : 'dark');
+    const nextTheme: ThemeMode = theme === 'dark' ? 'light' : 'dark';
+
+    if (typeof document !== 'undefined' && 'startViewTransition' in document) {
+      (document as any).startViewTransition(() => {
+        setTheme(nextTheme);
+      });
+    } else {
+      setTheme(nextTheme);
+    }
   }, [theme, setTheme]);
 
   // Synchronize on mount and listen to system preference changes if user hasn't explicitly set one

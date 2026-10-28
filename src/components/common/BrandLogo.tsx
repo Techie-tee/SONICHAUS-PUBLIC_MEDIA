@@ -279,11 +279,11 @@ export default function BrandLogo({
       letterSpacing: 'tracking-[0.14em]',
     },
     md: {
-      emblem: 40,
-      text: 'text-sm sm:text-base lg:text-lg',
-      subText: 'text-[10px] sm:text-[11px]',
-      gap: 'gap-2 sm:gap-3 lg:gap-3.5',
-      letterSpacing: 'tracking-[0.14em] sm:tracking-[0.16em]',
+      emblem: 38,
+      text: 'text-[13px] min-[360px]:text-sm sm:text-base lg:text-lg',
+      subText: 'text-[9.5px] min-[360px]:text-[10px] sm:text-[11px]',
+      gap: 'gap-1.5 min-[360px]:gap-2 sm:gap-3 lg:gap-3.5',
+      letterSpacing: 'tracking-[0.12em] min-[360px]:tracking-[0.14em] sm:tracking-[0.16em]',
     },
     lg: {
       emblem: 56,

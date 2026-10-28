@@ -8,7 +8,7 @@ import SelectedWork from '../components/sections/SelectedWork';
 import StudioFAQ from '../components/sections/StudioFAQ';
 import FinalCinematicCTA from '../components/sections/FinalCinematicCTA';
 
-import controlRoomImg from '../assets/images/studio_03_control_room_1792446833033.jpg';
+import controlRoomImg from '../assets/images/studio_control_live_performance_1792447671011.jpg';
 import vocalBoothImg from '../assets/images/studio_02_vocal_booth_1792446832131.jpg';
 import liveRoomImg from '../assets/images/hero_recording_room_v2_1792444696580.jpg';
 import productionLabImg from '../assets/images/studio_04_production_lab_1792446833465.jpg';

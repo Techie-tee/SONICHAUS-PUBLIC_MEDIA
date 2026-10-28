@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Volume2, VolumeX, Menu, X, ArrowUpRight } from 'lucide-react';
+import { Menu, X, ArrowUpRight } from 'lucide-react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { audioEngine } from '../../services/audioEngine';
 import BrandLogo from '../common/BrandLogo';
 import ThemeToggle from '../common/ThemeToggle';
 
@@ -22,7 +21,6 @@ const NAV_ITEMS = [
 export default function Navbar({ onOpenBooking }: NavbarProps) {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const [isAudioMuted, setIsAudioMuted] = useState(() => audioEngine.getMuted());
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -34,20 +32,6 @@ export default function Navbar({ onOpenBooking }: NavbarProps) {
     handleScroll();
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
-
-  // Sync mute state if audio engine changes externally
-  useEffect(() => {
-    const syncMute = () => {
-      setIsAudioMuted(audioEngine.getMuted());
-    };
-    const interval = setInterval(syncMute, 1000);
-    return () => clearInterval(interval);
-  }, []);
-
-  const handleAudioToggle = () => {
-    const muted = audioEngine.toggleMute();
-    setIsAudioMuted(muted);
-  };
 
   const handleBookClick = () => {
     setIsMobileMenuOpen(false);
@@ -65,14 +49,14 @@ export default function Navbar({ onOpenBooking }: NavbarProps) {
         {/* Top Viewport Shroud: Prevents underlying scroll text/cards from peeking into the top gap */}
         <div
           className={`navbar-top-shroud absolute top-0 inset-x-0 h-20 bg-gradient-to-b from-[#040609] via-[#040609]/70 to-transparent pointer-events-none transition-opacity duration-300 ${
-            isScrolled ? 'opacity-100' : 'opacity-20'
+            isScrolled ? 'opacity-90' : 'opacity-0'
           }`}
           aria-hidden="true"
         />
 
         {/* Floating Consistent Header Pill */}
         <nav
-          className={`navbar-pill relative pointer-events-auto flex items-center justify-between gap-2 sm:gap-4 lg:gap-6 px-3.5 sm:px-5 lg:px-6 py-2 sm:py-2.5 rounded-full border shadow-[0_12px_40px_rgba(0,0,0,0.85)] w-full max-w-7xl transition-all duration-300 ${
+          className={`navbar-pill relative pointer-events-auto flex items-center justify-between gap-1.5 min-[360px]:gap-2 sm:gap-4 lg:gap-6 px-2.5 min-[360px]:px-3.5 sm:px-5 lg:px-6 py-2 sm:py-2.5 rounded-full border shadow-[0_12px_40px_rgba(0,0,0,0.85)] w-full max-w-7xl transition-all duration-300 ${
             isScrolled
               ? 'bg-[#060913]/98 backdrop-blur-2xl border-white/20 shadow-[0_16px_50px_rgba(0,0,0,0.95)]'
               : 'bg-[#070a13]/95 backdrop-blur-2xl border-white/15'
@@ -108,43 +92,24 @@ export default function Navbar({ onOpenBooking }: NavbarProps) {
             })}
           </div>
 
-          {/* Right Action Controls: Audio Toggle & Primary CTA */}
-          <div className="flex items-center gap-1.5 sm:gap-2.5 shrink-0">
-            {/* Live Audio Engine Toggle */}
-            <button
-              onClick={handleAudioToggle}
-              className={`flex items-center gap-1.5 px-2.5 sm:px-3 py-1.5 rounded-full text-[10px] sm:text-xs font-mono border transition-all whitespace-nowrap cursor-pointer shrink-0 ${
-                isAudioMuted
-                  ? 'border-white/15 text-slate-300 hover:text-white hover:border-white/30 bg-black/50'
-                  : 'border-[#4E85BF] text-[#89AACC] bg-[#4E85BF]/20 shadow-[0_0_15px_rgba(78,133,191,0.35)]'
-              }`}
-              title={isAudioMuted ? 'Turn Sound ON' : 'Mute Sound'}
-              aria-label="Toggle Studio Audio"
-            >
-              {isAudioMuted ? (
-                <VolumeX className="w-3.5 h-3.5 shrink-0" />
-              ) : (
-                <Volume2 className="w-3.5 h-3.5 text-[#89AACC] animate-pulse shrink-0" />
-              )}
-              <span className="hidden md:inline">{isAudioMuted ? 'SOUND: OFF' : 'SOUND: LIVE'}</span>
-            </button>
-
-            {/* Intelligent Dual-Theme Toggle (Daylight / Dark Mode) */}
+          {/* Right Action Controls: Classy Atmosphere Switch & Expanded Book Session CTA */}
+          <div className="flex items-center gap-2 sm:gap-3.5 lg:gap-4 shrink-0">
+            {/* Classy Architectural Atmosphere Toggle Switch */}
             <ThemeToggle variant="navbar" />
 
-            {/* Primary Action Button with subtle ripple glow / scale-up on hover */}
+            {/* Expanded Primary Action Button with subtle ripple glow / scale-up on hover */}
             <div className="hidden sm:inline-flex relative group">
               <span
-                className="absolute -inset-0.5 rounded-full bg-[#4E85BF]/15 animate-ping pointer-events-none group-hover:scale-125 group-hover:opacity-30 group-hover:bg-[#4E85BF]/30 group-hover:shadow-[0_0_10px_rgba(78,133,191,0.3)] transition-all duration-500 blur-[1px]"
-                style={{ animationDuration: '4s', animationIterationCount: 'infinite' }}
+                className="absolute -inset-1 rounded-full bg-[#4E85BF]/20 animate-ping pointer-events-none group-hover:scale-125 group-hover:opacity-40 group-hover:bg-[#4E85BF]/40 group-hover:shadow-[0_0_15px_rgba(78,133,191,0.5)] transition-all duration-500 blur-[1px]"
+                style={{ animationDuration: '3.5s', animationIterationCount: 'infinite' }}
                 aria-hidden="true"
               />
               <button
                 onClick={handleBookClick}
-                className="relative inline-flex items-center gap-1 px-3 sm:px-4 py-1.5 sm:py-2 text-[10px] sm:text-xs font-semibold text-white accent-gradient hover:opacity-95 active:scale-95 transition-all rounded-full shadow-md whitespace-nowrap cursor-pointer shrink-0"
+                className="relative inline-flex items-center justify-center gap-2 px-5 sm:px-6 md:px-7 py-2 sm:py-2.5 text-xs sm:text-sm font-bold tracking-wider text-white accent-gradient hover:opacity-95 active:scale-95 transition-all duration-300 rounded-full shadow-[0_4px_20px_rgba(78,133,191,0.4)] hover:shadow-[0_6px_25px_rgba(78,133,191,0.6)] whitespace-nowrap cursor-pointer shrink-0 uppercase"
               >
                 <span>BOOK A SESSION</span>
-                <ArrowUpRight className="w-3.5 h-3.5 shrink-0 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
+                <ArrowUpRight className="w-4 h-4 shrink-0 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform duration-200" />
               </button>
             </div>
 

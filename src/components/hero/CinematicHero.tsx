@@ -23,6 +23,7 @@ interface TourSceneConfig {
   mobileImage: string;
   soundIndex: number;
   objectPosition: string;
+  mobileObjectPosition?: string;
   transformOrigin: string;
   // Normalized scroll intervals [0, 1]
   inStart: number;
@@ -40,6 +41,7 @@ interface TourSceneConfig {
 }
 
 // 5 Master Studio Environments with Choreographed Timeline Segments
+// Consistent preview scenes across all devices (mobile, tablet, desktop)
 const CINEMATIC_SCENES: TourSceneConfig[] = [
   {
     id: 'studio-entrance',
@@ -51,6 +53,7 @@ const CINEMATIC_SCENES: TourSceneConfig[] = [
     mobileImage: entranceImg,
     soundIndex: 0,
     objectPosition: 'center clamp(50px, 6.5vh, 76px)',
+    mobileObjectPosition: '50% 74px',
     transformOrigin: 'center top',
     inStart: 0.0,
     inEnd: 0.0,
@@ -74,6 +77,7 @@ const CINEMATIC_SCENES: TourSceneConfig[] = [
     mobileImage: vocalBoothImg,
     soundIndex: 1,
     objectPosition: 'center 20%',
+    mobileObjectPosition: '50% 74px',
     transformOrigin: '52% 24%',
     inStart: 0.15,
     inEnd: 0.25,
@@ -97,6 +101,7 @@ const CINEMATIC_SCENES: TourSceneConfig[] = [
     mobileImage: controlRoomImg,
     soundIndex: 2,
     objectPosition: 'center 24%',
+    mobileObjectPosition: '50% 74px',
     transformOrigin: '50% 25%',
     inStart: 0.38,
     inEnd: 0.48,
@@ -120,6 +125,7 @@ const CINEMATIC_SCENES: TourSceneConfig[] = [
     mobileImage: productionLabImg,
     soundIndex: 3,
     objectPosition: 'center 16%',
+    mobileObjectPosition: '50% 74px',
     transformOrigin: '68% 22%',
     inStart: 0.62,
     inEnd: 0.72,
@@ -143,6 +149,7 @@ const CINEMATIC_SCENES: TourSceneConfig[] = [
     mobileImage: masterSuiteImg,
     soundIndex: 4,
     objectPosition: 'center 32%',
+    mobileObjectPosition: '50% 74px',
     transformOrigin: '50% 35%',
     inStart: 0.84,
     inEnd: 0.94,
@@ -210,6 +217,20 @@ export default function CinematicHero({ onOpenBooking, onExploreSpaces }: Cinema
   const [isHeroInView, setIsHeroInView] = useState(true);
   const [isMusicWaveActive, setIsMusicWaveActive] = useState(false);
   const [imagesLoaded, setImagesLoaded] = useState(false);
+  const [isMobile, setIsMobile] = useState(() => {
+    if (typeof window !== 'undefined') {
+      return window.innerWidth < 640;
+    }
+    return false;
+  });
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 640);
+    };
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const containerRef = useRef<HTMLDivElement>(null);
   const activeSceneRef = useRef(0);
@@ -252,27 +273,16 @@ export default function CinematicHero({ onOpenBooking, onExploreSpaces }: Cinema
   // Preload all 5 scenes upfront so there is never a blank frame or pop
   useEffect(() => {
     let loadedCount = 0;
-    const totalAssets = CINEMATIC_SCENES.length * 2; // desktop + mobile
+    const totalAssets = CINEMATIC_SCENES.length;
 
     CINEMATIC_SCENES.forEach((scene) => {
-      const imgDesktop = new Image();
-      imgDesktop.src = scene.image;
-      imgDesktop.onload = () => {
+      const img = new Image();
+      img.src = scene.image;
+      img.onload = () => {
         loadedCount++;
         if (loadedCount >= totalAssets) setImagesLoaded(true);
       };
-      imgDesktop.onerror = () => {
-        loadedCount++;
-        if (loadedCount >= totalAssets) setImagesLoaded(true);
-      };
-
-      const imgMobile = new Image();
-      imgMobile.src = scene.mobileImage;
-      imgMobile.onload = () => {
-        loadedCount++;
-        if (loadedCount >= totalAssets) setImagesLoaded(true);
-      };
-      imgMobile.onerror = () => {
+      img.onerror = () => {
         loadedCount++;
         if (loadedCount >= totalAssets) setImagesLoaded(true);
       };
@@ -447,13 +457,27 @@ export default function CinematicHero({ onOpenBooking, onExploreSpaces }: Cinema
                   willChange: 'opacity',
                 }}
               >
+                {/* Ambient glow backdrop for mobile viewports (seamlessly fills atmosphere without harsh borders) */}
+                <div
+                  className="sm:hidden absolute inset-0 w-full h-full overflow-hidden pointer-events-none"
+                  aria-hidden="true"
+                >
+                  <img
+                    src={scene.image}
+                    alt=""
+                    className="w-full h-full object-cover blur-2xl opacity-40 scale-125 brightness-90"
+                  />
+                  <div className="absolute inset-0 bg-black/40" />
+                </div>
+
+                {/* Primary Focal Scene Image — fits the entire 16:9 composition on mobile so all individuals & equipment are 100% captured */}
                 <img
                   src={scene.image}
                   alt={scene.title}
                   loading="eager"
                   decoding="async"
                   referrerPolicy="no-referrer"
-                  className={`w-full h-full object-cover select-none transition-transform duration-[6000ms] ease-out ${
+                  className={`w-full h-full object-contain sm:object-cover select-none transition-transform duration-[6000ms] ease-out ${
                     isDaylight
                       ? 'contrast-[1.03] brightness-[1.02] saturate-[1.08]'
                       : 'contrast-[1.05] brightness-[0.96] saturate-[1.06]'
@@ -463,9 +487,11 @@ export default function CinematicHero({ onOpenBooking, onExploreSpaces }: Cinema
                       : 'scale-100 translate-x-0'
                   }`}
                   style={{
-                    objectPosition: isEntrance
-                      ? 'center clamp(50px, 6.5vh, 76px)'
-                      : (scene.objectPosition || 'center center'),
+                    objectPosition: isMobile
+                      ? '50% 74px'
+                      : (isEntrance
+                          ? 'center clamp(50px, 6.5vh, 76px)'
+                          : (scene.objectPosition || 'center center')),
                     transformOrigin: isEntrance
                       ? 'center top'
                       : (scene.transformOrigin || 'center 20%'),
@@ -573,20 +599,20 @@ export default function CinematicHero({ onOpenBooking, onExploreSpaces }: Cinema
         <div className="absolute top-0 inset-x-0 h-20 pointer-events-none z-10 transition-colors duration-500 bg-gradient-to-b from-[#040609]/70 via-[#040609]/20 to-transparent" />
 
         {/* Layer 4: Cinematic bottom vignette & contrast scrim — Preserves rich console & room details without milky haze */}
-        <div className={`absolute bottom-0 inset-x-0 h-24 sm:h-28 pointer-events-none z-20 transition-colors duration-500 ${
+        <div className={`absolute bottom-0 inset-x-0 h-64 min-[380px]:h-72 sm:h-32 pointer-events-none z-15 transition-colors duration-500 ${
           isDaylight
-            ? 'bg-gradient-to-t from-black/60 via-black/20 to-transparent'
-            : 'bg-gradient-to-t from-[#040609]/90 via-[#040609]/40 to-transparent'
+            ? 'bg-gradient-to-t from-black/85 via-black/45 to-transparent'
+            : 'bg-gradient-to-t from-[#040609]/95 via-[#040609]/60 to-transparent'
         }`} />
         <div className={`absolute bottom-0 inset-x-0 h-[1px] pointer-events-none z-30 transition-colors duration-500 ${
           isDaylight ? 'bg-white/20' : 'bg-white/10'
         }`} />
 
         {/* Layer 5: Main Headline & Intro Branding — Responsive vertical positioning ensuring every element is visible on mobile and desktop */}
-        <main className={`relative z-20 flex-1 flex flex-col justify-start items-center text-center px-3 sm:px-6 max-w-4xl mx-auto pointer-events-none w-full transition-all duration-500 pb-2 sm:pb-4 ${
+        <main className={`relative z-20 flex-1 flex flex-col items-center text-center px-3 sm:px-6 max-w-4xl mx-auto pointer-events-none w-full transition-all duration-500 pb-2 sm:pb-4 ${
           activeSceneIndex === 0
-            ? 'pt-[clamp(8rem,20vh,11.5rem)] sm:pt-[clamp(18rem,36vh,24rem)] lg:pt-[clamp(18rem,38.5vh,23rem)]'
-            : 'pt-[clamp(5.5rem,14vh,8rem)] sm:pt-[clamp(13rem,26vh,17rem)] lg:pt-[clamp(15rem,30vh,19rem)]'
+            ? 'justify-start pt-[clamp(8rem,20vh,11.5rem)] sm:pt-[clamp(18rem,36vh,24rem)] lg:pt-[clamp(18rem,38.5vh,23rem)]'
+            : 'justify-end pb-3 min-[380px]:pb-4 sm:justify-start sm:pb-4 sm:pt-[clamp(13rem,26vh,17rem)] lg:pt-[clamp(15rem,30vh,19rem)]'
         }`}>
           {headlineOpacity > 0.01 && (
             activeSceneIndex === 0 ? (

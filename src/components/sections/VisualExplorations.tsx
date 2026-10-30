@@ -114,6 +114,8 @@ export default function VisualExplorations() {
               <img
                 src={item.image}
                 alt={item.title}
+                loading="lazy"
+                decoding="async"
                 className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 filter brightness-[0.88] group-hover:brightness-100"
               />
 

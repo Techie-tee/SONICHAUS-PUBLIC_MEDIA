@@ -149,6 +149,8 @@ export default function StudioGallery({ onOpenBooking }: StudioGalleryProps) {
                 <img
                   src={item.image}
                   alt={item.title}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter brightness-95"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent pointer-events-none" />

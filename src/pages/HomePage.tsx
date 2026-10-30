@@ -181,6 +181,8 @@ export default function HomePage({ onOpenBooking }: HomePageProps) {
                   <img
                     src={chamber.image}
                     alt={chamber.name}
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105 filter brightness-90"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#080b12] via-transparent to-transparent pointer-events-none" />

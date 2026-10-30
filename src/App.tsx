@@ -7,6 +7,7 @@ import BookingModal from './components/booking/BookingModal';
 import FloatingChatbot from './components/chat/FloatingChatbot';
 import FloatingWhatsApp from './components/chat/FloatingWhatsApp';
 import ScrollToTop from './components/common/ScrollToTop';
+import ImagePreloader from './components/common/ImagePreloader';
 import { AudioPlayerProvider } from './context/AudioPlayerContext';
 import { ThemeProvider } from './context/ThemeContext';
 import GlobalAudioPlayer from './components/audio/GlobalAudioPlayer';
@@ -57,6 +58,7 @@ function AppLayout() {
   return (
     <div className="app-shell min-h-screen bg-[#040609] text-slate-100 flex flex-col font-sans selection:bg-[#4E85BF] selection:text-white transition-colors duration-300">
       <ScrollToTop />
+      <ImagePreloader />
 
       {/* 1. Initial Cinematic Loading Screen on initial entry */}
       {isLoading && !isAdminRoute && (

@@ -568,7 +568,46 @@ describe('SONICVAULT STUDIOS — Core Infrastructure & Security Tests', () => {
       'The Production Lab chamber must have balanced two-line depth matching its contemporary cards'
     );
   });
+
+  test('23. ImagePreloader Component & Hero CSS Object-Fit Contain Verification', async () => {
+    const fs = await import('node:fs');
+    const path = await import('node:path');
+
+    // 1. ImagePreloader exists and utilizes the browser native Image API
+    const preloaderPath = path.resolve(process.cwd(), 'src/components/common/ImagePreloader.tsx');
+    assert.strictEqual(fs.existsSync(preloaderPath), true, 'ImagePreloader component must exist');
+    const preloaderCode = fs.readFileSync(preloaderPath, 'utf-8');
+    assert.ok(preloaderCode.includes('new Image()'), 'ImagePreloader must instantiate new Image() via browser API');
+    assert.ok(preloaderCode.includes('CRITICAL_HERO_IMAGES'), 'ImagePreloader must declare CRITICAL_HERO_IMAGES manifest');
+    assert.ok(preloaderCode.includes('SECONDARY_GALLERY_IMAGES'), 'ImagePreloader must declare SECONDARY_GALLERY_IMAGES manifest');
+
+    // 2. App.tsx mounts ImagePreloader
+    const appCode = fs.readFileSync(path.resolve(process.cwd(), 'src/App.tsx'), 'utf-8');
+    assert.ok(appCode.includes('<ImagePreloader />'), 'App.tsx must render <ImagePreloader /> on initial load');
+
+    // 3. CinematicHero uses object-fit: contain and object-position: center for all background images
+    const heroCode = fs.readFileSync(path.resolve(process.cwd(), 'src/components/hero/CinematicHero.tsx'), 'utf-8');
+    assert.ok(
+      heroCode.includes("objectFit: 'contain'"),
+      'CinematicHero must set objectFit: contain in style to prevent image cropping'
+    );
+    assert.ok(
+      heroCode.includes("objectPosition: 'center'"),
+      'CinematicHero must set objectPosition: center in style for balanced centering'
+    );
+    assert.ok(
+      heroCode.includes('object-contain object-center'),
+      'CinematicHero must include object-contain object-center CSS utility classes'
+    );
+
+    // 4. Main text overlay padding-top is adjusted to position it well below visual media
+    assert.ok(
+      heroCode.includes('pt-6') && heroCode.includes('justify-start'),
+      'CinematicHero main text overlay must use adjusted padding-top (pt-6) to sit well below visual media'
+    );
+  });
 });
+
 
 
 

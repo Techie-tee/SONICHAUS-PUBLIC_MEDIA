@@ -270,26 +270,23 @@ export default function CinematicHero({ onOpenBooking, onExploreSpaces }: Cinema
     setIsAutoPlay((prev) => !prev);
   }, []);
 
-  // Preload all 5 scenes upfront so there is never a blank frame or pop
+  // Optimized scene preloading: Prioritizes immediate Chamber 01 load, deferring background scenes 2-5
   useEffect(() => {
-    let loadedCount = 0;
-    const totalAssets = CINEMATIC_SCENES.length;
+    // 1. Immediately load initial entrance scene
+    const initialImg = new Image();
+    initialImg.src = CINEMATIC_SCENES[0].image;
+    initialImg.onload = () => setImagesLoaded(true);
+    initialImg.onerror = () => setImagesLoaded(true);
 
-    CINEMATIC_SCENES.forEach((scene) => {
-      const img = new Image();
-      img.src = scene.image;
-      img.onload = () => {
-        loadedCount++;
-        if (loadedCount >= totalAssets) setImagesLoaded(true);
-      };
-      img.onerror = () => {
-        loadedCount++;
-        if (loadedCount >= totalAssets) setImagesLoaded(true);
-      };
-    });
+    // 2. Defer preloading remaining chambers so initial paint & critical path remain ultra fast
+    const deferTimer = setTimeout(() => {
+      CINEMATIC_SCENES.slice(1).forEach((scene) => {
+        const img = new Image();
+        img.src = scene.image;
+      });
+    }, 800);
 
-    const timer = setTimeout(() => setImagesLoaded(true), 1200);
-    return () => clearTimeout(timer);
+    return () => clearTimeout(deferTimer);
   }, []);
 
   // Motion preference detection
@@ -434,14 +431,14 @@ export default function CinematicHero({ onOpenBooking, onExploreSpaces }: Cinema
   return (
     <div
       ref={containerRef}
-      className="relative w-full h-[320vh] sm:h-[350vh] lg:h-[380vh] bg-[#040609]"
+      className="relative w-full h-auto sm:h-[350vh] lg:h-[380vh] bg-[#040609]"
       id="tour"
     >
-      {/* Pinned Cinematic Viewport */}
-      <div className="sticky top-0 w-full h-[100dvh] overflow-hidden flex flex-col justify-between select-none bg-[#040609]">
+      {/* Pinned Cinematic Viewport with Mobile Navbar Clearance */}
+      <div className="relative sm:sticky sm:top-0 w-full h-auto sm:h-[100dvh] pt-[72px] min-[400px]:pt-[76px] sm:pt-0 overflow-hidden flex flex-col justify-between select-none bg-[#040609]">
         
         {/* Layer 1: Living Cinematic Scenes Stack with Full Resolution Auto-Transition */}
-        <div className="absolute inset-0 w-full h-full overflow-hidden bg-[#040609]">
+        <div className="relative w-full aspect-[16/9] min-[420px]:aspect-[16/9.2] sm:aspect-auto sm:absolute sm:inset-0 sm:w-full sm:h-full overflow-hidden bg-[#040609]">
           {CINEMATIC_SCENES.map((scene, idx) => {
             const isActive = idx === activeSceneIndex;
             const isReducedMotion = prefersReducedMotionRef.current;
@@ -457,27 +454,14 @@ export default function CinematicHero({ onOpenBooking, onExploreSpaces }: Cinema
                   willChange: 'opacity',
                 }}
               >
-                {/* Ambient glow backdrop for mobile viewports (seamlessly fills atmosphere without harsh borders) */}
-                <div
-                  className="sm:hidden absolute inset-0 w-full h-full overflow-hidden pointer-events-none"
-                  aria-hidden="true"
-                >
-                  <img
-                    src={scene.image}
-                    alt=""
-                    className="w-full h-full object-cover blur-2xl opacity-40 scale-125 brightness-90"
-                  />
-                  <div className="absolute inset-0 bg-black/40" />
-                </div>
-
-                {/* Primary Focal Scene Image — fits the entire 16:9 composition on mobile so all individuals & equipment are 100% captured */}
+                {/* Primary Focal Scene Image — Fully visible without any cropping or navbar chopping */}
                 <img
                   src={scene.image}
                   alt={scene.title}
-                  loading="eager"
+                  loading={idx === 0 ? 'eager' : 'lazy'}
                   decoding="async"
                   referrerPolicy="no-referrer"
-                  className={`w-full h-full object-contain sm:object-cover select-none transition-transform duration-[6000ms] ease-out ${
+                  className={`w-full h-full object-contain object-center select-none transition-transform duration-[6000ms] ease-out ${
                     isDaylight
                       ? 'contrast-[1.03] brightness-[1.02] saturate-[1.08]'
                       : 'contrast-[1.05] brightness-[0.96] saturate-[1.06]'
@@ -487,14 +471,9 @@ export default function CinematicHero({ onOpenBooking, onExploreSpaces }: Cinema
                       : 'scale-100 translate-x-0'
                   }`}
                   style={{
-                    objectPosition: isMobile
-                      ? '50% 74px'
-                      : (isEntrance
-                          ? 'center clamp(50px, 6.5vh, 76px)'
-                          : (scene.objectPosition || 'center center')),
-                    transformOrigin: isEntrance
-                      ? 'center top'
-                      : (scene.transformOrigin || 'center 20%'),
+                    objectFit: 'contain',
+                    objectPosition: 'center',
+                    transformOrigin: 'center center',
                     imageRendering: 'auto',
                     WebkitBackfaceVisibility: 'hidden',
                     backfaceVisibility: 'hidden',
@@ -593,34 +572,34 @@ export default function CinematicHero({ onOpenBooking, onExploreSpaces }: Cinema
         </div>
 
         {/* Layer 3: Cinematic Atmospheric Vignettes & Contrast Scrims */}
-        <div className="absolute inset-0 pointer-events-none z-10 transition-opacity duration-500 bg-radial from-transparent via-black/25 to-black/80" />
+        <div className="hidden sm:block absolute inset-0 pointer-events-none z-10 transition-opacity duration-500 bg-radial from-transparent via-black/25 to-black/80" />
 
         {/* Minimal soft top gradient that keeps navbar legible without dimming the illuminated SONICVAULT STUDIOS sign */}
-        <div className="absolute top-0 inset-x-0 h-20 pointer-events-none z-10 transition-colors duration-500 bg-gradient-to-b from-[#040609]/70 via-[#040609]/20 to-transparent" />
+        <div className="absolute top-0 inset-x-0 h-16 sm:h-20 pointer-events-none z-10 transition-colors duration-500 bg-gradient-to-b from-[#040609]/70 via-[#040609]/20 to-transparent" />
 
-        {/* Layer 4: Cinematic bottom vignette & contrast scrim — Preserves rich console & room details without milky haze */}
-        <div className={`absolute bottom-0 inset-x-0 h-64 min-[380px]:h-72 sm:h-32 pointer-events-none z-15 transition-colors duration-500 ${
+        {/* Layer 4: Cinematic bottom vignette & contrast scrim */}
+        <div className={`hidden sm:block absolute bottom-0 inset-x-0 h-32 pointer-events-none z-15 transition-colors duration-500 ${
           isDaylight
             ? 'bg-gradient-to-t from-black/85 via-black/45 to-transparent'
             : 'bg-gradient-to-t from-[#040609]/95 via-[#040609]/60 to-transparent'
         }`} />
-        <div className={`absolute bottom-0 inset-x-0 h-[1px] pointer-events-none z-30 transition-colors duration-500 ${
+        <div className={`hidden sm:block absolute bottom-0 inset-x-0 h-[1px] pointer-events-none z-30 transition-colors duration-500 ${
           isDaylight ? 'bg-white/20' : 'bg-white/10'
         }`} />
 
         {/* Layer 5: Main Headline & Intro Branding — Responsive vertical positioning ensuring every element is visible on mobile and desktop */}
-        <main className={`relative z-20 flex-1 flex flex-col items-center text-center px-3 sm:px-6 max-w-4xl mx-auto pointer-events-none w-full transition-all duration-500 pb-2 sm:pb-4 ${
+        <main className={`relative z-20 flex-1 flex flex-col items-center text-center px-3 sm:px-6 max-w-4xl mx-auto pointer-events-none w-full transition-all duration-500 ${
           activeSceneIndex === 0
-            ? 'justify-start pt-[clamp(8rem,20vh,11.5rem)] sm:pt-[clamp(18rem,36vh,24rem)] lg:pt-[clamp(18rem,38.5vh,23rem)]'
-            : 'justify-end pb-3 min-[380px]:pb-4 sm:justify-start sm:pb-4 sm:pt-[clamp(13rem,26vh,17rem)] lg:pt-[clamp(15rem,30vh,19rem)]'
+            ? 'justify-start pt-6 sm:pt-[clamp(18rem,36vh,24rem)] lg:pt-[clamp(18rem,38.5vh,23rem)]'
+            : 'justify-start pt-6 pb-3 sm:pb-4 sm:pt-[clamp(14rem,28vh,18rem)] lg:pt-[clamp(16rem,32vh,20rem)]'
         }`}>
-          {headlineOpacity > 0.01 && (
-            activeSceneIndex === 0 ? (
+          {activeSceneIndex === 0 ? (
+            (isMobile || headlineOpacity > 0.01) && (
               <div
                 className="space-y-1.5 sm:space-y-2 pointer-events-auto flex flex-col items-center justify-center text-center px-2 w-full max-w-full"
                 style={{
-                  opacity: headlineOpacity,
-                  transform: `translate3d(0, ${headlineTranslateY}px, 0) scale(${headlineScale})`,
+                  opacity: isMobile ? 1 : headlineOpacity,
+                  transform: isMobile ? 'none' : `translate3d(0, ${headlineTranslateY}px, 0) scale(${headlineScale})`,
                   willChange: 'opacity, transform',
                 }}
               >
@@ -655,60 +634,55 @@ export default function CinematicHero({ onOpenBooking, onExploreSpaces }: Cinema
                   </div>
                 </div>
               </div>
-            ) : (
-              <div
-                key={activeSceneIndex}
-                className="space-y-1.5 min-[360px]:space-y-2 pointer-events-auto flex flex-col items-center justify-center text-center px-2 min-[360px]:px-4 w-full max-w-2xl animate-in fade-in zoom-in-95 duration-500"
-                style={{
-                  opacity: headlineOpacity,
-                  transform: `translate3d(0, ${headlineTranslateY}px, 0) scale(${headlineScale})`,
-                  willChange: 'opacity, transform',
-                }}
-              >
-                {/* Chamber Kicker Badge */}
-                <div className="inline-flex items-center gap-1.5 min-[360px]:gap-2 px-2.5 min-[360px]:px-3 py-0.5 min-[360px]:py-1 rounded-full bg-black/60 border border-cyan-400/30 backdrop-blur-md shadow-[0_4px_16px_rgba(0,0,0,0.4)]">
-                  <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping shrink-0" />
-                  <span className="text-[8px] min-[360px]:text-[9px] sm:text-[10px] font-mono tracking-[0.2em] min-[360px]:tracking-[0.22em] text-cyan-300 uppercase select-none truncate max-w-[270px] min-[380px]:max-w-none">
-                    CHAMBER 0{activeSceneIndex + 1} OF 05 · {CINEMATIC_SCENES[activeSceneIndex]?.roomTag}
-                  </span>
-                </div>
-
-                {/* Chamber Title */}
-                <h2 className="text-base min-[360px]:text-lg sm:text-2xl md:text-3xl font-black tracking-tight text-white font-display uppercase leading-tight drop-shadow-[0_4px_24px_rgba(0,0,0,0.98)] max-w-xl">
-                  {CINEMATIC_SCENES[activeSceneIndex]?.title}
-                </h2>
-
-                {/* Chamber Subtitle / Acoustic Identity */}
-                <p className="text-[11px] min-[360px]:text-xs sm:text-sm font-medium tracking-wide text-slate-200 font-display drop-shadow-[0_2px_12px_rgba(0,0,0,0.98)] max-w-md px-2">
-                  {CINEMATIC_SCENES[activeSceneIndex]?.subtitle}
-                </p>
-
-                {/* Chamber Quick CTAs */}
-                <div className="pt-1 flex items-center justify-center gap-2 sm:gap-2.5">
-                  <button
-                    type="button"
-                    onClick={() => onExploreSpaces?.()}
-                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] sm:text-xs font-mono font-semibold tracking-wider text-white bg-black/60 hover:bg-black/85 border border-white/20 hover:border-cyan-400/60 backdrop-blur-md transition-all shadow-md group cursor-pointer active:scale-95"
-                  >
-                    <span>EXPLORE CHAMBERS</span>
-                    <span className="text-cyan-400 group-hover:translate-x-0.5 transition-transform">→</span>
-                  </button>
-                  <button
-                    type="button"
-                    onClick={() => onOpenBooking?.(CINEMATIC_SCENES[activeSceneIndex]?.id)}
-                    className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-[10px] sm:text-xs font-mono font-bold tracking-wider text-white bg-gradient-to-r from-[#2563EB] to-[#0284C7] hover:from-[#1D4ED8] hover:to-[#0369A1] shadow-[0_4px_16px_rgba(37,99,235,0.4)] transition-all cursor-pointer active:scale-95"
-                  >
-                    <span>RESERVE SESSION</span>
-                  </button>
-                </div>
-              </div>
             )
+          ) : (
+            <div
+              key={activeSceneIndex}
+              className="space-y-1.5 min-[360px]:space-y-2 pointer-events-auto flex flex-col items-center justify-center text-center px-2 min-[360px]:px-4 w-full max-w-2xl animate-in fade-in zoom-in-95 duration-500"
+            >
+              {/* Chamber Kicker Badge */}
+              <div className="inline-flex items-center gap-1.5 min-[360px]:gap-2 px-2.5 min-[360px]:px-3 py-0.5 min-[360px]:py-1 rounded-full bg-black/60 border border-cyan-400/30 backdrop-blur-md shadow-[0_4px_16px_rgba(0,0,0,0.4)]">
+                <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping shrink-0" />
+                <span className="text-[8px] min-[360px]:text-[9px] sm:text-[10px] font-mono tracking-[0.2em] min-[360px]:tracking-[0.22em] text-cyan-300 uppercase select-none truncate max-w-[270px] min-[380px]:max-w-none">
+                  CHAMBER 0{activeSceneIndex + 1} OF 05 · {CINEMATIC_SCENES[activeSceneIndex]?.roomTag}
+                </span>
+              </div>
+
+              {/* Chamber Title */}
+              <h2 className="text-base min-[360px]:text-lg sm:text-2xl md:text-3xl font-black tracking-tight text-white font-display uppercase leading-tight drop-shadow-[0_4px_24px_rgba(0,0,0,0.98)] max-w-xl">
+                {CINEMATIC_SCENES[activeSceneIndex]?.title}
+              </h2>
+
+              {/* Chamber Subtitle / Acoustic Identity */}
+              <p className="text-[11px] min-[360px]:text-xs sm:text-sm font-medium tracking-wide text-slate-200 font-display drop-shadow-[0_2px_12px_rgba(0,0,0,0.98)] max-w-md px-2">
+                {CINEMATIC_SCENES[activeSceneIndex]?.subtitle}
+              </p>
+
+              {/* Chamber Quick CTAs */}
+              <div className="pt-1 flex items-center justify-center gap-2 sm:gap-2.5">
+                <button
+                  type="button"
+                  onClick={() => onExploreSpaces?.()}
+                  className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full text-[10px] sm:text-xs font-mono font-semibold tracking-wider text-white bg-black/60 hover:bg-black/85 border border-white/20 hover:border-cyan-400/60 backdrop-blur-md transition-all shadow-md group cursor-pointer active:scale-95"
+                >
+                  <span>EXPLORE CHAMBERS</span>
+                  <span className="text-cyan-400 group-hover:translate-x-0.5 transition-transform">→</span>
+                </button>
+                <button
+                  type="button"
+                  onClick={() => onOpenBooking?.(CINEMATIC_SCENES[activeSceneIndex]?.id)}
+                  className="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-[10px] sm:text-xs font-mono font-bold tracking-wider text-white bg-gradient-to-r from-[#2563EB] to-[#0284C7] hover:from-[#1D4ED8] hover:to-[#0369A1] shadow-[0_4px_16px_rgba(37,99,235,0.4)] transition-all cursor-pointer active:scale-95"
+                >
+                  <span>RESERVE SESSION</span>
+                </button>
+              </div>
+            </div>
           )}
         </main>
 
         {/* Layer 6: Cinematic Studio Tour HUD (Synchronized Scene Indicator, 5s Auto-Transition Gauge & Controls) */}
         <div
-          className="relative z-30 pb-14 min-[380px]:pb-16 sm:pb-6 px-2 flex justify-center pointer-events-auto"
+          className="relative z-30 pt-1 pb-4 sm:pb-6 px-2 flex justify-center pointer-events-auto"
           onMouseEnter={() => setIsHovered(true)}
           onMouseLeave={() => setIsHovered(false)}
         >

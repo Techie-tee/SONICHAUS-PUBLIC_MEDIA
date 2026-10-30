@@ -954,6 +954,8 @@ function ProjectCard({
         <img
           src={project.image}
           alt={project.title}
+          loading="lazy"
+          decoding="async"
           referrerPolicy="no-referrer"
           className="w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 filter brightness-[0.8] contrast-[1.1] saturate-[1.1]"
         />
@@ -1171,6 +1173,8 @@ function CaseStudyModal({ project, onClose, onOpenBooking }: CaseStudyModalProps
           <img
             src={project.image}
             alt={project.title}
+            loading="lazy"
+            decoding="async"
             referrerPolicy="no-referrer"
             className="w-full h-full object-cover filter brightness-[0.7] contrast-[1.1]"
           />

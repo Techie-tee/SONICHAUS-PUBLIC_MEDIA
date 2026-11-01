@@ -606,6 +606,53 @@ describe('SONICVAULT STUDIOS — Core Infrastructure & Security Tests', () => {
       'CinematicHero main text overlay must use adjusted padding-top (pt-6) to sit well below visual media'
     );
   });
+
+  test('24. Header Alignment & High-Contrast Navigation on Mobile and Tablet Previews', async () => {
+    const fs = await import('node:fs');
+    const path = await import('node:path');
+
+    const navCode = fs.readFileSync(path.resolve(process.cwd(), 'src/components/layout/Navbar.tsx'), 'utf-8');
+    const cssCode = fs.readFileSync(path.resolve(process.cwd(), 'src/index.css'), 'utf-8');
+    const toggleCode = fs.readFileSync(path.resolve(process.cwd(), 'src/components/common/ThemeToggle.tsx'), 'utf-8');
+
+    // 1. Tablet Navigation: Links are visible on tablet (md:flex) instead of hidden until lg
+    assert.ok(
+      navCode.includes('hidden md:flex'),
+      'Navbar must display navigation links on tablet screens (md:flex)'
+    );
+
+    // 2. Mobile Action Button: Responsive booking text ("BOOK" on mobile, "BOOK A SESSION" on tablet/desktop)
+    assert.ok(
+      navCode.includes('sm:hidden') && navCode.includes('BOOK'),
+      'Navbar must provide visible booking action on mobile screens'
+    );
+    assert.ok(
+      navCode.includes('hidden sm:inline') && navCode.includes('BOOK A SESSION'),
+      'Navbar must provide full BOOK A SESSION text on tablet and desktop screens'
+    );
+
+    // 3. Hamburger Button: Uses dedicated high-contrast class and md:hidden
+    assert.ok(
+      navCode.includes('navbar-hamburger-btn') && navCode.includes('md:hidden'),
+      'Navbar must use navbar-hamburger-btn and hide on tablet (md:hidden)'
+    );
+
+    // 4. CSS High-Contrast: Daylight mode guarantees dark stroke for hamburger and drawer buttons
+    assert.ok(
+      cssCode.includes('html.light .navbar-hamburger-btn') && cssCode.includes('color: #17191D'),
+      'CSS must enforce high contrast dark text for hamburger button in light mode'
+    );
+    assert.ok(
+      cssCode.includes('html.light .mobile-drawer-close-btn') && cssCode.includes('color: #17191D'),
+      'CSS must enforce high contrast dark text for drawer close button in light mode'
+    );
+
+    // 5. Theme Toggle: Responsive width for mobile screens (< 360px and 360px+)
+    assert.ok(
+      toggleCode.includes('w-[50px]') || toggleCode.includes('min-[360px]:w-[54px]'),
+      'ThemeToggle must use responsive width tokens to prevent overflow on mobile'
+    );
+  });
 });
 
 

@@ -744,14 +744,14 @@ export default function SelectedWork({ onOpenBooking, isHomepage = false }: Sele
   return (
     <section
       id="work"
-      className="relative py-16 sm:py-24 bg-[#070a12] text-[#F5F5F3] overflow-hidden border-t border-white/10"
+      className="relative py-10 sm:py-16 bg-[#070a12] text-[#F5F5F3] overflow-hidden border-t border-white/10"
     >
       {/* Background Architectural Grid Lines */}
       <div className="absolute inset-0 pointer-events-none opacity-[0.03] bg-[linear-gradient(to_right,#808080_1px,transparent_1px),linear-gradient(to_bottom,#808080_1px,transparent_1px)] bg-[size:4rem_4rem]" />
 
-      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 space-y-10 sm:space-y-14">
+      <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-12 space-y-6 sm:space-y-8">
         {/* Subtle Waveform Accent */}
-        <div className="relative h-10 w-full pointer-events-none overflow-hidden">
+        <div className="relative h-8 w-full pointer-events-none overflow-hidden">
           <svg className="absolute inset-0 w-full h-full stroke-[#4E85BF]/40" preserveAspectRatio="none" viewBox="0 0 1200 40">
             <defs>
               <linearGradient id="sonicWaveGrad" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -775,14 +775,14 @@ export default function SelectedWork({ onOpenBooking, isHomepage = false }: Sele
         </div>
 
         {/* Section Heading & Editorial Introduction */}
-        <div className="space-y-6 pb-8 border-b border-white/10">
-          <div className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono uppercase tracking-[0.28em] text-[#89AACC]">
+        <div className="space-y-3 pb-5 sm:pb-6 border-b border-white/10">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/[0.04] border border-white/10 text-xs font-mono uppercase tracking-[0.28em] text-[#89AACC]">
             <Sparkles className="w-3.5 h-3.5 text-[#4E85BF]" />
             <span>SELECTED WORK · MASTER PRODUCTIONS & BEATS</span>
           </div>
 
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8">
-            <h2 className="text-4xl sm:text-6xl md:text-7xl font-extrabold uppercase tracking-tight leading-[0.95] text-white font-display">
+          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 lg:gap-6">
+            <h2 className="text-3xl sm:text-5xl md:text-6xl font-extrabold uppercase tracking-tight leading-[0.98] text-white font-display">
               SOUND MADE <br />
               <span className="font-editorial normal-case font-normal text-[#89AACC] tracking-normal inline-block pr-2">
                 into something
@@ -950,7 +950,7 @@ function ProjectCard({
       className="portfolio-card dark-card dark-surface group relative rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 bg-[#0b0f19] hover:border-[#4E85BF]/70 transition-all duration-500 flex flex-col h-full cursor-pointer shadow-[0_12px_40px_rgba(0,0,0,0.6)] hover:shadow-[0_20px_50px_rgba(78,133,191,0.22)]"
     >
       {/* Top Half: Visual Media Container with Album Cover Art (Even 50% Visual Proportion) */}
-      <div className="relative aspect-[16/10] sm:aspect-[16/9] lg:h-80 w-full overflow-hidden bg-black shrink-0">
+      <div className="relative aspect-[16/10] sm:aspect-[16/9] lg:max-h-60 w-full overflow-hidden bg-black shrink-0">
         <img
           src={project.image}
           alt={project.title}
@@ -964,12 +964,12 @@ function ProjectCard({
         <div className="absolute inset-0 bg-gradient-to-t from-[#0b0f19] via-[#0b0f19]/30 to-black/40 pointer-events-none" />
 
         {/* Top Badges (Preserving right-16 clearance for mobile action button) */}
-        <div className="absolute top-4 left-4 right-16 flex flex-wrap items-center gap-1.5 text-[10px] sm:text-[11px] font-mono z-20 pointer-events-none">
-          <span className="px-2.5 sm:px-3 py-1 rounded-full bg-black/80 backdrop-blur-md border border-[#4E85BF]/50 text-sky-300 uppercase font-bold tracking-wider shadow-sm truncate">
+        <div className="absolute top-3.5 left-3.5 right-14 flex flex-wrap items-center gap-1.5 text-[10px] sm:text-[11px] font-mono z-20 pointer-events-none">
+          <span className="px-2.5 py-0.5 rounded-full bg-black/80 backdrop-blur-md border border-[#4E85BF]/50 text-sky-300 uppercase font-bold tracking-wider shadow-sm truncate">
             {project.genre}
           </span>
           <span
-            className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-mono uppercase font-semibold backdrop-blur-md border ${
+            className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-mono uppercase font-semibold backdrop-blur-md border ${
               isBeat
                 ? 'bg-cyan-950/80 text-cyan-300 border-cyan-500/40'
                 : 'bg-amber-950/80 text-amber-300 border-amber-500/40'
@@ -978,13 +978,13 @@ function ProjectCard({
             {isBeat ? <Music2 className="w-3 h-3 text-cyan-400" /> : <Mic className="w-3 h-3 text-amber-400" />}
             <span>{project.type}</span>
           </span>
-          <span className="px-2 py-1 rounded-full bg-black/70 backdrop-blur-md border border-white/15 text-slate-300 shrink-0 hidden sm:inline-block">
+          <span className="px-2 py-0.5 rounded-full bg-black/70 backdrop-blur-md border border-white/15 text-slate-300 shrink-0 hidden sm:inline-block">
             {project.year}
           </span>
         </div>
 
         {/* Upper-Right Project Action Trigger */}
-        <div className="absolute top-4 right-4 z-30">
+        <div className="absolute top-3.5 right-3.5 z-30">
           <button
             type="button"
             onClick={(e) => {
@@ -992,9 +992,9 @@ function ProjectCard({
               onOpenCaseStudy();
             }}
             aria-label={`Open case study for ${project.title}`}
-            className="w-10 h-10 rounded-full bg-black/80 backdrop-blur-md border border-white/20 hover:border-[#89AACC] hover:bg-white hover:text-black text-white flex items-center justify-center transition-all duration-300 shadow-xl group/btn cursor-pointer"
+            className="w-9 h-9 rounded-full bg-black/80 backdrop-blur-md border border-white/20 hover:border-[#89AACC] hover:bg-white hover:text-black text-white flex items-center justify-center transition-all duration-300 shadow-xl group/btn cursor-pointer"
           >
-            <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
+            <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
           </button>
         </div>
 
@@ -1004,23 +1004,23 @@ function ProjectCard({
             type="button"
             onClick={onPlayToggle}
             aria-label={isPlaying ? 'Pause preview' : 'Play preview'}
-            className={`pointer-events-auto w-14 h-14 sm:w-16 sm:h-16 rounded-full flex items-center justify-center transition-all duration-300 shadow-2xl cursor-pointer ${
+            className={`pointer-events-auto w-12 h-12 sm:w-14 sm:h-14 rounded-full flex items-center justify-center transition-all duration-300 shadow-2xl cursor-pointer ${
               isPlaying
                 ? 'accent-gradient text-white scale-110 shadow-[0_0_35px_rgba(78,133,191,0.7)] animate-pulse'
                 : 'bg-black/80 hover:bg-[#4E85BF] text-white border border-white/25 group-hover:scale-105 group-hover:border-[#89AACC]'
             }`}
           >
             {isPlaying ? (
-              <Pause className="w-6 h-6 fill-current" />
+              <Pause className="w-5 h-5 fill-current" />
             ) : (
-              <Play className="w-6 h-6 fill-current ml-0.5" />
+              <Play className="w-5 h-5 fill-current ml-0.5" />
             )}
           </button>
         </div>
 
         {/* Hover Cue */}
-        <div className="absolute bottom-4 left-4 right-4 flex justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-20">
-          <span className="px-4 py-1.5 rounded-full bg-black/85 backdrop-blur-md border border-[#89AACC]/40 text-[#89AACC] font-mono text-[11px] uppercase tracking-wider flex items-center gap-1.5 shadow-lg">
+        <div className="absolute bottom-3 left-3 right-3 flex justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-20">
+          <span className="px-3.5 py-1 rounded-full bg-black/85 backdrop-blur-md border border-[#89AACC]/40 text-[#89AACC] font-mono text-[10.5px] uppercase tracking-wider flex items-center gap-1.5 shadow-lg">
             <Maximize2 className="w-3.5 h-3.5 text-[#4E85BF]" />
             <span>EXPLORE CASE STUDY & STEMS</span>
           </span>
@@ -1028,14 +1028,14 @@ function ProjectCard({
       </div>
 
       {/* Bottom Half: Editorial Content & Integrated Waveform Bar */}
-      <div className="p-6 sm:p-8 flex-1 flex flex-col justify-between space-y-4 bg-[#0b0f19] border-t border-white/5">
-        <div className="space-y-2.5">
-          <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1.5">
-            <span className="text-[11px] font-mono tracking-widest text-[#89AACC] uppercase block font-semibold truncate mr-2">
+      <div className="p-4 sm:p-5 lg:p-6 flex-1 flex flex-col justify-between space-y-2.5 bg-[#0b0f19] border-t border-white/5">
+        <div className="space-y-2">
+          <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
+            <span className="text-[10px] sm:text-[11px] font-mono tracking-widest text-[#89AACC] uppercase block font-semibold truncate mr-2">
               {project.artist}
             </span>
-            <div className="flex items-center gap-2 text-xs font-mono text-slate-400 shrink-0">
-              <span className="px-2 py-0.5 rounded bg-white/5 border border-white/10 text-slate-300">{project.key}</span>
+            <div className="flex items-center gap-1.5 text-[11px] font-mono text-slate-400 shrink-0">
+              <span className="px-1.5 py-0.5 rounded bg-white/5 border border-white/10 text-slate-300">{project.key}</span>
               <span>{project.bpm} BPM</span>
               <span>·</span>
               <span>{project.duration}</span>
@@ -1044,24 +1044,24 @@ function ProjectCard({
 
           <h3
             style={{ color: '#FFFFFF' }}
-            className="work-card-title text-2xl sm:text-3xl font-extrabold !text-white font-display tracking-tight group-hover:text-sky-300 transition-colors drop-shadow-[0_2px_14px_rgba(0,0,0,0.95)]"
+            className="work-card-title text-xl sm:text-2xl font-bold !text-white font-display tracking-tight group-hover:text-sky-300 transition-colors drop-shadow-[0_2px_14px_rgba(0,0,0,0.95)] leading-snug"
           >
             {project.title}
           </h3>
 
-          <p className="text-xs sm:text-sm text-slate-400 font-sans leading-relaxed line-clamp-2">
+          <p className="text-xs sm:text-[13px] text-slate-400 font-sans leading-snug line-clamp-2">
             {project.description}
           </p>
 
           {/* Hardware Signal Stage Hint */}
-          <div className="pt-1 flex items-center gap-1.5 text-[10px] font-mono text-slate-400 truncate">
+          <div className="pt-0.5 flex items-center gap-1.5 text-[10px] font-mono text-slate-400 truncate">
             <Sliders className="w-3 h-3 text-[#4E85BF] shrink-0" />
             <span className="truncate">{project.caseStudy.studioRoom}</span>
           </div>
         </div>
 
         {/* Waveform Scrubber & Session Bar (Evenly Pinned to Bottom) */}
-        <div className="space-y-2 pt-3 border-t border-white/10 mt-auto">
+        <div className="space-y-1.5 pt-2.5 border-t border-white/10 mt-auto">
           <div className="flex items-center justify-between text-[11px] font-mono text-slate-400">
             <span className="flex items-center gap-2">
               <Disc3 className={`w-3.5 h-3.5 text-[#4E85BF] ${isPlaying ? 'animate-spin' : ''}`} />

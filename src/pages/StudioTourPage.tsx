@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ArrowUpRight, ArrowRight, Volume2, ShieldCheck, CheckCircle2, Sliders, Sparkles, Layers, Maximize2 } from 'lucide-react';
 import AcousticalEngineering from '../components/studio/AcousticalEngineering';
@@ -182,62 +182,103 @@ export default function StudioTourPage() {
   const [selectedRoom, setSelectedRoom] = useState<StudioRoom>(ROOMS[0]);
   const [activeImage, setActiveImage] = useState<string>(ROOMS[0].primaryImage);
 
+  // Instantly preload and GPU-decode all room assets into memory on initial mount
+  useEffect(() => {
+    ROOMS.forEach((room) => {
+      [room.primaryImage, ...room.galleryImages].forEach((src) => {
+        const img = new Image();
+        img.src = src;
+        if ('decode' in img) {
+          img.decode().catch(() => {});
+        }
+      });
+    });
+  }, []);
+
   const handleSelectRoom = (room: StudioRoom) => {
     setSelectedRoom(room);
     setActiveImage(room.primaryImage);
   };
 
   return (
-    <div className="min-h-screen bg-[#040609] text-slate-100 pt-28 pb-24 px-4 sm:px-6 lg:px-12 font-sans selection:bg-[#4E85BF] selection:text-white">
-      <div className="max-w-7xl mx-auto space-y-16">
+    <div className="min-h-screen bg-[#040609] text-slate-100 pt-24 pb-16 px-4 sm:px-6 lg:px-12 font-sans selection:bg-[#4E85BF] selection:text-white">
+      <div className="max-w-7xl mx-auto space-y-8 sm:space-y-10">
         {/* Page Header */}
-        <div className="space-y-4 max-w-3xl">
+        <div className="space-y-2.5 max-w-3xl">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-[#89AACC]">
             <Sparkles className="w-3.5 h-3.5 text-[#4E85BF]" />
             <span>ARCHITECTURAL STUDIO EXPLORATION · LEKKI PHASE 1</span>
           </div>
-          <h1 className="font-display text-4xl sm:text-6xl font-extrabold tracking-tight text-white uppercase">
+          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white uppercase leading-tight">
             THE ARCHITECTURE OF SOUND.
           </h1>
-          <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
+          <p className="text-slate-400 text-xs sm:text-sm md:text-base leading-snug">
             Every cubic meter of SONICVAULT STUDIOS in Lekki Phase 1 was drafted by world-class acoustic architects. 
             Isolated floating slabs, zero-resonance floating walls, and calibrated monitor geometry ensure that what you hear is absolute truth.
           </p>
         </div>
 
-        {/* Room Navigation Switcher */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none border-b border-white/10">
-          {ROOMS.map((room) => {
-            const isActive = room.id === selectedRoom.id;
-            return (
-              <button
-                key={room.id}
-                onClick={() => handleSelectRoom(room)}
-                className={`px-4 sm:px-5 py-2.5 rounded-full text-xs font-mono whitespace-nowrap transition-all cursor-pointer ${
-                  isActive
-                    ? 'accent-gradient text-white font-bold shadow-lg shadow-[#4E85BF]/20 scale-102'
-                    : 'bg-white/5 text-slate-400 hover:text-white hover:bg-white/10 border border-white/5'
-                }`}
-              >
-                {room.name}
-              </button>
-            );
-          })}
+        {/* Room Navigation Switcher — Both The Analog Control Room and The Vocal Booth visible and aligned well without being chopped off */}
+        <div className="w-full border-b border-white/10 pb-4 scrollbar-none">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-2.5">
+            {ROOMS.map((room) => {
+              const isActive = room.id === selectedRoom.id;
+              return (
+                <button
+                  key={room.id}
+                  onClick={() => handleSelectRoom(room)}
+                  className={`px-3 sm:px-5 py-2 sm:py-2.5 rounded-full text-[10.5px] min-[360px]:text-[11px] sm:text-xs font-mono whitespace-nowrap transition-all cursor-pointer ${
+                    isActive
+                      ? 'accent-gradient text-white font-bold shadow-lg shadow-[#4E85BF]/25 ring-1 ring-white/20'
+                      : 'bg-white/5 text-slate-400 hover:text-white hover:bg-white/10 border border-white/5'
+                  }`}
+                >
+                  {room.name}
+                </button>
+              );
+            })}
+          </div>
         </div>
 
         {/* Interactive Room Showcase Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-10 items-start">
           {/* Left: High-Res Viewport & Gallery */}
           <div className="lg:col-span-7 space-y-4">
-            <div className="relative rounded-2xl overflow-hidden border border-white/15 bg-black/60 aspect-[16/10] group shadow-2xl">
-              <img
-                src={activeImage}
-                alt={selectedRoom.name}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-102"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20 pointer-events-none" />
+            <div className="relative rounded-2xl overflow-hidden border border-white/15 bg-black aspect-[16/10] group shadow-2xl">
+              {/* Pre-rendered layer for each room's primary image — Instant 0ms transition on tab click */}
+              {ROOMS.map((room) => {
+                const isSelected = selectedRoom.id === room.id && activeImage === room.primaryImage;
+                return (
+                  <img
+                    key={room.id}
+                    src={room.primaryImage}
+                    alt={room.name}
+                    loading="eager"
+                    decoding="sync"
+                    fetchPriority={selectedRoom.id === room.id ? 'high' : 'auto'}
+                    className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-300 ${
+                      isSelected ? 'opacity-100 z-10' : 'opacity-0 z-0 pointer-events-none'
+                    }`}
+                  />
+                );
+              })}
 
-              <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs font-mono text-white/90">
+              {/* Instant display if a specific gallery thumbnail was clicked */}
+              {!ROOMS.some((r) => r.primaryImage === activeImage && selectedRoom.id === r.id) && (
+                <img
+                  key={activeImage}
+                  src={activeImage}
+                  alt={selectedRoom.name}
+                  loading="eager"
+                  decoding="sync"
+                  fetchPriority="high"
+                  className="absolute inset-0 w-full h-full object-cover z-20 transition-opacity duration-200"
+                />
+              )}
+
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-black/20 pointer-events-none z-30" />
+
+              <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-xs font-mono text-white/90 z-30">
                 <span className="px-3 py-1 rounded-md bg-black/70 backdrop-blur-md border border-white/10">
                   {selectedRoom.dimensions}
                 </span>
@@ -248,46 +289,46 @@ export default function StudioTourPage() {
             </div>
 
             {/* Thumbnail Row */}
-            <div className="flex items-center gap-3 overflow-x-auto pb-2">
+            <div className="flex items-center gap-3 overflow-x-auto p-1.5 pb-2.5 scrollbar-none">
               {[selectedRoom.primaryImage, ...selectedRoom.galleryImages].map((img, i) => (
                 <button
                   key={i}
                   onClick={() => setActiveImage(img)}
                   className={`relative rounded-xl overflow-hidden w-24 h-16 shrink-0 border-2 transition-all cursor-pointer ${
-                    activeImage === img ? 'border-[#4E85BF] scale-105' : 'border-white/10 opacity-60 hover:opacity-100'
+                    activeImage === img ? 'border-[#4E85BF] scale-105 shadow-md shadow-[#4E85BF]/30' : 'border-white/10 opacity-60 hover:opacity-100'
                   }`}
                 >
-                  <img src={img} alt="Preview" className="w-full h-full object-cover" />
+                  <img src={img} alt="Preview" loading="eager" decoding="async" className="w-full h-full object-cover" />
                 </button>
               ))}
             </div>
           </div>
 
           {/* Right: Technical Details & Equipment Specs */}
-          <div className="lg:col-span-5 space-y-6">
-            <div className="space-y-2">
-              <span className="text-[11px] font-mono tracking-widest text-[#89AACC] uppercase block">
+          <div className="lg:col-span-5 space-y-4">
+            <div className="space-y-1.5">
+              <span className="text-[10px] sm:text-[11px] font-mono tracking-widest text-[#89AACC] uppercase block">
                 FACILITY OVERVIEW
               </span>
-              <h2 className="font-display text-2xl sm:text-3xl font-bold text-white">
+              <h2 className="font-display text-2xl sm:text-3xl font-bold text-white leading-tight">
                 {selectedRoom.name}
               </h2>
-              <p className="text-sm font-editorial italic text-slate-300">
+              <p className="text-xs sm:text-sm font-editorial italic text-slate-300">
                 "{selectedRoom.tagline}"
               </p>
             </div>
 
-            <p className="text-slate-300 text-xs sm:text-sm leading-relaxed">
+            <p className="text-slate-300 text-xs sm:text-sm leading-snug">
               {selectedRoom.description}
             </p>
 
             {/* Acoustic Treatment Accordion */}
-            <div className="bg-[#0c1018] border border-white/10 rounded-xl p-4 space-y-3">
+            <div className="bg-[#0c1018] border border-white/10 rounded-xl p-3.5 space-y-2">
               <div className="flex items-center gap-2 text-xs font-mono text-[#89AACC] font-semibold">
-                <Layers className="w-4 h-4 text-[#4E85BF]" />
+                <Layers className="w-3.5 h-3.5 text-[#4E85BF]" />
                 <span>ACOUSTIC SPECIFICATIONS & ISOLATION</span>
               </div>
-              <ul className="space-y-2 text-xs text-slate-300 font-sans">
+              <ul className="space-y-1.5 text-xs text-slate-300 font-sans leading-snug">
                 {selectedRoom.acoustics.map((spec, i) => (
                   <li key={i} className="flex items-start gap-2">
                     <CheckCircle2 className="w-3.5 h-3.5 text-emerald-400 shrink-0 mt-0.5" />
@@ -298,12 +339,12 @@ export default function StudioTourPage() {
             </div>
 
             {/* Verified Hardware Chain */}
-            <div className="bg-[#0c1018] border border-white/10 rounded-xl p-4 space-y-3">
+            <div className="bg-[#0c1018] border border-white/10 rounded-xl p-3.5 space-y-2">
               <div className="flex items-center gap-2 text-xs font-mono text-[#89AACC] font-semibold">
-                <Sliders className="w-4 h-4 text-[#4E85BF]" />
+                <Sliders className="w-3.5 h-3.5 text-[#4E85BF]" />
                 <span>INSTALLED HARDWARE & MONITORS</span>
               </div>
-              <ul className="space-y-1.5 text-xs text-slate-300 font-sans">
+              <ul className="space-y-1 text-xs text-slate-300 font-sans leading-snug">
                 {selectedRoom.equipmentList.map((eq, i) => (
                   <li key={i} className="flex items-center gap-2">
                     <span className="w-1.5 h-1.5 rounded-full bg-[#4E85BF]" />

@@ -29,15 +29,15 @@ export default function SonicPhilosophy() {
   ];
 
   return (
-    <section id="philosophy" className="relative py-16 sm:py-24 px-4 sm:px-6 lg:px-12 bg-[#05070c] overflow-hidden border-t border-white/10">
+    <section id="philosophy" className="relative py-10 sm:py-16 px-4 sm:px-6 lg:px-12 bg-[#05070c] overflow-hidden border-t border-white/10">
       {/* Background Subtle Waveform & Ambient Glow */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-full pointer-events-none opacity-20">
         <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[600px] h-[350px] bg-[#4E85BF] rounded-full blur-[140px] pointer-events-none" />
       </div>
 
-      <div className="relative max-w-6xl mx-auto space-y-10 sm:space-y-14">
+      <div className="relative max-w-6xl mx-auto space-y-6 sm:space-y-8">
         {/* Animated Sonic Waveform Line (The Sonic Line Motif) */}
-        <div className="w-full flex items-center justify-center gap-1.5 py-4 overflow-hidden">
+        <div className="w-full flex items-center justify-center gap-1.5 py-2 overflow-hidden">
           {Array.from({ length: 48 }).map((_, i) => {
             const height = 8 + Math.sin(i * 0.28) * 24 + Math.cos(i * 0.15) * 12;
             return (
@@ -65,26 +65,26 @@ export default function SonicPhilosophy() {
         </div>
 
         {/* Section Header */}
-        <div className="text-center space-y-6 max-w-4xl mx-auto">
+        <div className="text-center space-y-3 sm:space-y-4 max-w-4xl mx-auto">
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/5 border border-white/10 text-[10px] sm:text-xs font-mono uppercase tracking-[0.25em] text-[#89AACC]">
             <Sparkles className="w-3 h-3 text-[#4E85BF]" />
             <span>BEYOND THE SOUND</span>
           </div>
 
-          <h2 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-light text-white tracking-tight leading-[1.12]">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-light text-white tracking-tight leading-[1.08]">
             GREAT RECORDS BEGIN WITH <br className="hidden sm:inline" />
-            <span className="font-editorial text-4xl sm:text-6xl md:text-7xl lg:text-8xl text-white font-normal underline decoration-[#4E85BF]/40 decoration-1 underline-offset-8">
+            <span className="font-editorial text-4xl sm:text-5xl md:text-6xl lg:text-7xl text-white font-normal underline decoration-[#4E85BF]/40 decoration-1 underline-offset-4">
               a feeling.
             </span>
           </h2>
 
-          <p className="text-sm sm:text-lg text-slate-400 font-sans max-w-2xl mx-auto leading-relaxed">
+          <p className="text-xs sm:text-sm md:text-base text-slate-400 font-sans max-w-2xl mx-auto leading-snug">
             Every performance has a story. Every arrangement has a purpose. Every detail contributes to the final sound.
           </p>
         </div>
 
         {/* 3 Creative Principles */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 pt-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6 pt-2">
           {principles.map((principle) => {
             const Icon = principle.icon;
             return (
@@ -94,19 +94,19 @@ export default function SonicPhilosophy() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-50px' }}
                 transition={{ duration: 0.6, ease: 'easeOut' }}
-                className="p-8 sm:p-10 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-[#4E85BF]/40 transition-all duration-300 space-y-5 group relative"
+                className="p-5 sm:p-6 rounded-2xl bg-white/[0.02] border border-white/10 hover:border-[#4E85BF]/40 transition-all duration-300 space-y-3 group relative"
               >
                 <div>
-                  <div className="w-10 h-10 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-[#89AACC] group-hover:scale-110 transition-transform">
-                    <Icon className="w-5 h-5" />
+                  <div className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center text-[#89AACC] group-hover:scale-110 transition-transform">
+                    <Icon className="w-4 h-4" />
                   </div>
                 </div>
 
-                <div className="space-y-2">
-                  <h3 className="text-xl sm:text-2xl font-bold text-white font-display">
+                <div className="space-y-1.5">
+                  <h3 className="text-lg sm:text-xl font-bold text-white font-display">
                     {principle.title}
                   </h3>
-                  <p className="text-xs sm:text-sm text-slate-400 font-sans leading-relaxed">
+                  <p className="text-xs sm:text-[13px] text-slate-400 font-sans leading-snug">
                     {principle.description}
                   </p>
                 </div>
@@ -121,7 +121,7 @@ export default function SonicPhilosophy() {
         <div className="pt-2 flex justify-center">
           <Link
             to="/about"
-            className="sanctuary-origin-pill inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-white/10 hover:bg-white/15 border border-white/20 text-xs font-mono font-bold uppercase tracking-wider text-white transition-all cursor-pointer group shadow-md hover:scale-[1.02]"
+            className="sanctuary-origin-pill inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-white/10 hover:bg-white/15 border border-white/20 text-xs font-mono font-bold uppercase tracking-wider text-white transition-all cursor-pointer group shadow-md hover:scale-[1.02]"
           >
             <span className="font-extrabold tracking-wider">DISCOVER THE LEKKI PHASE 1 SANCTUARY & ORIGIN</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform text-[#4E85BF]" />

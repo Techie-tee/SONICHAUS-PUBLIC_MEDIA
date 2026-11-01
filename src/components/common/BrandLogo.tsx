@@ -279,11 +279,11 @@ export default function BrandLogo({
       letterSpacing: 'tracking-[0.14em]',
     },
     md: {
-      emblem: 38,
-      text: 'text-[13px] min-[360px]:text-sm sm:text-base lg:text-lg',
-      subText: 'text-[9.5px] min-[360px]:text-[10px] sm:text-[11px]',
-      gap: 'gap-1.5 min-[360px]:gap-2 sm:gap-3 lg:gap-3.5',
-      letterSpacing: 'tracking-[0.12em] min-[360px]:tracking-[0.14em] sm:tracking-[0.16em]',
+      emblem: 26,
+      text: 'text-[11px] min-[360px]:text-xs min-[400px]:text-[13px] sm:text-base lg:text-lg',
+      subText: 'text-[9px] min-[360px]:text-[10px] sm:text-[11px]',
+      gap: 'gap-1 min-[360px]:gap-1.5 sm:gap-2.5 lg:gap-3.5',
+      letterSpacing: 'tracking-[0.06em] min-[360px]:tracking-[0.09em] sm:tracking-[0.16em]',
     },
     lg: {
       emblem: 56,
@@ -406,12 +406,12 @@ export default function BrandLogo({
 
       <div className="flex flex-col justify-center leading-tight shrink-0">
         <div
-          className={`font-display font-black ${currentSize.letterSpacing} uppercase text-white ${currentSize.text} flex items-center gap-1.5 whitespace-nowrap`}
+          className={`font-display font-black ${currentSize.letterSpacing} uppercase text-white ${currentSize.text} flex items-center gap-1 min-[360px]:gap-1.5 whitespace-nowrap`}
         >
           <span className="text-white brand-logo-text-primary group-hover:text-slate-100 transition-colors drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
             SONIC<span className="text-cyan-400">VAULT</span>
           </span>
-          <span className="text-[#FDE68A] brand-logo-text-gold font-bold text-[0.75em] tracking-[0.22em] sm:tracking-[0.24em] group-hover:text-[#FFFBEB] transition-colors drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+          <span className="hidden min-[420px]:inline text-[#FDE68A] brand-logo-text-gold font-bold text-[0.75em] tracking-[0.22em] sm:tracking-[0.24em] group-hover:text-[#FFFBEB] transition-colors drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
             STUDIOS
           </span>
         </div>

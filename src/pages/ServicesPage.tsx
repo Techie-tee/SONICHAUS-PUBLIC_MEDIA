@@ -38,25 +38,25 @@ export default function ServicesPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#040609] text-slate-100 pt-28 pb-24 px-4 sm:px-6 lg:px-12 font-sans selection:bg-[#4E85BF] selection:text-white">
-      <div className="max-w-7xl mx-auto space-y-16">
+    <div className="min-h-screen bg-[#040609] text-slate-100 pt-24 pb-16 px-4 sm:px-6 lg:px-12 font-sans selection:bg-[#4E85BF] selection:text-white">
+      <div className="max-w-7xl mx-auto space-y-8 sm:space-y-10">
         {/* Header */}
-        <div className="space-y-4 max-w-3xl">
+        <div className="space-y-2.5 max-w-3xl">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-[#89AACC]">
             <Sparkles className="w-3.5 h-3.5 text-[#4E85BF]" />
             <span>FULL PRODUCTION DISCIPLINE · LEKKI PHASE 1</span>
           </div>
-          <h1 className="font-display text-4xl sm:text-6xl font-extrabold tracking-tight text-white uppercase">
+          <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white uppercase leading-tight">
             STUDIO DISCIPLINES & SERVICES.
           </h1>
-          <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
+          <p className="text-slate-400 text-xs sm:text-sm md:text-base leading-snug">
             From the initial voice memo to the definitive international master. 
             Every service at SONICVAULT is powered by verified analog hardware, precision acoustics, and seasoned creative engineers.
           </p>
         </div>
 
         {/* Visual Production Journey */}
-        <div className="bg-[#0b0f17] border border-white/10 rounded-2xl p-6 sm:p-8 space-y-6">
+        <div className="bg-[#0b0f17] border border-white/10 rounded-2xl p-4 sm:p-6 space-y-4">
           <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-white/10 pb-4">
             <span className="text-xs font-mono text-[#89AACC] tracking-widest uppercase">
               THE SONICVAULT RECORD CREATION ARCHITECTURE

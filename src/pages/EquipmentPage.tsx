@@ -48,24 +48,24 @@ export default function EquipmentPage() {
   }, [equipment, selectedCategory, searchQuery]);
 
   return (
-    <div className="min-h-screen bg-[#040609] text-slate-100 pt-28 pb-24 px-4 sm:px-6 lg:px-12 font-sans selection:bg-[#4E85BF] selection:text-white">
-      <div className="max-w-7xl mx-auto space-y-8 sm:space-y-10">
+    <div className="min-h-screen bg-[#040609] text-slate-100 pt-24 pb-16 px-4 sm:px-6 lg:px-12 font-sans selection:bg-[#4E85BF] selection:text-white">
+      <div className="max-w-7xl mx-auto space-y-6 sm:space-y-8">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/10 pb-8 sm:pb-10">
-          <div className="space-y-3 max-w-3xl">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 border-b border-white/10 pb-5 sm:pb-6">
+          <div className="space-y-2 max-w-3xl">
             <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono text-[#89AACC]">
               <Sparkles className="w-3.5 h-3.5 text-[#4E85BF]" />
               <span>VERIFIED HARDWARE VAULT · LEKKI PHASE 1</span>
             </div>
-            <h1 className="font-display text-4xl sm:text-6xl font-extrabold tracking-tight text-white uppercase">
+            <h1 className="font-display text-4xl sm:text-5xl md:text-6xl font-extrabold tracking-tight text-white uppercase leading-tight">
               THE EQUIPMENT LIBRARY.
             </h1>
-            <p className="text-slate-400 text-sm sm:text-base leading-relaxed">
+            <p className="text-slate-400 text-xs sm:text-sm md:text-base leading-snug">
               Every piece of hardware in SONICVAULT is verified, calibrated, and maintained in pristine operating condition. 
               From the legendary Sony C-800G tube chain to SSL SuperAnalogue summing, these are the tools behind records that endure.
             </p>
           </div>
-          <div className="shrink-0 flex items-center gap-2 text-xs font-mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-4 py-2.5 rounded-full self-start md:self-end">
+          <div className="shrink-0 flex items-center gap-2 text-xs font-mono text-emerald-400 bg-emerald-500/10 border border-emerald-500/20 px-3.5 py-2 rounded-full self-start md:self-end">
             <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
             <span>100% CALIBRATED & OPERATIONAL</span>
           </div>
@@ -73,21 +73,23 @@ export default function EquipmentPage() {
 
         {/* Search & Filter Controls */}
         <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-4 p-4 rounded-2xl bg-[#0a0e16] border border-white/10">
-          {/* Category Tabs */}
-          <div className="flex items-center gap-1.5 overflow-x-auto pb-2 md:pb-0 scrollbar-none">
-            {CATEGORIES.map((cat) => (
-              <button
-                key={cat.id}
-                onClick={() => setSelectedCategory(cat.id)}
-                className={`px-3.5 py-2 rounded-full text-xs font-mono whitespace-nowrap transition-all cursor-pointer ${
-                  selectedCategory === cat.id
-                    ? 'accent-gradient text-white font-bold shadow-md'
-                    : 'bg-white/5 text-slate-400 hover:text-white hover:bg-white/10 border border-white/5'
-                }`}
-              >
-                {cat.name}
-              </button>
-            ))}
+          {/* Category Tabs — Preserved full contours without edge clipping */}
+          <div className="w-full md:w-auto overflow-x-auto pb-2 md:pb-0 pt-0.5 px-1 scrollbar-none">
+            <div className="inline-flex items-center gap-1.5 min-w-full sm:min-w-0">
+              {CATEGORIES.map((cat) => (
+                <button
+                  key={cat.id}
+                  onClick={() => setSelectedCategory(cat.id)}
+                  className={`shrink-0 px-3.5 py-2 rounded-full text-xs font-mono whitespace-nowrap transition-all cursor-pointer ${
+                    selectedCategory === cat.id
+                      ? 'accent-gradient text-white font-bold shadow-md ring-1 ring-white/20'
+                      : 'bg-white/5 text-slate-400 hover:text-white hover:bg-white/10 border border-white/5'
+                  }`}
+                >
+                  {cat.name}
+                </button>
+              ))}
+            </div>
           </div>
 
           {/* Search Box */}
@@ -118,36 +120,36 @@ export default function EquipmentPage() {
               <div
                 key={item.id}
                 onClick={() => setActiveModalItem(item)}
-                className="group rounded-2xl bg-[#080b12] border border-white/10 hover:border-[#4E85BF]/60 p-4 flex flex-col justify-between space-y-4 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(78,133,191,0.15)] hover:-translate-y-1 cursor-pointer"
+                className="group rounded-xl sm:rounded-2xl bg-[#080b12] border border-white/10 hover:border-[#4E85BF]/60 p-3 sm:p-3.5 flex flex-col justify-between space-y-2.5 transition-all duration-300 hover:shadow-[0_12px_40px_rgba(78,133,191,0.15)] hover:-translate-y-1 cursor-pointer"
               >
                 {/* Image Frame */}
-                <div className="relative aspect-square rounded-xl overflow-hidden bg-black/60 border border-white/5 flex items-center justify-center p-4">
+                <div className="relative aspect-square rounded-lg sm:rounded-xl overflow-hidden bg-black/60 border border-white/5 flex items-center justify-center p-2.5">
                   <img
                     src={item.imageUrl}
                     alt={item.name}
                     referrerPolicy="no-referrer"
                     className="max-h-full max-w-full object-contain filter contrast-105 group-hover:scale-105 transition-transform duration-500"
                   />
-                  <div className="absolute top-2.5 right-2.5 px-2 py-0.5 rounded-md bg-black/80 backdrop-blur-md border border-white/10 text-[9px] font-mono text-[#89AACC]">
+                  <div className="absolute top-2 right-2 px-2 py-0.5 rounded-md bg-black/80 backdrop-blur-md border border-white/10 text-[9px] font-mono text-[#89AACC]">
                     {item.manufacturer}
                   </div>
                 </div>
 
                 {/* Content */}
-                <div className="space-y-1.5 flex-1">
+                <div className="space-y-1 flex-1">
                   <span className="text-[10px] font-mono text-slate-500 uppercase block">
                     {item.room}
                   </span>
-                  <h3 className="font-display text-base font-bold text-white group-hover:text-[#89AACC] transition-colors leading-snug">
+                  <h3 className="font-display text-sm sm:text-base font-bold text-white group-hover:text-[#89AACC] transition-colors leading-snug">
                     {item.name}
                   </h3>
-                  <p className="text-xs text-slate-400 line-clamp-2 leading-relaxed">
+                  <p className="text-xs text-slate-400 line-clamp-2 leading-snug">
                     {item.description}
                   </p>
                 </div>
 
                 {/* Footer specs pill & action */}
-                <div className="pt-2 border-t border-white/5 flex items-center justify-between text-xs font-mono text-slate-400">
+                <div className="pt-1.5 border-t border-white/5 flex items-center justify-between text-xs font-mono text-slate-400">
                   <span className="text-[10px] text-slate-500">VIEW SPECS</span>
                   <ArrowUpRight className="w-3.5 h-3.5 text-[#89AACC] group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
                 </div>
@@ -157,17 +159,17 @@ export default function EquipmentPage() {
         )}
 
         {/* Closing Banner */}
-        <div className="mt-20 pt-16 border-t border-white/10 text-center space-y-4">
+        <div className="mt-12 pt-10 border-t border-white/10 text-center space-y-2.5">
           <span className="text-xs font-mono text-[#89AACC] tracking-widest uppercase block">
             READY FOR YOUR PRODUCTION
           </span>
-          <h3 className="font-display text-3xl sm:text-4xl font-extrabold text-white">
+          <h3 className="font-display text-2xl sm:text-3xl md:text-4xl font-extrabold text-white leading-tight">
             THE TOOLS ARE READY. LET'S MAKE SOMETHING.
           </h3>
-          <p className="text-slate-400 text-xs sm:text-sm max-w-lg mx-auto">
+          <p className="text-slate-400 text-xs sm:text-sm max-w-lg mx-auto leading-snug">
             Book a session in our Lekki Phase 1 facility and experience the precision of reference tube microphones and analog summing.
           </p>
-          <div className="pt-4 flex items-center justify-center gap-4">
+          <div className="pt-3 flex items-center justify-center gap-3">
             <Link
               to="/book-session"
               className="py-3 px-6 rounded-full accent-gradient text-white font-semibold text-xs tracking-wide shadow-md hover:opacity-90 transition-opacity"

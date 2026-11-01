@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { motion } from 'motion/react';
 import { Sparkles, Maximize2, ArrowRight } from 'lucide-react';
 import LightboxModal from '../ui/LightboxModal';
@@ -85,6 +85,17 @@ export default function StudioGallery({ onOpenBooking }: StudioGalleryProps) {
   const [activeTab, setActiveTab] = useState<'all' | 'vocal' | 'performance' | 'production' | 'collaboration'>('all');
   const [activeLightboxItem, setActiveLightboxItem] = useState<GalleryItem | null>(null);
 
+  // Instantly preload and GPU-decode all gallery photos into memory on initial mount
+  useEffect(() => {
+    GALLERY_ITEMS.forEach((item) => {
+      const img = new Image();
+      img.src = item.image;
+      if ('decode' in img) {
+        img.decode().catch(() => {});
+      }
+    });
+  }, []);
+
   const filteredItems = activeTab === 'all'
     ? GALLERY_ITEMS
     : GALLERY_ITEMS.filter((item) => item.category === activeTab);
@@ -108,27 +119,29 @@ export default function StudioGallery({ onOpenBooking }: StudioGalleryProps) {
           </p>
         </div>
 
-        {/* Category Tabs */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
-          {[
-            { id: 'all', label: 'All Environments' },
-            { id: 'vocal', label: 'Vocal Environment' },
-            { id: 'performance', label: 'Performance Space' },
-            { id: 'production', label: 'Production & Mixing' },
-            { id: 'collaboration', label: 'Collaboration Space' },
-          ].map((tab) => (
-            <button
-              key={tab.id}
-              onClick={() => setActiveTab(tab.id as typeof activeTab)}
-              className={`px-4 py-2 rounded-full text-xs font-mono uppercase tracking-wider transition-all whitespace-nowrap cursor-pointer ${
-                activeTab === tab.id
-                  ? 'accent-gradient text-white font-bold shadow-md'
-                  : 'bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white border border-white/10'
-              }`}
-            >
-              {tab.label}
-            </button>
-          ))}
+        {/* Category Tabs — Both All Environments and Vocal Environment visible and aligned well without being chopped off */}
+        <div className="w-full pb-3 scrollbar-none">
+          <div className="flex flex-wrap items-center gap-2 sm:gap-2.5">
+            {[
+              { id: 'all', label: 'All Environments' },
+              { id: 'vocal', label: 'Vocal Environment' },
+              { id: 'performance', label: 'Performance Space' },
+              { id: 'production', label: 'Production & Mixing' },
+              { id: 'collaboration', label: 'Collaboration Space' },
+            ].map((tab) => (
+              <button
+                key={tab.id}
+                onClick={() => setActiveTab(tab.id as typeof activeTab)}
+                className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-[10.5px] min-[360px]:text-[11px] sm:text-xs font-mono uppercase tracking-wider transition-all whitespace-nowrap cursor-pointer ${
+                  activeTab === tab.id
+                    ? 'accent-gradient text-white font-bold shadow-md ring-1 ring-white/20'
+                    : 'bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white border border-white/10'
+                }`}
+              >
+                {tab.label}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Gallery Cards Grid */}
@@ -149,7 +162,7 @@ export default function StudioGallery({ onOpenBooking }: StudioGalleryProps) {
                 <img
                   src={item.image}
                   alt={item.title}
-                  loading="lazy"
+                  loading="eager"
                   decoding="async"
                   className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 filter brightness-95"
                 />

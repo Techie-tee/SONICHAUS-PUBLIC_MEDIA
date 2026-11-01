@@ -222,15 +222,15 @@ html.light span.text-slate-300:not(#tour *):not(#work .group *):not(.portfolio-c
    2. STRICT PRESERVATION: HERO SECTION & PHOTOGRAPHIC SEQUENCES
    Keep all Hero photography, headlines, and HUD text 100% visible and pristine.
    -------------------------------------------------------------------------- */
-html.light #tour h1,
-html.light #tour h1 span.text-white,
-html.light #tour h2 {
+html.light #tour .hidden.sm\:block h1,
+html.light #tour .hidden.sm\:block h1 span.text-white,
+html.light #tour .hidden.sm\:block h2 {
   color: #FFFFFF !important;
   text-shadow: 0 4px 24px rgba(0, 0, 0, 0.98);
 }
 
-html.light #tour p.text-slate-200,
-html.light #tour p.text-slate-300 {
+html.light #tour .hidden.sm\:block p.text-slate-200,
+html.light #tour .hidden.sm\:block p.text-slate-300 {
   color: #E2E8F0 !important;
   text-shadow: 0 2px 12px rgba(0, 0, 0, 0.98);
 }
@@ -1411,10 +1411,13 @@ html.light .navbar-top-shroud {
   background: transparent !important;
 }
 
-html.light #tour,
-html.light #tour > div,
-#tour {
-  background-color: #040609 !important;
+html.light #tour {
+  background-color: #F8FAFC !important;
+}
+
+html.light #mobile-hero {
+  background-color: #F8FAFC !important;
+  color: #0F172A !important;
 }
 
 html.light .navbar-pill {
@@ -1449,6 +1452,117 @@ html.light .navbar-pill button.border-white\/15 {
 html.light .navbar-pill button.border-white\/15:hover {
   color: #17191D !important;
   border-color: #4E85BF !important;
+}
+
+/* Mobile & Tablet Hamburger Button in Dark & Light Modes */
+.navbar-hamburger-btn {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.navbar-hamburger-btn:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
+}
+
+html.light .navbar-hamburger-btn {
+  background-color: rgba(0, 0, 0, 0.06) !important;
+  color: #17191D !important;
+  border-color: #D9D9D3 !important;
+}
+
+html.light .navbar-hamburger-btn:hover {
+  background-color: rgba(0, 0, 0, 0.12) !important;
+  color: #000000 !important;
+}
+
+html.light .navbar-hamburger-btn svg {
+  color: #17191D !important;
+  stroke: #17191D !important;
+}
+
+/* Mobile Drawer Close Button */
+.mobile-drawer-close-btn {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #FFFFFF;
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+html.light .mobile-drawer-close-btn {
+  background-color: rgba(0, 0, 0, 0.06) !important;
+  color: #17191D !important;
+  border-color: #D9D9D3 !important;
+}
+
+html.light .mobile-drawer-close-btn:hover {
+  background-color: rgba(0, 0, 0, 0.12) !important;
+  color: #000000 !important;
+}
+
+html.light .mobile-drawer-close-btn svg {
+  color: #17191D !important;
+  stroke: #17191D !important;
+}
+
+/* Scrollbar-none utility for smooth swipe navigation */
+.scrollbar-none::-webkit-scrollbar {
+  display: none !important;
+}
+.scrollbar-none {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+}
+
+/* Mobile Quick-Access Headers Strip in Dark & Daylight Modes */
+.mobile-headers-bar {
+  background-color: rgba(6, 10, 19, 0.94);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.mobile-header-link {
+  color: #94A3B8;
+  transition: all 0.2s ease;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.mobile-header-link:hover {
+  color: #FFFFFF;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.mobile-header-link.active-header {
+  color: #FFFFFF;
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+}
+
+html.light .mobile-headers-bar {
+  background-color: rgba(255, 255, 255, 0.95) !important;
+  border-color: #D9D9D3 !important;
+  box-shadow: 0 4px 18px rgba(0, 0, 0, 0.07) !important;
+}
+
+html.light .mobile-header-link {
+  color: #555D68 !important;
+}
+
+html.light .mobile-header-link:hover {
+  color: #17191D !important;
+  background-color: rgba(0, 0, 0, 0.05) !important;
+}
+
+html.light .mobile-header-link.active-header {
+  color: #17191D !important;
+  background-color: #ECEBE6 !important;
+  border-color: #D9D9D3 !important;
+  font-weight: 700 !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08) !important;
 }
 
 /* Classy Architectural Sliding Atmosphere Toggle */
@@ -1918,5 +2032,124 @@ html.dark .about-contact-btn:hover {
   border-color: #4E85BF !important;
   color: #FFFFFF !important;
 }
+
+/* =========================================================================
+   Mobile Hero Section Restructure & Contrast Rules
+   ========================================================================= */
+#mobile-hero {
+  position: relative;
+  width: 100%;
+}
+
+html.light #mobile-hero {
+  background-color: #F8FAFC !important;
+  color: #0F172A !important;
+}
+
+html.light #mobile-hero h1 {
+  text-shadow: none !important;
+  filter: none !important;
+}
+
+html.light #mobile-hero h1 span.block:first-child {
+  color: #0F172A !important;
+  text-shadow: none !important;
+}
+
+html.light #mobile-hero h2 {
+  color: #0F172A !important;
+  text-shadow: none !important;
+}
+
+html.light #mobile-hero h3 {
+  color: #0F172A !important;
+  text-shadow: none !important;
+}
+
+html.dark #mobile-hero h1 span.block:first-child {
+  color: #FFFFFF !important;
+}
+
+/* Kicker Badge */
+html.dark #mobile-hero .chamber-kicker-badge {
+  background: rgba(0, 0, 0, 0.65);
+  border-color: rgba(34, 211, 238, 0.3);
+  color: #67e8f9;
+}
+
+html.light #mobile-hero .chamber-kicker-badge {
+  background-color: #FFFFFF !important;
+  border-color: #CBD5E1 !important;
+  color: #0F172A !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08) !important;
+}
+
+html.light #mobile-hero .chamber-kicker-badge span {
+  color: #0F172A !important;
+}
+
+/* Action Buttons — Absolute High-Contrast Safeguards */
+.mobile-chamber-explore-btn,
+#mobile-hero .mobile-chamber-explore-btn,
+html.dark .mobile-chamber-explore-btn,
+html.dark #mobile-hero .mobile-chamber-explore-btn {
+  background-color: #0c121e !important;
+  background: #0c121e !important;
+  border: 1.5px solid rgba(255, 255, 255, 0.35) !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45) !important;
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  white-space: nowrap !important;
+}
+
+.mobile-chamber-explore-btn span,
+#mobile-hero .mobile-chamber-explore-btn span,
+html.dark .mobile-chamber-explore-btn span,
+html.dark #mobile-hero .mobile-chamber-explore-btn span {
+  color: #FFFFFF !important;
+  font-weight: 800 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  white-space: nowrap !important;
+}
+
+.mobile-chamber-explore-btn span.text-cyan-400,
+#mobile-hero .mobile-chamber-explore-btn span.text-cyan-400,
+html.dark .mobile-chamber-explore-btn span.text-cyan-400,
+html.dark #mobile-hero .mobile-chamber-explore-btn span.text-cyan-400 {
+  color: #22d3ee !important;
+  font-weight: 900 !important;
+  text-shadow: 0 0 8px rgba(34, 211, 238, 0.7) !important;
+}
+
+html.light .mobile-chamber-explore-btn,
+html.light #mobile-hero .mobile-chamber-explore-btn {
+  background-color: #0F172A !important;
+  background: #0F172A !important;
+  border: 1.5px solid #0F172A !important;
+  color: #FFFFFF !important;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.25) !important;
+  white-space: nowrap !important;
+}
+
+html.light .mobile-chamber-explore-btn span,
+html.light #mobile-hero .mobile-chamber-explore-btn span {
+  color: #FFFFFF !important;
+  font-weight: 800 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  white-space: nowrap !important;
+}
+
+html.light .mobile-chamber-explore-btn span.text-cyan-400,
+html.light #mobile-hero .mobile-chamber-explore-btn span.text-cyan-400 {
+  color: #38bdf8 !important;
+  font-weight: 900 !important;
+}
+
+#mobile-hero .mobile-chamber-reserve-btn {
+  transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
 
 

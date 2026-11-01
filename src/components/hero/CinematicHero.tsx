@@ -204,7 +204,7 @@ const MUSIC_WAVE_BARS = [
   { height: 20, delay: '0.45s', duration: '0.7s' },
 ];
 
-const AUTO_TRANSITION_INTERVAL = 5000; // 5 seconds per chamber
+const AUTO_TRANSITION_INTERVAL = 3000; // 3 seconds per chamber
 
 export default function CinematicHero({ onOpenBooking, onExploreSpaces }: CinematicHeroProps) {
   const { isDaylight, toggleTheme } = useTheme();
@@ -240,6 +240,8 @@ export default function CinematicHero({ onOpenBooking, onExploreSpaces }: Cinema
   const targetProgressRef = useRef(0);
   const currentProgressRef = useRef(0);
   const prefersReducedMotionRef = useRef(false);
+  const touchStartXRef = useRef<number | null>(null);
+  const touchStartYRef = useRef<number | null>(null);
 
   // Transition to a specific scene with musical visual wave effect
   const goToScene = useCallback((index: number) => {
@@ -270,23 +272,42 @@ export default function CinematicHero({ onOpenBooking, onExploreSpaces }: Cinema
     setIsAutoPlay((prev) => !prev);
   }, []);
 
-  // Optimized scene preloading: Prioritizes immediate Chamber 01 load, deferring background scenes 2-5
+  const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    touchStartXRef.current = e.touches[0].clientX;
+    touchStartYRef.current = e.touches[0].clientY;
+  }, []);
+
+  const handleTouchEnd = useCallback((e: React.TouchEvent) => {
+    if (touchStartXRef.current === null || touchStartYRef.current === null) return;
+    const diffX = touchStartXRef.current - e.changedTouches[0].clientX;
+    const diffY = touchStartYRef.current - e.changedTouches[0].clientY;
+    if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 35) {
+      if (diffX > 0) {
+        handleNextScene();
+      } else {
+        handlePrevScene();
+      }
+    }
+    touchStartXRef.current = null;
+    touchStartYRef.current = null;
+  }, [handleNextScene, handlePrevScene]);
+
+  // Scene preloading: Immediately loads initial entrance scene and Chamber 02 (second image)
   useEffect(() => {
-    // 1. Immediately load initial entrance scene
+    // 1. Immediately load initial entrance scene and Chamber 02
     const initialImg = new Image();
     initialImg.src = CINEMATIC_SCENES[0].image;
     initialImg.onload = () => setImagesLoaded(true);
     initialImg.onerror = () => setImagesLoaded(true);
 
-    // 2. Defer preloading remaining chambers so initial paint & critical path remain ultra fast
-    const deferTimer = setTimeout(() => {
-      CINEMATIC_SCENES.slice(1).forEach((scene) => {
-        const img = new Image();
-        img.src = scene.image;
-      });
-    }, 800);
+    const secondImg = new Image();
+    secondImg.src = CINEMATIC_SCENES[1].image;
 
-    return () => clearTimeout(deferTimer);
+    // 2. Preload remaining chambers immediately for instant transitions
+    CINEMATIC_SCENES.slice(2).forEach((scene) => {
+      const img = new Image();
+      img.src = scene.image;
+    });
   }, []);
 
   // Motion preference detection
@@ -322,7 +343,7 @@ export default function CinematicHero({ onOpenBooking, onExploreSpaces }: Cinema
     return () => clearInterval(timer);
   }, [isAutoPlay, isHovered, isHeroInView, goToScene]);
 
-  // Master scroll listener with RAF interpolation & dampening
+  // Master scroll listener with RAF interpolation & scroll-driven chamber visibility
   useEffect(() => {
     let isRunning = true;
 
@@ -341,6 +362,56 @@ export default function CinematicHero({ onOpenBooking, onExploreSpaces }: Cinema
 
       // Pause auto-transition if user scrolled deeply past hero
       setIsHeroInView(rect.bottom > 80 && rect.top < viewportH);
+
+      // On desktop: scroll progress determines which chamber is visible
+      // As the user begins scrolling, Chamber 02 (second image) becomes visible smoothly on scroll!
+      if (window.innerWidth >= 640 && rawProgress > 0.01) {
+        let scrollTarget = 0;
+        if (rawProgress >= 0.82) {
+          scrollTarget = 4;
+        } else if (rawProgress >= 0.60) {
+          scrollTarget = 3;
+        } else if (rawProgress >= 0.38) {
+          scrollTarget = 2;
+        } else if (rawProgress >= 0.12) {
+          scrollTarget = 1; // Chamber 02: The Vault Vocal Booth (visible on scroll)
+        } else {
+          scrollTarget = 0;
+        }
+        if (scrollTarget !== activeSceneRef.current) {
+          activeSceneRef.current = scrollTarget;
+          setActiveSceneIndex(scrollTarget);
+          setAutoProgress(0);
+        }
+      }
+
+      // On mobile: scrolling down through the hero reveals Chamber 02 (second image) on scroll
+      if (window.innerWidth < 640) {
+        const mobileHero = document.getElementById('mobile-hero');
+        if (mobileHero) {
+          const mRect = mobileHero.getBoundingClientRect();
+          const scrolledPast = -mRect.top;
+          if (scrolledPast > 70 && scrolledPast < 260) {
+            if (activeSceneRef.current === 0) {
+              activeSceneRef.current = 1;
+              setActiveSceneIndex(1);
+              setAutoProgress(0);
+            }
+          } else if (scrolledPast >= 260 && scrolledPast < 500) {
+            if (activeSceneRef.current <= 1) {
+              activeSceneRef.current = 2;
+              setActiveSceneIndex(2);
+              setAutoProgress(0);
+            }
+          } else if (scrolledPast <= 25) {
+            if (activeSceneRef.current === 1) {
+              activeSceneRef.current = 0;
+              setActiveSceneIndex(0);
+              setAutoProgress(0);
+            }
+          }
+        }
+      }
     };
 
     const animateLoop = () => {
@@ -431,14 +502,20 @@ export default function CinematicHero({ onOpenBooking, onExploreSpaces }: Cinema
   return (
     <div
       ref={containerRef}
-      className="relative w-full h-auto sm:h-[350vh] lg:h-[380vh] bg-[#040609]"
+      className={`relative w-full h-auto sm:h-[350vh] lg:h-[380vh] transition-colors ${
+        isDaylight ? 'bg-[#F8FAFC]' : 'bg-[#040609]'
+      }`}
       id="tour"
     >
-      {/* Pinned Cinematic Viewport with Mobile Navbar Clearance */}
-      <div className="relative sm:sticky sm:top-0 w-full h-auto sm:h-[100dvh] pt-[72px] min-[400px]:pt-[76px] sm:pt-0 overflow-hidden flex flex-col justify-between select-none bg-[#040609]">
+      {/* =========================================================================
+          DESKTOP & TABLET VIEWPORT (sm:block, hidden on mobile)
+          Scroll-driven pinned cinematic experience calibrated for larger displays
+          ========================================================================= */}
+      <div className="hidden sm:block relative w-full h-full">
+        <div className="sticky top-0 w-full h-[100dvh] overflow-hidden flex flex-col justify-between select-none bg-[#040609]">
         
         {/* Layer 1: Living Cinematic Scenes Stack with Full Resolution Auto-Transition */}
-        <div className="relative w-full aspect-[16/9] min-[420px]:aspect-[16/9.2] sm:aspect-auto sm:absolute sm:inset-0 sm:w-full sm:h-full overflow-hidden bg-[#040609]">
+        <div className="absolute inset-0 w-full h-full overflow-hidden bg-[#040609]">
           {CINEMATIC_SCENES.map((scene, idx) => {
             const isActive = idx === activeSceneIndex;
             const isReducedMotion = prefersReducedMotionRef.current;
@@ -697,7 +774,7 @@ export default function CinematicHero({ onOpenBooking, onExploreSpaces }: Cinema
               className={`p-1 sm:p-1.5 rounded-full transition-colors cursor-pointer focus:outline-none focus-visible:ring-1 focus-visible:ring-cyan-400 shrink-0 ${
                 isDaylight ? 'text-slate-600 hover:text-slate-900 hover:bg-slate-100' : 'text-white/70 hover:text-cyan-300 hover:bg-white/10'
               }`}
-              title={isAutoPlay ? 'Auto-Transition Active (5s) — Click to pause' : 'Auto-Transition Paused — Click to play'}
+              title={isAutoPlay ? 'Auto-Transition Active (3s) — Click to pause' : 'Auto-Transition Paused — Click to play'}
               aria-label={isAutoPlay ? 'Pause auto transition' : 'Play auto transition'}
             >
               {isAutoPlay ? (
@@ -784,9 +861,9 @@ export default function CinematicHero({ onOpenBooking, onExploreSpaces }: Cinema
               })}
             </div>
 
-            {/* Atmosphere Mode Toggle Button inside HUD */}
+            {/* Atmosphere Mode Toggle Button inside HUD with Magical Circular Transition */}
             <button
-              onClick={toggleTheme}
+              onClick={(e) => toggleTheme(e)}
               className={`flex items-center justify-center p-1 sm:p-1.5 rounded-full transition-colors cursor-pointer shrink-0 ml-0.5 ${
                 isDaylight
                   ? 'text-amber-600 hover:text-amber-700 hover:bg-amber-100/60'
@@ -799,6 +876,292 @@ export default function CinematicHero({ onOpenBooking, onExploreSpaces }: Cinema
                 <Sun className="w-3 sm:w-3.5 h-3 sm:h-3.5 text-amber-500" />
               ) : (
                 <Moon className="w-3 sm:w-3.5 h-3 sm:h-3.5 text-slate-300" />
+              )}
+            </button>
+          </div>
+        </div>
+
+        </div>
+      </div>
+
+      {/* =========================================================================
+          MOBILE VIEWPORT (block on mobile, hidden on sm+)
+          Fully Restructured Mobile Hero & Chamber Experience:
+          1. Headline prominently displayed on 2 lines with no competing secondary text in viewport
+          2. Chamber images displayed first, unobstructed
+          3. Chamber details (kicker, title, subtitle, dual buttons) positioned below image
+          4. Mobile HUD controls for tactile navigation
+          5. Dedicated editorial transition below image sequence with brand statement & scroll prompt
+          ========================================================================= */}
+      <div
+        className={`block sm:hidden relative w-full pt-[104px] min-[360px]:pt-[108px] transition-colors select-none ${
+          isDaylight ? 'bg-[#F8FAFC]' : 'bg-[#040609]'
+        }`}
+        id="mobile-hero"
+      >
+        {/* 1. Main Hero Opening Headline — Displayed prominently on 2 lines with Transom Unit directly beneath */}
+        <div className="w-full text-center px-4 pt-2.5 pb-2.5 select-none">
+          <h1 className={`text-[26px] min-[360px]:text-[30px] min-[400px]:text-[34px] font-black tracking-tight font-display uppercase leading-[1.06] ${
+            isDaylight ? 'drop-shadow-none' : 'drop-shadow-[0_4px_24px_rgba(0,0,0,0.98)]'
+          }`}>
+            <span className={`block ${isDaylight ? 'text-[#0F172A]' : 'text-white'}`}>MAKE MAGIC.</span>
+            <span className={`block mt-0.5 ${
+              isDaylight
+                ? 'bg-gradient-to-r from-[#1E40AF] to-[#0284C7] bg-clip-text text-transparent'
+                : 'accent-gradient-text'
+            }`}>MAKE HISTORY.</span>
+          </h1>
+
+          {/* Dedicated Transom Block — Placed directly under MAKE MAGIC. MAKE HISTORY. */}
+          <div className="mt-2 flex flex-col items-center justify-center text-center">
+            {/* Primary brand statement */}
+            <h3 className={`text-xs min-[360px]:text-sm font-bold tracking-wider font-display uppercase leading-snug ${
+              isDaylight ? 'text-[#0F172A]' : 'text-white drop-shadow-sm'
+            }`}>
+              WHERE SOUND BECOMES ART.
+            </h3>
+
+            {/* Supporting tagline */}
+            <p className={`mt-0.5 text-[8.5px] font-mono tracking-[0.22em] uppercase select-none whitespace-nowrap leading-tight ${
+              isDaylight ? 'text-[#1E40AF] font-bold' : 'text-[#89AACC]'
+            }`}>
+              WORLD-CLASS ACOUSTIC SANCTUARY
+            </p>
+
+            {/* Scroll instruction */}
+            <button
+              type="button"
+              onClick={handleScrollToEnter}
+              className={`mt-1.5 inline-flex items-center justify-center gap-1.5 text-[8.5px] font-mono tracking-wider cursor-pointer transition-colors group leading-tight ${
+                isDaylight ? 'text-slate-700 hover:text-[#1E40AF] font-semibold' : 'text-slate-300 hover:text-cyan-300'
+              }`}
+              aria-label="Scroll to enter the studio tour"
+            >
+              <span className="group-hover:underline">SCROLL TO ENTER</span>
+              <span className={`${isDaylight ? 'text-[#1E40AF]' : 'text-cyan-400'} group-hover:translate-y-0.5 transition-transform animate-pulse font-bold`}>↓</span>
+            </button>
+          </div>
+        </div>
+
+        {/* 2. Chamber Image Area — Fully Resoluted Edge-to-Edge Without Enclosed Square Lines */}
+        <div
+          className="relative w-full px-0 py-0"
+          onTouchStart={handleTouchStart}
+          onTouchEnd={handleTouchEnd}
+        >
+          <div className="relative w-full aspect-[16/9] max-h-[50vh] overflow-hidden bg-black">
+            {CINEMATIC_SCENES.map((scene, idx) => {
+              const isActive = idx === activeSceneIndex;
+              return (
+                <div
+                  key={`m-scene-${scene.id}`}
+                  className={`absolute inset-0 w-full h-full transition-opacity duration-700 ease-in-out ${
+                    isActive ? 'opacity-100 z-10' : 'opacity-0 z-0'
+                  }`}
+                >
+                  <img
+                    src={scene.image}
+                    alt={scene.title}
+                    loading={idx <= 1 ? 'eager' : 'lazy'}
+                    decoding="async"
+                    referrerPolicy="no-referrer"
+                    className={`w-full h-full object-contain object-center select-none transition-transform duration-[6000ms] ease-out ${
+                      isDaylight
+                        ? 'contrast-[1.03] brightness-[1.02] saturate-[1.08]'
+                        : 'contrast-[1.05] brightness-[0.96] saturate-[1.06]'
+                    } ${isActive ? 'scale-100' : 'scale-98'}`}
+                    style={{
+                      objectFit: 'contain',
+                      objectPosition: 'center',
+                    }}
+                  />
+                </div>
+              );
+            })}
+
+            {/* Subtle Music Wave Pulse overlay during scene transitions */}
+            {isMusicWaveActive && (
+              <div className="absolute inset-x-0 bottom-0 py-2 flex items-center justify-center pointer-events-none z-20 bg-gradient-to-t from-black/80 to-transparent">
+                <div className="flex items-end gap-1 h-5 px-3">
+                  {MUSIC_WAVE_BARS.slice(0, 16).map((bar, bIdx) => (
+                    <div
+                      key={`m-wave-${bIdx}`}
+                      className="w-1 rounded-full bg-cyan-400 music-wave-bar"
+                      style={{
+                        height: `${bar.height * 0.16}px`,
+                        animationDuration: bar.duration,
+                        animationDelay: bar.delay,
+                      }}
+                    />
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </div>
+
+        {/* 3. Chamber Details Card — Positioned Immediately BELOW the corresponding image */}
+        <div className="w-full px-4 pt-2.5 pb-2.5 flex flex-col items-center text-center">
+          {/* Chamber Number & Descriptive Label */}
+          <div className={`chamber-kicker-badge inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full border mb-1.5 transition-colors ${
+            isDaylight
+              ? 'bg-white border-slate-300 text-slate-800 shadow-xs'
+              : 'bg-black/60 border-cyan-400/30 text-cyan-300 shadow-md'
+          }`}>
+            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-ping shrink-0" />
+            <span className="text-[9px] min-[360px]:text-[10px] font-mono tracking-[0.2em] uppercase truncate max-w-[270px]">
+              CHAMBER 0{activeSceneIndex + 1} OF 05 · {CINEMATIC_SCENES[activeSceneIndex]?.roomTag}
+            </span>
+          </div>
+
+          {/* Chamber Title Prominently */}
+          <h2 className={`text-xl min-[360px]:text-2xl font-black tracking-tight font-display uppercase leading-tight mb-1 transition-colors ${
+            isDaylight ? 'text-[#0F172A]' : 'text-white'
+          }`}>
+            {CINEMATIC_SCENES[activeSceneIndex]?.title}
+          </h2>
+
+          {/* Supporting Description */}
+          <p className={`text-xs min-[360px]:text-sm font-medium tracking-wide font-display max-w-sm mb-2.5 transition-colors leading-snug ${
+            isDaylight ? 'text-slate-600' : 'text-slate-300'
+          }`}>
+            {CINEMATIC_SCENES[activeSceneIndex]?.subtitle}
+          </p>
+
+          {/* Dual Action Buttons */}
+          <div className="flex items-center justify-center gap-2 sm:gap-2.5 w-full max-w-sm px-2">
+            <button
+              type="button"
+              onClick={() => onExploreSpaces?.()}
+              className={`mobile-chamber-explore-btn flex-1 inline-flex items-center justify-center gap-1.5 px-3 min-[360px]:px-3.5 py-2 min-[360px]:py-2.5 rounded-full text-[10.5px] min-[360px]:text-xs font-mono font-bold tracking-wider transition-all cursor-pointer active:scale-95 shadow-md whitespace-nowrap ${
+                isDaylight
+                  ? 'bg-white border-2 border-slate-900 text-slate-900 hover:bg-slate-50'
+                  : 'bg-slate-900 border border-white/20 text-white hover:bg-slate-800'
+              }`}
+            >
+              <span className={`font-extrabold whitespace-nowrap ${isDaylight ? 'text-slate-900' : 'text-white'}`}>EXPLORE CHAMBERS</span>
+              <span className={`${isDaylight ? 'text-[#1E40AF]' : 'text-cyan-400'} font-black text-sm shrink-0`}>→</span>
+            </button>
+            <button
+              type="button"
+              onClick={() => onOpenBooking?.(CINEMATIC_SCENES[activeSceneIndex]?.id)}
+              className="mobile-chamber-reserve-btn flex-1 inline-flex items-center justify-center gap-1 px-3 min-[360px]:px-4 py-2 min-[360px]:py-2.5 rounded-full text-[10.5px] min-[360px]:text-xs font-mono font-bold tracking-wider text-white bg-gradient-to-r from-[#2563EB] to-[#0284C7] hover:from-[#1D4ED8] hover:to-[#0369A1] shadow-[0_4px_16px_rgba(37,99,235,0.4)] transition-all cursor-pointer active:scale-95 whitespace-nowrap"
+            >
+              <span className="whitespace-nowrap">RESERVE SESSION</span>
+            </button>
+          </div>
+        </div>
+
+        {/* 4. Mobile Studio Tour HUD Controls */}
+        <div className="w-full px-2 pt-1 pb-5 flex justify-center">
+          <div className={`px-2.5 py-1.5 rounded-full backdrop-blur-2xl border transition-all duration-300 flex items-center gap-1.5 max-w-[96vw] ${
+            isDaylight
+              ? 'bg-white/95 border-slate-300 text-slate-900 shadow-md'
+              : 'bg-black/85 border-white/20 text-white shadow-xl'
+          }`}>
+            {/* Auto Play/Pause */}
+            <button
+              onClick={toggleAutoPlay}
+              className={`p-1 rounded-full transition-colors cursor-pointer shrink-0 ${
+                isDaylight ? 'text-slate-600 hover:text-slate-900' : 'text-white/70 hover:text-cyan-300'
+              }`}
+              title={isAutoPlay ? 'Auto-Transition Active (3s) — Tap to pause' : 'Auto-Transition Paused — Tap to play'}
+              aria-label={isAutoPlay ? 'Pause auto transition' : 'Play auto transition'}
+            >
+              {isAutoPlay ? (
+                <Pause className="w-3 h-3 text-cyan-400" />
+              ) : (
+                <Play className={`w-3 h-3 ${isDaylight ? 'text-slate-700' : 'text-white/80'}`} />
+              )}
+            </button>
+
+            {/* Previous Chamber Chevron */}
+            <button
+              onClick={handlePrevScene}
+              className={`p-1 rounded-full transition-colors cursor-pointer shrink-0 ${
+                isDaylight ? 'text-slate-500 hover:text-slate-800' : 'text-white/60 hover:text-white'
+              }`}
+              title="Previous studio chamber"
+              aria-label="Previous studio chamber"
+            >
+              <ChevronLeft className="w-3.5 h-3.5" />
+            </button>
+
+            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 animate-pulse shrink-0" />
+
+            {/* Chamber Counter and Title */}
+            <div className={`flex items-center gap-1 text-[10px] font-mono whitespace-nowrap overflow-hidden ${
+              isDaylight ? 'text-slate-900' : 'text-white'
+            }`}>
+              <span className="text-cyan-500 font-bold tabular-nums">{`0${activeSceneIndex + 1}`}</span>
+              <span className={isDaylight ? 'text-slate-400' : 'text-white/40'}>/</span>
+              <span className={`tabular-nums ${isDaylight ? 'text-slate-600 font-semibold' : 'text-white/60'}`}>{`0${CINEMATIC_SCENES.length}`}</span>
+              <span className={`tracking-wider uppercase truncate max-w-[110px] ${
+                isDaylight ? 'text-slate-900 font-bold' : 'text-slate-100 font-semibold'
+              }`}>
+                {CINEMATIC_SCENES[activeSceneIndex]?.title}
+              </span>
+            </div>
+
+            {/* Next Chamber Chevron */}
+            <button
+              onClick={handleNextScene}
+              className={`p-1 rounded-full transition-colors cursor-pointer shrink-0 ${
+                isDaylight ? 'text-slate-500 hover:text-slate-800' : 'text-white/60 hover:text-white'
+              }`}
+              title="Next studio chamber"
+              aria-label="Next studio chamber"
+            >
+              <ChevronRight className="w-3.5 h-3.5" />
+            </button>
+
+            {/* Interactive Progress Step Dots with 5-Second Active Gauge */}
+            <div className={`flex items-center gap-1 pl-1.5 border-l shrink-0 ${isDaylight ? 'border-slate-300' : 'border-white/20'}`}>
+              {CINEMATIC_SCENES.map((scene, sIdx) => {
+                const isActive = sIdx === activeSceneIndex;
+                return (
+                  <button
+                    key={`mobile-hud-dot-${scene.id}`}
+                    onClick={() => goToScene(sIdx)}
+                    className={`h-2 rounded-full transition-all duration-300 cursor-pointer relative overflow-hidden ${
+                      isActive
+                        ? isDaylight
+                          ? 'bg-slate-200 w-7 shadow-xs'
+                          : 'bg-white/20 w-7 shadow-[0_0_8px_rgba(0,240,255,0.6)]'
+                        : isDaylight
+                        ? 'bg-slate-300 w-1.5'
+                        : 'bg-white/30 w-1.5'
+                    }`}
+                    title={`Chamber 0${sIdx + 1}: ${scene.title}`}
+                    aria-label={`Jump to Chamber 0${sIdx + 1}: ${scene.title}`}
+                  >
+                    {isActive && (
+                      <span
+                        className="absolute inset-y-0 left-0 bg-cyan-400 rounded-full"
+                        style={{
+                          width: `${isAutoPlay && !isHovered ? autoProgress : 100}%`,
+                          transition: 'width 60ms linear',
+                        }}
+                      />
+                    )}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Theme Toggle Button */}
+            <button
+              onClick={(e) => toggleTheme(e)}
+              className={`flex items-center justify-center p-1 rounded-full transition-colors cursor-pointer shrink-0 ml-0.5 ${
+                isDaylight ? 'text-amber-600 hover:bg-amber-100/60' : 'text-white/60 hover:text-cyan-300'
+              }`}
+              title={isDaylight ? 'Switch to Night Vault' : 'Switch to Daylight Sanctuary'}
+              aria-label={isDaylight ? 'Switch to Night Vault' : 'Switch to Daylight Sanctuary'}
+            >
+              {isDaylight ? (
+                <Sun className="w-3 h-3 text-amber-500" />
+              ) : (
+                <Moon className="w-3 h-3 text-slate-300" />
               )}
             </button>
           </div>

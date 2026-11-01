@@ -14,18 +14,21 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
   const [wordIndex, setWordIndex] = useState(0);
   const [isExiting, setIsExiting] = useState(false);
 
-  // Support instant test preview when requested via ?noload=true
+  // Support instant test preview when requested via ?noload=true or already completed in session
   useEffect(() => {
-    if (typeof window !== 'undefined' && window.location.search.includes('noload')) {
-      onComplete();
+    if (typeof window !== 'undefined') {
+      if (window.location.search.includes('noload') || sessionStorage.getItem('sonicvault_intro_seen')) {
+        onComplete();
+        return;
+      }
     }
   }, [onComplete]);
 
-  // Animate percentage 0 to 100 over ~1.8 seconds
+  // Animate percentage 0 to 100 over ~1.4 seconds on first visit
   useEffect(() => {
-    if (typeof window !== 'undefined' && window.location.search.includes('noload')) return;
+    if (typeof window !== 'undefined' && (window.location.search.includes('noload') || sessionStorage.getItem('sonicvault_intro_seen'))) return;
     const startTime = performance.now();
-    const duration = 1800; // 1.8 seconds
+    const duration = 1400; // 1.4 seconds
 
     const updateProgress = (currentTime: number) => {
       const elapsed = currentTime - startTime;
@@ -36,7 +39,10 @@ export default function LoadingScreen({ onComplete }: LoadingScreenProps) {
         requestAnimationFrame(updateProgress);
       } else {
         setIsExiting(true);
-        setTimeout(onComplete, 600);
+        if (typeof window !== 'undefined') {
+          sessionStorage.setItem('sonicvault_intro_seen', 'true');
+        }
+        setTimeout(onComplete, 450);
       }
     };
 

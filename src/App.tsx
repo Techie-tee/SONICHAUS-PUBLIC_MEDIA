@@ -32,7 +32,7 @@ import NotFoundPage from './pages/NotFoundPage';
 function AppLayout() {
   const [isLoading, setIsLoading] = useState(() => {
     if (typeof window !== 'undefined') {
-      return !window.location.href.includes('noload');
+      return !window.location.href.includes('noload') && !sessionStorage.getItem('sonicvault_intro_seen');
     }
     return true;
   });

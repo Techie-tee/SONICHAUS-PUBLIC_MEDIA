@@ -30,10 +30,10 @@ export default function StudioFooter({ onOpenBooking }: StudioFooterProps) {
             A flagship architectural music recording, production, mixing, and mastering studio located in Lekki Phase 1, Lagos, Nigeria. Built for artists shaping global sonic culture.
           </p>
 
-          {/* Genuine Availability Status Indicator */}
-          <div className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 text-[11px] font-mono">
-            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-            <span>STUDIO STATUS: SESSIONS ACTIVE · LEKKI PHASE 1</span>
+          {/* Genuine Availability Status Indicator — Enforced on a single line */}
+          <div className="inline-flex items-center gap-2 px-2.5 sm:px-3 py-1.5 rounded-full bg-emerald-500/10 border border-emerald-500/25 text-emerald-400 text-[9.5px] min-[360px]:text-[10px] sm:text-[11px] font-mono whitespace-nowrap shrink-0">
+            <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse shrink-0" />
+            <span className="whitespace-nowrap">STUDIO STATUS: SESSIONS ACTIVE · LEKKI PHASE 1</span>
           </div>
         </div>
 

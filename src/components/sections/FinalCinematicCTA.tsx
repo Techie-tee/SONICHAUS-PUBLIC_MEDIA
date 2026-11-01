@@ -34,7 +34,7 @@ export default function FinalCinematicCTA({ onOpenBooking }: FinalCinematicCTAPr
   const whatsappUrl = 'https://wa.me/2349015104502?text=Hello%20SONICVAULT%20STUDIOS!%20I%20would%20like%20to%20enquire%20about%20booking%20a%20recording%20session.';
 
   return (
-    <section className="cinematic-cta-section relative py-28 sm:py-40 bg-[#040609] overflow-hidden border-t border-white/10 select-none">
+    <section className="cinematic-cta-section relative py-14 sm:py-20 bg-[#040609] overflow-hidden border-t border-white/10 select-none">
       {/* Background Cinematic Studio Visual with Radial Gradient */}
       <div className="absolute inset-0 pointer-events-none opacity-30">
         <img
@@ -49,7 +49,7 @@ export default function FinalCinematicCTA({ onOpenBooking }: FinalCinematicCTAPr
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] bg-[#4E85BF] rounded-full blur-[200px] opacity-20 pointer-events-none" />
 
       {/* Seamless Continuous GSAP Marquee */}
-      <div className="w-full overflow-hidden whitespace-nowrap py-6 border-y border-white/10 bg-black/40 backdrop-blur-md mb-16 sm:mb-24">
+      <div className="w-full overflow-hidden whitespace-nowrap py-4 border-y border-white/10 bg-black/40 backdrop-blur-md mb-8 sm:mb-12">
         <div ref={marqueeRef} className="inline-flex items-center text-xs sm:text-sm font-mono tracking-[0.3em] uppercase text-[#89AACC]">
           {Array.from({ length: 8 }).map((_, i) => (
             <span key={i} className="inline-flex items-center gap-6 px-6">
@@ -60,25 +60,25 @@ export default function FinalCinematicCTA({ onOpenBooking }: FinalCinematicCTAPr
         </div>
       </div>
 
-      <div className="relative max-w-5xl mx-auto px-4 sm:px-6 text-center space-y-8 sm:space-y-12">
+      <div className="relative max-w-5xl mx-auto px-4 sm:px-6 text-center space-y-5 sm:space-y-7">
         {/* Monogram Badge */}
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/15 text-xs font-mono uppercase tracking-[0.25em] text-[#89AACC]">
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/5 border border-white/15 text-xs font-mono uppercase tracking-[0.25em] text-[#89AACC]">
           <Music className="w-3.5 h-3.5 text-[#4E85BF]" />
           <span>SONICVAULT STUDIOS · LEKKI PHASE 1, LAGOS</span>
         </div>
 
         {/* Closing Headline */}
-        <div className="space-y-4">
+        <div className="space-y-2.5">
           <h2
             style={{ color: '#FFFFFF' }}
-            className="text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-black text-white font-display uppercase tracking-tight leading-[1.05] drop-shadow-[0_4px_30px_rgba(0,0,0,0.95)]"
+            className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-white font-display uppercase tracking-tight leading-[1.05] drop-shadow-[0_4px_30px_rgba(0,0,0,0.95)]"
           >
             YOUR NEXT GREAT RECORD <br className="hidden sm:inline" />
             <span className="accent-gradient-text">STARTS HERE.</span>
           </h2>
           <p
             style={{ color: '#E2E8F0' }}
-            className="text-base sm:text-xl md:text-2xl font-light text-slate-200 font-sans max-w-2xl mx-auto drop-shadow-md"
+            className="text-sm sm:text-lg md:text-xl font-light text-slate-200 font-sans max-w-xl mx-auto drop-shadow-md leading-snug"
           >
             Bring the idea. We'll help you shape the sound.
           </p>

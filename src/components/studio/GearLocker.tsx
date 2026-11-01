@@ -208,21 +208,23 @@ export default function GearLocker() {
           </div>
         </div>
 
-        {/* Category Filter Tabs */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-3 scrollbar-none">
-          {CATEGORIES.map((cat) => (
-            <button
-              key={cat.id}
-              onClick={() => setSelectedCategory(cat.id)}
-              className={`px-4 py-2 rounded-full text-xs font-mono uppercase tracking-wider transition-all whitespace-nowrap cursor-pointer ${
-                selectedCategory === cat.id
-                  ? 'accent-gradient text-white font-bold shadow-md'
-                  : 'bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white border border-white/10'
-              }`}
-            >
-              {cat.name}
-            </button>
-          ))}
+        {/* Category Filter Tabs — Preserved full contours without edge clipping */}
+        <div className="w-full overflow-x-auto pb-3 pt-1 px-1.5 scrollbar-none">
+          <div className="inline-flex items-center gap-2 min-w-full sm:min-w-0">
+            {CATEGORIES.map((cat) => (
+              <button
+                key={cat.id}
+                onClick={() => setSelectedCategory(cat.id)}
+                className={`shrink-0 px-4 py-2 rounded-full text-xs font-mono uppercase tracking-wider transition-all whitespace-nowrap cursor-pointer ${
+                  selectedCategory === cat.id
+                    ? 'accent-gradient text-white font-bold shadow-md ring-1 ring-white/20'
+                    : 'bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white border border-white/10'
+                }`}
+              >
+                {cat.name}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Gear Grid Synchronized with EquipmentPage */}

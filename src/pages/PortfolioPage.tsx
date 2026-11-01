@@ -99,44 +99,48 @@ export default function PortfolioPage() {
 
         {/* Category & Genre Filtering Bar */}
         <div className="space-y-4 border-y border-white/10 py-6">
-          {/* Primary Category Tabs */}
-          <div className="flex items-center gap-2 overflow-x-auto pb-1 scrollbar-none">
-            {CATEGORY_FILTERS.map((f) => (
-              <button
-                key={f.id}
-                onClick={() => {
-                  setActiveCategory(f.id);
-                  setActiveGenre('ALL GENRES');
-                }}
-                className={`px-4 py-2 rounded-full text-xs font-mono whitespace-nowrap transition-all cursor-pointer ${
-                  activeCategory === f.id
-                    ? 'accent-gradient text-white font-bold shadow-md'
-                    : 'bg-white/5 text-slate-400 hover:text-white hover:bg-white/10 border border-white/5'
-                }`}
-              >
-                {f.label}
-              </button>
-            ))}
+          {/* Primary Category Tabs — Preserved full contours without edge clipping */}
+          <div className="w-full overflow-x-auto pb-2.5 pt-1 px-1.5 scrollbar-none">
+            <div className="inline-flex items-center gap-2 min-w-full sm:min-w-0">
+              {CATEGORY_FILTERS.map((f) => (
+                <button
+                  key={f.id}
+                  onClick={() => {
+                    setActiveCategory(f.id);
+                    setActiveGenre('ALL GENRES');
+                  }}
+                  className={`shrink-0 px-4 py-2 rounded-full text-xs font-mono whitespace-nowrap transition-all cursor-pointer ${
+                    activeCategory === f.id
+                      ? 'accent-gradient text-white font-bold shadow-md ring-1 ring-white/20'
+                      : 'bg-white/5 text-slate-400 hover:text-white hover:bg-white/10 border border-white/5'
+                  }`}
+                >
+                  {f.label}
+                </button>
+              ))}
+            </div>
           </div>
 
-          {/* Secondary Genre Filter Pills */}
-          <div className="flex items-center gap-1.5 overflow-x-auto pb-1 scrollbar-none">
-            <span className="text-[10px] font-mono text-slate-500 uppercase tracking-widest mr-2 shrink-0">
-              GENRES:
-            </span>
-            {GENRE_FILTERS.map((g) => (
-              <button
-                key={g}
-                onClick={() => setActiveGenre(g)}
-                className={`px-3 py-1 rounded-full text-[11px] font-mono whitespace-nowrap transition-all cursor-pointer ${
-                  activeGenre === g
-                    ? 'bg-[#4E85BF] text-white font-semibold shadow-sm'
-                    : 'bg-white/[0.04] text-slate-400 hover:text-white hover:bg-white/10 border border-white/5'
-                }`}
-              >
-                {g}
-              </button>
-            ))}
+          {/* Secondary Genre Filter Pills — Preserved full contours without edge clipping */}
+          <div className="w-full overflow-x-auto pb-2 pt-1 px-1.5 scrollbar-none">
+            <div className="inline-flex items-center gap-1.5 min-w-full sm:min-w-0">
+              <span className="text-[10px] font-mono text-slate-500 uppercase tracking-widest mr-2 shrink-0">
+                GENRES:
+              </span>
+              {GENRE_FILTERS.map((g) => (
+                <button
+                  key={g}
+                  onClick={() => setActiveGenre(g)}
+                  className={`shrink-0 px-3 py-1 rounded-full text-[11px] font-mono whitespace-nowrap transition-all cursor-pointer ${
+                    activeGenre === g
+                      ? 'bg-[#4E85BF] text-white font-semibold shadow-sm ring-1 ring-white/20'
+                      : 'bg-white/[0.04] text-slate-400 hover:text-white hover:bg-white/10 border border-white/5'
+                  }`}
+                >
+                  {g}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
 

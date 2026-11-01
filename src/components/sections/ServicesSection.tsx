@@ -154,26 +154,26 @@ export default function ServicesSection({ onSelectService, isHomepage = false }:
   const displayedServices = isHomepage ? STUDIO_SERVICES.slice(0, 4) : STUDIO_SERVICES;
 
   return (
-    <section id="services" className="py-16 sm:py-24 px-4 sm:px-6 lg:px-12 bg-[#070a12] border-t border-white/10">
-      <div className="max-w-7xl mx-auto space-y-8 sm:space-y-12">
+    <section id="services" className="py-10 sm:py-16 px-4 sm:px-6 lg:px-12 bg-[#070a12] border-t border-white/10">
+      <div className="max-w-7xl mx-auto space-y-6 sm:space-y-8">
         {/* Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 border-b border-white/10 pb-6 sm:pb-8">
-          <div className="space-y-3">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-4 sm:gap-6 border-b border-white/10 pb-5 sm:pb-6">
+          <div className="space-y-2">
             <div className="inline-flex items-center gap-2 text-xs font-mono uppercase tracking-[0.25em] text-[#89AACC]">
               <Sparkles className="w-3.5 h-3.5 text-[#4E85BF]" />
               <span>WHAT WE DO</span>
             </div>
-            <h2 className="text-3xl sm:text-5xl md:text-6xl font-extrabold text-white font-display tracking-tight uppercase">
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white font-display tracking-tight uppercase leading-tight">
               EVERY SOUND HAS A PURPOSE.
             </h2>
           </div>
-          <p className="max-w-md text-xs sm:text-sm text-slate-400 font-sans leading-relaxed">
+          <p className="max-w-md text-xs sm:text-sm text-slate-400 font-sans leading-snug">
             From the first idea to the final master, find the right space and service for your next project.
           </p>
         </div>
 
         {/* Perfectly Even 50/50 Proportional Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 lg:gap-8 items-stretch">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-5 lg:gap-6 items-stretch">
           {displayedServices.map((service) => {
             const Icon = service.icon;
             return (
@@ -186,7 +186,7 @@ export default function ServicesSection({ onSelectService, isHomepage = false }:
                 className="group relative rounded-2xl sm:rounded-3xl overflow-hidden border border-white/10 bg-[#0b0f19] hover:border-[#4E85BF]/60 transition-all duration-500 flex flex-col h-full shadow-[0_10px_30px_rgba(0,0,0,0.5)] hover:shadow-[0_20px_45px_rgba(78,133,191,0.18)]"
               >
                 {/* Top Half: Visual Media Container (Even 50% Visual Proportion) */}
-                <div className="relative aspect-[16/10] sm:aspect-[16/9] lg:h-72 w-full overflow-hidden shrink-0 bg-black">
+                <div className="relative aspect-[16/10] sm:aspect-[16/9] lg:max-h-60 w-full overflow-hidden shrink-0 bg-black">
                   <img
                     src={service.image}
                     alt={service.title}
@@ -197,19 +197,19 @@ export default function ServicesSection({ onSelectService, isHomepage = false }:
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0b0f19] via-[#0b0f19]/30 to-black/30 pointer-events-none" />
 
                   {/* Top Badge & Functional Icon */}
-                  <div className="absolute top-4 left-4 right-4 flex items-center justify-between text-[10px] font-mono z-10 pointer-events-none">
-                    <span className="px-3 py-1 rounded-full bg-black/75 backdrop-blur-md border border-white/15 text-[#89AACC] tracking-wider uppercase font-medium shadow-sm">
+                  <div className="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between text-[10px] font-mono z-10 pointer-events-none">
+                    <span className="px-2.5 py-0.5 rounded-full bg-black/75 backdrop-blur-md border border-white/15 text-[#89AACC] tracking-wider uppercase font-medium shadow-sm">
                       {service.tag}
                     </span>
-                    <span className="w-8 h-8 rounded-full bg-black/70 backdrop-blur-md border border-white/15 text-white flex items-center justify-center group-hover:bg-[#4E85BF] group-hover:border-[#89AACC] group-hover:shadow-[0_0_15px_rgba(78,133,191,0.6)] transition-all">
-                      <Icon className="w-4 h-4" />
+                    <span className="w-7 h-7 rounded-full bg-black/70 backdrop-blur-md border border-white/15 text-white flex items-center justify-center group-hover:bg-[#4E85BF] group-hover:border-[#89AACC] group-hover:shadow-[0_0_15px_rgba(78,133,191,0.6)] transition-all">
+                      <Icon className="w-3.5 h-3.5" />
                     </span>
                   </div>
                 </div>
 
                 {/* Bottom Half: Editorial Content Container (Even 50% Content Proportion) */}
-                <div className="p-5 sm:p-7 lg:p-8 flex-1 flex flex-col justify-between space-y-5 bg-[#0b0f19]">
-                  <div className="space-y-3">
+                <div className="p-4 sm:p-5 lg:p-6 flex-1 flex flex-col justify-between space-y-3.5 bg-[#0b0f19]">
+                  <div className="space-y-2">
                     <div className="flex items-center justify-between gap-2">
                       <span className="text-[10px] font-mono tracking-widest text-[#89AACC] uppercase block font-semibold truncate">
                         {service.category}
@@ -221,18 +221,18 @@ export default function ServicesSection({ onSelectService, isHomepage = false }:
 
                     <h3
                       style={{ color: '#FFFFFF' }}
-                      className="service-card-title text-2xl sm:text-3xl font-extrabold !text-white font-display tracking-tight group-hover:text-[#89AACC] transition-colors drop-shadow-[0_2px_14px_rgba(0,0,0,0.95)]"
+                      className="service-card-title text-xl sm:text-2xl font-bold !text-white font-display tracking-tight group-hover:text-[#89AACC] transition-colors drop-shadow-[0_2px_14px_rgba(0,0,0,0.95)] leading-snug"
                     >
                       {service.title}
                     </h3>
 
-                    <p className="text-xs sm:text-sm text-slate-400 font-sans leading-relaxed">
+                    <p className="text-xs sm:text-[13px] text-slate-400 font-sans leading-snug">
                       {service.description}
                     </p>
                   </div>
 
                   {/* Pinned Action Bar */}
-                  <div className="pt-4 flex flex-wrap sm:flex-nowrap items-center justify-between gap-2 border-t border-white/10 mt-auto">
+                  <div className="pt-3 flex flex-wrap sm:flex-nowrap items-center justify-between gap-2 border-t border-white/10 mt-auto">
                     <button
                       type="button"
                       onClick={() => onSelectService(service.title)}
@@ -253,13 +253,13 @@ export default function ServicesSection({ onSelectService, isHomepage = false }:
 
         {/* Dedicated Services Page Navigation Bridge for Homepage */}
         {isHomepage && (
-          <div className="pt-8 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <div className="pt-6 border-t border-white/10 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
             <p className="text-xs font-mono text-slate-400">
               SHOWING 4 CORE DISCIPLINES · 9 VERIFIED RECORDING, MIXING & MASTERING SERVICES AVAILABLE
             </p>
             <Link
               to="/services"
-              className="services-catalogue-cta-btn inline-flex items-center gap-2.5 px-7 py-3.5 rounded-full bg-[#090D16] hover:bg-[#111827] active:bg-[#060910] border border-white/20 text-xs font-mono font-bold uppercase tracking-wider text-white shadow-lg transition-all cursor-pointer group hover:border-[#4E85BF]/60 active:scale-[0.98]"
+              className="services-catalogue-cta-btn inline-flex items-center gap-2.5 px-6 py-3 rounded-full bg-[#090D16] hover:bg-[#111827] active:bg-[#060910] border border-white/20 text-xs font-mono font-bold uppercase tracking-wider text-white shadow-lg transition-all cursor-pointer group hover:border-[#4E85BF]/60 active:scale-[0.98]"
             >
               <span className="text-white font-bold tracking-wider">EXPLORE ALL SERVICES & RATES</span>
               <ArrowUpRight className="w-4 h-4 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform text-[#4E85BF]" />

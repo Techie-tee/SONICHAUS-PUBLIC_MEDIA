@@ -1578,6 +1578,160 @@
   ],
   "auditLogs": [
     {
+      "id": "log_1793549104758_0dno",
+      "action": "BOOKING_CREATED",
+      "user": "test.artist@example.com",
+      "details": "Booking SV-20261101-6Z6X for Vocal Recording on 2099-01-01",
+      "timestamp": "2026-11-01T16:05:04.758Z"
+    },
+    {
+      "id": "log_1793547192440_bcir",
+      "action": "BOOKING_CREATED",
+      "user": "test.artist@example.com",
+      "details": "Booking SV-20261101-SZPR for Vocal Recording on 2099-01-01",
+      "timestamp": "2026-11-01T15:33:12.440Z"
+    },
+    {
+      "id": "log_1793546120056_14zj",
+      "action": "BOOKING_CREATED",
+      "user": "test.artist@example.com",
+      "details": "Booking SV-20261101-H6AE for Vocal Recording on 2099-01-01",
+      "timestamp": "2026-11-01T15:15:20.056Z"
+    },
+    {
+      "id": "log_1793546082974_zj0r",
+      "action": "BOOKING_CREATED",
+      "user": "test.artist@example.com",
+      "details": "Booking SV-20261101-R6V2 for Vocal Recording on 2099-01-01",
+      "timestamp": "2026-11-01T15:14:42.974Z"
+    },
+    {
+      "id": "log_1793544807502_xhfo",
+      "action": "BOOKING_CREATED",
+      "user": "test.artist@example.com",
+      "details": "Booking SV-20261101-2ZEW for Vocal Recording on 2099-01-01",
+      "timestamp": "2026-11-01T14:53:27.502Z"
+    },
+    {
+      "id": "log_1793544021133_lkmk",
+      "action": "BOOKING_CREATED",
+      "user": "test.artist@example.com",
+      "details": "Booking SV-20261101-C9R8 for Vocal Recording on 2099-01-01",
+      "timestamp": "2026-11-01T14:40:21.133Z"
+    },
+    {
+      "id": "log_1793541706285_fh9o",
+      "action": "BOOKING_CREATED",
+      "user": "test.artist@example.com",
+      "details": "Booking SV-20261101-7K7H for Vocal Recording on 2099-01-01",
+      "timestamp": "2026-11-01T14:01:46.285Z"
+    },
+    {
+      "id": "log_1793540123850_g1kw",
+      "action": "BOOKING_CREATED",
+      "user": "test.artist@example.com",
+      "details": "Booking SV-20261101-GHKR for Vocal Recording on 2099-01-01",
+      "timestamp": "2026-11-01T13:35:23.850Z"
+    },
+    {
+      "id": "log_1793539923627_ixc8",
+      "action": "BOOKING_CREATED",
+      "user": "test.artist@example.com",
+      "details": "Booking SV-20261101-V0DM for Vocal Recording on 2099-01-01",
+      "timestamp": "2026-11-01T13:32:03.627Z"
+    },
+    {
+      "id": "log_1793489354013_vvj7",
+      "action": "BOOKING_CREATED",
+      "user": "test.artist@example.com",
+      "details": "Booking SV-20261031-QQX6 for Vocal Recording on 2099-01-01",
+      "timestamp": "2026-10-31T23:29:14.013Z"
+    },
+    {
+      "id": "log_1793489039214_tml3",
+      "action": "BOOKING_CREATED",
+      "user": "test.artist@example.com",
+      "details": "Booking SV-20261031-5PP5 for Vocal Recording on 2099-01-01",
+      "timestamp": "2026-10-31T23:23:59.214Z"
+    },
+    {
+      "id": "log_1793488341282_n7l4",
+      "action": "BOOKING_CREATED",
+      "user": "test.artist@example.com",
+      "details": "Booking SV-20261031-JAWK for Vocal Recording on 2099-01-01",
+      "timestamp": "2026-10-31T23:12:21.282Z"
+    },
+    {
+      "id": "log_1793461979667_ifff",
+      "action": "BOOKING_CREATED",
+      "user": "test.artist@example.com",
+      "details": "Booking SV-20261031-28W2 for Vocal Recording on 2099-01-01",
+      "timestamp": "2026-10-31T15:52:59.667Z"
+    },
+    {
+      "id": "log_1793461962961_y50y",
+      "action": "BOOKING_CREATED",
+      "user": "test.artist@example.com",
+      "details": "Booking SV-20261031-NOD1 for Vocal Recording on 2099-01-01",
+      "timestamp": "2026-10-31T15:52:42.961Z"
+    },
+    {
+      "id": "log_1793461917677_blhz",
+      "action": "BOOKING_CREATED",
+      "user": "test.artist@example.com",
+      "details": "Booking SV-20261031-JB69 for Vocal Recording on 2099-01-01",
+      "timestamp": "2026-10-31T15:51:57.677Z"
+    },
+    {
+      "id": "log_1793461558024_xw49",
+      "action": "BOOKING_CREATED",
+      "user": "test.artist@example.com",
+      "details": "Booking SV-20261031-VD8I for Vocal Recording on 2099-01-01",
+      "timestamp": "2026-10-31T15:45:58.024Z"
+    },
+    {
+      "id": "log_1793460309858_ekt0",
+      "action": "BOOKING_CREATED",
+      "user": "test.artist@example.com",
+      "details": "Booking SV-20261031-2OEU for Vocal Recording on 2099-01-01",
+      "timestamp": "2026-10-31T15:25:09.858Z"
+    },
+    {
+      "id": "log_1793460178217_wkbh",
+      "action": "BOOKING_CREATED",
+      "user": "test.artist@example.com",
+      "details": "Booking SV-20261031-K6QF for Vocal Recording on 2099-01-01",
+      "timestamp": "2026-10-31T15:22:58.217Z"
+    },
+    {
+      "id": "log_1793459540425_9j89",
+      "action": "BOOKING_CREATED",
+      "user": "test.artist@example.com",
+      "details": "Booking SV-20261031-BC5V for Vocal Recording on 2099-01-01",
+      "timestamp": "2026-10-31T15:12:20.425Z"
+    },
+    {
+      "id": "log_1793458466970_xjas",
+      "action": "BOOKING_CREATED",
+      "user": "test.artist@example.com",
+      "details": "Booking SV-20261031-GLDC for Vocal Recording on 2099-01-01",
+      "timestamp": "2026-10-31T14:54:26.970Z"
+    },
+    {
+      "id": "log_1793458443599_1lk8",
+      "action": "BOOKING_CREATED",
+      "user": "test.artist@example.com",
+      "details": "Booking SV-20261031-NOJ1 for Vocal Recording on 2099-01-01",
+      "timestamp": "2026-10-31T14:54:03.599Z"
+    },
+    {
+      "id": "log_1793325998193_cei6",
+      "action": "BOOKING_CREATED",
+      "user": "test.artist@example.com",
+      "details": "Booking SV-20261030-PJBU for Vocal Recording on 2099-01-01",
+      "timestamp": "2026-10-30T02:06:38.193Z"
+    },
+    {
       "id": "log_1793324852953_cvhj",
       "action": "BOOKING_CREATED",
       "user": "test.artist@example.com",

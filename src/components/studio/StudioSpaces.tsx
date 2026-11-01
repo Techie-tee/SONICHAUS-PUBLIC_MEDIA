@@ -30,21 +30,23 @@ export default function StudioSpaces({ onSelectRoom }: StudioSpacesProps) {
           </p>
         </div>
 
-        {/* Room Tab Selector */}
-        <div className="flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none">
-          {featuredRooms.map((room, idx) => (
-            <button
-              key={room.id}
-              onClick={() => setSelectedRoomIndex(idx)}
-              className={`px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl text-[11px] sm:text-xs font-mono uppercase tracking-wider transition-all whitespace-nowrap cursor-pointer ${
-                selectedRoomIndex === idx
-                  ? 'bg-sky-500 text-black font-bold shadow-[0_0_20px_rgba(56,189,248,0.35)]'
-                  : 'bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white border border-white/10'
-              }`}
-            >
-              {room.number} · {room.title}
-            </button>
-          ))}
+        {/* Room Tab Selector — Preserved full contours without edge clipping */}
+        <div className="w-full overflow-x-auto pb-3 pt-1 px-1.5 scrollbar-none">
+          <div className="inline-flex items-center gap-2 min-w-full sm:min-w-0">
+            {featuredRooms.map((room, idx) => (
+              <button
+                key={room.id}
+                onClick={() => setSelectedRoomIndex(idx)}
+                className={`shrink-0 px-3.5 sm:px-4 py-2 sm:py-2.5 rounded-xl text-[11px] sm:text-xs font-mono uppercase tracking-wider transition-all whitespace-nowrap cursor-pointer ${
+                  selectedRoomIndex === idx
+                    ? 'bg-sky-500 text-black font-bold shadow-[0_0_20px_rgba(56,189,248,0.35)] ring-1 ring-white/20'
+                    : 'bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white border border-white/10'
+                }`}
+              >
+                {room.number} · {room.title}
+              </button>
+            ))}
+          </div>
         </div>
 
         {/* Active Space Spotlight Card */}

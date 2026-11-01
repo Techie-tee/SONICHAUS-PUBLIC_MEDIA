@@ -60,7 +60,7 @@ export default function ThemeToggle({ variant = 'navbar', className = '' }: Them
         type="button"
         role="switch"
         aria-checked={isDark}
-        className={`theme-sliding-toggle group relative w-[58px] h-[30px] rounded-full p-1 cursor-pointer select-none focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4E85BF] shrink-0 transition-colors duration-300 ${
+        className={`theme-sliding-toggle group relative w-[44px] min-[360px]:w-[50px] sm:w-[58px] h-[24px] min-[360px]:h-[26px] sm:h-[30px] rounded-full p-0.5 min-[360px]:p-1 cursor-pointer select-none focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4E85BF] shrink-0 transition-colors duration-300 ${
           isDark
             ? 'bg-[#060a12] border border-cyan-500/30 shadow-[inset_0_2px_4px_rgba(0,0,0,0.8)] hover:border-cyan-400/60'
             : 'bg-[#ECEBE6] border border-[#D9D9D3] shadow-[inset_0_2px_4px_rgba(0,0,0,0.06)] hover:border-[#4E85BF]'
@@ -69,16 +69,16 @@ export default function ThemeToggle({ variant = 'navbar', className = '' }: Them
         aria-label={isDark ? 'Switch to Daylight Atmosphere' : 'Switch to Dark Vault Atmosphere'}
       >
         {/* Ambient track indicators */}
-        <div className="absolute inset-0 flex items-center justify-between px-2.5 pointer-events-none">
+        <div className="absolute inset-0 flex items-center justify-between px-2 sm:px-2.5 pointer-events-none">
           {/* Subtle amber sun indicator for light mode */}
           <span
-            className={`w-2 h-2 rounded-full transition-opacity duration-300 ${
+            className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full transition-opacity duration-300 ${
               isDark ? 'opacity-20 bg-amber-400' : 'opacity-0'
             }`}
           />
           {/* Subtle cyan moon indicator for dark mode */}
           <span
-            className={`w-2 h-2 rounded-full transition-opacity duration-300 ${
+            className={`w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full transition-opacity duration-300 ${
               isDark ? 'opacity-0' : 'opacity-25 bg-cyan-400'
             }`}
           />
@@ -86,14 +86,11 @@ export default function ThemeToggle({ variant = 'navbar', className = '' }: Them
 
         {/* Tactile Sliding Luxury Thumb Knob with Smooth Icon Morph */}
         <div
-          className={`relative w-[22px] h-[22px] rounded-full flex items-center justify-center shadow-md pointer-events-none transition-all duration-300 ease-[cubic-bezier(0.34,1.3,0.64,1)] ${
+          className={`relative w-[18px] min-[360px]:w-[19px] sm:w-[22px] h-[18px] min-[360px]:h-[19px] sm:h-[22px] rounded-full flex items-center justify-center shadow-md pointer-events-none transition-all duration-300 ease-[cubic-bezier(0.34,1.3,0.64,1)] ${
             isDark
-              ? 'bg-gradient-to-br from-[#131d2e] to-[#09111e] text-cyan-300 border border-cyan-400/60 shadow-[0_2px_8px_rgba(0,0,0,0.8),0_0_10px_rgba(34,211,238,0.4)]'
-              : 'bg-white text-amber-500 border border-amber-300/90 shadow-[0_2px_8px_rgba(0,0,0,0.12),0_0_8px_rgba(245,158,11,0.3)]'
+              ? 'translate-x-[18px] min-[360px]:translate-x-[22px] sm:translate-x-[27px] bg-gradient-to-br from-[#131d2e] to-[#09111e] text-cyan-300 border border-cyan-400/60 shadow-[0_2px_8px_rgba(0,0,0,0.8),0_0_10px_rgba(34,211,238,0.4)]'
+              : 'translate-x-0 bg-white text-amber-500 border border-amber-300/90 shadow-[0_2px_8px_rgba(0,0,0,0.12),0_0_8px_rgba(245,158,11,0.3)]'
           }`}
-          style={{
-            transform: isDark ? 'translateX(28px)' : 'translateX(0px)',
-          }}
         >
           {/* Sun icon with smooth rotation and fade */}
           <Sun

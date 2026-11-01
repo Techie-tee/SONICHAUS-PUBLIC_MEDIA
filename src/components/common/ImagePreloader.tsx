@@ -43,11 +43,33 @@ export const SECONDARY_GALLERY_IMAGES: string[] = [
 ];
 
 /**
- * Combined default cache manifest of all key visual media
+ * Studio Tour & Facility Architecture Assets
+ */
+export const STUDIO_TOUR_IMAGES: string[] = [
+  '/assets/images/studio_03_control_room_1792446833033.jpg',
+  '/assets/images/studio_02_vocal_booth_1792446832131.jpg',
+  '/assets/images/tour_03_live_room_1792445995741.jpg',
+  '/assets/images/studio_04_production_lab_1792446833465.jpg',
+  '/assets/images/studio_05_master_suite_1792446834087.jpg',
+  '/assets/images/studio_control_live_performance_1792447671011.jpg',
+  '/assets/images/tour_04_control_room_1792445997182.jpg',
+  '/assets/images/control_room_mobile_1792483021817.jpg',
+  '/assets/images/tour_02_vocal_booth_1792445995278.jpg',
+  '/assets/images/hero_vocal_booth_v2_1792444695212.jpg',
+  '/assets/images/hero_recording_room_v2_1792444696580.jpg',
+  '/assets/images/tour_05_production_lab_1792445998500.jpg',
+  '/assets/images/hero_production_lab_v2_1792444697086.jpg',
+  '/assets/images/tour_06_master_suite_1792445997686.jpg',
+  '/assets/images/master_suite_mobile_1792482735792.jpg',
+];
+
+/**
+ * Combined default cache manifest of all key visual media across website
  */
 export const ALL_PRELOAD_IMAGES: string[] = [
   ...CRITICAL_HERO_IMAGES,
   ...SECONDARY_GALLERY_IMAGES,
+  ...STUDIO_TOUR_IMAGES,
 ];
 
 // In-memory Set of already-cached URLs to avoid redundant network/decoding requests across mounts
@@ -57,7 +79,7 @@ const preloadedCache = new Set<string>();
 const imageHolders: HTMLImageElement[] = [];
 
 /**
- * Preload a single image using the browser's native Image API
+ * Preload a single image using the browser's native Image API and GPU decompression
  */
 export function preloadImage(src: string, priority: 'high' | 'auto' | 'low' = 'auto'): Promise<string> {
   return new Promise((resolve) => {
@@ -78,10 +100,18 @@ export function preloadImage(src: string, priority: 'high' | 'auto' | 'low' = 'a
       (img as HTMLImageElement & { fetchPriority?: string }).fetchPriority = priority;
     }
 
-    img.onload = () => {
+    const finish = () => {
       preloadedCache.add(src);
       imageHolders.push(img);
       resolve(src);
+    };
+
+    img.onload = () => {
+      if ('decode' in img) {
+        img.decode().then(finish).catch(finish);
+      } else {
+        finish();
+      }
     };
 
     img.onerror = () => {
@@ -94,9 +124,11 @@ export function preloadImage(src: string, priority: 'high' | 'auto' | 'low' = 'a
 
     // Fast-path: if already complete from browser disk cache
     if (img.complete) {
-      preloadedCache.add(src);
-      imageHolders.push(img);
-      resolve(src);
+      if ('decode' in img) {
+        img.decode().then(finish).catch(finish);
+      } else {
+        finish();
+      }
     }
   });
 }

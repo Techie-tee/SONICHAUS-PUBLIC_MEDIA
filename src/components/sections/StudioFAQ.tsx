@@ -340,28 +340,28 @@ export default function StudioFAQ({ onOpenBooking }: StudioFAQProps) {
   const currentCategoryObj = CATEGORY_TABS.find((t) => t.key === selectedCategory) || CATEGORY_TABS[0];
 
   return (
-    <section id="faq" className="py-16 sm:py-24 px-4 sm:px-6 lg:px-12 bg-[#040609] border-t border-white/10 relative overflow-hidden">
+    <section id="faq" className="py-10 sm:py-16 px-4 sm:px-6 lg:px-12 bg-[#040609] border-t border-white/10 relative overflow-hidden">
       {/* Background Decorative Blur Gradients */}
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[700px] h-[350px] bg-[#4E85BF]/10 rounded-full blur-[140px] pointer-events-none" />
       <div className="absolute bottom-10 left-10 w-96 h-96 bg-[#89AACC]/5 rounded-full blur-[120px] pointer-events-none" />
 
-      <div className="max-w-6xl mx-auto space-y-8 sm:space-y-12 relative z-10">
+      <div className="max-w-6xl mx-auto space-y-6 sm:space-y-8 relative z-10">
         {/* Section Header with subtle fade-in-up entrance */}
         <motion.div
           initial={{ opacity: 0, y: 22 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-          className="text-center space-y-4 max-w-3xl mx-auto"
+          className="text-center space-y-2.5 max-w-3xl mx-auto"
         >
           <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-white/5 border border-white/10 text-xs font-mono uppercase tracking-[0.25em] text-[#89AACC]">
             <HelpCircle className="w-3.5 h-3.5 text-[#4E85BF]" />
             <span>KNOWLEDGE & CONCIERGE FAQ</span>
           </div>
-          <h2 className="text-3xl sm:text-5xl md:text-6xl font-extrabold text-white font-display tracking-tight uppercase">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-extrabold text-white font-display tracking-tight uppercase leading-tight">
             COMMON STUDIO INQUIRIES.
           </h2>
-          <p className="text-xs sm:text-sm text-slate-400 font-sans leading-relaxed max-w-2xl mx-auto">
+          <p className="text-xs sm:text-sm text-slate-400 font-sans leading-snug max-w-2xl mx-auto">
             Everything you need to know about booking sessions, rates, our analog signal chains, outside engineers, stem delivery, and studio policies.
           </p>
         </motion.div>
@@ -463,10 +463,10 @@ export default function StudioFAQ({ onOpenBooking }: StudioFAQProps) {
         </motion.div>
 
         {/* Accordion List */}
-        <div className="max-w-4xl mx-auto space-y-4">
+        <div className="max-w-4xl mx-auto space-y-2.5">
           {filteredFaqs.length === 0 ? (
-            <div className="text-center py-14 px-6 rounded-2xl bg-[#090d16] border border-white/10 space-y-3">
-              <HelpCircle className="w-10 h-10 text-slate-500 mx-auto" />
+            <div className="text-center py-10 px-6 rounded-2xl bg-[#090d16] border border-white/10 space-y-2.5">
+              <HelpCircle className="w-9 h-9 text-slate-500 mx-auto" />
               <p className="text-sm font-mono text-slate-300">
                 No questions matched your search in category "{currentCategoryObj.label}".
               </p>
@@ -503,7 +503,7 @@ export default function StudioFAQ({ onOpenBooking }: StudioFAQProps) {
                     delay: Math.min(index * 0.05, 0.35),
                     ease: [0.22, 1, 0.36, 1],
                   }}
-                  className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
+                  className={`rounded-xl sm:rounded-2xl border transition-all duration-300 overflow-hidden ${
                     isOpen
                       ? 'bg-[#090d16] border-[#4E85BF]/50 shadow-xl shadow-[#4E85BF]/5'
                       : 'bg-[#070a12]/80 border-white/10 hover:border-white/20'
@@ -513,27 +513,27 @@ export default function StudioFAQ({ onOpenBooking }: StudioFAQProps) {
                   <button
                     type="button"
                     onClick={() => toggleAccordion(item.id)}
-                    className="w-full text-left p-5 sm:p-6 flex items-center justify-between gap-4 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4E85BF] bg-transparent"
+                    className="w-full text-left p-3.5 sm:p-4.5 flex items-center justify-between gap-3 sm:gap-4 cursor-pointer focus:outline-none focus-visible:ring-2 focus-visible:ring-[#4E85BF] bg-transparent"
                     aria-expanded={isOpen}
                   >
-                    <div className="flex items-center gap-3 sm:gap-4 min-w-0">
-                      <h3 className="text-sm sm:text-base md:text-lg font-bold text-white font-display uppercase tracking-tight line-clamp-2 faq-question-title">
+                    <div className="flex items-center gap-3 min-w-0">
+                      <h3 className="text-sm sm:text-base font-bold text-white font-display uppercase tracking-tight line-clamp-2 faq-question-title leading-snug">
                         {item.question}
                       </h3>
                     </div>
 
-                    <div className="flex items-center gap-3 shrink-0">
+                    <div className="flex items-center gap-2.5 shrink-0">
                       <span
-                        className={`hidden sm:inline-block text-[10px] font-mono font-semibold uppercase tracking-wider px-2.5 py-1 rounded-full border ${badgeStyle.bg} ${badgeStyle.text} ${badgeStyle.border}`}
+                        className={`hidden sm:inline-block text-[9.5px] font-mono font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full border ${badgeStyle.bg} ${badgeStyle.text} ${badgeStyle.border}`}
                       >
                         {rawCategory}
                       </span>
                       <motion.div
                         animate={{ rotate: isOpen ? 180 : 0 }}
                         transition={{ duration: 0.25 }}
-                        className="w-8 h-8 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-slate-300 group-hover:text-white shrink-0"
+                        className="w-7 h-7 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-slate-300 group-hover:text-white shrink-0"
                       >
-                        <ChevronDown className="w-4 h-4" />
+                        <ChevronDown className="w-3.5 h-3.5" />
                       </motion.div>
                     </div>
                   </button>
@@ -547,8 +547,8 @@ export default function StudioFAQ({ onOpenBooking }: StudioFAQProps) {
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.3, ease: 'easeInOut' }}
                       >
-                        <div className="px-5 pb-6 sm:px-6 sm:pb-7 pt-1 border-t border-white/5 space-y-4">
-                          <p className="text-xs sm:text-sm text-slate-300 font-sans leading-relaxed">
+                        <div className="px-4 pb-4 sm:px-5 sm:pb-5 pt-1 border-t border-white/5 space-y-3">
+                          <p className="text-xs sm:text-[13px] text-slate-300 font-sans leading-snug">
                             {item.answer}
                           </p>
 

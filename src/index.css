@@ -178,43 +178,43 @@ html.light ::-webkit-scrollbar-thumb:hover {
    -------------------------------------------------------------------------- */
 
 /* All page & section titles on daylight surfaces */
-html.light h1:not(#tour h1):not(.dark-surface h1):not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(.work-card-title):not(.portfolio-card *),
-html.light h2:not(#tour h2):not(.dark-card h2):not(#work .group h2):not(.case-study-modal h2):not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(.work-card-title):not(.portfolio-card *),
-html.light h3:not(#tour h3):not(.dark-card h3):not(#work .group h3):not(.portfolio-card h3):not(.case-study-modal h3):not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(#explorations *):not(.studio-gallery-card-title):not(.exploration-card-title):not(#spaces .absolute *):not(#spaces .group h3):not(.service-card-title):not(#services .group h3):not(#services .service-card-title):not(.work-card-title):not(.work-card-title *):not(.portfolio-card *):not(.brand-emblem-showcase *):not(.brand-emblem-title),
-html.light h4:not(#tour h4):not(.dark-card h4):not(#work .group h4):not(.case-study-modal h4):not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(.work-card-title):not(.portfolio-card *) {
+html.light h1:not(#tour h1):not(.dark-surface h1):not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(.work-card-title):not(.portfolio-card *):not(.work-card *):not(.case-study-modal *),
+html.light h2:not(#tour h2):not(.dark-card h2):not(#work .group h2):not(.case-study-modal *):not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(.work-card-title):not(.portfolio-card *):not(.work-card *),
+html.light h3:not(#tour h3):not(.dark-card h3):not(#work .group h3):not(.portfolio-card *):not(.work-card *):not(.case-study-modal *):not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(#explorations *):not(.studio-gallery-card-title):not(.exploration-card-title):not(#spaces .absolute *):not(#spaces .group h3):not(.service-card-title):not(#services .group h3):not(#services .service-card-title):not(.work-card-title):not(.work-card-title *):not(.brand-emblem-showcase *):not(.brand-emblem-title),
+html.light h4:not(#tour h4):not(.dark-card h4):not(#work .group h4):not(.case-study-modal *):not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(.work-card-title):not(.portfolio-card *):not(.work-card *) {
   color: #17191D !important;
 }
 
 /* Contextual override for text-white on light page surfaces */
-html.light main > div > div > div > h1.text-white:not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(.work-card-title),
-html.light .max-w-7xl h1.text-white:not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(.work-card-title),
-html.light .max-w-5xl h1.text-white:not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(.work-card-title),
-html.light .max-w-4xl h1.text-white:not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(.work-card-title),
-html.light .max-w-3xl h1.text-white:not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(.work-card-title),
-html.light h1.font-display.text-white:not(#tour h1):not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(.work-card-title) {
+html.light main > div > div > div > h1.text-white:not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(.work-card-title):not(.portfolio-card *):not(.work-card *),
+html.light .max-w-7xl h1.text-white:not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(.work-card-title):not(.portfolio-card *):not(.work-card *),
+html.light .max-w-5xl h1.text-white:not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(.work-card-title):not(.portfolio-card *):not(.work-card *),
+html.light .max-w-4xl h1.text-white:not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(.work-card-title):not(.portfolio-card *):not(.work-card *),
+html.light .max-w-3xl h1.text-white:not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(.work-card-title):not(.portfolio-card *):not(.work-card *),
+html.light h1.font-display.text-white:not(#tour h1):not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(.work-card-title):not(.portfolio-card *):not(.work-card *) {
   color: #17191D !important;
 }
 
 /* Section H2 and H3 on daylight surfaces */
-html.light section:not(#tour):not(.cinematic-cta-section) h2.text-white:not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(.work-card-title),
-html.light section:not(#tour):not(.cinematic-cta-section):not(#explorations) h3.text-white:not(#work .group h3):not(.dark-card h3):not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(#explorations *):not(.studio-gallery-card-title):not(.exploration-card-title):not(#spaces .absolute *):not(#spaces .group h3):not(.service-card-title):not(#services .group h3):not(#services .service-card-title):not(.work-card-title):not(.work-card-title *):not(.portfolio-card *):not(.brand-emblem-showcase *):not(.brand-emblem-title),
-html.light section:not(#tour):not(.cinematic-cta-section) h4.text-white:not(#work .group h4):not(.dark-card h4):not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(.work-card-title):not(.portfolio-card *) {
+html.light section:not(#tour):not(.cinematic-cta-section) h2.text-white:not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(.work-card-title):not(.portfolio-card *):not(.work-card *),
+html.light section:not(#tour):not(.cinematic-cta-section):not(#explorations) h3.text-white:not(#work .group h3):not(.dark-card h3):not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(#explorations *):not(.studio-gallery-card-title):not(.exploration-card-title):not(#spaces .absolute *):not(#spaces .group h3):not(.service-card-title):not(#services .group h3):not(#services .service-card-title):not(.work-card-title):not(.work-card-title *):not(.portfolio-card *):not(.work-card *):not(.case-study-modal *):not(.brand-emblem-showcase *):not(.brand-emblem-title),
+html.light section:not(#tour):not(.cinematic-cta-section) h4.text-white:not(#work .group h4):not(.dark-card h4):not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(.work-card-title):not(.portfolio-card *):not(.work-card *):not(.case-study-modal *) {
   color: #17191D !important;
 }
 
 /* Specific page headlines */
-html.light h1.font-extrabold.text-white:not(#tour *):not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(.work-card-title) {
+html.light h1.font-extrabold.text-white:not(#tour *):not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(.work-card-title):not(.portfolio-card *):not(.work-card *) {
   color: #17191D !important;
 }
 
 /* Secondary editorial and body copy on daylight surfaces */
-html.light p.text-slate-400:not(#tour *):not(#work .group *):not(.portfolio-card *):not(.case-study-modal *):not(.cinematic-cta-section *):not(.faq-concierge-banner *),
-html.light p.text-slate-300:not(#tour *):not(#work .group *):not(.portfolio-card *):not(.case-study-modal *):not(.cinematic-cta-section *):not(.faq-concierge-banner *) {
+html.light p.text-slate-400:not(#tour *):not(#work .group *):not(.portfolio-card *):not(.work-card *):not(.case-study-modal *):not(.cinematic-cta-section *):not(.faq-concierge-banner *),
+html.light p.text-slate-300:not(#tour *):not(#work .group *):not(.portfolio-card *):not(.work-card *):not(.case-study-modal *):not(.cinematic-cta-section *):not(.faq-concierge-banner *) {
   color: #555D68 !important;
 }
 
-html.light span.text-slate-400:not(#tour *):not(#work .group *):not(.portfolio-card *):not(.case-study-modal *):not(.cinematic-cta-section *):not(.faq-concierge-banner *),
-html.light span.text-slate-300:not(#tour *):not(#work .group *):not(.portfolio-card *):not(.case-study-modal *):not(.cinematic-cta-section *):not(.faq-concierge-banner *) {
+html.light span.text-slate-400:not(#tour *):not(#work .group *):not(.portfolio-card *):not(.work-card *):not(.case-study-modal *):not(.cinematic-cta-section *):not(.faq-concierge-banner *),
+html.light span.text-slate-300:not(#tour *):not(#work .group *):not(.portfolio-card *):not(.work-card *):not(.case-study-modal *):not(.cinematic-cta-section *):not(.faq-concierge-banner *) {
   color: #555D68 !important;
 }
 
@@ -290,19 +290,30 @@ html.light .min-h-\[460px\].group:hover {
   box-shadow: 0 20px 50px -8px rgba(78, 133, 191, 0.25) !important;
 }
 
-/* Inside dark project and track cards: titles must remain bold, high-contrast, pure white (#FFFFFF) */
+/* ==========================================================================
+   WORK SEGMENTS & PORTFOLIO CARDS: 100% CONTRAST & VISIBILITY GUARANTEE
+   Ensures titles, descriptions, artist tags, BPM, and links are luminous white
+   and crisp light slate across both light and dark themes on all viewports.
+   ========================================================================== */
+
 .work-card-title,
 #work .work-card-title,
 .portfolio-card .work-card-title,
+.work-card .work-card-title,
 .portfolio-card h3,
+.work-card h3,
 #work .group h3,
 .dark-card h3,
+.case-study-modal h3,
 html.light .work-card-title,
 html.light #work .work-card-title,
 html.light .portfolio-card .work-card-title,
+html.light .work-card .work-card-title,
 html.light .portfolio-card h3,
+html.light .work-card h3,
 html.light #work .group h3,
 html.light .dark-card h3,
+html.light .case-study-modal h3,
 html.light .min-h-\[460px\].group h3,
 html.light .min-h-\[460px\] h3 {
   color: #FFFFFF !important;
@@ -310,31 +321,89 @@ html.light .min-h-\[460px\] h3 {
   text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95), 0 0 4px rgba(0, 0, 0, 0.8) !important;
 }
 
+/* Card descriptions in all work segments */
+.work-card-description,
+#work .group p,
+.portfolio-card p,
+.work-card p,
+.case-study-modal p,
 html.light #work .group p,
+html.light .portfolio-card p,
+html.light .work-card p,
+html.light .case-study-modal p,
 html.light .min-h-\[460px\].group p {
-  color: #94A3B8 !important;
+  color: #CBD5E1 !important;
 }
 
+/* Artist tags and meta labels */
+.work-card-artist,
+.portfolio-card .work-card-artist,
+.work-card .work-card-artist,
+html.light .portfolio-card .work-card-artist,
+html.light .work-card .work-card-artist,
+html.light #work .group .text-\[\#89AACC\],
+html.light .portfolio-card .text-\[\#89AACC\],
+html.light .work-card .text-\[\#89AACC\] {
+  color: #89AACC !important;
+}
+
+/* All slate text inside work cards and case studies */
 html.light #work .group .text-slate-400,
 html.light #work .group .text-slate-300,
+html.light #work .group .text-slate-200,
+html.light .portfolio-card .text-slate-400,
+html.light .portfolio-card .text-slate-300,
+html.light .portfolio-card .text-slate-200,
+html.light .work-card .text-slate-400,
+html.light .work-card .text-slate-300,
+html.light .work-card .text-slate-200,
+html.light .case-study-modal .text-slate-400,
+html.light .case-study-modal .text-slate-300,
+html.light .case-study-modal .text-slate-200,
 html.light .min-h-\[460px\].group .text-slate-300,
-html.light .min-h-\[460px\].group .text-slate-400 {
-  color: #94A3B8 !important;
+html.light .min-h-\[460px\].group .text-slate-400,
+html.light .min-h-\[460px\].group .text-slate-200 {
+  color: #CBD5E1 !important;
 }
 
+/* Pure white text inside work cards */
 html.light #work .group .text-white,
+html.light .portfolio-card .text-white,
+html.light .work-card .text-white,
+html.light .case-study-modal .text-white,
 html.light .min-h-\[460px\].group .text-white {
   color: #FFFFFF !important;
 }
 
+/* Action buttons and streaming badges inside work cards */
+html.light .portfolio-card button,
+html.light .work-card button,
+html.light .portfolio-card a,
+html.light .work-card a {
+  color: #FFFFFF !important;
+}
+
+html.light .portfolio-card a.text-slate-300,
+html.light .portfolio-card a.text-slate-200,
+html.light .work-card a.text-slate-300,
+html.light .work-card a.text-slate-200 {
+  color: #E2E8F0 !important;
+}
+
 html.light #work .group .border-white\/10,
 html.light #work .group .border-white\/5,
+html.light .portfolio-card .border-white\/10,
+html.light .portfolio-card .border-white\/5,
+html.light .work-card .border-white\/10,
+html.light .work-card .border-white\/5,
 html.light .min-h-\[460px\].group .border-white\/10,
 html.light .min-h-\[460px\].group .border-white\/5 {
   border-color: rgba(255, 255, 255, 0.1) !important;
 }
 
 html.light #work .group .bg-white\/\[0\.03\],
+html.light .portfolio-card .bg-white\/\[0\.03\],
+html.light .work-card .bg-white\/\[0\.03\],
 html.light .min-h-\[460px\].group .bg-white\/\[0\.03\] {
   background-color: rgba(255, 255, 255, 0.05) !important;
 }
@@ -941,6 +1010,57 @@ html.light #work .work-category-tab.work-category-tab-active span:last-child {
   font-weight: 700 !important;
 }
 
+/* Portfolio Page (/our-work) in Daylight mode */
+html.light .portfolio-page {
+  background-color: #F5F4F0 !important;
+}
+
+html.light .portfolio-page h1 {
+  color: #17191D !important;
+}
+
+html.light .portfolio-page > div > div > p {
+  color: #555D68 !important;
+}
+
+html.light .portfolio-page .border-y {
+  border-color: #D9D9D3 !important;
+}
+
+html.light .portfolio-page button.bg-white\/5,
+html.light .portfolio-page button.bg-white\/\[0\.04\] {
+  background-color: #FFFFFF !important;
+  border-color: #CBD5E1 !important;
+  color: #17191D !important;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04) !important;
+}
+
+html.light .portfolio-page button.bg-white\/5:hover,
+html.light .portfolio-page button.bg-white\/\[0\.04\]:hover {
+  background-color: #F1F5F9 !important;
+  border-color: #4E85BF !important;
+  color: #0F172A !important;
+}
+
+/* Portfolio Closing Banner */
+.portfolio-closing-banner,
+html.light .portfolio-closing-banner {
+  background: linear-gradient(135deg, #090d16 0%, #111a2e 50%, #090d16 100%) !important;
+  border-color: rgba(78, 133, 191, 0.45) !important;
+  box-shadow: 0 20px 50px -10px rgba(9, 13, 22, 0.4) !important;
+}
+
+.portfolio-closing-banner h3,
+html.light .portfolio-closing-banner h3 {
+  color: #FFFFFF !important;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95) !important;
+}
+
+.portfolio-closing-banner p,
+html.light .portfolio-closing-banner p {
+  color: #CBD5E1 !important;
+}
+
 /* Process Section */
 html.light #process {
   background-color: #FFFFFF !important;
@@ -1219,28 +1339,38 @@ html.light #faq button:has(svg.lucide-sliders):hover {
   border-color: #4E85BF !important;
 }
 
-/* Accordion card items */
-html.light #faq .rounded-2xl.border:not(.faq-concierge-banner *) {
+/* Accordion card items - Clean white background on daylight mode */
+html.light #faq .faq-accordion-card,
+html.light #faq .rounded-xl.border:not(.faq-concierge-banner *):not(button):not(input),
+html.light #faq .rounded-2xl.border:not(.faq-concierge-banner *):not(button):not(input) {
   background-color: #FFFFFF !important;
   border-color: #D9D9D3 !important;
-  box-shadow: 0 4px 16px -2px rgba(23, 25, 29, 0.04) !important;
+  box-shadow: 0 2px 12px -2px rgba(23, 25, 29, 0.05), 0 1px 3px 0 rgba(0, 0, 0, 0.03) !important;
 }
 
-html.light #faq .rounded-2xl.border:hover:not(.faq-concierge-banner *) {
-  border-color: rgba(78, 133, 191, 0.4) !important;
+html.light #faq .faq-accordion-card:hover,
+html.light #faq .rounded-xl.border:hover:not(.faq-concierge-banner *):not(button):not(input),
+html.light #faq .rounded-2xl.border:hover:not(.faq-concierge-banner *):not(button):not(input) {
+  border-color: rgba(78, 133, 191, 0.5) !important;
+  box-shadow: 0 8px 24px -4px rgba(78, 133, 191, 0.12) !important;
 }
 
 /* Accordion trigger button must remain transparent inside the card */
+html.light #faq .faq-accordion-card > button,
+html.light #faq .rounded-xl.border > button,
 html.light #faq .rounded-2xl.border > button {
   background-color: transparent !important;
   border: none !important;
   box-shadow: none !important;
 }
 
-/* Accordion questions */
+/* Accordion questions - High contrast dark typography */
 html.light #faq .faq-question-title,
+html.light #faq .faq-accordion-card h3,
+html.light #faq .rounded-xl.border h3,
 html.light #faq .rounded-2xl.border h3 {
   color: #17191D !important;
+  font-weight: 700 !important;
 }
 
 /* Active filter status label (e.g. ALL QUESTIONS) MUST be solid black (#000000) and bold, not white */
@@ -1253,12 +1383,32 @@ html.light #faq span.font-extrabold {
   text-shadow: none !important;
 }
 
-/* Accordion answers */
-html.light #faq .rounded-2xl.border p {
-  color: #555D68 !important;
+/* Category pill badge in accordion trigger header */
+html.light #faq .faq-category-badge,
+html.light #faq .faq-accordion-card span.font-mono.rounded-full {
+  background-color: #F5F4F0 !important;
+  border-color: #D9D9D3 !important;
+  color: #334155 !important;
+}
+
+/* Accordion answers - Dark slate text on pure white background */
+html.light #faq .faq-answer-text,
+html.light #faq .faq-accordion-card p,
+html.light #faq .rounded-xl.border p:not(.faq-concierge-banner *),
+html.light #faq .rounded-2xl.border p:not(.faq-concierge-banner *) {
+  color: #334155 !important;
+  font-weight: 400 !important;
+  line-height: 1.55 !important;
+}
+
+/* Accordion content inner divider */
+html.light #faq .faq-answer-container,
+html.light #faq .faq-accordion-card .border-t {
+  border-top-color: #E2E8F0 !important;
 }
 
 /* Number badge inside FAQ card */
+html.light #faq .rounded-xl.border .font-mono.text-\[\#89AACC\],
 html.light #faq .rounded-2xl.border .font-mono.text-\[\#89AACC\] {
   background-color: #F5F4F0 !important;
   border-color: #D9D9D3 !important;
@@ -1266,6 +1416,9 @@ html.light #faq .rounded-2xl.border .font-mono.text-\[\#89AACC\] {
 }
 
 /* Chevron expander circle */
+html.light #faq .faq-chevron-circle,
+html.light #faq .rounded-xl.border .w-7.h-7.rounded-full,
+html.light #faq .rounded-2xl.border .w-7.h-7.rounded-full,
 html.light #faq .rounded-2xl.border .w-8.h-8.rounded-full {
   background-color: #F5F4F0 !important;
   border-color: #D9D9D3 !important;
@@ -1273,6 +1426,7 @@ html.light #faq .rounded-2xl.border .w-8.h-8.rounded-full {
 }
 
 /* Interactive Action Buttons inside expanded accordion */
+html.light #faq .faq-accordion-card button.bg-\[\#4E85BF\],
 html.light #faq .rounded-2xl.border button.bg-\[\#4E85BF\] {
   background-color: #4E85BF !important;
   color: #FFFFFF !important;
@@ -1280,27 +1434,33 @@ html.light #faq .rounded-2xl.border button.bg-\[\#4E85BF\] {
   box-shadow: 0 4px 12px -2px rgba(78, 133, 191, 0.25) !important;
 }
 
+html.light #faq .faq-accordion-card button.bg-\[\#4E85BF\]:hover,
 html.light #faq .rounded-2xl.border button.bg-\[\#4E85BF\]:hover {
   background-color: #3D6E9F !important;
 }
 
+html.light #faq .faq-accordion-card a.bg-white\/5,
 html.light #faq .rounded-2xl.border a.bg-white\/5 {
-  background-color: #F5F4F0 !important;
-  border-color: #D9D9D3 !important;
-  color: #17191D !important;
+  background-color: #F8FAFC !important;
+  border-color: #CBD5E1 !important;
+  color: #1E293B !important;
 }
 
+html.light #faq .faq-accordion-card a.bg-white\/5:hover,
 html.light #faq .rounded-2xl.border a.bg-white\/5:hover {
-  background-color: #ECEBE6 !important;
+  background-color: #F1F5F9 !important;
   border-color: #4E85BF !important;
+  color: #0F172A !important;
 }
 
+html.light #faq .faq-accordion-card a.bg-\[\#25D366\]\/10,
 html.light #faq .rounded-2xl.border a.bg-\[\#25D366\]\/10 {
   background-color: #F0FDF4 !important;
   border-color: rgba(37, 211, 102, 0.4) !important;
   color: #15803D !important;
 }
 
+html.light #faq .faq-accordion-card a.bg-\[\#25D366\]\/10:hover,
 html.light #faq .rounded-2xl.border a.bg-\[\#25D366\]\/10:hover {
   background-color: #DCFCE7 !important;
   border-color: #25D366 !important;
@@ -1565,23 +1725,35 @@ html.light .mobile-header-link.active-header {
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08) !important;
 }
 
-/* Classy Architectural Sliding Atmosphere Toggle */
+/* Bespoke Haute Studio Atmosphere Dial in Dark & Daylight Modes */
 .theme-sliding-toggle {
-  transition: background-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
+  position: relative;
+  transition: background 300ms cubic-bezier(0.4, 0, 0.2, 1),
               border-color 300ms cubic-bezier(0.4, 0, 0.2, 1),
               box-shadow 300ms cubic-bezier(0.4, 0, 0.2, 1);
+  outline: none;
 }
 
 html.light .theme-sliding-toggle {
-  background-color: #ECEBE6 !important;
-  border-color: #D9D9D3 !important;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.06) !important;
+  background: linear-gradient(180deg, #FAF8F4 0%, #EDE9DE 100%) !important;
+  border: 1px solid #D4CEBF !important;
+  box-shadow: inset 0 2px 5px rgba(23, 25, 29, 0.07), 0 1px 3px rgba(255, 255, 255, 0.9), 0 0 12px rgba(245, 158, 11, 0.12) !important;
+}
+
+html.light .theme-sliding-toggle:hover {
+  border-color: #F59E0B !important;
+  box-shadow: inset 0 2px 5px rgba(23, 25, 29, 0.07), 0 0 18px rgba(245, 158, 11, 0.35) !important;
 }
 
 html.dark .theme-sliding-toggle {
-  background-color: #060a12 !important;
-  border-color: rgba(255, 255, 255, 0.2) !important;
-  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.8) !important;
+  background: linear-gradient(180deg, #091222 0%, #03060C 100%) !important;
+  border: 1px solid rgba(0, 240, 255, 0.35) !important;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.9), 0 0 12px rgba(0, 240, 255, 0.18) !important;
+}
+
+html.dark .theme-sliding-toggle:hover {
+  border-color: rgba(0, 240, 255, 0.8) !important;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.9), 0 0 20px rgba(0, 240, 255, 0.45) !important;
 }
 
 /* Global smooth transition to eliminate theme switch glitching */
@@ -1618,15 +1790,39 @@ html.light .mobile-drawer-panel .border-white\/5 {
   border-color: #D9D9D3 !important;
 }
 
-/* Brand Logo Text */
+/* Brand Logo Text & Accent in Dark & Daylight Modes */
+.brand-logo-text-gold {
+  color: #F59E0B;
+}
+
+html.dark .brand-logo-text-gold {
+  color: #F59E0B !important;
+}
+
 html.light .brand-logo-text-primary {
   color: #17191D !important;
+  text-shadow: none !important;
+}
+
+html.light .brand-logo-text-primary .text-cyan-400 {
+  color: #0284C7 !important;
   text-shadow: none !important;
 }
 
 html.light .brand-logo-text-gold {
   color: #B45309 !important;
   text-shadow: none !important;
+  font-weight: 700 !important;
+}
+
+html.light .brand-logo-accent-line {
+  background: linear-gradient(90deg, #0284C7 0%, #38BDF8 70%, transparent 100%) !important;
+  opacity: 0.9 !important;
+}
+
+html.light .brand-logo-accent-dot {
+  background-color: #0284C7 !important;
+  box-shadow: 0 0 6px rgba(2, 132, 199, 0.5) !important;
 }
 
 /* Global Studio Footer */

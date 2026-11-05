@@ -411,7 +411,7 @@ export default function BrandLogo({
           <span className="text-white brand-logo-text-primary group-hover:text-slate-100 transition-colors drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
             SONIC<span className="text-cyan-400">VAULT</span>
           </span>
-          <span className="hidden min-[420px]:inline text-[#FDE68A] brand-logo-text-gold font-bold text-[0.75em] tracking-[0.22em] sm:tracking-[0.24em] group-hover:text-[#FFFBEB] transition-colors drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
+          <span className="inline text-[#D97706] brand-logo-text-gold font-bold text-[0.74em] sm:text-[0.78em] tracking-[0.16em] min-[360px]:tracking-[0.2em] sm:tracking-[0.24em] group-hover:text-[#FDE68A] transition-colors drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
             STUDIOS
           </span>
         </div>
@@ -423,9 +423,9 @@ export default function BrandLogo({
             WHERE SOUND BECOMES ART
           </span>
         ) : (
-          <div className="hidden sm:flex items-center gap-1.5 mt-0.5 shrink-0">
-            <div className="h-[2px] w-16 lg:w-20 bg-gradient-to-r from-cyan-400 via-sky-400 to-transparent rounded-full opacity-80 group-hover:opacity-100 transition-opacity shadow-[0_0_8px_rgba(0,240,255,0.6)]" />
-            <span className="w-1.5 h-1.5 rounded-full bg-cyan-400 shadow-[0_0_6px_#00F0FF] animate-pulse" />
+          <div className="flex items-center gap-1 sm:gap-1.5 mt-0.5 shrink-0">
+            <div className="brand-logo-accent-line h-[1.5px] sm:h-[2px] w-9 min-[360px]:w-11 sm:w-16 lg:w-20 bg-gradient-to-r from-cyan-400 via-sky-400 to-transparent rounded-full opacity-80 group-hover:opacity-100 transition-opacity shadow-[0_0_8px_rgba(0,240,255,0.6)]" />
+            <span className="brand-logo-accent-dot w-1 h-1 sm:w-1.5 sm:h-1.5 rounded-full bg-cyan-400 shadow-[0_0_6px_#00F0FF] animate-pulse shrink-0" />
           </div>
         )}
       </div>

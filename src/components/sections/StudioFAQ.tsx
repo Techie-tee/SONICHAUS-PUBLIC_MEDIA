@@ -503,7 +503,7 @@ export default function StudioFAQ({ onOpenBooking }: StudioFAQProps) {
                     delay: Math.min(index * 0.05, 0.35),
                     ease: [0.22, 1, 0.36, 1],
                   }}
-                  className={`rounded-xl sm:rounded-2xl border transition-all duration-300 overflow-hidden ${
+                  className={`faq-accordion-card rounded-xl sm:rounded-2xl border transition-all duration-300 overflow-hidden ${
                     isOpen
                       ? 'bg-[#090d16] border-[#4E85BF]/50 shadow-xl shadow-[#4E85BF]/5'
                       : 'bg-[#070a12]/80 border-white/10 hover:border-white/20'
@@ -524,14 +524,14 @@ export default function StudioFAQ({ onOpenBooking }: StudioFAQProps) {
 
                     <div className="flex items-center gap-2.5 shrink-0">
                       <span
-                        className={`hidden sm:inline-block text-[9.5px] font-mono font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full border ${badgeStyle.bg} ${badgeStyle.text} ${badgeStyle.border}`}
+                        className={`faq-category-badge hidden sm:inline-block text-[9.5px] font-mono font-semibold uppercase tracking-wider px-2 py-0.5 rounded-full border ${badgeStyle.bg} ${badgeStyle.text} ${badgeStyle.border}`}
                       >
                         {rawCategory}
                       </span>
                       <motion.div
                         animate={{ rotate: isOpen ? 180 : 0 }}
                         transition={{ duration: 0.25 }}
-                        className="w-7 h-7 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-slate-300 group-hover:text-white shrink-0"
+                        className="faq-chevron-circle w-7 h-7 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-slate-300 group-hover:text-white shrink-0"
                       >
                         <ChevronDown className="w-3.5 h-3.5" />
                       </motion.div>
@@ -547,8 +547,8 @@ export default function StudioFAQ({ onOpenBooking }: StudioFAQProps) {
                         exit={{ height: 0, opacity: 0 }}
                         transition={{ duration: 0.3, ease: 'easeInOut' }}
                       >
-                        <div className="px-4 pb-4 sm:px-5 sm:pb-5 pt-1 border-t border-white/5 space-y-3">
-                          <p className="text-xs sm:text-[13px] text-slate-300 font-sans leading-snug">
+                        <div className="faq-answer-container px-4 pb-4 sm:px-5 sm:pb-5 pt-1 border-t border-white/5 space-y-3">
+                          <p className="faq-answer-text text-xs sm:text-[13px] text-slate-300 font-sans leading-snug">
                             {item.answer}
                           </p>
 

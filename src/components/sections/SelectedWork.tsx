@@ -1031,14 +1031,14 @@ function ProjectCard({
       <div className="p-4 sm:p-5 lg:p-6 flex-1 flex flex-col justify-between space-y-2.5 bg-[#0b0f19] border-t border-white/5">
         <div className="space-y-2">
           <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
-            <span className="text-[10px] sm:text-[11px] font-mono tracking-widest text-[#89AACC] uppercase block font-semibold truncate mr-2">
+            <span className="work-card-artist text-[10px] sm:text-[11px] font-mono tracking-widest !text-[#89AACC] text-[#89AACC] uppercase block font-semibold truncate mr-2">
               {project.artist}
             </span>
-            <div className="flex items-center gap-1.5 text-[11px] font-mono text-slate-400 shrink-0">
-              <span className="px-1.5 py-0.5 rounded bg-white/5 border border-white/10 text-slate-300">{project.key}</span>
-              <span>{project.bpm} BPM</span>
-              <span>·</span>
-              <span>{project.duration}</span>
+            <div className="flex items-center gap-1.5 text-[11px] font-mono !text-slate-300 text-slate-300 shrink-0">
+              <span className="px-1.5 py-0.5 rounded bg-white/10 border border-white/10 !text-slate-200 text-slate-200">{project.key}</span>
+              <span className="!text-slate-300">{project.bpm} BPM</span>
+              <span className="!text-slate-400">·</span>
+              <span className="!text-slate-300">{project.duration}</span>
             </div>
           </div>
 
@@ -1049,12 +1049,15 @@ function ProjectCard({
             {project.title}
           </h3>
 
-          <p className="text-xs sm:text-[13px] text-slate-400 font-sans leading-snug line-clamp-2">
+          <p
+            style={{ color: '#CBD5E1' }}
+            className="work-card-description text-xs sm:text-[13px] !text-slate-200 text-slate-200 font-sans leading-snug line-clamp-2"
+          >
             {project.description}
           </p>
 
           {/* Hardware Signal Stage Hint */}
-          <div className="pt-0.5 flex items-center gap-1.5 text-[10px] font-mono text-slate-400 truncate">
+          <div className="pt-0.5 flex items-center gap-1.5 text-[10px] font-mono !text-slate-300 text-slate-300 truncate">
             <Sliders className="w-3 h-3 text-[#4E85BF] shrink-0" />
             <span className="truncate">{project.caseStudy.studioRoom}</span>
           </div>
@@ -1062,14 +1065,14 @@ function ProjectCard({
 
         {/* Waveform Scrubber & Session Bar (Evenly Pinned to Bottom) */}
         <div className="space-y-1.5 pt-2.5 border-t border-white/10 mt-auto">
-          <div className="flex items-center justify-between text-[11px] font-mono text-slate-400">
+          <div className="flex items-center justify-between text-[11px] font-mono !text-slate-300 text-slate-300">
             <span className="flex items-center gap-2">
               <Disc3 className={`w-3.5 h-3.5 text-[#4E85BF] ${isPlaying ? 'animate-spin' : ''}`} />
-              <span className={isPlaying ? 'text-[#89AACC] font-semibold' : ''}>
+              <span className={isPlaying ? '!text-[#89AACC] font-semibold' : '!text-slate-300'}>
                 {isPlaying ? `PLAYING ${project.genre.toUpperCase()} DEMO` : 'STUDIO PREVIEW'}
               </span>
             </span>
-            <span>{isPlaying ? `${playbackProgress}%` : project.duration}</span>
+            <span className="!text-slate-300">{isPlaying ? `${playbackProgress}%` : project.duration}</span>
           </div>
 
           {/* Interactive Procedural Waveform Bars */}
@@ -1157,7 +1160,7 @@ function CaseStudyModal({ project, onClose, onOpenBooking }: CaseStudyModalProps
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.95, y: 20 }}
         transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
-        className="relative z-50 w-full max-w-5xl max-h-[92vh] overflow-y-auto rounded-3xl bg-[#0A0A0A] border border-white/15 text-[#F5F5F3] shadow-[0_25px_80px_rgba(0,0,0,0.9)] custom-scrollbar"
+        className="case-study-modal dark-card dark-surface relative z-50 w-full max-w-5xl max-h-[92vh] overflow-y-auto rounded-3xl bg-[#0A0A0A] border border-white/15 text-[#F5F5F3] shadow-[0_25px_80px_rgba(0,0,0,0.9)] custom-scrollbar"
       >
         {/* Sticky Close Button */}
         <button

@@ -79,7 +79,7 @@ export default function PortfolioPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#040609] text-slate-100 pt-28 pb-24 px-4 sm:px-6 lg:px-12 font-sans selection:bg-[#4E85BF] selection:text-white">
+    <div className="portfolio-page min-h-screen bg-[#040609] text-slate-100 pt-28 pb-24 px-4 sm:px-6 lg:px-12 font-sans selection:bg-[#4E85BF] selection:text-white">
       <div className="max-w-7xl mx-auto space-y-12">
         {/* Header */}
         <div className="space-y-4 max-w-3xl">
@@ -162,7 +162,7 @@ export default function PortfolioPage() {
               return (
                 <div
                   key={p.id}
-                  className="group relative rounded-2xl overflow-hidden bg-[#080b12] border border-white/10 hover:border-[#4E85BF]/70 transition-all duration-500 flex flex-col justify-between shadow-xl min-h-[460px] h-full"
+                  className="portfolio-card work-card dark-card dark-surface group relative rounded-2xl overflow-hidden bg-[#080b12] border border-white/10 hover:border-[#4E85BF]/70 transition-all duration-500 flex flex-col justify-between shadow-xl min-h-[460px] h-full"
                 >
                   {/* Background Artwork with Vignette */}
                   <div className="absolute inset-0 z-0">
@@ -246,28 +246,34 @@ export default function PortfolioPage() {
                   {/* Bottom Content: Title, Artist, BPM/Key, Description & Case Study Action */}
                   <div className="relative z-10 p-6 space-y-3 bg-gradient-to-t from-black via-black/95 to-transparent flex-1 flex flex-col justify-end">
                     <div>
-                      <div className="flex items-center justify-between text-xs font-mono text-[#89AACC] mb-1">
-                        <span className="font-semibold block uppercase tracking-wider truncate mr-2">
+                      <div className="flex items-center justify-between text-xs font-mono mb-1">
+                        <span className="work-card-artist font-semibold block uppercase tracking-wider truncate mr-2 !text-[#89AACC] text-[#89AACC]">
                           {p.artist}
                         </span>
                         {p.bpm && (
-                          <span className="text-[10px] px-2 py-0.5 rounded bg-white/10 text-slate-300 shrink-0">
+                          <span className="work-card-meta text-[10px] px-2 py-0.5 rounded bg-white/10 !text-slate-200 text-slate-200 shrink-0 border border-white/10">
                             {p.bpm} BPM {p.key ? `· ${p.key}` : ''}
                           </span>
                         )}
                       </div>
-                      <h3 className="font-display text-2xl font-extrabold text-white group-hover:text-sky-300 transition-colors leading-snug">
+                      <h3
+                        style={{ color: '#FFFFFF' }}
+                        className="work-card-title font-display text-2xl font-extrabold !text-white text-white group-hover:text-sky-300 transition-colors leading-snug drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]"
+                      >
                         {p.title}
                       </h3>
                     </div>
 
-                    <p className="text-xs text-slate-300 line-clamp-3 leading-relaxed">
+                    <p
+                      style={{ color: '#CBD5E1' }}
+                      className="work-card-description text-xs !text-slate-200 text-slate-200 line-clamp-3 leading-relaxed"
+                    >
                       {p.caseStudyOverview}
                     </p>
 
                     {/* Hardware Signal Chain Hint */}
                     {p.credits.mixedBy && (
-                      <div className="pt-1 flex items-center gap-1.5 text-[10px] font-mono text-slate-400">
+                      <div className="pt-1 flex items-center gap-1.5 text-[10px] font-mono !text-slate-300 text-slate-300">
                         <Sliders className="w-3 h-3 text-[#4E85BF] shrink-0" />
                         <span className="truncate">{p.credits.mixedBy}</span>
                       </div>
@@ -277,7 +283,7 @@ export default function PortfolioPage() {
                     <div className="pt-2 border-t border-white/10 flex items-center justify-between gap-2">
                       <button
                         onClick={() => setSelectedCaseStudy(p)}
-                        className="text-xs font-mono font-semibold text-white flex items-center gap-1.5 hover:text-[#89AACC] transition-colors cursor-pointer group/link"
+                        className="text-xs font-mono font-bold !text-white text-white flex items-center gap-1.5 hover:text-[#89AACC] transition-colors cursor-pointer group/link"
                       >
                         <span>VIEW CASE STUDY</span>
                         <ArrowUpRight className="w-3.5 h-3.5 text-[#89AACC] group-hover/link:translate-x-0.5 group-hover/link:-translate-y-0.5 transition-transform" />
@@ -290,7 +296,7 @@ export default function PortfolioPage() {
                             href={p.streamingLinks.spotify}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/10 hover:bg-white/20 text-slate-300 transition-colors"
+                            className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/10 hover:bg-white/20 !text-slate-200 text-slate-200 transition-colors border border-white/10"
                             title="Listen on Spotify"
                           >
                             Spotify
@@ -301,7 +307,7 @@ export default function PortfolioPage() {
                             href={p.streamingLinks.appleMusic}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/10 hover:bg-white/20 text-slate-300 transition-colors"
+                            className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/10 hover:bg-white/20 !text-slate-200 text-slate-200 transition-colors border border-white/10"
                             title="Listen on Apple Music"
                           >
                             Apple
@@ -312,7 +318,7 @@ export default function PortfolioPage() {
                             href={p.streamingLinks.audiomack}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/10 hover:bg-white/20 text-slate-300 transition-colors"
+                            className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/10 hover:bg-white/20 !text-slate-200 text-slate-200 transition-colors border border-white/10"
                             title="Listen on Audiomack"
                           >
                             Audiomack
@@ -328,14 +334,20 @@ export default function PortfolioPage() {
         )}
 
         {/* Portfolio Closing CTA */}
-        <div className="mt-20 pt-16 border-t border-white/10 bg-[#080b12] rounded-3xl p-8 sm:p-14 border border-white/10 text-center space-y-6">
-          <span className="text-xs font-mono text-[#89AACC] tracking-widest uppercase block">
+        <div className="portfolio-closing-banner mt-20 pt-16 border-t border-white/10 bg-[#080b12] rounded-3xl p-8 sm:p-14 border border-white/10 text-center space-y-6">
+          <span className="text-xs font-mono !text-[#89AACC] text-[#89AACC] tracking-widest uppercase block font-semibold">
             HAVE SOMETHING IN MIND?
           </span>
-          <h3 className="font-display text-3xl sm:text-5xl font-extrabold text-white uppercase tracking-tight">
+          <h3
+            style={{ color: '#FFFFFF' }}
+            className="work-card-title font-display text-3xl sm:text-5xl font-extrabold !text-white text-white uppercase tracking-tight drop-shadow-[0_2px_14px_rgba(0,0,0,0.9)]"
+          >
             LET'S MAKE IT SOUND LIKE YOU.
           </h3>
-          <p className="text-slate-300 text-sm sm:text-base max-w-xl mx-auto leading-relaxed">
+          <p
+            style={{ color: '#CBD5E1' }}
+            className="text-slate-300 !text-slate-200 text-sm sm:text-base max-w-xl mx-auto leading-relaxed"
+          >
             Bring us your beat ideas, custom production brief, or vocal sessions. 
             We sculpt radio-ready records inside our Lekki Phase 1 tracking rooms and mastering suite.
           </p>
@@ -362,7 +374,7 @@ export default function PortfolioPage() {
       {/* Case Study Detail Modal */}
       {selectedCaseStudy && (
         <div className="fixed inset-0 z-50 bg-black/85 backdrop-blur-xl flex items-center justify-center p-4">
-          <div className="relative w-full max-w-2xl bg-[#0a0e16] border border-white/20 rounded-2xl p-6 sm:p-8 space-y-6 shadow-2xl animate-in zoom-in-95 duration-200 max-h-[90vh] overflow-y-auto">
+          <div className="case-study-modal dark-card dark-surface relative w-full max-w-2xl bg-[#0a0e16] border border-white/20 rounded-2xl p-6 sm:p-8 space-y-6 shadow-2xl animate-in zoom-in-95 duration-200 max-h-[90vh] overflow-y-auto">
             <button
               onClick={() => setSelectedCaseStudy(null)}
               className="absolute top-5 right-5 p-2 rounded-full bg-white/5 hover:bg-white/15 text-slate-300 hover:text-white transition-colors cursor-pointer"
@@ -373,24 +385,30 @@ export default function PortfolioPage() {
 
             <div className="space-y-2">
               <div className="flex flex-wrap items-center gap-2">
-                <span className="text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-[#4E85BF]/20 text-[#89AACC] border border-[#4E85BF]/30 font-semibold">
+                <span className="text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-[#4E85BF]/20 !text-[#89AACC] text-[#89AACC] border border-[#4E85BF]/30 font-semibold">
                   {selectedCaseStudy.category} · RELEASE YEAR: {selectedCaseStudy.year}
                 </span>
                 {selectedCaseStudy.genre && (
-                  <span className="text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-sky-950 text-sky-300 border border-sky-600/30 font-bold">
+                  <span className="text-[10px] font-mono uppercase px-2 py-0.5 rounded bg-sky-950 !text-sky-300 text-sky-300 border border-sky-600/30 font-bold">
                     {selectedCaseStudy.genre}
                   </span>
                 )}
                 {selectedCaseStudy.bpm && (
-                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/10 text-slate-300">
+                  <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/10 !text-slate-200 text-slate-200">
                     {selectedCaseStudy.bpm} BPM {selectedCaseStudy.key ? `· ${selectedCaseStudy.key}` : ''}
                   </span>
                 )}
               </div>
-              <h3 className="font-display text-3xl font-extrabold text-white">
+              <h3
+                style={{ color: '#FFFFFF' }}
+                className="work-card-title font-display text-3xl font-extrabold !text-white text-white drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]"
+              >
                 {selectedCaseStudy.title}
               </h3>
-              <p className="text-sm font-editorial italic text-slate-300">
+              <p
+                style={{ color: '#94A3B8' }}
+                className="text-sm font-editorial italic !text-slate-300 text-slate-300"
+              >
                 Artist / Producer: {selectedCaseStudy.artist}
               </p>
             </div>
@@ -405,42 +423,45 @@ export default function PortfolioPage() {
             </div>
 
             <div className="space-y-2">
-              <span className="text-[10px] font-mono text-[#89AACC] uppercase tracking-wider block font-semibold">
+              <span className="text-[10px] font-mono !text-[#89AACC] text-[#89AACC] uppercase tracking-wider block font-semibold">
                 CASE STUDY & CREATIVE DIRECTION
               </span>
-              <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+              <p
+                style={{ color: '#E2E8F0' }}
+                className="text-xs sm:text-sm !text-slate-200 text-slate-200 leading-relaxed"
+              >
                 {selectedCaseStudy.caseStudyOverview}
               </p>
             </div>
 
             {/* Production Credits Breakdown */}
             <div className="bg-[#05080e] p-4 rounded-xl border border-white/5 space-y-2">
-              <span className="text-[10px] font-mono text-slate-400 uppercase tracking-wider block font-semibold">
+              <span className="text-[10px] font-mono !text-slate-300 text-slate-300 uppercase tracking-wider block font-semibold">
                 VERIFIED SESSION CREDITS
               </span>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
                 {selectedCaseStudy.credits.recordedBy && (
-                  <div className="flex justify-between py-1 border-b border-white/5 text-slate-300">
-                    <span className="text-slate-500 font-mono text-[11px]">Recorded At:</span>
-                    <span className="text-right font-medium">{selectedCaseStudy.credits.recordedBy}</span>
+                  <div className="flex justify-between py-1 border-b border-white/5 text-slate-200">
+                    <span className="!text-slate-400 text-slate-400 font-mono text-[11px]">Recorded At:</span>
+                    <span className="text-right font-medium !text-white text-white">{selectedCaseStudy.credits.recordedBy}</span>
                   </div>
                 )}
                 {selectedCaseStudy.credits.mixedBy && (
-                  <div className="flex justify-between py-1 border-b border-white/5 text-slate-300">
-                    <span className="text-slate-500 font-mono text-[11px]">Mixed On:</span>
-                    <span className="text-right font-medium">{selectedCaseStudy.credits.mixedBy}</span>
+                  <div className="flex justify-between py-1 border-b border-white/5 text-slate-200">
+                    <span className="!text-slate-400 text-slate-400 font-mono text-[11px]">Mixed On:</span>
+                    <span className="text-right font-medium !text-white text-white">{selectedCaseStudy.credits.mixedBy}</span>
                   </div>
                 )}
                 {selectedCaseStudy.credits.masteredBy && (
-                  <div className="flex justify-between py-1 border-b border-white/5 text-slate-300">
-                    <span className="text-slate-500 font-mono text-[11px]">Mastered In:</span>
-                    <span className="text-right font-medium">{selectedCaseStudy.credits.masteredBy}</span>
+                  <div className="flex justify-between py-1 border-b border-white/5 text-slate-200">
+                    <span className="!text-slate-400 text-slate-400 font-mono text-[11px]">Mastered In:</span>
+                    <span className="text-right font-medium !text-white text-white">{selectedCaseStudy.credits.masteredBy}</span>
                   </div>
                 )}
                 {selectedCaseStudy.credits.studioRoom && (
-                  <div className="flex justify-between py-1 border-b border-white/5 text-slate-300">
-                    <span className="text-slate-500 font-mono text-[11px]">Facility:</span>
-                    <span className="text-right font-medium">{selectedCaseStudy.credits.studioRoom}</span>
+                  <div className="flex justify-between py-1 border-b border-white/5 text-slate-200">
+                    <span className="!text-slate-400 text-slate-400 font-mono text-[11px]">Facility:</span>
+                    <span className="text-right font-medium !text-white text-white">{selectedCaseStudy.credits.studioRoom}</span>
                   </div>
                 )}
               </div>

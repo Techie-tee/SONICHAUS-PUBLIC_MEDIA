@@ -179,21 +179,27 @@ export default function PortfolioPage() {
                   <div className="relative z-10 p-5 flex items-start justify-between gap-3">
                     <div className="flex flex-wrap items-center gap-1.5">
                       {p.genre && (
-                        <span className="px-2.5 py-1 rounded-full bg-black/80 backdrop-blur-md border border-[#4E85BF]/40 text-[10px] font-mono tracking-wider text-sky-300 uppercase font-bold">
+                        <span
+                          style={{ color: '#FFFFFF', backgroundColor: 'rgba(0, 0, 0, 0.92)' }}
+                          className="work-badge-genre px-3 py-1 rounded-full border border-white/35 !text-white text-white text-[11px] sm:text-xs font-mono tracking-wider uppercase font-extrabold shadow-lg drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)]"
+                        >
                           {p.genre}
                         </span>
                       )}
                       <span
-                        className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-[10px] font-mono tracking-wider uppercase font-semibold backdrop-blur-md border ${
-                          isBeat
-                            ? 'bg-cyan-950/70 text-cyan-300 border-cyan-500/30'
-                            : 'bg-amber-950/70 text-amber-300 border-amber-500/30'
-                        }`}
+                        style={{
+                          color: isBeat ? '#38BDF8' : '#FBBF24',
+                          backgroundColor: 'rgba(0, 0, 0, 0.92)',
+                          borderColor: isBeat ? 'rgba(56, 189, 248, 0.8)' : 'rgba(251, 191, 36, 0.8)',
+                        }}
+                        className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] sm:text-xs font-mono tracking-wider uppercase font-extrabold backdrop-blur-md border shadow-lg ${
+                          isBeat ? 'work-badge-beat !text-[#38BDF8]' : 'work-badge-vocal !text-[#FBBF24]'
+                        } drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)]`}
                       >
                         {isBeat ? (
-                          <Music2 className="w-3 h-3 text-cyan-400" />
+                          <Music2 className="w-3.5 h-3.5 text-[#38BDF8] shrink-0" />
                         ) : (
-                          <Mic className="w-3 h-3 text-amber-400" />
+                          <Mic className="w-3.5 h-3.5 text-[#FBBF24] shrink-0" />
                         )}
                         <span>{p.type || p.category}</span>
                       </span>

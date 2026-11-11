@@ -964,21 +964,34 @@ function ProjectCard({
         <div className="absolute inset-0 bg-gradient-to-t from-[#0b0f19] via-[#0b0f19]/30 to-black/40 pointer-events-none" />
 
         {/* Top Badges (Preserving right-16 clearance for mobile action button) */}
-        <div className="absolute top-3.5 left-3.5 right-14 flex flex-wrap items-center gap-1.5 text-[10px] sm:text-[11px] font-mono z-20 pointer-events-none">
-          <span className="px-2.5 py-0.5 rounded-full bg-black/80 backdrop-blur-md border border-[#4E85BF]/50 text-sky-300 uppercase font-bold tracking-wider shadow-sm truncate">
+        <div className="absolute top-3.5 left-3.5 right-14 flex flex-wrap items-center gap-1.5 text-[11px] sm:text-xs font-mono z-20 pointer-events-none">
+          <span
+            style={{ color: '#FFFFFF', backgroundColor: 'rgba(0, 0, 0, 0.92)' }}
+            className="work-badge-genre px-3 py-1 rounded-full border border-white/35 !text-white text-white uppercase font-extrabold tracking-wider shadow-lg truncate drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)]"
+          >
             {project.genre}
           </span>
           <span
-            className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-mono uppercase font-semibold backdrop-blur-md border ${
-              isBeat
-                ? 'bg-cyan-950/80 text-cyan-300 border-cyan-500/40'
-                : 'bg-amber-950/80 text-amber-300 border-amber-500/40'
-            }`}
+            style={{
+              color: isBeat ? '#38BDF8' : '#FBBF24',
+              backgroundColor: 'rgba(0, 0, 0, 0.92)',
+              borderColor: isBeat ? 'rgba(56, 189, 248, 0.8)' : 'rgba(251, 191, 36, 0.8)',
+            }}
+            className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] sm:text-xs font-mono uppercase font-extrabold tracking-wider shadow-lg backdrop-blur-md border ${
+              isBeat ? 'work-badge-beat !text-[#38BDF8]' : 'work-badge-vocal !text-[#FBBF24]'
+            } drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)]`}
           >
-            {isBeat ? <Music2 className="w-3 h-3 text-cyan-400" /> : <Mic className="w-3 h-3 text-amber-400" />}
+            {isBeat ? (
+              <Music2 className="w-3.5 h-3.5 text-[#38BDF8] shrink-0" />
+            ) : (
+              <Mic className="w-3.5 h-3.5 text-[#FBBF24] shrink-0" />
+            )}
             <span>{project.type}</span>
           </span>
-          <span className="px-2 py-0.5 rounded-full bg-black/70 backdrop-blur-md border border-white/15 text-slate-300 shrink-0 hidden sm:inline-block">
+          <span
+            style={{ color: '#FFFFFF', backgroundColor: 'rgba(0, 0, 0, 0.85)' }}
+            className="px-2.5 py-1 rounded-full border border-white/25 !text-white text-white font-bold text-[10.5px] shrink-0 hidden sm:inline-block shadow-md"
+          >
             {project.year}
           </span>
         </div>
@@ -1031,14 +1044,17 @@ function ProjectCard({
       <div className="p-4 sm:p-5 lg:p-6 flex-1 flex flex-col justify-between space-y-2.5 bg-[#0b0f19] border-t border-white/5">
         <div className="space-y-2">
           <div className="flex flex-col sm:flex-row sm:items-baseline justify-between gap-1">
-            <span className="work-card-artist text-[10px] sm:text-[11px] font-mono tracking-widest !text-[#89AACC] text-[#89AACC] uppercase block font-semibold truncate mr-2">
+            <span
+              style={{ color: '#60A5FA' }}
+              className="work-card-artist text-[11.5px] sm:text-xs font-mono tracking-widest !text-[#60A5FA] text-[#60A5FA] uppercase block font-extrabold truncate mr-2 drop-shadow-sm"
+            >
               {project.artist}
             </span>
-            <div className="flex items-center gap-1.5 text-[11px] font-mono !text-slate-300 text-slate-300 shrink-0">
-              <span className="px-1.5 py-0.5 rounded bg-white/10 border border-white/10 !text-slate-200 text-slate-200">{project.key}</span>
-              <span className="!text-slate-300">{project.bpm} BPM</span>
+            <div className="flex items-center gap-1.5 text-xs font-mono !text-slate-100 text-slate-100 shrink-0 font-bold">
+              <span className="px-2 py-0.5 rounded bg-black/80 border border-white/20 !text-white text-white font-extrabold">{project.key}</span>
+              <span className="!text-white font-extrabold">{project.bpm} BPM</span>
               <span className="!text-slate-400">·</span>
-              <span className="!text-slate-300">{project.duration}</span>
+              <span className="!text-white font-extrabold">{project.duration}</span>
             </div>
           </div>
 

@@ -170,10 +170,13 @@ export default function StudioGallery({ onOpenBooking }: StudioGalleryProps) {
 
                 {/* Top Badges */}
                 <div className="absolute top-4 left-4 right-4 flex items-center justify-between text-[10px] font-mono pointer-events-none">
-                  <span className="px-3 py-1 rounded-full bg-black/75 backdrop-blur-md border border-white/15 text-[#89AACC] font-medium">
+                  <span
+                    style={{ color: '#38BDF8' }}
+                    className="px-3 py-1 rounded-full bg-black/85 backdrop-blur-md border border-white/20 !text-[#38BDF8] text-[#38BDF8] font-bold text-[10.5px] shadow-md"
+                  >
                     {item.specs}
                   </span>
-                  <span className="w-8 h-8 rounded-full bg-black/75 backdrop-blur-md border border-white/15 text-white flex items-center justify-center group-hover:scale-110 group-hover:bg-[#4E85BF] transition-all">
+                  <span className="w-8 h-8 rounded-full bg-black/80 backdrop-blur-md border border-white/20 text-white flex items-center justify-center group-hover:scale-110 group-hover:bg-[#4E85BF] transition-all">
                     <Maximize2 className="w-3.5 h-3.5" />
                   </span>
                 </div>
@@ -181,14 +184,14 @@ export default function StudioGallery({ onOpenBooking }: StudioGalleryProps) {
                 {/* Bottom Overlay Info */}
                 <div className="absolute bottom-4 left-4 right-4 space-y-1.5 z-10 flex flex-col justify-end">
                   <span
-                    style={{ color: '#89AACC' }}
-                    className="text-[10px] font-mono tracking-widest text-[#89AACC] uppercase block font-bold drop-shadow-sm min-h-[1.25rem] flex items-end"
+                    style={{ color: '#38BDF8' }}
+                    className="text-[11px] font-mono tracking-widest !text-[#38BDF8] text-[#38BDF8] uppercase block font-bold drop-shadow-sm min-h-[1.25rem] flex items-end"
                   >
                     {item.categoryLabel}
                   </span>
                   <h3
                     style={{ color: '#FFFFFF' }}
-                    className="studio-gallery-card-title text-xl sm:text-2xl font-extrabold !text-white font-display leading-tight group-hover:text-[#89AACC] transition-colors drop-shadow-[0_2px_14px_rgba(0,0,0,0.95)] min-h-[3.5rem] flex items-end"
+                    className="studio-gallery-card-title text-xl sm:text-2xl font-extrabold !text-white font-display leading-tight group-hover:text-[#38BDF8] transition-colors drop-shadow-[0_2px_14px_rgba(0,0,0,0.95)] min-h-[3.5rem] flex items-end"
                   >
                     {item.title}
                   </h3>
@@ -197,12 +200,15 @@ export default function StudioGallery({ onOpenBooking }: StudioGalleryProps) {
 
               {/* Card Footer Detail: Flush with image, ZERO gap, solid unified background */}
               <div className="p-5 sm:p-6 bg-[#080b12] flex-1 flex flex-col justify-between space-y-4">
-                <p className="text-xs text-slate-400 font-sans leading-relaxed">
+                <p
+                  style={{ color: '#E2E8F0' }}
+                  className="service-card-desc text-xs sm:text-[13px] !text-[#E2E8F0] text-slate-200 font-sans leading-relaxed drop-shadow-sm font-normal"
+                >
                   {item.caption}
                 </p>
-                <div className="pt-3 border-t border-white/5 flex items-center justify-between text-[11px] font-mono text-[#89AACC] mt-auto">
-                  <span className="group-hover:translate-x-1 transition-transform inline-flex items-center gap-1.5 font-semibold">
-                    VIEW ARCHITECTURAL VIEW <ArrowRight className="w-3.5 h-3.5 text-[#4E85BF]" />
+                <div className="pt-3 border-t border-white/10 flex items-center justify-between text-xs font-mono text-white mt-auto">
+                  <span className="group-hover:translate-x-1 transition-transform inline-flex items-center gap-1.5 font-bold text-white hover:text-[#38BDF8]">
+                    VIEW ARCHITECTURAL VIEW <ArrowRight className="w-3.5 h-3.5 text-[#38BDF8]" />
                   </span>
                 </div>
               </div>

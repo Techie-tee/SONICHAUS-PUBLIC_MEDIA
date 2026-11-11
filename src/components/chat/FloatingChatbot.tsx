@@ -112,21 +112,21 @@ export default function FloatingChatbot() {
   return (
     <>
       {/* Floating Launcher Button */}
-      <div className={`fixed ${bottomClass} right-3 sm:right-6 z-40 flex items-center gap-3 transition-all duration-300`}>
+      <div className={`vault-floating-container fixed ${bottomClass} right-2 min-[360px]:right-3 sm:right-6 z-50 flex items-center gap-2 sm:gap-3 transition-all duration-300`}>
         {!isOpen && (
           <button
             onClick={() => setIsOpen(true)}
-            className="flex items-center gap-2 sm:gap-2.5 px-3 sm:px-4 py-2.5 sm:py-3 rounded-full bg-[#0e121b]/95 border border-[#4E85BF]/40 text-white shadow-[0_8px_32px_rgba(78,133,191,0.3)] hover:border-[#4E85BF] hover:scale-105 active:scale-95 transition-all duration-300 group cursor-pointer"
+            className="vault-floating-btn flex items-center gap-1.5 min-[360px]:gap-2 sm:gap-2.5 px-2.5 min-[360px]:px-3.5 sm:px-4 py-2 min-[360px]:py-2.5 sm:py-3 rounded-full bg-[#0e121b]/95 border border-[#4E85BF]/40 text-white shadow-[0_8px_32px_rgba(78,133,191,0.3)] hover:border-[#4E85BF] hover:scale-105 active:scale-95 transition-all duration-300 group cursor-pointer"
             aria-label="Open SonicVault AI Concierge"
           >
-            <span className="relative flex h-2.5 w-2.5 sm:h-3 sm:w-3">
+            <span className="relative flex h-2 w-2 min-[360px]:h-2.5 min-[360px]:w-2.5 sm:h-3 sm:w-3">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#89AACC] opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2.5 w-2.5 sm:h-3 sm:w-3 bg-[#4E85BF]"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 min-[360px]:h-2.5 min-[360px]:w-2.5 sm:h-3 sm:w-3 bg-[#4E85BF]"></span>
             </span>
             <SonicVaultEmblemBadge size={22} className="group-hover:scale-110 transition-transform shrink-0" />
-            <span className="font-display text-[11px] sm:text-xs font-semibold tracking-wider uppercase text-slate-200 whitespace-nowrap">
+            <span className="font-display text-[10px] min-[360px]:text-[11px] sm:text-xs font-bold tracking-wider uppercase text-slate-200 whitespace-nowrap">
               <span className="hidden sm:inline">VAULT CONCIERGE</span>
-              <span className="sm:hidden">CONCIERGE</span>
+              <span className="sm:hidden">THE VAULT</span>
             </span>
           </button>
         )}
@@ -138,7 +138,7 @@ export default function FloatingChatbot() {
           role="dialog"
           aria-modal="true"
           aria-labelledby="concierge-dialog-title"
-          className="fixed bottom-3 sm:bottom-6 right-3 sm:right-6 z-50 w-[calc(100vw-24px)] sm:w-[410px] h-[560px] max-h-[85vh] bg-[#0a0d14] border border-white/15 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.85)] flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-200"
+          className="fixed bottom-3 sm:bottom-6 right-2 min-[360px]:right-3 sm:right-6 z-[60] w-[calc(100vw-16px)] sm:w-[410px] h-[560px] max-h-[85vh] bg-[#0a0d14] border border-white/15 rounded-2xl shadow-[0_20px_60px_rgba(0,0,0,0.85)] flex flex-col overflow-hidden animate-in fade-in zoom-in-95 duration-200"
         >
           {/* Header */}
           <div className="px-4 sm:px-5 py-3.5 bg-[#0e131e] border-b border-white/10 flex items-center justify-between shrink-0">

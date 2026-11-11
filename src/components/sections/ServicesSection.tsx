@@ -198,10 +198,13 @@ export default function ServicesSection({ onSelectService, isHomepage = false }:
 
                   {/* Top Badge & Functional Icon */}
                   <div className="absolute top-3.5 left-3.5 right-3.5 flex items-center justify-between text-[10px] font-mono z-10 pointer-events-none">
-                    <span className="px-2.5 py-0.5 rounded-full bg-black/75 backdrop-blur-md border border-white/15 text-[#89AACC] tracking-wider uppercase font-medium shadow-sm">
+                    <span
+                      style={{ color: '#38BDF8' }}
+                      className="px-2.5 py-1 rounded-full bg-black/85 backdrop-blur-md border border-white/20 !text-[#38BDF8] text-[#38BDF8] tracking-wider uppercase font-bold text-[10.5px] shadow-md"
+                    >
                       {service.tag}
                     </span>
-                    <span className="w-7 h-7 rounded-full bg-black/70 backdrop-blur-md border border-white/15 text-white flex items-center justify-center group-hover:bg-[#4E85BF] group-hover:border-[#89AACC] group-hover:shadow-[0_0_15px_rgba(78,133,191,0.6)] transition-all">
+                    <span className="w-7 h-7 rounded-full bg-black/80 backdrop-blur-md border border-white/20 text-white flex items-center justify-center group-hover:bg-[#4E85BF] group-hover:border-[#38BDF8] group-hover:shadow-[0_0_15px_rgba(56,189,248,0.6)] transition-all">
                       <Icon className="w-3.5 h-3.5" />
                     </span>
                   </div>
@@ -211,22 +214,31 @@ export default function ServicesSection({ onSelectService, isHomepage = false }:
                 <div className="p-4 sm:p-5 lg:p-6 flex-1 flex flex-col justify-between space-y-3.5 bg-[#0b0f19]">
                   <div className="space-y-2">
                     <div className="flex items-center justify-between gap-2">
-                      <span className="text-[10px] font-mono tracking-widest text-[#89AACC] uppercase block font-semibold truncate">
+                      <span
+                        style={{ color: '#38BDF8' }}
+                        className="text-[11px] font-mono tracking-widest !text-[#38BDF8] text-[#38BDF8] uppercase block font-bold truncate drop-shadow-sm"
+                      >
                         {service.category}
                       </span>
-                      <span className="text-[10px] font-mono text-slate-500 uppercase shrink-0">
+                      <span
+                        style={{ color: '#E2E8F0' }}
+                        className="text-[11px] font-mono !text-[#E2E8F0] text-slate-200 uppercase shrink-0 font-bold tracking-wider drop-shadow-sm"
+                      >
                         {service.room}
                       </span>
                     </div>
 
                     <h3
                       style={{ color: '#FFFFFF' }}
-                      className="service-card-title text-xl sm:text-2xl font-bold !text-white font-display tracking-tight group-hover:text-[#89AACC] transition-colors drop-shadow-[0_2px_14px_rgba(0,0,0,0.95)] leading-snug"
+                      className="service-card-title text-xl sm:text-2xl font-extrabold !text-white text-white font-display tracking-tight group-hover:text-[#38BDF8] transition-colors drop-shadow-[0_2px_14px_rgba(0,0,0,0.95)] leading-snug"
                     >
                       {service.title}
                     </h3>
 
-                    <p className="text-xs sm:text-[13px] text-slate-400 font-sans leading-snug">
+                    <p
+                      style={{ color: '#E2E8F0' }}
+                      className="service-card-desc text-xs sm:text-[13px] !text-[#E2E8F0] text-slate-200 font-sans leading-relaxed drop-shadow-sm font-normal"
+                    >
                       {service.description}
                     </p>
                   </div>
@@ -236,12 +248,15 @@ export default function ServicesSection({ onSelectService, isHomepage = false }:
                     <button
                       type="button"
                       onClick={() => onSelectService(service.title)}
-                      className="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider text-white hover:text-[#89AACC] transition-colors cursor-pointer group-hover:translate-x-1 duration-300"
+                      className="inline-flex items-center gap-1.5 text-xs font-mono uppercase tracking-wider !text-white text-white font-bold hover:text-[#38BDF8] transition-colors cursor-pointer group-hover:translate-x-1 duration-300 drop-shadow-sm"
                     >
                       <span>BOOK THIS SERVICE</span>
-                      <ArrowUpRight className="w-4 h-4 text-[#4E85BF]" />
+                      <ArrowUpRight className="w-4 h-4 text-[#38BDF8]" />
                     </button>
-                    <span className="text-[11px] font-mono text-slate-500 tracking-wide shrink-0">
+                    <span
+                      style={{ color: '#93C5FD' }}
+                      className="text-xs font-mono !text-[#93C5FD] text-[#93C5FD] font-bold tracking-wide shrink-0 drop-shadow-sm"
+                    >
                       {service.rateHint}
                     </span>
                   </div>

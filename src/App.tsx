@@ -94,14 +94,10 @@ function AppLayout() {
         </Routes>
       </div>
 
-      {/* 4. Global Floating Tools (Customer Concierge) */}
-      {!isAdminRoute && (
-        <>
-          <FloatingChatbot />
-          <FloatingWhatsApp />
-          <GlobalAudioPlayer />
-        </>
-      )}
+      {/* 4. Global Floating Tools (WhatsApp Concierge & The Vault — Guaranteed on every page) */}
+      <FloatingChatbot />
+      <FloatingWhatsApp />
+      {!isAdminRoute && <GlobalAudioPlayer />}
 
       {/* 5. Global Studio Footer */}
       {!isAdminRoute && <StudioFooter onOpenBooking={handleOpenBooking} />}

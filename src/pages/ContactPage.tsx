@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { MapPin, Phone, Mail, MessageCircle, Send, CheckCircle2, AlertCircle, Clock, Instagram, Sparkles, Navigation } from 'lucide-react';
+import { MapPin, Phone, Mail, MessageCircle, Send, CheckCircle2, AlertCircle, Clock, Instagram, Sparkles } from 'lucide-react';
 
 export default function ContactPage() {
   const [formData, setFormData] = useState({
@@ -69,107 +69,134 @@ export default function ContactPage() {
 
         {/* Contact Layout Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-          {/* Left: Verified Business Info & Direct Links */}
-          <div className="lg:col-span-5 space-y-6">
-            <div className="p-6 rounded-2xl bg-[#080b12] border border-white/10 space-y-6">
-              <span className="text-xs font-mono text-[#89AACC] tracking-widest uppercase block">
-                OFFICIAL STUDIO DETAILS
-              </span>
+          {/* Left: Verified Business Info & Direct Links (Sticky so it stays visible on scroll) */}
+          <div className="lg:col-span-5 space-y-6 lg:sticky lg:top-28 z-20">
+            <div className="p-6 rounded-2xl bg-[#080b12] border border-white/10 space-y-6 shadow-xl">
+              <div className="flex items-center justify-between pb-1 border-b border-white/10">
+                <span className="text-xs font-mono text-[#89AACC] font-bold tracking-widest uppercase block">
+                  OFFICIAL STUDIO DETAILS
+                </span>
+                <span className="inline-flex items-center gap-1.5 text-[10px] font-mono text-emerald-400 bg-emerald-500/10 px-2 py-0.5 rounded-full border border-emerald-500/25">
+                  <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+                  OPEN FOR BOOKINGS
+                </span>
+              </div>
 
-              {/* Address */}
-              <div className="flex items-start gap-3.5">
-                <div className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0 text-[#89AACC]">
-                  <MapPin className="w-4 h-4" />
+              {/* Physical Location: Google Maps Red Pin */}
+              <div className="flex items-start gap-3.5 group">
+                <div className="w-10 h-10 rounded-xl bg-red-500/10 dark:bg-red-500/15 border border-red-500/30 flex items-center justify-center shrink-0 text-[#EA4335] shadow-sm shadow-red-500/10 group-hover:scale-105 group-hover:bg-red-500/20 transition-all">
+                  <MapPin className="w-5 h-5 text-[#EA4335] fill-[#EA4335]/20" />
                 </div>
                 <div className="space-y-1">
                   <h4 className="font-display text-sm font-bold text-white">Physical Location</h4>
-                  <p className="text-xs text-slate-300 leading-relaxed">
+                  <p className="text-xs text-slate-300 leading-relaxed font-sans font-medium">
                     38 Olanrewaju Ninalowo Crescent, Lekki Phase 1, Lagos State, Nigeria
                   </p>
-                  <a
-                    href="https://maps.google.com/?q=38+Olanrewaju+Ninalowo+Crescent+Lekki+Phase+1+Lagos"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-[11px] font-mono text-[#89AACC] hover:underline pt-1"
-                  >
-                    <span>Get Directions via Google Maps</span>
-                    <Navigation className="w-3 h-3" />
-                  </a>
                 </div>
               </div>
 
-              {/* Phone & Direct Calling */}
-              <div className="flex items-start gap-3.5">
-                <div className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0 text-[#89AACC]">
-                  <Phone className="w-4 h-4" />
+              {/* Telephone Concierge: Telecom Blue */}
+              <div className="flex items-start gap-3.5 group">
+                <div className="w-10 h-10 rounded-xl bg-blue-500/10 dark:bg-blue-500/15 border border-blue-500/30 flex items-center justify-center shrink-0 text-[#2563EB] shadow-sm shadow-blue-500/10 group-hover:scale-105 group-hover:bg-blue-500/20 transition-all">
+                  <Phone className="w-5 h-5 text-[#2563EB] fill-[#2563EB]/20" />
                 </div>
                 <div className="space-y-1">
                   <h4 className="font-display text-sm font-bold text-white">Telephone Concierge</h4>
-                  <p className="text-xs text-slate-300 font-mono">09015104502</p>
                   <a
                     href="tel:09015104502"
-                    className="inline-block text-[11px] font-mono text-[#89AACC] hover:underline"
+                    className="inline-block text-xs font-mono font-bold text-[#2563EB] hover:text-[#1D4ED8] dark:hover:text-blue-300 hover:underline tracking-wide"
                   >
-                    Call Studio Directly
+                    09015104502
                   </a>
                 </div>
               </div>
 
-              {/* WhatsApp Link */}
-              <div className="flex items-start gap-3.5">
-                <div className="w-9 h-9 rounded-xl bg-emerald-500/10 border border-emerald-500/20 flex items-center justify-center shrink-0 text-emerald-400">
-                  <MessageCircle className="w-4 h-4" />
+              {/* WhatsApp Studio Manager: Authentic WhatsApp Green */}
+              <div className="flex items-start gap-3.5 group">
+                <div className="w-10 h-10 rounded-xl bg-[#25D366]/10 dark:bg-[#25D366]/15 border border-[#25D366]/30 flex items-center justify-center shrink-0 text-[#25D366] shadow-sm shadow-[#25D366]/10 group-hover:scale-105 group-hover:bg-[#25D366]/20 transition-all">
+                  <MessageCircle className="w-5 h-5 text-[#25D366] fill-[#25D366]/20" />
                 </div>
                 <div className="space-y-1">
                   <h4 className="font-display text-sm font-bold text-white">WhatsApp Studio Manager</h4>
-                  <p className="text-xs text-slate-300 font-mono">+234 901 510 4502</p>
                   <a
                     href="https://wa.me/2349015104502?text=Hello%20SonicVault%2C%20I%20would%20like%20to%20enquire%20about%20a%20studio%20session."
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-block text-[11px] font-mono text-emerald-400 hover:underline"
+                    className="inline-block text-xs font-mono font-bold text-[#25D366] hover:underline tracking-wide"
                   >
-                    Chat on WhatsApp (Instant Response)
+                    +234 901 510 4502
                   </a>
                 </div>
               </div>
 
-              {/* Email */}
-              <div className="flex items-start gap-3.5">
-                <div className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0 text-[#89AACC]">
-                  <Mail className="w-4 h-4" />
+              {/* Official Studio Email: Official Gmail Logo & Bold High-Contrast Link */}
+              <div className="flex items-start gap-3.5 group">
+                <div className="w-10 h-10 rounded-xl bg-[#EA4335]/10 dark:bg-[#EA4335]/15 border border-[#EA4335]/30 flex items-center justify-center shrink-0 shadow-sm shadow-[#EA4335]/10 group-hover:scale-105 group-hover:bg-[#EA4335]/20 transition-all p-2">
+                  {/* Official Google Gmail Logo */}
+                  <svg
+                    viewBox="52 42 88 66"
+                    className="w-full h-full shrink-0"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-label="Official Gmail Logo"
+                  >
+                    <path fill="#4285f4" d="M58 108h14V74L52 59v43c0 3.32 2.69 6 6 6" />
+                    <path fill="#34a853" d="M120 108h14c3.32 0 6-2.69 6-6V59l-20 15" />
+                    <path fill="#fbbc04" d="M120 48v26l20-15v-8c0-7.42-8.47-11.65-14.4-7.2" />
+                    <path fill="#ea4335" d="M72 74V48l24 18 24-18v26L96 92" />
+                    <path fill="#c5221f" d="M52 51v8l20 15V48l-5.6-4.2c-5.94-4.45-14.4-.22-14.4 7.2" />
+                  </svg>
                 </div>
-                <div className="space-y-1">
+                <div className="space-y-1 flex-1 min-w-0">
                   <h4 className="font-display text-sm font-bold text-white">Official Studio Email</h4>
                   <a
                     href="mailto:Sonicvaultstudios@gmail.com"
-                    className="text-xs text-slate-300 font-mono hover:text-white transition-colors"
+                    className="studio-email-link inline-block text-xs sm:text-sm font-mono font-extrabold break-all transition-all"
+                    title="Send email to Sonicvaultstudios@gmail.com"
                   >
                     Sonicvaultstudios@gmail.com
                   </a>
+                  <p className="text-[11px] text-slate-400 font-sans">
+                    Guaranteed response within 2–4 hours from our Studio Director.
+                  </p>
                 </div>
               </div>
 
-              {/* Operating Hours */}
-              <div className="flex items-start gap-3.5">
-                <div className="w-9 h-9 rounded-xl bg-white/5 border border-white/10 flex items-center justify-center shrink-0 text-[#89AACC]">
-                  <Clock className="w-4 h-4" />
+              {/* Session Hours: Descriptive Warm Amber/Gold */}
+              <div className="flex items-start gap-3.5 group">
+                <div className="w-10 h-10 rounded-xl bg-amber-500/10 dark:bg-amber-500/15 border border-amber-500/30 flex items-center justify-center shrink-0 text-[#F59E0B] shadow-sm shadow-amber-500/10 group-hover:scale-105 group-hover:bg-amber-500/20 transition-all">
+                  <Clock className="w-5 h-5 text-[#F59E0B]" />
                 </div>
                 <div className="space-y-1">
                   <h4 className="font-display text-sm font-bold text-white">Session Hours</h4>
-                  <p className="text-xs text-slate-300">
+                  <p className="text-xs text-slate-300 font-sans font-medium">
                     Monday – Sunday: 24/7 By Appointment Only
                   </p>
-                  <span className="text-[10px] font-mono text-emerald-400 block">
-                    • Lockout and overnight sessions available
+                  <span className="inline-flex items-center gap-1.5 text-[11px] font-mono text-amber-500 dark:text-amber-400 font-semibold block pt-0.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-amber-500 animate-pulse shrink-0"></span>
+                    Lockout and overnight sessions available
                   </span>
                 </div>
               </div>
 
-              {/* Social Channels */}
-              <div className="pt-2 border-t border-white/5 flex items-center gap-3 text-xs text-slate-400">
-                <Instagram className="w-4 h-4 text-[#89AACC]" />
-                <span className="font-mono">Handle: @SONICVAULTSTUDIO38</span>
+              {/* Official Instagram Handle: Authentic Instagram Logo & Gradient */}
+              <div className="pt-4 border-t border-white/10 flex items-center gap-3.5 group">
+                <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#f09433] via-[#dc2743] to-[#bc1888] flex items-center justify-center shrink-0 shadow-md shadow-[#dc2743]/20 group-hover:scale-110 group-hover:rotate-3 transition-transform p-2">
+                  {/* Official Instagram Camera Logo */}
+                  <svg className="w-5 h-5 text-white fill-white" viewBox="0 0 24 24" aria-label="Official Instagram">
+                    <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                  </svg>
+                </div>
+                <div>
+                  <h4 className="font-display text-sm font-bold text-white">Official Instagram</h4>
+                  <a
+                    href="https://instagram.com/SONICVAULTSTUDIO38"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-xs font-mono font-bold text-[#dc2743] hover:underline"
+                  >
+                    @SONICVAULTSTUDIO38
+                  </a>
+                </div>
               </div>
             </div>
           </div>

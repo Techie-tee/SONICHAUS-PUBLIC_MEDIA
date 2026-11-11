@@ -112,10 +112,16 @@ export default function StudioChambersPreview({ onOpenBooking }: StudioChambersP
                 <div className="absolute inset-0 bg-gradient-to-t from-[#090d16] via-[#090d16]/30 to-transparent pointer-events-none" />
 
                 <div className="absolute top-3 left-3 right-3 flex items-center justify-between text-[10px] font-mono z-10 pointer-events-none">
-                  <span className="px-2.5 py-1 rounded-full bg-black/80 backdrop-blur-md border border-white/15 text-[#89AACC] uppercase tracking-wider">
+                  <span
+                    style={{ color: '#38BDF8' }}
+                    className="px-2.5 py-1 rounded-full bg-black/85 backdrop-blur-md border border-white/20 !text-[#38BDF8] text-[#38BDF8] uppercase tracking-wider font-bold text-[10.5px] shadow-sm"
+                  >
                     {chamber.role}
                   </span>
-                  <span className="px-2.5 py-1 rounded-full bg-black/80 backdrop-blur-md border border-white/15 text-slate-300">
+                  <span
+                    style={{ color: '#FFFFFF' }}
+                    className="px-2.5 py-1 rounded-full bg-black/85 backdrop-blur-md border border-white/20 !text-white text-white font-medium text-[10.5px] shadow-sm"
+                  >
                     {chamber.dimensions}
                   </span>
                 </div>
@@ -125,18 +131,25 @@ export default function StudioChambersPreview({ onOpenBooking }: StudioChambersP
               <div className="p-5 sm:p-6 flex-1 flex flex-col justify-between space-y-4">
                 <div className="space-y-2 flex-1 flex flex-col justify-end">
                   <h3
-                    className="service-card-title text-xl sm:text-2xl font-extrabold font-bold text-black dark:text-white font-display tracking-tight group-hover:text-[#4E85BF] transition-colors min-h-[3.25rem] flex items-end"
+                    style={{ color: '#FFFFFF' }}
+                    className="service-card-title chamber-card-title text-xl sm:text-2xl font-extrabold !text-white text-white font-display tracking-tight group-hover:text-[#38BDF8] transition-colors min-h-[3.25rem] flex items-end drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]"
                   >
                     {chamber.name}
                   </h3>
-                  <p className="text-xs text-slate-400 font-sans leading-relaxed">
+                  <p
+                    style={{ color: '#E2E8F0' }}
+                    className="service-card-desc text-xs sm:text-[13px] !text-[#E2E8F0] text-slate-200 font-sans leading-relaxed drop-shadow-sm font-normal"
+                  >
                     {chamber.description}
                   </p>
                 </div>
 
-                <div className="pt-3 border-t border-white/5 space-y-3">
-                  <div className="text-[11px] font-mono text-slate-400 truncate">
-                    <span className="text-[#89AACC] font-semibold">Core Hardware:</span> {chamber.specs}
+                <div className="pt-3 border-t border-white/10 space-y-3">
+                  <div
+                    style={{ color: '#E2E8F0' }}
+                    className="text-[11.5px] font-mono !text-[#E2E8F0] text-slate-200 truncate drop-shadow-sm"
+                  >
+                    <span className="text-[#38BDF8] font-bold">Core Hardware:</span> {chamber.specs}
                   </div>
 
                   <div className="flex items-center justify-between gap-3 pt-1">

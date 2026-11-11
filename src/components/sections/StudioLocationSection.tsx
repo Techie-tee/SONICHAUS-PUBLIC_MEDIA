@@ -157,13 +157,15 @@ export default function StudioLocationSection({ onOpenBooking }: StudioLocationS
 
                 <a
                   href="tel:09015104502"
-                  className="flex items-center justify-between p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/5 transition-colors group"
+                  className="flex items-center justify-between p-3 rounded-xl bg-blue-500/10 hover:bg-blue-500/20 border border-blue-500/25 transition-colors group"
                 >
-                  <div className="flex items-center gap-3 text-xs font-mono text-white">
-                    <Phone className="w-4 h-4 text-[#4E85BF]" />
-                    <span>09015104502</span>
+                  <div className="flex items-center gap-3 text-xs font-mono font-bold text-white">
+                    <div className="w-7 h-7 rounded-lg bg-blue-500/20 flex items-center justify-center text-[#2563EB] shrink-0">
+                      <Phone className="w-3.5 h-3.5" />
+                    </div>
+                    <span className="text-blue-200">09015104502</span>
                   </div>
-                  <span className="text-[11px] font-mono text-slate-400 group-hover:text-white transition-colors">
+                  <span className="text-[11px] font-mono text-blue-400 group-hover:text-blue-300 font-semibold transition-colors">
                     Studio Line →
                   </span>
                 </a>
@@ -174,8 +176,10 @@ export default function StudioLocationSection({ onOpenBooking }: StudioLocationS
                   rel="noopener noreferrer"
                   className="flex items-center justify-between p-3 rounded-xl bg-[#25D366]/10 hover:bg-[#25D366]/20 border border-[#25D366]/30 transition-colors group"
                 >
-                  <div className="flex items-center gap-3 text-xs font-mono text-emerald-300">
-                    <MessageCircle className="w-4 h-4 text-[#25D366]" />
+                  <div className="flex items-center gap-3 text-xs font-mono font-bold text-emerald-300">
+                    <div className="w-7 h-7 rounded-lg bg-[#25D366]/20 flex items-center justify-center text-[#25D366] shrink-0">
+                      <MessageCircle className="w-3.5 h-3.5" />
+                    </div>
                     <span>+234 901 510 4502</span>
                   </div>
                   <span className="text-[11px] font-mono text-emerald-400 font-semibold group-hover:translate-x-1 transition-transform">
@@ -185,30 +189,39 @@ export default function StudioLocationSection({ onOpenBooking }: StudioLocationS
 
                 <a
                   href="mailto:Sonicvaultstudios@gmail.com"
-                  className="flex items-center justify-between p-3 rounded-xl bg-white/5 hover:bg-white/10 border border-white/5 transition-colors group"
+                  className="flex items-center justify-between p-3 rounded-xl bg-red-500/10 hover:bg-red-500/20 border border-red-500/25 transition-colors group"
                 >
-                  <div className="flex items-center gap-3 text-xs font-mono text-white">
-                    <Mail className="w-4 h-4 text-[#4E85BF]" />
-                    <span>Sonicvaultstudios@gmail.com</span>
+                  <div className="flex items-center gap-3 text-xs font-mono font-bold text-white min-w-0">
+                    <div className="w-7 h-7 rounded-lg bg-red-500/20 flex items-center justify-center shrink-0 p-1">
+                      {/* Official Google Gmail Icon */}
+                      <svg viewBox="52 42 88 66" className="w-4 h-4 shrink-0" xmlns="http://www.w3.org/2000/svg" aria-label="Official Gmail">
+                        <path fill="#4285f4" d="M58 108h14V74L52 59v43c0 3.32 2.69 6 6 6" />
+                        <path fill="#34a853" d="M120 108h14c3.32 0 6-2.69 6-6V59l-20 15" />
+                        <path fill="#fbbc04" d="M120 48v26l20-15v-8c0-7.42-8.47-11.65-14.4-7.2" />
+                        <path fill="#ea4335" d="M72 74V48l24 18 24-18v26L96 92" />
+                        <path fill="#c5221f" d="M52 51v8l20 15V48l-5.6-4.2c-5.94-4.45-14.4-.22-14.4 7.2" />
+                      </svg>
+                    </div>
+                    <span className="studio-email-link text-white text-xs truncate">Sonicvaultstudios@gmail.com</span>
                   </div>
-                  <span className="text-[11px] font-mono text-slate-400 group-hover:text-white transition-colors">
+                  <span className="text-[11px] font-mono text-red-400 group-hover:text-red-300 font-semibold transition-colors shrink-0 ml-2">
                     Email Desk →
                   </span>
                 </a>
               </div>
             </div>
 
-            {/* Driving Directions & Map Button */}
+            {/* Driving Directions & Map Button: Google Maps Location Red */}
             <div className="pt-4 border-t border-white/10">
               <a
                 href={googleMapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-white/10 hover:bg-white/15 border border-white/10 text-xs font-mono uppercase tracking-wider text-white transition-all"
+                className="w-full inline-flex items-center justify-center gap-2 py-3 px-4 rounded-xl bg-red-500/10 hover:bg-red-500/20 border border-red-500/30 text-xs font-mono uppercase tracking-wider text-white transition-all group"
               >
-                <MapPin className="w-4 h-4 text-[#89AACC]" />
-                <span>Open in Google Maps / Get Directions</span>
-                <ArrowUpRight className="w-3.5 h-3.5 text-slate-400" />
+                <MapPin className="w-4 h-4 text-[#EA4335] group-hover:scale-110 transition-transform" />
+                <span className="font-bold">Open in Google Maps / Get Directions</span>
+                <ArrowUpRight className="w-3.5 h-3.5 text-red-400" />
               </a>
             </div>
           </div>

@@ -180,7 +180,7 @@ html.light ::-webkit-scrollbar-thumb:hover {
 /* All page & section titles on daylight surfaces */
 html.light h1:not(#tour h1):not(.dark-surface h1):not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(.work-card-title):not(.portfolio-card *):not(.work-card *):not(.case-study-modal *),
 html.light h2:not(#tour h2):not(.dark-card h2):not(#work .group h2):not(.case-study-modal *):not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(.work-card-title):not(.portfolio-card *):not(.work-card *),
-html.light h3:not(#tour h3):not(.dark-card h3):not(#work .group h3):not(.portfolio-card *):not(.work-card *):not(.case-study-modal *):not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(#explorations *):not(.studio-gallery-card-title):not(.exploration-card-title):not(#spaces .absolute *):not(#spaces .group h3):not(.service-card-title):not(#services .group h3):not(#services .service-card-title):not(.work-card-title):not(.work-card-title *):not(.brand-emblem-showcase *):not(.brand-emblem-title),
+html.light h3:not(#tour h3):not(.dark-card h3):not(#work .group h3):not(.portfolio-card *):not(.work-card *):not(.case-study-modal *):not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(#explorations *):not(.studio-gallery-card-title):not(.chamber-card-title):not(.chamber-card-title *):not(.exploration-card-title):not(#spaces .absolute *):not(#spaces .group h3):not(.service-card-title):not(#services .group h3):not(#services .service-card-title):not(.work-card-title):not(.work-card-title *):not(.brand-emblem-showcase *):not(.brand-emblem-title),
 html.light h4:not(#tour h4):not(.dark-card h4):not(#work .group h4):not(.case-study-modal *):not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(.work-card-title):not(.portfolio-card *):not(.work-card *) {
   color: #17191D !important;
 }
@@ -197,7 +197,7 @@ html.light h1.font-display.text-white:not(#tour h1):not(.cinematic-cta-section *
 
 /* Section H2 and H3 on daylight surfaces */
 html.light section:not(#tour):not(.cinematic-cta-section) h2.text-white:not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(.work-card-title):not(.portfolio-card *):not(.work-card *),
-html.light section:not(#tour):not(.cinematic-cta-section):not(#explorations) h3.text-white:not(#work .group h3):not(.dark-card h3):not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(#explorations *):not(.studio-gallery-card-title):not(.exploration-card-title):not(#spaces .absolute *):not(#spaces .group h3):not(.service-card-title):not(#services .group h3):not(#services .service-card-title):not(.work-card-title):not(.work-card-title *):not(.portfolio-card *):not(.work-card *):not(.case-study-modal *):not(.brand-emblem-showcase *):not(.brand-emblem-title),
+html.light section:not(#tour):not(.cinematic-cta-section):not(#explorations) h3.text-white:not(#work .group h3):not(.dark-card h3):not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(#explorations *):not(.studio-gallery-card-title):not(.chamber-card-title):not(.chamber-card-title *):not(.exploration-card-title):not(#spaces .absolute *):not(#spaces .group h3):not(.service-card-title):not(#services .group h3):not(#services .service-card-title):not(.work-card-title):not(.work-card-title *):not(.portfolio-card *):not(.work-card *):not(.case-study-modal *):not(.brand-emblem-showcase *):not(.brand-emblem-title),
 html.light section:not(#tour):not(.cinematic-cta-section) h4.text-white:not(#work .group h4):not(.dark-card h4):not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(.work-card-title):not(.portfolio-card *):not(.work-card *):not(.case-study-modal *) {
   color: #17191D !important;
 }
@@ -208,13 +208,13 @@ html.light h1.font-extrabold.text-white:not(#tour *):not(.cinematic-cta-section 
 }
 
 /* Secondary editorial and body copy on daylight surfaces */
-html.light p.text-slate-400:not(#tour *):not(#work .group *):not(.portfolio-card *):not(.work-card *):not(.case-study-modal *):not(.cinematic-cta-section *):not(.faq-concierge-banner *),
-html.light p.text-slate-300:not(#tour *):not(#work .group *):not(.portfolio-card *):not(.work-card *):not(.case-study-modal *):not(.cinematic-cta-section *):not(.faq-concierge-banner *) {
+html.light p.text-slate-400:not(#tour *):not(#work .group *):not(.portfolio-card *):not(.work-card *):not(.case-study-modal *):not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(#services *):not(#spaces *):not(.service-card-desc):not(.chamber-card-gear),
+html.light p.text-slate-300:not(#tour *):not(#work .group *):not(.portfolio-card *):not(.work-card *):not(.case-study-modal *):not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(#services *):not(#spaces *):not(.service-card-desc):not(.chamber-card-gear) {
   color: #555D68 !important;
 }
 
-html.light span.text-slate-400:not(#tour *):not(#work .group *):not(.portfolio-card *):not(.work-card *):not(.case-study-modal *):not(.cinematic-cta-section *):not(.faq-concierge-banner *),
-html.light span.text-slate-300:not(#tour *):not(#work .group *):not(.portfolio-card *):not(.work-card *):not(.case-study-modal *):not(.cinematic-cta-section *):not(.faq-concierge-banner *) {
+html.light span.text-slate-400:not(#tour *):not(#work .group *):not(.portfolio-card *):not(.work-card *):not(.case-study-modal *):not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(#services *):not(#spaces *),
+html.light span.text-slate-300:not(#tour *):not(#work .group *):not(.portfolio-card *):not(.work-card *):not(.case-study-modal *):not(.cinematic-cta-section *):not(.faq-concierge-banner *):not(#services *):not(#spaces *) {
   color: #555D68 !important;
 }
 
@@ -408,6 +408,46 @@ html.light .min-h-\[460px\].group .bg-white\/\[0\.03\] {
   background-color: rgba(255, 255, 255, 0.05) !important;
 }
 
+/* Work & Portfolio Card Image Badges: High Contrast & Maximum Visibility Across Themes */
+.work-badge-genre,
+html.light .work-badge-genre,
+html.dark .work-badge-genre,
+.portfolio-card .work-badge-genre {
+  background-color: rgba(0, 0, 0, 0.92) !important;
+  border-color: rgba(255, 255, 255, 0.35) !important;
+  color: #FFFFFF !important;
+  font-weight: 800 !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.95) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.work-badge-beat,
+html.light .work-badge-beat,
+html.dark .work-badge-beat,
+.portfolio-card .work-badge-beat {
+  background-color: rgba(0, 0, 0, 0.92) !important;
+  border-color: rgba(56, 189, 248, 0.8) !important;
+  color: #38BDF8 !important;
+  font-weight: 800 !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.95) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.work-badge-vocal,
+html.light .work-badge-vocal,
+html.dark .work-badge-vocal,
+.portfolio-card .work-badge-vocal {
+  background-color: rgba(0, 0, 0, 0.92) !important;
+  border-color: rgba(251, 191, 36, 0.8) !important;
+  color: #FBBF24 !important;
+  font-weight: 800 !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.95) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
 /* Protect All Media Assets: No filters, no inversions, no washing out */
 html.light img,
 html.light picture,
@@ -489,9 +529,12 @@ html.light .bg-\[\#0a0e16\]:not(#work *):not(.min-h-\[460px\]) {
   box-shadow: 0 8px 30px -4px rgba(78, 133, 191, 0.12) !important;
 }
 
-html.light .bg-\[\#080b12\] h3,
-html.light .bg-\[\#0a0e16\] h3 {
-  color: #17191D !important;
+html.light .bg-\[\#080b12\]:not(#work *):not(#services *):not(#spaces *) h3,
+html.light .bg-\[\#0a0e16\]:not(#work *):not(#services *):not(#spaces *) h3 {
+  color: #000000 !important;
+  font-weight: 800 !important;
+  text-shadow: none !important;
+  filter: none !important;
 }
 
 /* Category & Genre Filter Pills (Portfolio & Equipment) */
@@ -657,26 +700,29 @@ html.light #spaces h2 {
   color: #17191D !important;
 }
 
-/* Chamber Cards in Dark Mode or on Dark Photographic Overlays */
+/* Chamber Cards across all themes: Pure white (#FFFFFF), extra-bold, and prominent text-shadow for total contrast on dark card surfaces */
+.studio-gallery-card-title,
+.chamber-card-title,
+#spaces .studio-gallery-card-title,
+#spaces .chamber-card-title,
+#spaces .group h3,
+#spaces .absolute h3,
 html.dark #spaces .studio-gallery-card-title,
+html.dark #spaces .chamber-card-title,
 html.dark #spaces .group h3,
 html.dark #spaces .absolute h3,
-#spaces .absolute h3 {
-  color: #FFFFFF !important;
-  font-weight: 800 !important;
-  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95) !important;
-}
-
-/* Daylight mode: Chamber titles on white cards inside #spaces MUST be solid black (#000000) and bold, not white */
 html.light #spaces .studio-gallery-card-title,
+html.light #spaces .chamber-card-title,
 html.light #spaces .group h3,
 html.light #spaces .group.rounded-2xl h3,
 html.light #spaces h3.studio-gallery-card-title,
-html.light .studio-gallery-card-title {
-  color: #000000 !important;
+html.light .studio-gallery-card-title,
+html.light .chamber-card-title {
+  color: #FFFFFF !important;
   font-weight: 800 !important;
-  text-shadow: none !important;
-  filter: none !important;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95), 0 0 4px rgba(0, 0, 0, 0.8) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
 html.light #spaces .absolute span,
@@ -685,7 +731,7 @@ html.light #spaces .absolute span,
   font-weight: 700 !important;
 }
 
-html.light #spaces p {
+html.light #spaces > div > div > p {
   color: #555D68 !important;
 }
 
@@ -708,9 +754,16 @@ html.light #spaces .group.relative .bg-\[\#080b12\],
   background-color: #080b12 !important;
 }
 
+.chamber-card-gear,
 html.light #spaces .group.relative p,
-#spaces .group.relative p {
-  color: #94A3B8 !important;
+#spaces .group.relative p,
+html.light #spaces .group p,
+#spaces .group p {
+  color: #E2E8F0 !important;
+  font-weight: 500 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8) !important;
 }
 
 html.light #spaces .group.relative .border-t.border-white\/5,
@@ -893,22 +946,58 @@ html.dark .service-card-title,
   visibility: visible !important;
 }
 
-/* Service Card Titles in Daylight Mode: Solid Black (#000000) and Bold, Not White */
-html.light .service-card-title,
-html.light #services .service-card-title,
-html.light .bg-\[\#080b12\] .service-card-title,
-html.light .bg-\[\#0a0e16\] .service-card-title,
-html.light h3.service-card-title {
+/* Core Service Card Titles in ServicesSection (#services) across all themes: strictly safeguarded as pure white (#FFFFFF) per Test 22 */
+#services .service-card-title,
+html.dark .service-card-title,
+.service-card-title {
+  color: #FFFFFF !important;
+  font-weight: 800 !important;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+html.light #services .service-card-title {
+  color: #FFFFFF !important;
+  font-weight: 800 !important;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Service Titles in Services Catalogue (/services): Solid Black (#000000) and Bold in Daylight Mode, Pure White in Dark Mode */
+html.light .services-catalogue-card-title,
+html.light .services-page .services-catalogue-card-title,
+html.light .services-page h3,
+html.light .services-page .rounded-2xl h3,
+html.light .bg-\[\#080b12\]:not(#work *):not(#services *):not(#spaces *) .services-catalogue-card-title,
+html.light .bg-\[\#0a0e16\]:not(#work *):not(#services *):not(#spaces *) .services-catalogue-card-title {
   color: #000000 !important;
   font-weight: 800 !important;
   text-shadow: none !important;
   filter: none !important;
+  opacity: 1 !important;
+  visibility: visible !important;
 }
 
+html.dark .services-catalogue-card-title,
+html.dark .services-page .services-catalogue-card-title,
+html.dark .services-page h3 {
+  color: #FFFFFF !important;
+  font-weight: 800 !important;
+  text-shadow: 0 2px 14px rgba(0, 0, 0, 0.95) !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.service-card-desc,
 #services .group p,
 html.light #services .group p,
 html.dark #services .group p {
-  color: #CBD5E1 !important;
+  color: #E2E8F0 !important;
+  opacity: 1 !important;
+  visibility: visible !important;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.8) !important;
 }
 
 /* Work section background surface */
@@ -2347,5 +2436,91 @@ html.light #mobile-hero .mobile-chamber-explore-btn span.text-cyan-400 {
   transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
+/* ==========================================================================
+   OFFICIAL STUDIO CONTACT & GMAIL BRAND STYLING
+   High-contrast, bold, daylight-safe, and persistently visible on scroll
+   ========================================================================== */
 
+.studio-email-link {
+  font-family: var(--font-mono, monospace) !important;
+  font-weight: 800 !important;
+  letter-spacing: -0.01em !important;
+  text-decoration: none !important;
+  border-bottom: none !important;
+  border-radius: 4px !important;
+  padding: 1px 4px !important;
+  transition: all 0.2s ease !important;
+}
 
+/* Daylight / Light Mode: Deep high-contrast ink slate, no underline line */
+html.light .studio-email-link {
+  color: #0F172A !important;
+  text-decoration: none !important;
+  border-bottom: none !important;
+}
+
+html.light .studio-email-link:hover,
+html.light .studio-email-link:focus {
+  color: #D93025 !important;
+  text-decoration: none !important;
+  border-bottom: none !important;
+  background-color: rgba(234, 67, 53, 0.08) !important;
+}
+
+/* Dark Mode: Crisp bright white, no underline line */
+html.dark .studio-email-link {
+  color: #FFFFFF !important;
+  text-decoration: none !important;
+  border-bottom: none !important;
+}
+
+html.dark .studio-email-link:hover,
+html.dark .studio-email-link:focus {
+  color: #FF6B6B !important;
+  text-decoration: none !important;
+  border-bottom: none !important;
+  background-color: rgba(234, 67, 53, 0.15) !important;
+}
+
+/* Light mode Contact Page card text overrides: Ensure dark bold legible typography */
+html.light .bg-\[\#080b12\].p-6 h4,
+html.light .bg-\[\#080b12\].p-6 .text-white {
+  color: #0F172A !important;
+  font-weight: 700 !important;
+}
+
+html.light .bg-\[\#080b12\].p-6 p,
+html.light .bg-\[\#080b12\].p-6 .text-slate-300,
+html.light .bg-\[\#080b12\].p-6 .text-slate-400 {
+  color: #334155 !important;
+  font-weight: 500 !important;
+}
+
+html.light .bg-\[\#080b12\].p-6 .text-slate-200 {
+  color: #0F172A !important;
+  font-weight: 700 !important;
+}
+
+html.light .bg-\[\#080b12\].p-6 .border-white\/10 {
+  border-color: #E2E8F0 !important;
+}
+
+html.light .studio-footer-container .studio-email-link {
+  color: #0F172A !important;
+  font-weight: 800 !important;
+}
+
+html.light .studio-footer-container .studio-email-link:hover {
+  color: #D93025 !important;
+}
+
+.studio-footer-social-btn svg,
+html.light .studio-footer-social-btn svg,
+html.light .studio-footer-social-btn:hover svg {
+  fill: #FFFFFF !important;
+  color: #FFFFFF !important;
+}
+
+html.light .studio-footer-social-btn {
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12) !important;
+}

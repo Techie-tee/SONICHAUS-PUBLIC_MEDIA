@@ -310,7 +310,10 @@ export default function StudioTourPage() {
               <span className="text-[10px] sm:text-[11px] font-mono tracking-widest text-[#89AACC] uppercase block">
                 FACILITY OVERVIEW
               </span>
-              <h2 className="font-display text-2xl sm:text-3xl font-bold text-white leading-tight">
+              <h2
+                style={{ color: '#FFFFFF' }}
+                className="font-display text-2xl sm:text-3xl font-extrabold !text-white text-white leading-tight drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]"
+              >
                 {selectedRoom.name}
               </h2>
               <p className="text-xs sm:text-sm font-editorial italic text-slate-300">

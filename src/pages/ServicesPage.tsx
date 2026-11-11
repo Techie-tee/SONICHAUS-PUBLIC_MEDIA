@@ -38,7 +38,7 @@ export default function ServicesPage() {
   };
 
   return (
-    <div className="min-h-screen bg-[#040609] text-slate-100 pt-24 pb-16 px-4 sm:px-6 lg:px-12 font-sans selection:bg-[#4E85BF] selection:text-white">
+    <div className="services-page min-h-screen bg-[#040609] text-slate-100 pt-24 pb-16 px-4 sm:px-6 lg:px-12 font-sans selection:bg-[#4E85BF] selection:text-white">
       <div className="max-w-7xl mx-auto space-y-8 sm:space-y-10">
         {/* Header */}
         <div className="space-y-2.5 max-w-3xl">
@@ -118,18 +118,13 @@ export default function ServicesPage() {
                           <span className="text-xs font-mono text-slate-400">
                             Room: {srv.verifiedRoom}
                           </span>
-                          {!srv.isPriceApproved && (
-                            <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-amber-500/10 text-amber-300 border border-amber-500/20">
-                              PROPOSED RATES
-                            </span>
-                          )}
                         </div>
                         <h3
-                          className="service-card-title font-display text-xl sm:text-2xl font-extrabold font-bold text-black dark:text-white tracking-wide"
+                          className="services-catalogue-card-title font-display text-xl sm:text-2xl font-extrabold text-[#000000] dark:text-white tracking-wide"
                         >
                           {srv.title}
                         </h3>
-                        <p className="text-xs sm:text-sm text-slate-400 max-w-2xl">
+                        <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400 max-w-2xl font-medium">
                           {srv.tagline}
                         </p>
                       </div>

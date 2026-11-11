@@ -293,11 +293,6 @@ export default function BookingPage() {
                           <span className="text-[10px] font-mono px-2 py-0.5 rounded bg-white/5 text-[#89AACC]">
                             {srv.verifiedRoom}
                           </span>
-                          {!srv.isPriceApproved && (
-                            <span className="text-[9px] font-mono px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-300">
-                              PROPOSED
-                            </span>
-                          )}
                         </div>
                         <h3 className="font-display text-lg font-bold text-white">{srv.title}</h3>
                         <p className="text-xs text-slate-400 line-clamp-2 leading-relaxed">

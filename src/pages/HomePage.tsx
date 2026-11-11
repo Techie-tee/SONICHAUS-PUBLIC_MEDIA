@@ -191,16 +191,23 @@ export default function HomePage({ onOpenBooking }: HomePageProps) {
                 {/* Text Description: Consistent bottom-aligned layout so all chamber titles sit well below */}
                 <div className="p-3 sm:p-3.5 flex-1 flex flex-col justify-between">
                   <div className="space-y-1 flex-1 flex flex-col justify-end">
-                    <span className="text-[10px] font-mono text-[#89AACC] uppercase tracking-wider block font-semibold min-h-[1.75rem] flex items-end">
+                    <span
+                      style={{ color: '#38BDF8' }}
+                      className="text-[10.5px] font-mono text-[#38BDF8] !text-[#38BDF8] uppercase tracking-wider block font-bold min-h-[1.75rem] flex items-end drop-shadow-sm"
+                    >
                       {chamber.role}
                     </span>
                     <h3
-                      className="studio-gallery-card-title text-sm sm:text-base font-extrabold font-bold text-black dark:text-white font-display group-hover:text-[#4E85BF] transition-colors leading-snug min-h-[2.5rem] flex items-end"
+                      style={{ color: '#FFFFFF' }}
+                      className="studio-gallery-card-title chamber-card-title text-sm sm:text-base font-extrabold !text-white text-white font-display group-hover:text-[#38BDF8] transition-colors leading-snug min-h-[2.5rem] flex items-end drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)]"
                     >
                       {chamber.name}
                     </h3>
                   </div>
-                  <p className="text-[10.5px] text-slate-400 font-mono line-clamp-1 pt-1.5 border-t border-white/5 mt-2">
+                  <p
+                    style={{ color: '#E2E8F0' }}
+                    className="chamber-card-gear text-[11px] text-slate-200 !text-[#E2E8F0] font-mono font-medium line-clamp-1 pt-1.5 border-t border-white/10 mt-2 drop-shadow-sm"
+                  >
                     {chamber.gear}
                   </p>
                 </div>
@@ -210,7 +217,7 @@ export default function HomePage({ onOpenBooking }: HomePageProps) {
 
           {/* Direct Link to Dedicated Studio Tour */}
           <div className="pt-3 flex flex-col sm:flex-row items-center justify-between gap-3 sm:gap-4">
-            <p className="text-xs font-mono text-slate-400">
+            <p className="text-xs font-mono text-slate-300 dark:text-slate-400 font-medium">
               EXPLORE SCHEMATICS, ACOUSTIC RATINGS (NC-15), ROOM DIMENSIONS & FULL SPECIFICATIONS
             </p>
             <Link

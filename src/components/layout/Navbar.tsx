@@ -20,6 +20,7 @@ const NAV_ITEMS = [
 
 const MOBILE_NAV_ITEMS = [
   { name: 'HOME', to: '/' },
+  { name: 'THE VAULT', to: '/studio' },
   { name: 'SERVICES', to: '/services' },
   { name: 'OUR WORK', to: '/our-work' },
   { name: 'ABOUT', to: '/about' },
